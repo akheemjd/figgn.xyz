@@ -1,37 +1,556 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mulch Calculator — Free Mulch Estimator (Bags & Cubic Yards)</title>
-<meta name="description" content="Calculate exactly how much mulch you need in bags or cubic yards. Free mulch calculator for garden beds, landscaping, and tree rings. Instant results.">
-<meta name="robots" content="index, follow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mulch Calculator — Free Mulch Estimator (Bags &amp; Cubic Yards) | figgn</title>
+<meta name="description" content="Free mulch calculator. Enter your bed length, width and depth to get the square footage, cubic yards and number of bags of mulch you need.">
 <link rel="canonical" href="https://figgn.xyz/mulch-calculator/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Mulch Calculator","url":"https://figgn.xyz/mulch-calculator/","description":"Calculate how much mulch you need in bags or cubic yards. Works for any landscape bed.","applicationCategory":"HomeApplication","operatingSystem":"All"}</script>
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,sans-serif;line-height:1.6;color:#1a1a1a;background:#f5f5f7}.container{max-width:800px;margin:0 auto;padding:0 20px}header{background:#1a1a2e;color:#fff;padding:24px 0 18px}header .container{display:flex;align-items:center;gap:12px;flex-wrap:wrap}header a{color:#a0a0b8;text-decoration:none;font-size:.9rem}header a:hover{color:#fff}header h1{font-size:clamp(1.3rem,3.5vw,1.7rem)}.breadcrumbs{font-size:.82rem;color:#888;padding:12px 0}.breadcrumbs a{color:#2563eb;text-decoration:none}.ad-top{max-width:728px;margin:16px auto;min-height:90px;background:#e8e8ed;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8rem;border-radius:4px}.tool-box{background:#fff;border-radius:8px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin:20px 0}.tool-box h2{font-size:1.2rem;margin-bottom:18px;color:#1a1a2e}.form-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.form-group{margin-bottom:14px}.form-group label{display:block;font-weight:600;margin-bottom:4px;font-size:.92rem}.form-group input,.form-group select{width:100%;padding:10px 12px;border:1.5px solid #d0d0d8;border-radius:6px;font-size:1rem}.form-group input:focus,.form-group select:focus{outline:none;border-color:#2563eb}.form-group .hint{font-size:.8rem;color:#888;margin-top:3px}.result{background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:24px;margin-top:20px;display:none}.result.show{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}.result-card{text-align:center}.result-card .big{font-size:1.8rem;font-weight:700;color:#166534}.result-card .label{font-size:.82rem;color:#555;margin-top:4px}.content-section{margin:30px 0}.content-section h2{font-size:1.2rem;color:#1a1a2e;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e5e7eb}.content-section p,.content-section li{color:#555;font-size:.95rem;margin-bottom:8px}.content-section ul{padding-left:20px}.ad-inline{min-height:250px;background:#e8e8ed;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8rem;border-radius:4px;margin:24px 0}.related{padding:20px;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-top:20px}.related a{color:#2563eb;text-decoration:none;margin-right:16px;font-size:.92rem}.faq details{background:#fff;border-radius:6px;padding:14px 18px;box-shadow:0 1px 2px rgba(0,0,0,.05);margin-bottom:10px}.faq summary{font-weight:600;cursor:pointer;font-size:.95rem}.faq p{margin-top:8px;color:#555;font-size:.9rem}footer{background:#1a1a2e;color:#888;padding:24px 0;margin-top:40px;text-align:center;font-size:.82rem}footer a{color:#a0a0b8;text-decoration:none}@media(max-width:500px){.form-row{grid-template-columns:1fr}.result.show{grid-template-columns:1fr}}</style>
+<meta property="og:title" content="Mulch Calculator — Free Mulch Estimator (Bags &amp; Cubic Yards) | figgn">
+<meta property="og:description" content="Free mulch calculator. Enter your bed length, width and depth to get the square footage, cubic yards and number of bags of mulch you need.">
+<meta property="og:url" content="https://figgn.xyz/mulch-calculator/">
+<meta property="og:type" content="website">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('theme');
+    if(t !== 'light' && t !== 'dark'){
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  }catch(e){
+    document.documentElement.setAttribute('data-theme','light');
+  }
+})();
+</script>
+<style>
+:root{
+  --bg:#f8f9fb;
+  --card:#ffffff;
+  --text:#111111;
+  --text2:#555555;
+  --border:#cccccc;
+  --input-bg:#ffffff;
+  --accent:#e65c00;
+  --result-bg:#e7f5ec;
+  --result-text:#0d5c2e;
+  --ad-bg:#f0f0f0;
+  --ad-text:#888888;
+  --shadow:0 1px 3px rgba(0,0,0,.08);
+  --line:#e4e4ea;
+}
+[data-theme="dark"]{
+  --bg:#131318;
+  --card:#1c1c24;
+  --text:#e0e0e0;
+  --text2:#999999;
+  --border:#3a3a48;
+  --input-bg:#252530;
+  --accent:#e65c00;
+  --result-bg:#0a3020;
+  --result-text:#4ade80;
+  --ad-bg:#22222b;
+  --ad-text:#777777;
+  --shadow:0 1px 3px rgba(0,0,0,.3);
+  --line:#2a2a34;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+}
+.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:#c24d00}
+[data-theme="dark"] a{color:#ff8a3d}
+
+/* header */
+header{background:var(--accent);color:#fff}
+.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700;letter-spacing:-.5px}
+#themeToggle{
+  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.65);
+  border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;
+  font-family:inherit;min-height:32px;
+}
+#themeToggle:hover{background:rgba(255,255,255,.15)}
+
+/* sticky result bar */
+#stickyBar{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:var(--result-bg);color:var(--result-text);
+  border-bottom:1px solid var(--border);
+  transform:translateY(-100%);
+  visibility:hidden;
+}
+#stickyBar.show{transform:translateY(0);visibility:visible}
+@media (prefers-reduced-motion:no-preference){
+  #stickyBar{transition:transform .15s ease-out}
+}
+.sbar{max-width:760px;margin:0 auto;padding:8px 12px;display:flex;align-items:center;gap:12px}
+.sbar .val{font-size:26px;font-weight:700;line-height:1.1}
+.sbar .det{font-size:12px;color:var(--result-text);opacity:.85;flex:1}
+.copybtn{
+  background:var(--accent);color:#fff;border:0;border-radius:4px;
+  padding:8px 14px;font-size:14px;font-family:inherit;cursor:pointer;min-height:36px;
+}
+.copybtn:hover{background:#cf5300}
+
+/* ads */
+.ad{background:var(--ad-bg);color:var(--ad-text);text-align:center;margin:16px auto;
+    display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.ad-lb{max-width:728px;height:90px}
+.ad-rect{max-width:300px;height:250px}
+#stickyAd{
+  position:fixed;left:0;right:0;bottom:0;z-index:55;height:50px;
+  background:var(--ad-bg);color:var(--ad-text);
+  border-top:1px solid var(--border);
+  display:none;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+}
+#stickyAd button{
+  position:absolute;right:4px;top:4px;width:26px;height:26px;line-height:1;
+  background:transparent;border:1px solid var(--border);border-radius:4px;
+  color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;padding:0;
+}
+@media (max-width:640px){
+  #stickyAd{display:flex}
+  body{padding-bottom:58px}
+  body.adclosed{padding-bottom:0}
+}
+
+/* cards */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:4px;
+  box-shadow:var(--shadow);padding:16px;margin:16px 0;
+}
+h1{font-size:24px;margin:0 0 4px;letter-spacing:-.3px}
+h2{font-size:18px;margin:0 0 10px;letter-spacing:-.2px}
+h3{font-size:14px;margin:18px 0 8px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+
+/* form */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.two{grid-template-columns:1fr}}
+.field{margin-top:16px}
+label,.flabel{display:block;font-size:13px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+input[type=number]{
+  width:100%;min-height:56px;padding:0 10px;
+  background:var(--input-bg);color:var(--text);
+  border:1px solid var(--border);border-radius:4px;
+  font-size:18px;font-family:"SF Mono","Cascadia Code","Consolas",monospace;
+}
+input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.suffix{display:flex;align-items:stretch}
+.suffix input{border-radius:4px 0 0 4px;border-right:0}
+.suffix span{
+  min-height:56px;display:flex;align-items:center;padding:0 10px;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:0 4px 4px 0;color:var(--text2);font-size:15px;
+  font-family:"SF Mono","Cascadia Code","Consolas",monospace;
+}
+.presets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.preset{
+  min-height:56px;padding:6px 4px;
+  background:var(--input-bg);color:var(--text);
+  border:1px solid var(--border);border-radius:4px;
+  font-size:14px;font-family:inherit;cursor:pointer;line-height:1.25;
+}
+.preset b{display:block;font-family:"SF Mono","Cascadia Code","Consolas",monospace;font-size:16px}
+.preset.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+
+/* results */
+#results{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+@media (max-width:560px){#results{grid-template-columns:1fr}}
+.res{background:var(--result-bg);color:var(--result-text);border-radius:4px;padding:14px}
+.res .k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;opacity:.9}
+.res .v{font-size:30px;font-weight:700;line-height:1.1;margin-top:2px}
+.res .u{font-size:14px;font-weight:600;margin-left:4px}
+.detail{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);
+        border:1px solid var(--line);border-radius:4px;margin-top:12px;overflow:hidden}
+.detail div{background:var(--card);padding:10px 12px}
+.detail .k{font-size:12px;color:var(--text2)}
+.detail .v{font-size:18px;font-weight:600}
+.tip{font-size:14px;color:var(--text2);margin-top:12px;border-left:3px solid var(--accent);padding-left:10px}
+
+/* content */
+ol,ul{padding-left:20px;margin:0}
+ol li,ul li{margin-bottom:8px}
+p{margin:0 0 12px}
+.formula{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:12px;margin:12px 0;
+         font-size:15px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2)}
+td.n{font-family:"SF Mono","Cascadia Code","Consolas",monospace;white-space:nowrap}
+details{border-bottom:1px solid var(--line);padding:10px 0}
+details:last-of-type{border-bottom:0;padding-bottom:0}
+summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";color:var(--accent);font-weight:700}
+details[open] summary::before{content:"– "}
+details p{margin:8px 0 0;color:var(--text2);font-size:14px}
+.rel a{display:block;font-weight:600;margin-top:12px}
+.rel p{font-size:13px;color:var(--text2);margin:2px 0 0}
+footer{background:#1c1c24;color:#999;font-size:13px;margin-top:24px}
+footer .wrap{padding:14px 12px;display:flex;gap:14px;flex-wrap:wrap}
+footer a{color:#bbb}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebApplication",
+      "name":"Mulch Calculator",
+      "url":"https://figgn.xyz/mulch-calculator/",
+      "applicationCategory":"UtilitiesApplication",
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "description":"Free mulch estimator that turns a bed size and depth into square footage, cubic yards and the number of bags needed.",
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+    },
+    {
+      "@type":"HowTo",
+      "name":"How to Use the Mulch Calculator",
+      "description":"Work out how much mulch a garden bed needs in bags or cubic yards.",
+      "step":[
+        {"@type":"HowToStep","position":1,"name":"Measure the bed","text":"Enter the length and width of the bed in feet. Break curved or irregular beds into rectangles and add the results together."},
+        {"@type":"HowToStep","position":2,"name":"Choose a depth","text":"Two inches is a light refresh, three inches is standard, four inches is for weed suppression on a bare bed."},
+        {"@type":"HowToStep","position":3,"name":"Pick your bag size","text":"Most bagged mulch is 2 cubic feet. Check the bag, since 1.5 and 3 cubic foot bags are also sold."},
+        {"@type":"HowToStep","position":4,"name":"Read the results","text":"Use the bag count for small beds and the cubic yard figure when ordering bulk delivery."}
+      ]
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"Is bagged or bulk mulch cheaper?",
+         "acceptedAnswer":{"@type":"Answer","text":"Bulk is cheaper per cubic yard, but delivery changes the maths. A cubic yard equals about 13.5 standard two cubic foot bags, which at typical bag prices works out considerably more than the same volume bought loose. Bulk delivery fees mean the crossover usually falls around two to three cubic yards. Below that, bags win on convenience and no minimum order. Above it, bulk wins clearly."}},
+        {"@type":"Question","name":"How often should mulch be replaced?",
+         "acceptedAnswer":{"@type":"Answer","text":"Organic mulch breaks down by roughly one inch a year, so most beds need topping up annually rather than replacing. Rake the existing layer first to break up any crust, then add only enough new material to return to the target depth. Strip and replace fully every three to four years, or sooner if the mulch has matted, gone sour smelling or built up above four inches."}},
+        {"@type":"Question","name":"How deep should mulch be?",
+         "acceptedAnswer":{"@type":"Answer","text":"Two to three inches suits most established beds, and three to four inches is better on bare ground where weed suppression is the goal. Going deeper than four inches starves the soil of oxygen and encourages roots to grow up into the mulch layer. Keep mulch two to three inches clear of tree trunks and plant stems, since piling it against bark traps moisture and invites rot and pests."}}
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
-<header><div class="container"><a href="/">← Figgn</a><h1>Mulch Calculator</h1></div></header>
-<div class="container"><div class="breadcrumbs"><a href="/">Home</a> › Mulch Calculator</div></div>
-<div class="container"><div class="ad-top">Advertisement</div></div>
-<div class="container">
-<div class="tool-box">
-<h2>How Much Mulch Do You Need?</h2>
-<div class="form-row">
-<div class="form-group"><label>Length (feet)</label><input type="number" id="length" placeholder="12" min="0" step="0.5" oninput="calc()"></div>
-<div class="form-group"><label>Width (feet)</label><input type="number" id="width" placeholder="6" min="0" step="0.5" oninput="calc()"></div>
-<div class="form-group"><label>Depth</label><select id="depth" oninput="calc()"><option value="2">2 inches</option><option value="3" selected>3 inches</option><option value="4">4 inches</option><option value="6">6 inches</option></select></div>
+
+<div id="stickyBar" role="status" aria-live="polite">
+  <div class="sbar">
+    <span class="val mono" id="sVal">—</span>
+    <span class="det" id="sDet">Mulch needed</span>
+    <button type="button" class="copybtn" id="copyBtn">Copy</button>
+  </div>
 </div>
-<div class="form-group"><label>Bag Size (optional)</label><select id="bagSize" oninput="calc()"><option value="2">2 cubic feet (standard bag)</option><option value="1.5">1.5 cubic feet</option><option value="3">3 cubic feet</option></select><span class="hint">Most mulch bags are 2 cubic feet</span></div>
-<div class="result show" id="result"><div class="result-card"><div class="big" id="cubicYards">0</div><div class="label">Cubic Yards</div></div><div class="result-card"><div class="big" id="bags">0</div><div class="label">Bags Needed</div></div><div class="result-card"><div class="big" id="sqft">0</div><div class="label">Square Feet</div></div></div>
+
+<header>
+  <div class="hbar">
+    <a href="/" class="wordmark">figgn</a>
+    <button type="button" id="themeToggle">Dark</button>
+  </div>
+</header>
+
+<div class="ad ad-lb">Advertisement</div>
+
+<main class="wrap">
+
+  <div class="card">
+    <h1>Mulch Calculator</h1>
+    <p class="sub">Bed size and depth in — bags for the car, cubic yards for the delivery.</p>
+
+    <div class="two">
+      <div>
+        <label for="length">Bed length</label>
+        <div class="suffix">
+          <input type="number" id="length" inputmode="decimal" min="0" step="0.5" value="12">
+          <span aria-hidden="true">ft</span>
+        </div>
+      </div>
+      <div>
+        <label for="width">Bed width</label>
+        <div class="suffix">
+          <input type="number" id="width" inputmode="decimal" min="0" step="0.5" value="6">
+          <span aria-hidden="true">ft</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="flabel" id="depthLabel">Depth</span>
+      <div class="presets" role="group" aria-labelledby="depthLabel">
+        <button type="button" class="preset" data-depth="2">Light<b>2"</b></button>
+        <button type="button" class="preset on" data-depth="3">Standard<b>3"</b></button>
+        <button type="button" class="preset" data-depth="4">Deep<b>4"</b></button>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="flabel" id="bagLabel">Bag size</span>
+      <div class="presets" role="group" aria-labelledby="bagLabel">
+        <button type="button" class="preset bag" data-bag="1.5">Small<b>1.5 ft³</b></button>
+        <button type="button" class="preset bag on" data-bag="2">Standard<b>2 ft³</b></button>
+        <button type="button" class="preset bag" data-bag="3">Large<b>3 ft³</b></button>
+      </div>
+    </div>
+
+    <div id="results">
+      <div class="res">
+        <div class="k">Bed area</div>
+        <div class="v mono"><span id="rArea">—</span><span class="u">sq ft</span></div>
+      </div>
+      <div class="res">
+        <div class="k">Volume</div>
+        <div class="v mono"><span id="rYards">—</span><span class="u">yd³</span></div>
+      </div>
+      <div class="res">
+        <div class="k">Bags needed</div>
+        <div class="v mono"><span id="rBags">—</span><span class="u" id="rBagsU">bags</span></div>
+      </div>
+    </div>
+
+    <div class="detail">
+      <div><div class="k">Volume in cubic feet</div><div class="v mono" id="dFeet">—</div></div>
+      <div><div class="k">Bags per cubic yard</div><div class="v mono" id="dPerYard">—</div></div>
+      <div><div class="k">1 yd³ covers at this depth</div><div class="v mono" id="dCover">—</div></div>
+    </div>
+
+    <p class="tip">Keep mulch 2–3 inches clear of trunks and stems. Piling it against bark traps moisture and invites rot — the single most common mulching mistake.</p>
+  </div>
+
+  <div class="ad ad-rect">Advertisement</div>
+
+  <div class="card">
+    <h2>How to Use the Mulch Calculator</h2>
+    <ol>
+      <li>Measure the <strong>length and width</strong> of the bed in feet. Split curved or L-shaped beds into rectangles and add the totals.</li>
+      <li>Tap a <strong>depth</strong> — light for a refresh over existing mulch, standard for most beds, deep for bare ground you want to keep weed-free.</li>
+      <li>Set your <strong>bag size</strong>. Two cubic feet is the common bag, but check before you buy: the price per bag means nothing without it.</li>
+      <li>Use the <strong>bag count</strong> for small jobs and the <strong>cubic yards</strong> figure when calling a bulk supplier.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>How It's Calculated</h2>
+    <p>Volume is bed area times depth. Depth is in inches, so it's divided by 12 to get feet; cubic feet are divided by 27 because a cubic yard is 3 × 3 × 3 feet.</p>
+    <div class="formula mono">Square feet = length × width<br>Cubic yards = (sq ft × (depth ÷ 12)) ÷ 27<br>Bags = ⌈ cubic feet ÷ bag size ⌉</div>
+    <p><strong>Worked example:</strong> a 12 ft × 6 ft bed is <span class="mono">72 sq ft</span>. At 3 inches that's 72 × 0.25 = 18 cubic feet, or <span class="mono">0.67 yd³</span>. In standard 2 cubic foot bags: 18 ÷ 2 = <span class="mono">9 bags</span>.</p>
+    <p>Bags round up, because half a bag isn't sold. One cubic yard is 27 cubic feet, which works out to 13.5 standard bags — the number worth remembering when comparing a pallet of bags against a bulk load.</p>
+  </div>
+
+  <div class="card">
+    <h2>Mulch Coverage Reference</h2>
+    <p class="sub">One cubic yard is 27 cubic feet. How far it spreads depends entirely on depth.</p>
+    <table>
+      <thead><tr><th>Depth</th><th>1 yd³ covers</th><th>2 ft³ bags per yd³</th><th>Typical use</th></tr></thead>
+      <tbody>
+        <tr><td>1"</td><td class="n">324 sq ft</td><td class="n">13.5</td><td>Light top-dressing over settled mulch.</td></tr>
+        <tr><td>2"</td><td class="n">162 sq ft</td><td class="n">13.5</td><td>Annual refresh on an established bed.</td></tr>
+        <tr><td>3"</td><td class="n">108 sq ft</td><td class="n">13.5</td><td>Standard depth for most beds.</td></tr>
+        <tr><td>4"</td><td class="n">81 sq ft</td><td class="n">13.5</td><td>Bare ground, weed suppression, new beds.</td></tr>
+      </tbody>
+    </table>
+    <p class="tip">The bags-per-yard figure doesn't change with depth — a cubic yard is always 13.5 standard bags. Depth only changes how much ground that yard covers.</p>
+
+    <h3>Bagged vs bulk</h3>
+    <table>
+      <thead><tr><th></th><th>Bagged</th><th>Bulk</th></tr></thead>
+      <tbody>
+        <tr><td>Sold as</td><td>1.5, 2 or 3 ft³ bags</td><td>Cubic yards, loose</td></tr>
+        <tr><td>Per cubic yard</td><td class="n">13.5 × bag price</td><td class="n">One yard price</td></tr>
+        <tr><td>Delivery</td><td>Carry it yourself</td><td>Flat fee, often with a minimum order</td></tr>
+        <tr><td>Best for</td><td>Under ~2 yd³, tight access, no wheelbarrow</td><td>Over ~2–3 yd³, large beds, whole-yard refresh</td></tr>
+        <tr><td>Watch for</td><td>Price per bag hides the volume — compare per ft³</td><td>Delivery fee can wipe out the saving on small orders</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+      <summary>Is bagged or bulk mulch cheaper?</summary>
+      <p>Bulk is cheaper per cubic yard; delivery is what changes the answer. A cubic yard is about 13.5 standard 2 ft³ bags, so at typical bag prices you pay noticeably more for the same volume in bags. Delivery fees and minimum orders mean the crossover usually sits around 2–3 cubic yards. Below that, bags win on convenience and no minimum. Above it, bulk wins clearly — and you skip splitting and hauling 40 plastic sacks.</p>
+    </details>
+
+    <details>
+      <summary>How often should mulch be replaced?</summary>
+      <p>Organic mulch breaks down at roughly an inch a year, so most beds want topping up rather than replacing. Rake the old layer first to break up any crust, then add only enough to get back to depth. Strip and replace fully every three to four years, or sooner if it has matted into a water-shedding mat, smells sour, or has crept above 4 inches.</p>
+    </details>
+
+    <details>
+      <summary>How deep should mulch be?</summary>
+      <p>2–3 inches for established beds, 3–4 inches on bare ground where weed suppression is the point. Past 4 inches you starve the soil of oxygen and encourage roots to grow up into the mulch instead of down. And keep it 2–3 inches back from trunks and stems — mulch mounded against bark holds moisture where it does damage.</p>
+    </details>
+  </div>
+
+  <div class="card rel">
+    <h2>More Free Calculators</h2>
+    <a href="/gravel-calculator/">Gravel Calculator</a>
+    <p>Cubic yards and tons of gravel for a driveway, path or bed.</p>
+    <a href="/paint-calculator/">Paint Calculator</a>
+    <p>Gallons needed for a room, with doors, windows and coats accounted for.</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 figgn</span>
+    <a href="/privacy/">Privacy</a>
+    <a href="/">Home</a>
+  </div>
+</footer>
+
+<div id="stickyAd">
+  Advertisement
+  <button type="button" id="closeAd" aria-label="Close ad">✕</button>
 </div>
-<div class="content-section"><h2>How to Use</h2><ol><li>Measure your garden bed's length and width in feet.</li><li>For irregular beds, break into rectangles.</li><li>Select mulch depth — 3 inches is standard.</li><li>Choose your bag size for bag count.</li></ol></div>
-<div class="ad-inline">Advertisement</div>
-<div class="content-section"><h2>Mulch Coverage Guide</h2><ul><li><strong>1 cubic yard</strong> covers ~108 sq ft at 3 inches deep.</li><li><strong>1 bag (2 cu ft)</strong> covers ~12 sq ft at 2 inches deep, ~8 sq ft at 3 inches.</li><li><strong>Bulk mulch</strong> is cheaper per cubic yard than bagged — $25–40/cy vs $3–5/bag.</li><li><strong>Refresh annually:</strong> Existing beds typically need 1–2 inches of fresh mulch per year.</li></ul></div>
-<div class="faq"><h2 style="font-size:1.2rem;color:#1a1a2e;margin-bottom:12px">FAQs</h2><details><summary>Bagged vs bulk mulch — which should I buy?</summary><p>For 5+ cubic yards, bulk delivery is significantly cheaper. For small beds (< 2 cy), bags are more convenient. Bulk mulch costs $25–40 per cubic yard vs $60–100+ for equivalent bagged.</p></details><details><summary>How often should I replace mulch?</summary><p>Organic mulch breaks down over 1–2 years. Add 1–2 inches annually to maintain depth. Remove old mulch only if it's matted, moldy, or has built up to more than 4 inches.</p></details></div>
-<div class="related"><h3 style="margin-bottom:10px;font-size:1rem">You might also need:</h3><a href="/gravel-calculator/">Gravel Calculator</a><a href="/paint-calculator/">Paint Calculator</a></div>
-</div>
-<footer><div class="container"><p>&copy; 2026 Figgn. <a href="/">Home</a> · <a href="/privacy/">Privacy</a></p></div></footer>
-<script>function calc(){const l=parseFloat(document.getElementById('length').value)||0;const w=parseFloat(document.getElementById('width').value)||0;const d=parseInt(document.getElementById('depth').value)||3;const bagSize=parseFloat(document.getElementById('bagSize').value)||2;const sqft=l*w;const cy=(sqft*(d/12))/27;const bags=Math.ceil((cy*27)/bagSize);document.getElementById('sqft').textContent=Math.round(sqft);document.getElementById('cubicYards').textContent=cy.toFixed(2);document.getElementById('bags').textContent=bags}</script>
+
+<script>
+(function(){
+  var length = document.getElementById('length');
+  var width = document.getElementById('width');
+  var depth = 3;
+  var bag = 2;
+
+  function num(v){
+    var n = parseFloat(v);
+    return isNaN(n) || n < 0 ? 0 : n;
+  }
+
+  function fmt(x, dp){
+    var d = (dp === undefined) ? 2 : dp;
+    var s = (Math.round(x * Math.pow(10, d)) / Math.pow(10, d)).toString();
+    var p = s.split('.');
+    p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return p.join('.');
+  }
+
+  function calc(){
+    var l = num(length.value);
+    var w = num(width.value);
+
+    var rArea = document.getElementById('rArea');
+    var rYards = document.getElementById('rYards');
+    var rBags = document.getElementById('rBags');
+    var rBagsU = document.getElementById('rBagsU');
+    var dFeet = document.getElementById('dFeet');
+    var dPerYard = document.getElementById('dPerYard');
+    var dCover = document.getElementById('dCover');
+    var sVal = document.getElementById('sVal');
+    var sDet = document.getElementById('sDet');
+
+    dPerYard.textContent = fmt(27 / bag, 1) + ' × ' + bag + ' ft³';
+    dCover.textContent = fmt(324 / depth, 0) + ' sq ft';
+
+    if(l <= 0 || w <= 0){
+      rArea.textContent = '—';
+      rYards.textContent = '—';
+      rBags.textContent = '—';
+      rBagsU.textContent = 'bags';
+      dFeet.textContent = '—';
+      sVal.textContent = '—';
+      sDet.textContent = 'Enter a bed length and width above 0';
+      return;
+    }
+
+    var area = l * w;
+    var cubicFeet = area * (depth / 12);
+    var yards = cubicFeet / 27;
+    var bags = Math.ceil(cubicFeet / bag);
+
+    rArea.textContent = fmt(area, 1);
+    rYards.textContent = fmt(yards);
+    rBags.textContent = bags;
+    rBagsU.textContent = (bags === 1 ? 'bag' : 'bags');
+    dFeet.textContent = fmt(cubicFeet, 1) + ' ft³';
+
+    sVal.textContent = bags + (bags === 1 ? ' bag' : ' bags');
+    sDet.textContent = fmt(yards) + ' yd³ · ' + fmt(area, 1) + ' sq ft at ' + depth + '" · ' +
+                       bag + ' ft³ bags';
+  }
+
+  length.addEventListener('input', calc);
+  width.addEventListener('input', calc);
+
+  document.querySelectorAll('.preset').forEach(function(p){
+    p.setAttribute('aria-pressed', p.classList.contains('on') ? 'true' : 'false');
+    p.addEventListener('click', function(){
+      var isBag = p.classList.contains('bag');
+      if(isBag){
+        bag = parseFloat(p.dataset.bag);
+      }else{
+        depth = parseFloat(p.dataset.depth);
+      }
+      p.parentElement.querySelectorAll('.preset').forEach(function(x){
+        var on = (x === p);
+        x.classList.toggle('on', on);
+        x.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      calc();
+    });
+  });
+
+  var copyBtn = document.getElementById('copyBtn');
+  copyBtn.addEventListener('click', function(){
+    var v = document.getElementById('sVal').textContent;
+    var done = function(){
+      copyBtn.textContent = 'Copied!';
+      setTimeout(function(){ copyBtn.textContent = 'Copy'; }, 2000);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(v).then(done, done);
+    }else{
+      var t = document.createElement('textarea');
+      t.value = v;
+      t.style.position = 'fixed';
+      t.style.opacity = '0';
+      document.body.appendChild(t);
+      t.select();
+      try{ document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(t);
+      done();
+    }
+  });
+
+  var barEl = document.getElementById('stickyBar');
+  var resultsEl = document.getElementById('results');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        barEl.classList.toggle('show', !en.isIntersecting && en.boundingClientRect.top < 0);
+      });
+    }, {threshold: 0}).observe(resultsEl);
+  }
+
+  var toggle = document.getElementById('themeToggle');
+  function syncToggle(){
+    var t = document.documentElement.getAttribute('data-theme');
+    toggle.textContent = (t === 'dark' ? 'Light' : 'Dark');
+    toggle.setAttribute('aria-label','Switch to ' + (t === 'dark' ? 'light' : 'dark') + ' mode');
+  }
+  syncToggle();
+  toggle.addEventListener('click', function(){
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    try{ localStorage.setItem('theme', t); }catch(e){}
+    syncToggle();
+  });
+
+  document.getElementById('closeAd').addEventListener('click', function(){
+    document.getElementById('stickyAd').style.display = 'none';
+    document.body.classList.add('adclosed');
+  });
+
+  calc();
+})();
+</script>
 </body>
 </html>
