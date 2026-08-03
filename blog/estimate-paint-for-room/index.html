@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Estimate Paint for Any Room | figgn</title>
+<meta name="description" content="Measure walls, subtract doors and windows, and work out how many gallons of paint a room needs — with a full worked example you can follow on your own walls.">
+<link rel="canonical" href="https://figgn.xyz/blog/estimate-paint-for-room/">
+<meta property="og:title" content="How to Estimate Paint for Any Room">
+<meta property="og:description" content="Measure walls, subtract doors and windows, and work out how many gallons of paint a room needs — with a full worked example you can follow on your own walls.">
+<meta property="og:url" content="https://figgn.xyz/blog/estimate-paint-for-room/">
+<meta property="og:type" content="article">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('theme');
+    if(t !== 'light' && t !== 'dark'){
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  }catch(e){
+    document.documentElement.setAttribute('data-theme','light');
+  }
+})();
+</script>
+<style>
+:root{
+  --bg:#f8f9fb;
+  --card:#ffffff;
+  --text:#111111;
+  --text2:#555555;
+  --border:#cccccc;
+  --input-bg:#ffffff;
+  --accent:#e65c00;
+  --result-bg:#e7f5ec;
+  --result-text:#0d5c2e;
+  --ad-bg:#f0f0f0;
+  --ad-text:#888888;
+  --shadow:0 1px 3px rgba(0,0,0,.08);
+  --line:#e4e4ea;
+}
+[data-theme="dark"]{
+  --bg:#131318;
+  --card:#1c1c24;
+  --text:#e0e0e0;
+  --text2:#999999;
+  --border:#3a3a48;
+  --input-bg:#252530;
+  --accent:#e65c00;
+  --result-bg:#0a3020;
+  --result-text:#4ade80;
+  --ad-bg:#22222b;
+  --ad-text:#777777;
+  --shadow:0 1px 3px rgba(0,0,0,.3);
+  --line:#2a2a34;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+}
+.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+.wrap{max-width:680px;margin:0 auto;padding:0 12px}
+a{color:#c24d00}
+[data-theme="dark"] a{color:#ff8a3d}
+
+/* header */
+header{background:var(--accent);color:#fff}
+.hbar{max-width:680px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700;letter-spacing:-.5px}
+#themeToggle{
+  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.65);
+  border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;
+  font-family:inherit;min-height:32px;
+}
+#themeToggle:hover{background:rgba(255,255,255,.15)}
+
+/* ad slots — reserved space, lazy filled, never above the answer on mobile */
+.adwrap{margin:20px auto;text-align:center}
+.adwrap .adlabel{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text2);margin-bottom:4px}
+.adwrap .adslot{background:var(--ad-bg);color:var(--ad-text);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.adwrap[data-ad="leaderboard"]{display:none;max-width:728px}
+.adwrap[data-ad="leaderboard"] .adslot{min-height:90px}
+.adwrap[data-ad="primary"],.adwrap[data-ad="secondary"]{max-width:300px}
+.adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot{min-height:250px}
+@media (min-width:768px){
+  .adwrap[data-ad="leaderboard"]{display:block}
+  .adwrap[data-ad="primary"],.adwrap[data-ad="secondary"]{max-width:336px}
+  .adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot{min-height:280px}
+}
+#stickyAd{
+  position:fixed;left:0;right:0;bottom:0;z-index:55;height:50px;
+  background:var(--ad-bg);color:var(--ad-text);border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  transform:translateY(100%);visibility:hidden;
+}
+#stickyAd.show{transform:translateY(0);visibility:visible}
+@media (prefers-reduced-motion:no-preference){
+  #stickyAd{transition:transform .2s ease-out}
+}
+#stickyAd button{
+  position:absolute;right:4px;top:4px;width:26px;height:26px;line-height:1;
+  background:var(--card);border:1px solid var(--border);border-radius:4px;
+  color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;padding:0;
+}
+body.stickyad{padding-bottom:58px}
+@media (min-width:641px){
+  #stickyAd{display:none}
+  body.stickyad{padding-bottom:0}
+}
+
+/* article */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:4px;
+  box-shadow:var(--shadow);padding:18px;margin:16px 0;
+}
+.crumb{font-size:13px;color:var(--text2);padding-top:18px}
+.crumb a{color:var(--text2)}
+h1{font-size:27px;margin:0 0 8px;letter-spacing:-.4px;line-height:1.25}
+.meta{font-size:13px;color:var(--text2);margin:0 0 18px;
+      font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+article p{margin:0 0 14px;font-size:17px;line-height:1.6}
+article h2{font-size:19px;margin:26px 0 10px;letter-spacing:-.2px}
+article ul{padding-left:20px;margin:0 0 14px}
+article li{margin-bottom:8px;font-size:17px;line-height:1.55}
+.formula{background:var(--bg);border:1px solid var(--line);border-radius:4px;
+         padding:12px;margin:14px 0;font-size:15px;overflow-x:auto}
+.example{background:var(--result-bg);color:var(--result-text);border-radius:4px;padding:14px;margin:16px 0}
+.example h3{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.06em}
+.example p{font-size:16px;margin:0 0 8px}
+.example p:last-child{margin:0}
+.example .total{font-size:24px;font-weight:700;font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+.cta{border:1px solid var(--accent);border-radius:4px;padding:14px;margin:20px 0;background:var(--bg)}
+.cta a{font-weight:700;font-size:17px}
+.cta p{font-size:14px;color:var(--text2);margin:4px 0 0}
+.rel a{display:block;font-weight:600;margin-top:12px}
+.rel p{font-size:13px;color:var(--text2);margin:2px 0 0}
+.rel h2{font-size:15px;margin:0;text-transform:uppercase;letter-spacing:.08em;color:var(--text2)}
+footer{background:#1c1c24;color:#999;font-size:13px;margin-top:24px}
+footer .wrap{padding:14px 12px;display:flex;gap:14px;flex-wrap:wrap}
+footer a{color:#bbb}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BlogPosting",
+  "headline":"How to Estimate Paint for Any Room",
+  "description":"Measure walls, subtract doors and windows, and work out how many gallons of paint a room needs, with a full worked example.",
+  "datePublished":"2026-08-03",
+  "dateModified":"2026-08-03",
+  "author":{"@type":"Organization","name":"figgn","url":"https://figgn.xyz/"},
+  "publisher":{"@type":"Organization","name":"figgn","url":"https://figgn.xyz/"},
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://figgn.xyz/blog/estimate-paint-for-room/"},
+  "articleSection":"Home & DIY",
+  "keywords":"paint estimate, how much paint, paint coverage, gallons of paint, painting a room"
+}
+</script>
+</head>
+<body>
+
+<header>
+  <div class="hbar">
+    <a href="/" class="wordmark">figgn</a>
+    <button type="button" id="themeToggle">Dark</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <aside class="adwrap" data-ad="leaderboard">
+    <span class="adlabel">Advertisement</span>
+    <!-- AdSense: replace the .adslot contents with your <ins class="adsbygoogle"> unit -->
+    <div class="adslot" data-size="728x90"></div>
+  </aside>
+</div>
+
+<main class="wrap">
+
+  <p class="crumb"><a href="/">figgn</a> / <a href="/blog/">Blog</a> / Estimating paint</p>
+
+  <article class="card">
+    <h1>How to Estimate Paint for Any Room</h1>
+    <p class="meta">3 August 2026 · 4 min read</p>
+
+    <p>Running out of paint halfway up the last wall is the worst way to spend a Saturday. The second trip costs an hour, and the replacement can is mixed from a different batch — close, but often close enough to see in daylight across a finished wall.</p>
+
+    <p>Estimating properly takes about five minutes with a tape measure. Here's the whole method.</p>
+
+    <h2>Step 1: Measure the walls</h2>
+
+    <p>Run a tape along the floor at the base of each wall and write down the four lengths. Don't average them, and don't measure diagonally across the room — you want the actual run of each wall, because that's what you'll be rolling.</p>
+
+    <p>Add the four numbers together to get the room's perimeter. A 12 by 14 foot room gives you 12 + 14 + 12 + 14, or 52 feet.</p>
+
+    <p>If the room isn't a plain rectangle, break it into rectangles. A closet, an alcove or an L-shaped extension each get measured as their own little room, then added to the total. Chimney breasts and bay windows are worth measuring separately too — they add more surface than people expect.</p>
+
+    <h2>Step 2: Get the ceiling height</h2>
+
+    <p>Most homes are 8 feet floor to ceiling. Newer builds are often 9 or 10, and older houses can be anything at all, so measure rather than assume. One misjudged foot on a 52-foot perimeter is 52 square feet of wall you didn't buy paint for.</p>
+
+    <p>Multiply the perimeter by the height and you have your gross wall area. For the example room: 52 × 8 = 416 square feet.</p>
+
+    <p>Vaulted or sloped ceilings need one extra step. Work out the rectangle up to the point where the slope starts, then treat the triangle above it separately — half the base times the height — and add the two together.</p>
+
+    <h2>Step 3: Subtract doors and windows</h2>
+
+    <p>You aren't painting the openings, so take them out. Standard sizes are close enough for an estimate:</p>
+
+    <ul>
+      <li><strong>Interior door:</strong> about 20 square feet (3 feet by 6 feet 8 inches)</li>
+      <li><strong>Average window:</strong> about 15 square feet</li>
+    </ul>
+
+    <p>One door and two windows removes 20 + 30 = 50 square feet, leaving 366 square feet of actual wall in our example room.</p>
+
+    <p>Two judgement calls here. Large picture windows, sliding doors and double doors are considerably bigger than the standard figures, so measure those properly rather than counting them as one opening. And a small transom or porthole window isn't worth subtracting at all — you'll spend more paint cutting in around it than you save.</p>
+  </article>
+
+  <aside class="adwrap" data-ad="primary">
+    <span class="adlabel">Advertisement</span>
+    <!-- AdSense: replace the .adslot contents with your <ins class="adsbygoogle"> unit -->
+    <div class="adslot" data-size="300x250 / 336x280"></div>
+  </aside>
+
+  <article class="card">
+    <h2>Step 4: Decide on coats</h2>
+
+    <p>Two coats is the default, and it's the right answer for most jobs. One coat only works when you're refreshing the same colour over a sound, clean wall. Three coats is for a genuinely difficult change — a strong red or deep navy going over pale, or a light colour going over something dark.</p>
+
+    <p>If you're covering a dark colour with a light one, prime first rather than adding coats. Primer blocks the old colour for far less money than a third gallon of finish paint, and it gives you a uniform base so the topcoat colour reads true.</p>
+
+    <p>Now the coverage figure. A gallon of interior wall paint covers roughly <strong>350 square feet</strong> in one coat on smooth, previously painted drywall. That's the number most manufacturers print, and it's what the <a href="/paint-calculator/">paint calculator</a> uses. Porous surfaces drink far more — expect 250 to 300 square feet on new drywall or heavy texture, and as little as 150 on rough masonry.</p>
+
+    <div class="formula mono">Wall area = perimeter × height − openings<br>Gallons = wall area × coats ÷ 350</div>
+
+    <h2>The worked example</h2>
+
+    <div class="example">
+      <h3>12 × 14 room, 8 ft ceiling, 1 door, 2 windows, 2 coats</h3>
+      <p>Perimeter: 12 + 14 + 12 + 14 = 52 ft</p>
+      <p>Gross wall area: 52 × 8 = 416 sq ft</p>
+      <p>Minus openings: 416 − 20 − 30 = 366 sq ft</p>
+      <p>Two coats: 366 × 2 = 732 sq ft to cover</p>
+      <p>Gallons: 732 ÷ 350 = 2.09</p>
+      <p class="total">3 gallons</p>
+    </div>
+
+    <p>Always round up. You can't buy 2.09 cans, and the alternative to rounding up is the second trip you were trying to avoid. Buy an extra quart on top for touch-ups — scuffs, nail holes and the spot behind the door you'll find three weeks later.</p>
+
+    <p>One last thing worth knowing: this estimate covers walls only. Ceilings are usually painted in a dedicated flat ceiling paint rather than the wall colour, so work them out separately — length times width, divided by 350 per coat. Trim, doors and frames are a different paint again, and a quart usually handles an average room.</p>
+
+    <div class="cta">
+      <a href="/paint-calculator/">Run your numbers in the paint calculator →</a>
+      <p>Enter your wall lengths, ceiling height, doors and windows. It handles the arithmetic and the rounding, and updates as you type.</p>
+    </div>
+  </article>
+
+  <aside class="adwrap" data-ad="secondary">
+    <span class="adlabel">Advertisement</span>
+    <!-- AdSense: replace the .adslot contents with your <ins class="adsbygoogle"> unit -->
+    <div class="adslot" data-size="300x250 / 336x280"></div>
+  </aside>
+
+  <div class="card rel">
+    <h2>Related</h2>
+    <a href="/paint-calculator/">Paint Calculator</a>
+    <p>Gallons needed for a room, with doors, windows and coats accounted for.</p>
+    <a href="/flooring-calculator/">Flooring Calculator</a>
+    <p>Square footage and waste allowance for any room.</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 figgn</span>
+    <a href="/privacy/">Privacy</a>
+    <a href="/">Home</a>
+  </div>
+</footer>
+
+<div id="stickyAd" aria-label="Advertisement">
+  <!-- AdSense: 320x50 anchor unit goes here -->
+  <span data-size="320x50">Advertisement</span>
+  <button type="button" id="closeAd" aria-label="Close ad">✕</button>
+</div>
+
+<script>
+(function(){
+  var toggle = document.getElementById('themeToggle');
+  function syncToggle(){
+    var t = document.documentElement.getAttribute('data-theme');
+    toggle.textContent = (t === 'dark' ? 'Light' : 'Dark');
+    toggle.setAttribute('aria-label','Switch to ' + (t === 'dark' ? 'light' : 'dark') + ' mode');
+  }
+  syncToggle();
+  toggle.addEventListener('click', function(){
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    try{ localStorage.setItem('theme', t); }catch(e){}
+    syncToggle();
+  });
+})();
+</script>
+
+<script>
+/* Ad controller: lazy fill, engagement-gated sticky, session dismissal. */
+(function(){
+  function fill(el){
+    if(el.dataset.filled) return;
+    el.dataset.filled = '1';
+    el.textContent = 'Advertisement \u00b7 ' + (el.dataset.size || '');
+    /* AdSense: (adsbygoogle = window.adsbygoogle || []).push({}); */
+  }
+
+  var slots = document.querySelectorAll('.adslot');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ fill(en.target); io.unobserve(en.target); }
+      });
+    }, {rootMargin: '600px 0px'});
+    slots.forEach(function(s){ io.observe(s); });
+  }else{
+    slots.forEach(fill);
+  }
+
+  var sticky = document.getElementById('stickyAd');
+  if(!sticky) return;
+
+  var dismissed = false;
+  try{ dismissed = sessionStorage.getItem('adDismissed') === '1'; }catch(e){}
+
+  var armed = false;
+  function reveal(){
+    if(dismissed || sticky.classList.contains('show')) return;
+    sticky.classList.add('show');
+    document.body.classList.add('stickyad');
+  }
+  function arm(){
+    if(armed || dismissed) return;
+    armed = true;
+    setTimeout(reveal, 400);
+  }
+
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > window.innerHeight * 0.5) arm();
+  }, {passive:true});
+
+  document.getElementById('closeAd').addEventListener('click', function(){
+    sticky.classList.remove('show');
+    document.body.classList.remove('stickyad');
+    dismissed = true;
+    try{ sessionStorage.setItem('adDismissed','1'); }catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
