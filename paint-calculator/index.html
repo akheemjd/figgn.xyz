@@ -1,43 +1,601 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paint Calculator — Free Paint Estimator (Gallons Needed)</title>
-<meta name="description" content="Calculate exactly how many gallons of paint you need for any room. Accounts for doors, windows, and multiple coats. Free paint estimator for homeowners and contractors.">
-<meta name="robots" content="index, follow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paint Calculator — Free Paint Estimator (Gallons Needed) | figgn</title>
+<meta name="description" content="Free paint calculator. Enter your wall lengths, ceiling height, doors and windows to get the number of gallons you need, including coats and coverage.">
 <link rel="canonical" href="https://figgn.xyz/paint-calculator/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Paint Calculator","url":"https://figgn.xyz/paint-calculator/","description":"Calculate how many gallons of paint you need. Accounts for doors, windows, and coats.","applicationCategory":"HomeApplication","operatingSystem":"All"}</script>
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,sans-serif;line-height:1.6;color:#1a1a1a;background:#f5f5f7}.container{max-width:800px;margin:0 auto;padding:0 20px}header{background:#1a1a2e;color:#fff;padding:24px 0 18px}header .container{display:flex;align-items:center;gap:12px;flex-wrap:wrap}header a{color:#a0a0b8;text-decoration:none;font-size:.9rem}header a:hover{color:#fff}header h1{font-size:clamp(1.3rem,3.5vw,1.7rem)}.breadcrumbs{font-size:.82rem;color:#888;padding:12px 0}.breadcrumbs a{color:#2563eb;text-decoration:none}.ad-top{max-width:728px;margin:16px auto;min-height:90px;background:#e8e8ed;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8rem;border-radius:4px}.tool-box{background:#fff;border-radius:8px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin:20px 0}.tool-box h2{font-size:1.2rem;margin-bottom:18px;color:#1a1a2e}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-group{margin-bottom:14px}.form-group label{display:block;font-weight:600;margin-bottom:4px;font-size:.92rem}.form-group input,.form-group select{width:100%;padding:10px 12px;border:1.5px solid #d0d0d8;border-radius:6px;font-size:1rem}.form-group input:focus,.form-group select:focus{outline:none;border-color:#2563eb}.form-group .unit{font-size:.82rem;color:#888}.result{background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:24px;margin-top:20px;display:none}.result.show{display:block}.result .big{font-size:2.2rem;font-weight:700;color:#166534}.result .sub{color:#555;font-size:.92rem;margin-top:6px}.content-section{margin:30px 0}.content-section h2,.content-section h3{font-size:1.2rem;color:#1a1a2e;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e5e7eb}.content-section p,.content-section li{color:#555;font-size:.95rem;margin-bottom:8px}.content-section ul{padding-left:20px;margin-bottom:12px}.ad-inline{min-height:250px;background:#e8e8ed;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8rem;border-radius:4px;margin:24px 0}.faq details{margin-bottom:10px;background:#fff;border-radius:6px;padding:14px 18px;box-shadow:0 1px 2px rgba(0,0,0,.05)}.faq summary{font-weight:600;cursor:pointer;font-size:.95rem}.faq p{margin-top:8px;color:#555;font-size:.9rem}.related{margin:24px 0;padding:20px;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08)}.related h3{margin-bottom:10px;font-size:1rem}.related a{color:#2563eb;text-decoration:none;margin-right:16px;font-size:.92rem}footer{background:#1a1a2e;color:#888;padding:24px 0;margin-top:40px;text-align:center;font-size:.82rem}footer a{color:#a0a0b8;text-decoration:none}@media(max-width:500px){.form-row{grid-template-columns:1fr}}</style>
+<meta property="og:title" content="Paint Calculator — Free Paint Estimator (Gallons Needed) | figgn">
+<meta property="og:description" content="Free paint calculator. Enter your wall lengths, ceiling height, doors and windows to get the number of gallons you need, including coats and coverage.">
+<meta property="og:url" content="https://figgn.xyz/paint-calculator/">
+<meta property="og:type" content="website">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('theme');
+    if(t !== 'light' && t !== 'dark'){
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  }catch(e){
+    document.documentElement.setAttribute('data-theme','light');
+  }
+})();
+</script>
+<style>
+:root{
+  --bg:#f8f9fb;
+  --card:#ffffff;
+  --text:#111111;
+  --text2:#555555;
+  --border:#cccccc;
+  --input-bg:#ffffff;
+  --accent:#e65c00;
+  --result-bg:#e7f5ec;
+  --result-text:#0d5c2e;
+  --ad-bg:#f0f0f0;
+  --ad-text:#888888;
+  --shadow:0 1px 3px rgba(0,0,0,.08);
+  --line:#e4e4ea;
+}
+[data-theme="dark"]{
+  --bg:#131318;
+  --card:#1c1c24;
+  --text:#e0e0e0;
+  --text2:#999999;
+  --border:#3a3a48;
+  --input-bg:#252530;
+  --accent:#e65c00;
+  --result-bg:#0a3020;
+  --result-text:#4ade80;
+  --ad-bg:#22222b;
+  --ad-text:#777777;
+  --shadow:0 1px 3px rgba(0,0,0,.3);
+  --line:#2a2a34;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+}
+.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:#c24d00}
+[data-theme="dark"] a{color:#ff8a3d}
+
+/* header */
+header{background:var(--accent);color:#fff}
+.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700;letter-spacing:-.5px}
+#themeToggle{
+  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.65);
+  border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;
+  font-family:inherit;min-height:32px;
+}
+#themeToggle:hover{background:rgba(255,255,255,.15)}
+
+/* sticky result bar */
+#stickyBar{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:var(--result-bg);color:var(--result-text);
+  border-bottom:1px solid var(--border);
+  transform:translateY(-100%);
+  visibility:hidden;
+}
+#stickyBar.show{transform:translateY(0);visibility:visible}
+@media (prefers-reduced-motion:no-preference){
+  #stickyBar{transition:transform .15s ease-out}
+}
+.sbar{max-width:760px;margin:0 auto;padding:8px 12px;display:flex;align-items:center;gap:12px}
+.sbar .val{font-size:26px;font-weight:700;line-height:1.1}
+.sbar .det{font-size:12px;color:var(--result-text);opacity:.85;flex:1}
+.copybtn{
+  background:var(--accent);color:#fff;border:0;border-radius:4px;
+  padding:8px 14px;font-size:14px;font-family:inherit;cursor:pointer;min-height:36px;
+}
+.copybtn:hover{background:#cf5300}
+
+/* ads */
+.ad{background:var(--ad-bg);color:var(--ad-text);text-align:center;margin:16px auto;
+    display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.ad-lb{max-width:728px;height:90px}
+.ad-rect{max-width:300px;height:250px}
+#stickyAd{
+  position:fixed;left:0;right:0;bottom:0;z-index:55;height:50px;
+  background:var(--ad-bg);color:var(--ad-text);
+  border-top:1px solid var(--border);
+  display:none;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+}
+#stickyAd button{
+  position:absolute;right:4px;top:4px;width:26px;height:26px;line-height:1;
+  background:transparent;border:1px solid var(--border);border-radius:4px;
+  color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;padding:0;
+}
+@media (max-width:640px){
+  #stickyAd{display:flex}
+  body{padding-bottom:58px}
+  body.adclosed{padding-bottom:0}
+}
+
+/* cards */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:4px;
+  box-shadow:var(--shadow);padding:16px;margin:16px 0;
+}
+h1{font-size:24px;margin:0 0 4px;letter-spacing:-.3px}
+h2{font-size:18px;margin:0 0 10px;letter-spacing:-.2px}
+h3{font-size:14px;margin:18px 0 8px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+
+/* form */
+.walls{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:560px){.walls{grid-template-columns:1fr 1fr}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+@media (max-width:560px){.two{grid-template-columns:1fr}}
+label,.flabel{display:block;font-size:13px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+input[type=number]{
+  width:100%;min-height:56px;padding:0 10px;
+  background:var(--input-bg);color:var(--text);
+  border:1px solid var(--border);border-radius:4px;
+  font-size:18px;font-family:"SF Mono","Cascadia Code","Consolas",monospace;
+}
+input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.suffix{display:flex;align-items:stretch}
+.suffix input{border-radius:4px 0 0 4px;border-right:0}
+.suffix span{
+  min-height:56px;display:flex;align-items:center;padding:0 10px;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:0 4px 4px 0;color:var(--text2);font-size:15px;
+  font-family:"SF Mono","Cascadia Code","Consolas",monospace;
+}
+.stepper{display:flex;gap:8px}
+.stepper button{
+  width:56px;min-height:56px;flex:0 0 56px;
+  background:var(--input-bg);color:var(--text);
+  border:1px solid var(--border);border-radius:4px;
+  font-size:22px;font-family:inherit;cursor:pointer;line-height:1;
+}
+.stepper button:hover{border-color:var(--accent);color:var(--accent)}
+.stepper button[disabled]{opacity:.4;cursor:default}
+.stepper button[disabled]:hover{border-color:var(--border);color:var(--text)}
+.stepper input{text-align:center}
+.presets{display:flex;gap:8px}
+.preset{
+  flex:1;min-height:56px;padding:8px 4px;
+  background:var(--input-bg);color:var(--text);
+  border:1px solid var(--border);border-radius:4px;
+  font-size:16px;font-family:"SF Mono","Cascadia Code","Consolas",monospace;cursor:pointer;
+}
+.preset.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+
+/* results */
+.res{background:var(--result-bg);color:var(--result-text);border-radius:4px;padding:14px;margin-top:18px;
+     display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.res .big{font-size:44px;font-weight:700;line-height:1}
+.res .lbl{font-size:15px;font-weight:600}
+.detail{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);
+        border:1px solid var(--line);border-radius:4px;margin-top:12px;overflow:hidden}
+.detail div{background:var(--card);padding:10px 12px}
+.detail .k{font-size:12px;color:var(--text2)}
+.detail .v{font-size:18px;font-weight:600}
+.tip{font-size:14px;color:var(--text2);margin-top:12px;border-left:3px solid var(--accent);padding-left:10px}
+
+/* content */
+ol,ul{padding-left:20px;margin:0}
+ol li,ul li{margin-bottom:8px}
+p{margin:0 0 12px}
+.formula{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:12px;margin:12px 0;
+         font-size:15px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2)}
+td.n{font-family:"SF Mono","Cascadia Code","Consolas",monospace;white-space:nowrap}
+details{border-bottom:1px solid var(--line);padding:10px 0}
+details:last-of-type{border-bottom:0;padding-bottom:0}
+summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";color:var(--accent);font-weight:700}
+details[open] summary::before{content:"– "}
+details p{margin:8px 0 0;color:var(--text2);font-size:14px}
+.rel a{display:block;font-weight:600;margin-top:12px}
+.rel p{font-size:13px;color:var(--text2);margin:2px 0 0}
+footer{background:#1c1c24;color:#999;font-size:13px;margin-top:24px}
+footer .wrap{padding:14px 12px;display:flex;gap:14px;flex-wrap:wrap}
+footer a{color:#bbb}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebApplication",
+      "name":"Paint Calculator",
+      "url":"https://figgn.xyz/paint-calculator/",
+      "applicationCategory":"UtilitiesApplication",
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "description":"Free paint estimator that works out how many gallons of paint a room needs from wall lengths, ceiling height, doors, windows and number of coats.",
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+    },
+    {
+      "@type":"HowTo",
+      "name":"How to Use the Paint Calculator",
+      "description":"Estimate how many gallons of paint a room needs.",
+      "step":[
+        {"@type":"HowToStep","position":1,"name":"Measure the walls","text":"Enter the length of each of the four walls in feet. Skip a wall by leaving it at zero."},
+        {"@type":"HowToStep","position":2,"name":"Enter the ceiling height","text":"Most rooms are 8 feet. Measure from floor to ceiling if you are not sure."},
+        {"@type":"HowToStep","position":3,"name":"Subtract doors and windows","text":"Set the number of doors and windows. Each door removes 20 square feet and each window removes 15 square feet."},
+        {"@type":"HowToStep","position":4,"name":"Choose the number of coats","text":"Two coats is standard. Read the gallons needed at the bottom, rounded up to whole cans."}
+      ]
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"Should I buy gallons or a 5-gallon bucket?",
+         "acceptedAnswer":{"@type":"Answer","text":"A 5-gallon bucket holds the same paint as five separate gallons but usually costs less per gallon, so it is worth it once you need four or more. Buckets also avoid slight colour differences between separately mixed cans, which matters on large continuous walls. Individual gallons are easier to carry, store and return unopened, and are the better choice for one or two rooms."}},
+        {"@type":"Question","name":"Do I need to prime before painting?",
+         "acceptedAnswer":{"@type":"Answer","text":"Prime bare drywall, new plaster, bare wood, patched repairs, water or smoke stains, and any glossy surface you have scuffed. Prime also when going from a dark colour to a much lighter one, because primer blocks the old colour more cheaply than extra coats of finish paint. Repainting a similar colour over a sound painted wall does not need primer, and a paint-and-primer product is enough."}},
+        {"@type":"Question","name":"How much does a gallon of paint cover?",
+         "acceptedAnswer":{"@type":"Answer","text":"A gallon of interior wall paint covers about 350 to 400 square feet on smooth, previously painted drywall. This calculator uses 350 square feet per gallon, which is the figure most manufacturers print for a single coat. Porous or textured surfaces drink more, so expect 250 to 300 square feet on new drywall or heavy texture, and as little as 150 on rough masonry."}},
+        {"@type":"Question","name":"Does the calculator include the ceiling?",
+         "acceptedAnswer":{"@type":"Answer","text":"No, the estimate covers wall area only. To add a ceiling, multiply the room length by its width and add that square footage separately, then divide by 350 per coat. Ceilings are usually painted with a dedicated flat ceiling paint rather than the wall colour."}}
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
-<header><div class="container"><a href="/">← Figgn</a><h1>Paint Calculator</h1></div></header>
-<div class="container"><div class="breadcrumbs"><a href="/">Home</a> › Paint Calculator</div></div>
-<div class="container"><div class="ad-top">Advertisement</div></div>
-<div class="container">
-<div class="tool-box">
-<h2>How Much Paint Do You Need?</h2>
-<div class="form-row">
-<div class="form-group"><label>Wall 1 Length (feet)</label><input type="number" id="w1" placeholder="12" min="0" step="0.5" oninput="calc()"></div>
-<div class="form-group"><label>Wall 2 Length (feet)</label><input type="number" id="w2" placeholder="14" min="0" step="0.5" oninput="calc()"></div>
-<div class="form-group"><label>Wall 3 Length (feet)</label><input type="number" id="w3" placeholder="12" min="0" step="0.5" oninput="calc()"></div>
-<div class="form-group"><label>Wall 4 Length (feet)</label><input type="number" id="w4" placeholder="14" min="0" step="0.5" oninput="calc()"></div>
+
+<div id="stickyBar" role="status" aria-live="polite">
+  <div class="sbar">
+    <span class="val mono" id="sVal">—</span>
+    <span class="det" id="sDet">Paint needed</span>
+    <button type="button" class="copybtn" id="copyBtn">Copy</button>
+  </div>
 </div>
-<div class="form-group"><label>Ceiling Height (feet)</label><input type="number" id="height" placeholder="8" value="8" min="0" step="0.5" oninput="calc()"></div>
-<div class="form-row">
-<div class="form-group"><label>Number of Doors</label><input type="number" id="doors" value="1" min="0" oninput="calc()"><span class="unit">~20 sq ft each</span></div>
-<div class="form-group"><label>Number of Windows</label><input type="number" id="windows" value="2" min="0" oninput="calc()"><span class="unit">~15 sq ft each</span></div>
+
+<header>
+  <div class="hbar">
+    <a href="/" class="wordmark">figgn</a>
+    <button type="button" id="themeToggle">Dark</button>
+  </div>
+</header>
+
+<div class="ad ad-lb">Advertisement</div>
+
+<main class="wrap">
+
+  <div class="card">
+    <h1>Paint Calculator</h1>
+    <p class="sub">Measure your walls, subtract the doors and windows, get the gallons.</p>
+
+    <span class="flabel" id="wallsLabel">Wall lengths (feet)</span>
+    <div class="walls" role="group" aria-labelledby="wallsLabel">
+      <input type="number" class="wall" inputmode="decimal" min="0" step="0.5" value="12" aria-label="Wall 1 length in feet">
+      <input type="number" class="wall" inputmode="decimal" min="0" step="0.5" value="14" aria-label="Wall 2 length in feet">
+      <input type="number" class="wall" inputmode="decimal" min="0" step="0.5" value="12" aria-label="Wall 3 length in feet">
+      <input type="number" class="wall" inputmode="decimal" min="0" step="0.5" value="14" aria-label="Wall 4 length in feet">
+    </div>
+
+    <div class="two">
+      <div>
+        <label for="height">Ceiling height</label>
+        <div class="suffix">
+          <input type="number" id="height" inputmode="decimal" min="0" step="0.5" value="8">
+          <span aria-hidden="true">ft</span>
+        </div>
+      </div>
+      <div>
+        <span class="flabel" id="coatsLabel">Coats</span>
+        <div class="presets" role="group" aria-labelledby="coatsLabel">
+          <button type="button" class="preset" data-coats="1">1</button>
+          <button type="button" class="preset on" data-coats="2">2</button>
+          <button type="button" class="preset" data-coats="3">3</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="two">
+      <div>
+        <label for="doors">Doors (−20 sq ft each)</label>
+        <div class="stepper">
+          <button type="button" id="doorsMinus" aria-label="One fewer door">−</button>
+          <input type="number" id="doors" inputmode="numeric" min="0" step="1" value="1">
+          <button type="button" id="doorsPlus" aria-label="One more door">+</button>
+        </div>
+      </div>
+      <div>
+        <label for="windows">Windows (−15 sq ft each)</label>
+        <div class="stepper">
+          <button type="button" id="winMinus" aria-label="One fewer window">−</button>
+          <input type="number" id="windows" inputmode="numeric" min="0" step="1" value="2">
+          <button type="button" id="winPlus" aria-label="One more window">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="res">
+      <span class="big mono" id="rGal">—</span>
+      <span class="lbl" id="rGalLbl">gallons</span>
+    </div>
+
+    <div class="detail">
+      <div><div class="k">Wall area to paint</div><div class="v mono" id="dArea">—</div></div>
+      <div><div class="k">Total coverage needed</div><div class="v mono" id="dCoverage">—</div></div>
+      <div><div class="k">Coverage per gallon</div><div class="v mono">350 sq ft</div></div>
+    </div>
+
+    <p class="tip">Buy an extra quart for touch-ups. Cans mixed later rarely match exactly, and you will want paint on hand for scuffs and nail holes.</p>
+  </div>
+
+  <div class="ad ad-rect">Advertisement</div>
+
+  <div class="card">
+    <h2>How to Use the Paint Calculator</h2>
+    <ol>
+      <li>Measure each wall along the floor and enter the four lengths in feet. Leave a wall at 0 if the room has fewer than four.</li>
+      <li>Enter the <strong>ceiling height</strong> — 8 feet in most homes, 9 or 10 in newer builds.</li>
+      <li>Set the number of <strong>doors and windows</strong>. Each door subtracts 20 sq ft and each window 15 sq ft of wall you do not have to paint.</li>
+      <li>Choose your <strong>coats</strong> — two is standard. The gallons figure rounds up, because you cannot buy 2.1 cans.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>How It's Calculated</h2>
+    <p>Wall area is the perimeter multiplied by the ceiling height, minus the openings you are not painting.</p>
+    <div class="formula mono">Wall area = (wall₁ + wall₂ + wall₃ + wall₄) × height − (doors × 20) − (windows × 15)<br>Gallons = ⌈ wall area × coats ÷ 350 ⌉</div>
+    <p><strong>Worked example:</strong> walls of 12, 14, 12 and 14 feet give a 52-foot perimeter. At 8 feet high that is 416 sq ft. Subtract one door (20) and two windows (30) for <span class="mono">366 sq ft</span> of wall. Two coats is 732 sq ft of coverage, and 732 ÷ 350 = 2.09, which rounds up to <span class="mono">3 gallons</span>.</p>
+    <p>The deductions are standard sizes: an interior door is roughly 20 sq ft (3 ft × 6 ft 8 in) and an average window about 15 sq ft. Large picture windows or double doors are bigger, so add an extra opening or two to compensate.</p>
+    <p>Rounding up is deliberate. Running out mid-wall means a second trip and a batch that may not match, so the last partial gallon is always bought whole.</p>
+  </div>
+
+  <div class="card">
+    <h2>Paint Coverage Reference</h2>
+    <p class="sub">Square feet covered by one gallon, one coat. Manufacturer figures vary; these are the common working numbers.</p>
+    <table>
+      <thead><tr><th>Surface</th><th>Sq ft per gallon</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Smooth painted drywall</td><td class="n">350–400</td><td>The standard case, and what this calculator assumes.</td></tr>
+        <tr><td>New or unprimed drywall</td><td class="n">250–300</td><td>Porous. Prime first or the first coat disappears.</td></tr>
+        <tr><td>Light texture (orange peel)</td><td class="n">300–350</td><td>More surface area than it looks.</td></tr>
+        <tr><td>Heavy texture / knockdown</td><td class="n">250–300</td><td>Back-roll to work paint into the valleys.</td></tr>
+        <tr><td>Bare wood</td><td class="n">200–300</td><td>Depends heavily on species and grain.</td></tr>
+        <tr><td>Smooth exterior siding</td><td class="n">300–350</td><td>Two coats standard on exteriors.</td></tr>
+        <tr><td>Rough stucco, brick, block</td><td class="n">150–200</td><td>Masonry drinks paint. Budget nearly double.</td></tr>
+        <tr><td>Primer, all surfaces</td><td class="n">200–300</td><td>Thinner build than finish paint.</td></tr>
+      </tbody>
+    </table>
+    <h3>Can sizes</h3>
+    <table>
+      <thead><tr><th>Size</th><th>Covers (1 coat)</th><th>Best for</th></tr></thead>
+      <tbody>
+        <tr><td>Quart</td><td class="n">~100 sq ft</td><td>Touch-ups, trim, accent panels, samples.</td></tr>
+        <tr><td>Gallon</td><td class="n">~350 sq ft</td><td>One average room, one coat.</td></tr>
+        <tr><td>5-gallon bucket</td><td class="n">~1,750 sq ft</td><td>Whole floors, open-plan spaces, exteriors.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+      <summary>Should I buy gallons or a 5-gallon bucket?</summary>
+      <p>A bucket holds the same paint as five gallons but usually costs less per gallon, so it pays off once you need four or more. Buckets also sidestep slight colour differences between separately mixed cans, which shows up on large continuous walls. For one or two rooms, individual gallons are easier to carry, store and return unopened.</p>
+    </details>
+
+    <details>
+      <summary>Do I need to prime first?</summary>
+      <p>Prime bare drywall, new plaster, bare wood, patched repairs, water or smoke stains, and any glossy surface after scuffing it. Prime as well when going from a dark colour to a much lighter one — primer blocks the old colour far cheaper than extra coats of finish paint. Repainting a similar colour over a sound painted wall does not need it, and a paint-and-primer product is fine.</p>
+    </details>
+
+    <details>
+      <summary>How much does a gallon of paint actually cover?</summary>
+      <p>About 350–400 sq ft on smooth, previously painted drywall for a single coat. This calculator uses 350, the figure most manufacturers print. Porous or textured surfaces drink more — expect 250–300 on new drywall or heavy texture, and as little as 150 on rough masonry.</p>
+    </details>
+
+    <details>
+      <summary>Does this include the ceiling?</summary>
+      <p>No — wall area only. For a ceiling, multiply the room's length by its width and divide that by 350 per coat, separately. Ceilings are usually done in a dedicated flat ceiling paint rather than the wall colour anyway.</p>
+    </details>
+  </div>
+
+  <div class="card rel">
+    <h2>More Free Calculators</h2>
+    <a href="/flooring-calculator/">Flooring Calculator</a>
+    <p>Square footage, boxes needed and waste allowance for any room.</p>
+    <a href="/gravel-calculator/">Gravel Calculator</a>
+    <p>Cubic yards and tons of gravel for a driveway, path or bed.</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 figgn</span>
+    <a href="/privacy/">Privacy</a>
+    <a href="/">Home</a>
+  </div>
+</footer>
+
+<div id="stickyAd">
+  Advertisement
+  <button type="button" id="closeAd" aria-label="Close ad">✕</button>
 </div>
-<div class="form-group"><label>Number of Coats</label><select id="coats" oninput="calc()"><option value="1">1 coat</option><option value="2" selected>2 coats</option><option value="3">3 coats</option></select></div>
-<div class="result" id="result"><div class="big" id="gallons">0</div><div class="sub" id="detail">gallons needed</div></div>
-</div>
-<div class="content-section"><h2>How to Use</h2><ol><li>Measure each wall in feet and enter the lengths.</li><li>Enter your ceiling height (typically 8 feet).</li><li>Enter the number of doors and windows to subtract.</li><li>Select how many coats you plan to apply.</li></ol></div>
-<div class="ad-inline">Advertisement</div>
-<div class="content-section"><h2>Paint Coverage Guide</h2><ul><li>One gallon covers approximately <strong>350–400 sq ft</strong> with one coat.</li><li>This calculator uses <strong>350 sq ft per gallon</strong> for a conservative estimate.</li><li>Rough or textured surfaces may require more paint.</li><li>Always buy an extra quart for touch-ups.</li></ul></div>
-<div class="content-section faq"><h2>FAQs</h2><details><summary>Should I buy paint by the gallon or 5-gallon bucket?</summary><p>5-gallon buckets are cheaper per gallon and make sense for large projects (3+ gallons). For smaller rooms, individual gallons give you more flexibility.</p></details><details><summary>Do I need primer?</summary><p>Primer is recommended for: painting over dark colors, new drywall, stained surfaces, or when switching from oil-based to latex paint. Primer covers ~200-300 sq ft per gallon.</p></details></div>
-<div class="related"><h3>You might also need:</h3><a href="/flooring-calculator/">Flooring Calculator</a><a href="/gravel-calculator/">Gravel Calculator</a></div>
-</div>
-<footer><div class="container"><p>&copy; 2026 Figgn. <a href="/">Home</a> · <a href="/privacy/">Privacy</a></p></div></footer>
-<script>function calc(){const walls=[parseFloat(document.getElementById('w1').value)||0,parseFloat(document.getElementById('w2').value)||0,parseFloat(document.getElementById('w3').value)||0,parseFloat(document.getElementById('w4').value)||0];const h=parseFloat(document.getElementById('height').value)||0;const doors=(parseInt(document.getElementById('doors').value)||0)*20;const windows=(parseInt(document.getElementById('windows').value)||0)*15;const coats=parseInt(document.getElementById('coats').value)||1;const area=walls.reduce((s,w)=>s+w*h,0)-doors-windows;const gallons=Math.max(0,Math.ceil(area*coats/350));document.getElementById('gallons').textContent=gallons;document.getElementById('detail').textContent=`gallons needed · ${Math.round(area)} sq ft wall area · ${coats} coat${coats>1?'s':''} at 350 sq ft/gal`;document.getElementById('result').classList.add('show')}</script>
+
+<script>
+(function(){
+  var COVERAGE = 350;
+  var DOOR = 20;
+  var WINDOW = 15;
+
+  var walls = document.querySelectorAll('.wall');
+  var height = document.getElementById('height');
+  var doors = document.getElementById('doors');
+  var windowsEl = document.getElementById('windows');
+  var coats = 2;
+
+  function num(v){
+    var n = parseFloat(v);
+    return isNaN(n) || n < 0 ? 0 : n;
+  }
+
+  function fmt(x){
+    var s = (Math.round(x * 10) / 10).toString();
+    return s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function calc(){
+    var perimeter = 0;
+    walls.forEach(function(w){ perimeter += num(w.value); });
+    var h = num(height.value);
+    var d = Math.max(0, parseInt(doors.value, 10) || 0);
+    var win = Math.max(0, parseInt(windowsEl.value, 10) || 0);
+
+    var gross = perimeter * h;
+    var area = gross - (d * DOOR) - (win * WINDOW);
+
+    var rGal = document.getElementById('rGal');
+    var rGalLbl = document.getElementById('rGalLbl');
+    var dArea = document.getElementById('dArea');
+    var dCoverage = document.getElementById('dCoverage');
+    var sVal = document.getElementById('sVal');
+    var sDet = document.getElementById('sDet');
+
+    if(gross <= 0){
+      rGal.textContent = '—';
+      rGalLbl.textContent = 'gallons';
+      dArea.textContent = '—';
+      dCoverage.textContent = '—';
+      sVal.textContent = '—';
+      sDet.textContent = 'Enter wall lengths and a ceiling height';
+      return;
+    }
+
+    if(area <= 0){
+      rGal.textContent = '0';
+      rGalLbl.textContent = 'gallons';
+      dArea.textContent = '0 sq ft';
+      dCoverage.textContent = '0 sq ft';
+      sVal.textContent = '0 gallons';
+      sDet.textContent = 'Doors and windows cover the whole wall area — check your inputs';
+      return;
+    }
+
+    var coverage = area * coats;
+    var gallons = Math.ceil(coverage / COVERAGE);
+
+    rGal.textContent = gallons;
+    rGalLbl.textContent = (gallons === 1 ? 'gallon' : 'gallons') + ' · ' + coats + ' coat' + (coats === 1 ? '' : 's');
+    dArea.textContent = fmt(area) + ' sq ft';
+    dCoverage.textContent = fmt(coverage) + ' sq ft';
+
+    sVal.textContent = gallons + (gallons === 1 ? ' gallon' : ' gallons');
+    sDet.textContent = fmt(area) + ' sq ft of wall · ' + coats + ' coat' + (coats === 1 ? '' : 's') +
+                       ' · ' + fmt(coverage) + ' sq ft to cover';
+  }
+
+  walls.forEach(function(w){ w.addEventListener('input', calc); });
+  height.addEventListener('input', calc);
+
+  document.querySelectorAll('.preset').forEach(function(p){
+    p.addEventListener('click', function(){
+      coats = parseInt(p.dataset.coats, 10);
+      document.querySelectorAll('.preset').forEach(function(x){
+        var on = (x === p);
+        x.classList.toggle('on', on);
+        x.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      calc();
+    });
+    p.setAttribute('aria-pressed', p.classList.contains('on') ? 'true' : 'false');
+  });
+
+  function stepper(input, minusId, plusId){
+    var minus = document.getElementById(minusId);
+    var plus = document.getElementById(plusId);
+    function set(n){
+      if(n < 0) n = 0;
+      input.value = n;
+      minus.disabled = (n <= 0);
+      calc();
+    }
+    minus.addEventListener('click', function(){ set((parseInt(input.value, 10) || 0) - 1); });
+    plus.addEventListener('click', function(){ set((parseInt(input.value, 10) || 0) + 1); });
+    input.addEventListener('input', function(){
+      var n = parseInt(input.value, 10);
+      minus.disabled = (!isNaN(n) && n <= 0);
+      calc();
+    });
+    input.addEventListener('blur', function(){
+      var n = parseInt(input.value, 10);
+      if(isNaN(n) || n < 0) set(0);
+    });
+    minus.disabled = ((parseInt(input.value, 10) || 0) <= 0);
+  }
+  stepper(doors, 'doorsMinus', 'doorsPlus');
+  stepper(windowsEl, 'winMinus', 'winPlus');
+
+  var copyBtn = document.getElementById('copyBtn');
+  copyBtn.addEventListener('click', function(){
+    var v = document.getElementById('sVal').textContent;
+    var done = function(){
+      copyBtn.textContent = 'Copied!';
+      setTimeout(function(){ copyBtn.textContent = 'Copy'; }, 2000);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(v).then(done, done);
+    }else{
+      var t = document.createElement('textarea');
+      t.value = v;
+      t.style.position = 'fixed';
+      t.style.opacity = '0';
+      document.body.appendChild(t);
+      t.select();
+      try{ document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(t);
+      done();
+    }
+  });
+
+  var barEl = document.getElementById('stickyBar');
+  var resEl = document.querySelector('.res');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        barEl.classList.toggle('show', !en.isIntersecting && en.boundingClientRect.top < 0);
+      });
+    }, {threshold: 0}).observe(resEl);
+  }
+
+  var toggle = document.getElementById('themeToggle');
+  function syncToggle(){
+    var t = document.documentElement.getAttribute('data-theme');
+    toggle.textContent = (t === 'dark' ? 'Light' : 'Dark');
+    toggle.setAttribute('aria-label','Switch to ' + (t === 'dark' ? 'light' : 'dark') + ' mode');
+  }
+  syncToggle();
+  toggle.addEventListener('click', function(){
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    try{ localStorage.setItem('theme', t); }catch(e){}
+    syncToggle();
+  });
+
+  document.getElementById('closeAd').addEventListener('click', function(){
+    document.getElementById('stickyAd').style.display = 'none';
+    document.body.classList.add('adclosed');
+  });
+
+  calc();
+})();
+</script>
 </body>
 </html>
