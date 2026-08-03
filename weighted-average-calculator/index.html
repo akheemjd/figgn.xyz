@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weighted Average Calculator — Free Weighted Mean Tool | figgn</title>
+<meta name="description" content="Free weighted average calculator. Enter any number of values and their weights to get the weighted mean, with the simple average shown for comparison.">
+<link rel="canonical" href="https://figgn.xyz/weighted-average-calculator/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#e65c00">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+<link rel="dns-prefetch" href="https://tpc.googlesyndication.com">
+<meta property="og:site_name" content="figgn">
+<meta property="og:image" content="https://figgn.xyz/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Weighted Average Calculator — Free Weighted Mean Tool | figgn">
+<meta name="twitter:description" content="Free weighted average calculator. Enter any number of values and their weights to get the weighted mean, with the simple average shown for comparison.">
+<meta name="twitter:image" content="https://figgn.xyz/og-image.png">
+<meta property="og:title" content="Weighted Average Calculator — Free Weighted Mean Tool | figgn">
+<meta property="og:description" content="Free weighted average calculator. Enter any number of values and their weights to get the weighted mean, with the simple average shown for comparison.">
+<meta property="og:url" content="https://figgn.xyz/weighted-average-calculator/">
+<meta property="og:type" content="website">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('theme');
+    if(t !== 'light' && t !== 'dark'){
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  }catch(e){ document.documentElement.setAttribute('data-theme','light'); }
+})();
+</script>
+<style>
+:root{
+  --bg:#f8f9fb;--card:#ffffff;--text:#111111;--text2:#555555;--border:#cccccc;
+  --input-bg:#ffffff;--accent:#e65c00;--accent-btn:#c24d00;--accent-text:#c24d00;
+  --result-bg:#e7f5ec;--result-text:#0d5c2e;--ad-bg:#f0f0f0;--ad-text:#888888;
+  --shadow:0 1px 3px rgba(0,0,0,.08);--line:#e4e4ea;
+}
+[data-theme="dark"]{
+  --bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999999;--border:#3a3a48;
+  --input-bg:#252530;--accent:#e65c00;--accent-btn:#c24d00;--accent-text:#ff8a3d;
+  --result-bg:#0a3020;--result-text:#4ade80;--ad-bg:#22222b;--ad-text:#777777;
+  --shadow:0 1px 3px rgba(0,0,0,.3);--line:#2a2a34;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;line-height:1.5}
+.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:var(--accent-text)}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+header{background:var(--accent);color:#fff}
+.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;
+  align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700;letter-spacing:-.5px}
+.hnav{display:flex;align-items:center;gap:12px}
+.hnav a{color:#fff;text-decoration:none;font-size:14px;font-weight:600}
+.hnav a:hover{text-decoration:underline}
+#themeToggle{background:var(--accent-btn);color:#fff;border:1px solid rgba(255,255,255,.65);
+  border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
+#themeToggle:hover{filter:brightness(1.1)}
+
+.rowset .row{display:grid;gap:8px;grid-template-columns:1fr 1fr 44px;padding:8px 0;
+  border-bottom:1px solid var(--line)}
+.rowset .row:first-child{border-top:1px solid var(--line)}
+.rowset .rm{min-height:56px;width:44px;background:var(--input-bg);color:var(--text2);
+  border:1px solid var(--border);border-radius:4px;cursor:pointer;font-size:15px;font-family:inherit}
+.rowset .rm:hover{color:#c0392b;border-color:#c0392b}
+.rowhead{display:none}
+@media (min-width:641px){.rowhead{display:grid;grid-template-columns:1fr 1fr 44px;gap:8px;
+  font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;padding:0 2px 6px}}
+.addbtn{margin-top:14px;min-height:48px;padding:0 18px;background:var(--input-bg);color:var(--text);
+  border:1px solid var(--border);border-radius:4px;font-size:15px;font-family:inherit;cursor:pointer}
+.addbtn:hover{border-color:var(--accent);color:var(--accent-text)}
+.mini{border-top:1px solid var(--line);margin-top:18px;padding-top:14px}
+.mini:first-of-type{border-top:0;margin-top:0;padding-top:0}
+.mini h2{font-size:16px}
+
+.crumb{font-size:13px;color:var(--text2);padding-top:14px;margin:0}
+.crumb a{color:var(--text2)}
+
+#stickyBar{position:fixed;top:0;left:0;right:0;z-index:60;background:var(--result-bg);
+  color:var(--result-text);border-bottom:1px solid var(--border);
+  transform:translateY(-100%);visibility:hidden}
+#stickyBar.show{transform:translateY(0);visibility:visible}
+@media (prefers-reduced-motion:no-preference){#stickyBar{transition:transform .15s ease-out}}
+.sbar{max-width:760px;margin:0 auto;padding:8px 12px;display:flex;align-items:center;gap:12px}
+.sbar .val{font-size:26px;font-weight:700;line-height:1.1}
+.sbar .det{font-size:12px;color:var(--result-text);opacity:.85;flex:1}
+.copybtn{background:var(--accent-btn);color:#fff;border:0;border-radius:4px;padding:8px 14px;
+  font-size:14px;font-family:inherit;cursor:pointer;min-height:36px}
+.copybtn:hover{filter:brightness(1.1)}
+
+.adwrap{margin:20px auto;text-align:center}
+.adwrap .adlabel{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text2);margin-bottom:4px}
+.adwrap .adslot{background:var(--ad-bg);color:var(--ad-text);border-radius:4px;display:flex;
+  align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.adwrap[data-ad="leaderboard"]{display:none;max-width:728px}
+.adwrap[data-ad="leaderboard"] .adslot{min-height:90px}
+.adwrap[data-ad="primary"],.adwrap[data-ad="secondary"],.adwrap[data-ad="tertiary"]{max-width:300px}
+.adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot,
+.adwrap[data-ad="tertiary"] .adslot{min-height:250px}
+@media (min-width:768px){
+  .adwrap[data-ad="leaderboard"]{display:block}
+  .adwrap[data-ad="primary"],.adwrap[data-ad="secondary"],.adwrap[data-ad="tertiary"]{max-width:336px}
+  .adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot,
+  .adwrap[data-ad="tertiary"] .adslot{min-height:280px}
+}
+#stickyAd{position:fixed;left:0;right:0;bottom:0;z-index:55;height:50px;background:var(--ad-bg);
+  color:var(--ad-text);border-top:1px solid var(--border);display:flex;align-items:center;
+  justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  transform:translateY(100%);visibility:hidden}
+#stickyAd.show{transform:translateY(0);visibility:visible}
+@media (prefers-reduced-motion:no-preference){#stickyAd{transition:transform .2s ease-out}}
+#stickyAd button{position:absolute;right:4px;top:4px;width:26px;height:26px;line-height:1;
+  background:var(--card);border:1px solid var(--border);border-radius:4px;color:var(--text2);
+  font-size:13px;cursor:pointer;font-family:inherit;padding:0}
+body.stickyad{padding-bottom:58px}
+@media (min-width:641px){#stickyAd{display:none}body.stickyad{padding-bottom:0}}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;
+  box-shadow:var(--shadow);padding:16px;margin:16px 0}
+h1{font-size:24px;margin:0 0 4px;letter-spacing:-.3px}
+h2{font-size:18px;margin:0 0 10px;letter-spacing:-.2px}
+h3{font-size:14px;margin:18px 0 8px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.two{grid-template-columns:1fr}}
+.field{margin-top:16px}
+label,.flabel{display:block;font-size:13px;color:var(--text2);text-transform:uppercase;
+  letter-spacing:.06em;margin-bottom:6px}
+input[type=number]{width:100%;min-height:56px;padding:0 10px;background:var(--input-bg);
+  color:var(--text);border:1px solid var(--border);border-radius:4px;font-size:18px;
+  font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.suffix{display:flex;align-items:stretch}
+.suffix input{border-radius:4px 0 0 4px;border-right:0}
+.suffix span{min-height:56px;display:flex;align-items:center;padding:0 10px;background:var(--bg);
+  border:1px solid var(--border);border-radius:0 4px 4px 0;color:var(--text2);font-size:15px;
+  font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+.presets{display:grid;gap:8px;grid-template-columns:repeat(3,1fr)}
+.presets[data-cols="2"]{grid-template-columns:repeat(2,1fr)}
+.presets[data-cols="4"]{grid-template-columns:repeat(4,1fr)}
+@media (max-width:560px){.presets[data-cols="4"]{grid-template-columns:repeat(2,1fr)}}
+.preset{min-height:56px;padding:6px 4px;background:var(--input-bg);color:var(--text);
+  border:1px solid var(--border);border-radius:4px;font-size:14px;font-family:inherit;
+  cursor:pointer;line-height:1.25}
+.preset b{display:block;font-family:"SF Mono","Cascadia Code","Consolas",monospace;font-size:16px}
+.preset.on{background:var(--accent-btn);border-color:var(--accent-btn);color:#fff;font-weight:600}
+.custom{margin-top:8px;display:flex;align-items:stretch;max-width:240px}
+.custom input{border-radius:4px 0 0 4px;border-right:0}
+.custom span{min-height:56px;display:flex;align-items:center;padding:0 12px;background:var(--bg);
+  border:1px solid var(--border);border-radius:0 4px 4px 0;color:var(--text2);font-size:15px;
+  font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+
+#results{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:18px}
+@media (min-width:641px){#results[data-cards="3"]{grid-template-columns:repeat(3,1fr)}
+  #results[data-cards="4"]{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:640px){.res.main{grid-column:1 / -1}}
+.res{background:var(--result-bg);color:var(--result-text);border-radius:4px;padding:14px}
+.res .k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;opacity:.9}
+.res .v{font-size:28px;font-weight:700;line-height:1.1;margin-top:2px}
+.res.main .v{font-size:34px}
+.res .u{font-size:13px;font-weight:600;margin-left:4px}
+.res .fine{font-size:12px;opacity:.8;margin-top:2px}
+.detail{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:4px;margin-top:12px;overflow:hidden}
+.detail div{background:var(--card);padding:10px 12px}
+.detail .k{font-size:12px;color:var(--text2)}
+.detail .v{font-size:18px;font-weight:600}
+.tip{font-size:14px;color:var(--text2);margin-top:12px;border-left:3px solid var(--accent);padding-left:10px}
+
+ol,ul{padding-left:20px;margin:0}
+ol li,ul li{margin-bottom:8px}
+p{margin:0 0 12px}
+.formula{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:12px;
+  margin:12px 0;font-size:15px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2)}
+td.n{font-family:"SF Mono","Cascadia Code","Consolas",monospace;white-space:nowrap}
+details{border-bottom:1px solid var(--line);padding:10px 0}
+details:last-of-type{border-bottom:0;padding-bottom:0}
+summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";color:var(--accent-text);font-weight:700}
+details[open] summary::before{content:"– "}
+details p{margin:8px 0 0;color:var(--text2);font-size:14px}
+.rel a{display:block;font-weight:600;margin-top:12px}
+.rel p{font-size:13px;color:var(--text2);margin:2px 0 0}
+footer{background:#1c1c24;color:#999;font-size:13px;margin-top:24px}
+footer .wrap{padding:14px 12px;display:flex;gap:14px;flex-wrap:wrap}
+footer a{color:#bbb}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Weighted Average Calculator",
+      "url": "https://figgn.xyz/weighted-average-calculator/",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "description": "Free weighted average calculator that computes a weighted mean from any number of value and weight pairs, alongside the unweighted average.",
+      "dateModified": "2026-08-03",
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to Use the Weighted Average Calculator",
+      "description": "Calculate a weighted average from values and weights.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Enter your values",
+          "text": "Put each value in the left column, such as a test score or a price."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Enter each weight",
+          "text": "The weight is how much that value counts. Percentages, credits, quantities and hours all work."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Add or remove rows",
+          "text": "Use Add row for more entries and the remove button for any row you do not need."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Read the average",
+          "text": "The weighted mean updates as you type, with the simple average shown alongside for comparison."
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "When should I use a weighted average instead of a simple average?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use a weighted average whenever the items are not equally important or equally sized. A final exam worth forty percent of a grade should not count the same as a quiz worth five percent, and a four credit course should move a grade point average more than a one credit course. When every item carries genuinely equal importance, a simple average is correct and produces the same answer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do the weights need to add up to one hundred?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The formula divides by the total weight, so any consistent scale gives the same result. Weights of thirty, fifty and twenty produce the same answer as three, five and two. Percentages are simply the most familiar case, and what matters is that every weight uses the same unit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens to rows with a weight of zero?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "They are excluded rather than counted as zero. A row with no weight contributes nothing to the total and should not affect the result, whereas counting it as a zero value would incorrectly lower the average. Setting a weight to zero parks a row without deleting it."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "figgn",
+          "item": "https://figgn.xyz/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "School & Grades",
+          "item": "https://figgn.xyz/#school"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Weighted Average Calculator",
+          "item": "https://figgn.xyz/weighted-average-calculator/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="stickyBar">
+  <div class="sbar">
+    <span class="val mono" id="sVal">&mdash;</span>
+    <span class="det" id="sDet">Weighted average</span>
+    <button type="button" class="copybtn" id="copyBtn">Copy</button>
+  </div>
+</div>
+
+<header>
+  <div class="hbar">
+    <a href="/" class="wordmark">figgn</a>
+    <div class="hnav">
+      <a href="/blog/">Blog</a>
+      <button type="button" id="themeToggle">Dark</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <aside class="adwrap" data-ad="leaderboard">
+    <span class="adlabel">Advertisement</span>
+    <!-- AdSense: replace the .adslot contents with your <ins class="adsbygoogle"> unit -->
+    <div class="adslot" data-size="728x90"></div>
+  </aside>
+</div>
+
+<main class="wrap">
+
+  <p class="crumb"><a href="/">figgn</a> / <a href="/#school">School &amp; Grades</a> / Weighted Average Calculator</p>
+
+  <div class="card">
+    <h1>Weighted Average Calculator</h1>
+    <p class="sub">Values and weights in — the weighted mean out.</p>
+
+    <div class="two">
+    </div>
+
+    <div class="rowhead" aria-hidden="true">
+      <span>Value</span><span>Weight</span><span></span>
+    </div>
+    <div id="rows" class="rowset"></div>
+    <button type="button" class="addbtn" id="addRow">+ Add row</button>
+
+    <div id="results" data-cards="4">
+      <div class="res main">
+        <div class="k">Weighted average</div>
+        <div class="v mono"><span id="rAvg" data-out>—</span><span class="u"></span></div>
+      </div>
+      <div class="res">
+        <div class="k">Total weight</div>
+        <div class="v mono"><span id="rWeight" data-out>—</span><span class="u"></span></div>
+      </div>
+      <div class="res">
+        <div class="k">Weighted sum</div>
+        <div class="v mono"><span id="rProduct" data-out>—</span><span class="u"></span></div>
+      </div>
+      <div class="res">
+        <div class="k">Simple average</div>
+        <div class="v mono"><span id="rSimple" data-out>—</span><span class="u"></span></div>
+      </div>
+    </div>
+
+    <div class="detail">
+      <div><div class="k">Rows counted</div><div class="v mono" id="dRows" data-out>—</div></div>
+      <div><div class="k">Difference</div><div class="v mono" id="dGap" data-out>—</div></div>
+      <div><div class="k">Heaviest row</div><div class="v mono" id="dShare" data-out>—</div></div>
+    </div>
+
+    <p class="tip">Weights do not need to add up to 100. Any consistent scale works — the calculator divides by whatever total you enter.</p>
+  </div>
+
+  <aside class="adwrap" data-ad="primary">
+    <span class="adlabel">Advertisement</span>
+    <!-- AdSense: replace the .adslot contents with your <ins class="adsbygoogle"> unit -->
+    <div class="adslot" data-size="300x250 / 336x280"></div>
+  </aside>
+
+  <div class="card">
+    <h2>How to Use the Weighted Average Calculator</h2>
+    <ol>
+      <li>Enter each <strong>value</strong> in the left column — a score, a price, a rate.</li>
+      <li>Enter its <strong>weight</strong> beside it. Percentages, credit hours, quantities and hours all work.</li>
+      <li>Use <strong>Add row</strong> for more entries, or the remove button to drop one.</li>
+      <li>Read the weighted mean. The simple average sits beside it so you can see what the weighting did.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>How It's Calculated</h2>
+    <p>A weighted average multiplies every value by its weight, adds those products, and divides by the total weight. A simple average is the special case where every weight is 1.</p>
+    <div class="formula mono">Weighted average = &Sigma; (value &times; weight) &divide; &Sigma; weight</div>
+    <p><strong>Worked example:</strong> scores of 90, 85 and 78 weighted 30, 50 and 20 give (90&times;30) + (85&times;50) + (78&times;20) = 2,700 + 4,250 + 1,560 = 8,510 quality points across a total weight of 100, so <span class="mono">85.10</span>. The simple average of the same three scores is 84.33 &mdash; the weighting pulls the result toward the 85, because that value carries half the total weight.</p>
+    <p>Weights do not have to sum to 100, or to anything in particular. Credit hours, item counts, hours worked and dollar amounts are all valid weights, because the division by total weight normalises whatever scale you use.</p>
+    <p>Rows with a blank or zero weight are ignored entirely rather than counted as zero &mdash; a zero-weight item contributes nothing and should not drag the average down.</p>
+  </div>
+
+  <div class="card">
+    <h2>Where Weighted Averages Are Used</h2>
+    <p class="sub">Same formula, different names for the weight.</p>
+    <table>
+      <thead><tr><th>Context</th><th>Value</th><th>Weight</th></tr></thead>
+      <tbody>
+        <tr><td>Course grade</td><td>Assignment score</td><td>Percent of final grade</td></tr>
+        <tr><td>GPA</td><td>Grade points</td><td>Credit hours</td></tr>
+        <tr><td>Inventory cost</td><td>Unit price</td><td>Quantity purchased</td></tr>
+        <tr><td>Portfolio return</td><td>Asset return</td><td>Amount invested</td></tr>
+        <tr><td>Survey scoring</td><td>Response value</td><td>Number of responses</td></tr>
+        <tr><td>Blended rate</td><td>Hourly rate</td><td>Hours worked</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <aside class="adwrap" data-ad="secondary">
+    <span class="adlabel">Advertisement</span>
+    <!-- AdSense: replace the .adslot contents with your <ins class="adsbygoogle"> unit -->
+    <div class="adslot" data-size="300x250 / 336x280"></div>
+  </aside>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+      <summary>When should I use a weighted average instead of a simple one?</summary>
+      <p>Whenever the things you are averaging are not equally important or not equally sized. A final exam worth 40% of a grade should not count the same as a quiz worth 5%, and a 4-credit course should move a GPA more than a 1-credit one. If every item genuinely carries equal importance, a simple average is the correct tool and gives the same answer.</p>
+    </details>
+
+    <details>
+      <summary>Do the weights have to add up to 100?</summary>
+      <p>No. The formula divides by the total weight, so any consistent scale works — 30/50/20 and 3/5/2 produce identical results. Percentages are just the most familiar case. What matters is that all weights use the same unit.</p>
+    </details>
+
+    <details>
+      <summary>What happens to rows with zero weight?</summary>
+      <p>They are excluded rather than treated as zero. A row weighted zero contributes nothing to the total and should have no effect on the result — counting it as a zero would incorrectly drag the average down. Leave the weight blank or set it to 0 to park a row without deleting it.</p>
+    </details>
+  </div>
+
+  <aside class="adwrap" data-ad="tertiary">
+    <span class="adlabel">Advertisement</span>
+    <!-- AdSense: replace the .adslot contents with your <ins class="adsbygoogle"> unit -->
+    <div class="adslot" data-size="300x250 / 336x280"></div>
+  </aside>
+
+  <div class="card rel">
+    <h2>More Free Calculators</h2>
+    <a href="/gpa-calculator/">GPA Calculator</a>
+    <p>Grade points weighted by credit hours.</p>
+    <a href="/grade-calculator/">Grade Calculator</a>
+    <p>Points into a percentage and a letter grade.</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="yr">2026</span> figgn</span>
+    <a href="/privacy/">Privacy</a>
+    <a href="/">All calculators</a>
+  </div>
+</footer>
+
+<div id="stickyAd" aria-label="Advertisement">
+  <!-- AdSense: 320x50 anchor unit goes here -->
+  <span data-size="320x50">Advertisement</span>
+  <button type="button" id="closeAd" aria-label="Close ad">&#10005;</button>
+</div>
+
+<script>
+
+window.ROWS = {
+  cols: [
+    {key:'value', label:'Value', placeholder:'Value'},
+    {key:'weight', label:'Weight', placeholder:'Weight'}
+  ],
+  defaults: [[90, 30], [85, 50], [78, 20]]
+};
+
+function compute(V, G, last, R){
+  var sum = 0, wsum = 0, n = 0, plain = 0, heaviest = null;
+  (R || []).forEach(function(r){
+    var v = r.value, w = r.weight;
+    if(isNaN(v) || isNaN(w) || w <= 0) return;
+    sum += v * w;
+    wsum += w;
+    plain += v;
+    n++;
+    if(!heaviest || w > heaviest.weight) heaviest = r;
+  });
+
+  if(n === 0 || wsum <= 0) return {invalid:'Add at least one row with a weight above 0'};
+
+  var avg = sum / wsum;
+  var simple = plain / n;
+
+  return {
+    out:{
+      rAvg: fmt(avg, 2), rWeight: fmt(wsum, 2),
+      rProduct: fmt(sum, 2), rSimple: fmt(simple, 2),
+      dRows: fmt(n, 0),
+      dGap: (avg - simple >= 0 ? '+' : '') + fmt(avg - simple, 2) + ' vs simple',
+      dShare: fmt(heaviest.weight / wsum * 100, 1) + '% of total'
+    },
+    sticky:{
+      val: fmt(avg, 2),
+      det: 'Weighted average \u00b7 ' + fmt(n,0) + ' rows \u00b7 total weight ' + fmt(wsum, 2)
+    }
+  };
+}
+
+/* Shared runtime. Reads inputs and preset groups, calls the tool's compute(),
+   writes results, keeps the sticky bar and copy button in sync. */
+(function(){
+  var G = {}, P = {};
+
+  function fmt(x, dp){
+    var d = (dp === undefined) ? 2 : dp;
+    var s = (Math.round(x * Math.pow(10, d)) / Math.pow(10, d)).toString();
+    var p = s.split('.');
+    p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return p.join('.');
+  }
+  window.fmt = fmt;
+
+  var groups = [].slice.call(document.querySelectorAll('.presets[data-group]'));
+  groups.forEach(function(g){
+    var name = g.dataset.group;
+    var btns = [].slice.call(g.querySelectorAll('.preset'));
+    var on = btns.filter(function(b){ return b.classList.contains('on'); })[0] || btns[0];
+    G[name] = parseFloat(on.dataset.val);
+    P[name] = G[name];
+    btns.forEach(function(b){
+      b.setAttribute('aria-pressed', b.classList.contains('on') ? 'true' : 'false');
+      b.addEventListener('click', function(){
+        G[name] = parseFloat(b.dataset.val);
+        P[name] = G[name];
+        var custom = document.querySelector('[data-custom="' + name + '"]');
+        if(custom) custom.value = '';
+        btns.forEach(function(x){
+          var sel = (x === b);
+          x.classList.toggle('on', sel);
+          x.setAttribute('aria-pressed', sel ? 'true' : 'false');
+        });
+        run();
+      });
+    });
+
+    var custom = document.querySelector('[data-custom="' + name + '"]');
+    if(custom){
+      custom.addEventListener('input', function(){
+        var v = parseFloat(custom.value);
+        if(custom.value === '' || isNaN(v) || v <= 0){
+          G[name] = P[name];
+          btns.forEach(function(x){
+            var sel = (parseFloat(x.dataset.val) === P[name]);
+            x.classList.toggle('on', sel);
+            x.setAttribute('aria-pressed', sel ? 'true' : 'false');
+          });
+        }else{
+          G[name] = v;
+          btns.forEach(function(x){
+            x.classList.remove('on');
+            x.setAttribute('aria-pressed','false');
+          });
+        }
+        run();
+      });
+    }
+  });
+
+  var inputs = [].slice.call(document.querySelectorAll('[data-var]'));
+  var last = null;
+  inputs.forEach(function(i){
+    i.addEventListener('input', function(){ last = i.dataset.var; run(); });
+    i.addEventListener('focus', function(){ last = i.dataset.var; run(); });
+  });
+
+  /* Optional dynamic rows. A tool defines window.ROWS = {cols:[...], defaults:[[...]]} */
+  var rowset = document.getElementById('rows');
+  function addRow(vals){
+    var cfg = window.ROWS;
+    var row = document.createElement('div');
+    row.className = 'row';
+    cfg.cols.forEach(function(c, i){
+      var el = document.createElement('input');
+      el.type = c.type || 'number';
+      if(el.type === 'number'){ el.setAttribute('inputmode','decimal'); el.min = '0'; el.step = 'any'; }
+      el.dataset.col = c.key;
+      el.placeholder = c.placeholder || '';
+      el.setAttribute('aria-label', c.label);
+      el.value = (vals && vals[i] !== undefined) ? vals[i] : '';
+      row.appendChild(el);
+    });
+    var rm = document.createElement('button');
+    rm.type = 'button'; rm.className = 'rm'; rm.textContent = '\u2715';
+    rm.setAttribute('aria-label','Remove row');
+    row.appendChild(rm);
+    rowset.appendChild(row);
+  }
+  if(rowset && window.ROWS){
+    window.ROWS.defaults.forEach(addRow);
+    rowset.addEventListener('input', run);
+    rowset.addEventListener('click', function(e){
+      var b = e.target.closest('button.rm');
+      if(!b) return;
+      if(rowset.querySelectorAll('.row').length > 1) b.closest('.row').remove();
+      else b.closest('.row').querySelectorAll('input').forEach(function(i){ i.value = ''; });
+      run();
+    });
+    var add = document.getElementById('addRow');
+    if(add) add.addEventListener('click', function(){
+      addRow(null); run();
+      var rows = rowset.querySelectorAll('.row');
+      rows[rows.length - 1].querySelector('input').focus();
+    });
+  }
+
+  function run(){
+    var V = {};
+    inputs.forEach(function(i){
+      var n = parseFloat(i.value);
+      V[i.dataset.var] = (isNaN(n) || n < 0) ? 0 : n;
+    });
+
+    var R = [];
+    if(rowset){
+      [].slice.call(rowset.querySelectorAll('.row')).forEach(function(row){
+        var o = {};
+        [].slice.call(row.querySelectorAll('input')).forEach(function(i){
+          o[i.dataset.col] = (i.type === 'number') ? parseFloat(i.value) : i.value;
+        });
+        R.push(o);
+      });
+    }
+
+    var r = compute(V, G, last, R) || {};
+    var sVal = document.getElementById('sVal');
+    var sDet = document.getElementById('sDet');
+
+    if(r.invalid){
+      document.querySelectorAll('[data-out]').forEach(function(el){ el.textContent = '\u2014'; });
+      sVal.textContent = '\u2014';
+      sDet.textContent = r.invalid;
+      return;
+    }
+    Object.keys(r.out || {}).forEach(function(k){
+      var el = document.getElementById(k);
+      if(el) el.textContent = r.out[k];
+    });
+    sVal.textContent = r.sticky.val;
+    sDet.textContent = r.sticky.det;
+  }
+
+  var copyBtn = document.getElementById('copyBtn');
+  copyBtn.addEventListener('click', function(){
+    var v = document.getElementById('sVal').textContent;
+    var done = function(){
+      copyBtn.textContent = 'Copied!';
+      setTimeout(function(){ copyBtn.textContent = 'Copy'; }, 2000);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(v).then(done, done);
+    }else{
+      var t = document.createElement('textarea');
+      t.value = v; t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.appendChild(t); t.select();
+      try{ document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(t); done();
+    }
+  });
+
+  var barEl = document.getElementById('stickyBar');
+  var resultsEl = document.getElementById('results');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        barEl.classList.toggle('show', !en.isIntersecting && en.boundingClientRect.top < 0);
+      });
+    }, {threshold: 0}).observe(resultsEl);
+  }
+
+  var toggle = document.getElementById('themeToggle');
+  function syncToggle(){
+    var t = document.documentElement.getAttribute('data-theme');
+    toggle.textContent = (t === 'dark' ? 'Light' : 'Dark');
+    toggle.setAttribute('aria-label','Switch to ' + (t === 'dark' ? 'light' : 'dark') + ' mode');
+  }
+  syncToggle();
+  toggle.addEventListener('click', function(){
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    try{ localStorage.setItem('theme', t); }catch(e){}
+    syncToggle();
+  });
+
+  run();
+})();
+
+</script>
+
+<script>
+
+/* Ad controller: lazy fill, engagement-gated sticky, session dismissal. */
+(function(){
+  function fill(el){
+    if(el.dataset.filled) return;
+    el.dataset.filled = '1';
+    el.textContent = 'Advertisement \u00b7 ' + (el.dataset.size || '');
+    /* AdSense: (adsbygoogle = window.adsbygoogle || []).push({}); */
+  }
+  var slots = document.querySelectorAll('.adslot');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ fill(en.target); io.unobserve(en.target); }
+      });
+    }, {rootMargin: '600px 0px'});
+    slots.forEach(function(s){ io.observe(s); });
+  }else{ slots.forEach(fill); }
+
+  var sticky = document.getElementById('stickyAd');
+  if(!sticky) return;
+  var dismissed = false;
+  try{ dismissed = sessionStorage.getItem('adDismissed') === '1'; }catch(e){}
+  var armed = false;
+  function reveal(){
+    if(dismissed || sticky.classList.contains('show')) return;
+    sticky.classList.add('show');
+    document.body.classList.add('stickyad');
+  }
+  function arm(){ if(armed || dismissed) return; armed = true; setTimeout(reveal, 400); }
+  document.addEventListener('input', arm, {once:true, passive:true});
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > window.innerHeight * 0.5) arm();
+  }, {passive:true});
+  document.getElementById('closeAd').addEventListener('click', function(){
+    sticky.classList.remove('show');
+    document.body.classList.remove('stickyad');
+    dismissed = true;
+    try{ sessionStorage.setItem('adDismissed','1'); }catch(e){}
+  });
+})();
+
+/* AdSense loader: script is fetched only after the visitor engages, so it never
+   competes with first paint. Replace ca-pub-XXXXXXXXXXXXXXXX with your ID. */
+(function(){
+  var PUB = 'ca-pub-XXXXXXXXXXXXXXXX';
+  var loaded = false;
+  function load(){
+    if(loaded || PUB.indexOf('XXXX') > -1) return;
+    loaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + PUB;
+    s.crossOrigin = 'anonymous';
+    document.head.appendChild(s);
+  }
+  ['scroll','pointerdown','keydown'].forEach(function(e){
+    window.addEventListener(e, load, {once:true, passive:true});
+  });
+  setTimeout(load, 3500);
+})();
+
+/* Shareable state: numeric inputs with an id round-trip through the query
+   string, so a result can be linked, bookmarked and reopened. */
+(function(){
+  var fields = [].slice.call(document.querySelectorAll('input[type=number][id]'));
+  if(!fields.length) return;
+
+  var params = new URLSearchParams(location.search);
+  var applied = false;
+  fields.forEach(function(f){
+    var v = params.get(f.id);
+    if(v !== null && v !== '' && isFinite(parseFloat(v))){
+      f.value = parseFloat(v);
+      applied = true;
+    }
+  });
+  if(applied){
+    fields[0].dispatchEvent(new Event('input', {bubbles:true}));
+    document.dispatchEvent(new Event('change', {bubbles:true}));
+  }
+
+  var t;
+  function sync(){
+    clearTimeout(t);
+    t = setTimeout(function(){
+      var q = new URLSearchParams();
+      fields.forEach(function(f){ if(f.value !== '') q.set(f.id, f.value); });
+      var qs = q.toString();
+      history.replaceState(null, '', qs ? location.pathname + '?' + qs : location.pathname);
+    }, 500);
+  }
+  fields.forEach(function(f){ f.addEventListener('input', sync); });
+})();
+
+/* Shared fixes: announce on commit, block scroll-wheel edits, current year. */
+(function(){
+  document.addEventListener('wheel', function(e){
+    var a = document.activeElement;
+    if(a && a.type === 'number' && a === e.target) a.blur();
+  }, {passive:true});
+  var yr = document.getElementById('yr');
+  if(yr) yr.textContent = new Date().getFullYear();
+  var v = document.getElementById('sVal'), d = document.getElementById('sDet');
+  if(!v) return;
+  var live = document.createElement('p');
+  live.className = 'visually-hidden';
+  live.setAttribute('aria-live','polite');
+  document.body.appendChild(live);
+  function announce(){ live.textContent = v.textContent + '. ' + d.textContent; }
+  document.addEventListener('change', announce, true);
+  document.addEventListener('click', function(e){
+    if(e.target.closest && e.target.closest('.preset')) setTimeout(announce, 0);
+  }, true);
+})();
+
+</script>
+</body>
+</html>

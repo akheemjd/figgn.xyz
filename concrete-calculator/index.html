@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Flooring Calculator — Free Material Estimator (Sq Ft) | figgn</title>
-<meta name="description" content="Free flooring calculator. Enter your room length and width to get the square footage you need, including a waste factor for cuts, offcuts and mistakes.">
-<link rel="canonical" href="https://figgn.xyz/flooring-calculator/">
+<title>Concrete Calculator — Free Concrete Estimator (Cubic Yards &amp; Bags) | figgn</title>
+<meta name="description" content="Calculate how much concrete you need in cubic yards and bags. Free concrete calculator for slabs, footings, and post holes. Instant results.">
+<link rel="canonical" href="https://figgn.xyz/concrete-calculator/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#e65c00">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
@@ -15,9 +15,9 @@
 <meta property="og:image" content="https://figgn.xyz/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://figgn.xyz/og-image.png">
-<meta property="og:title" content="Flooring Calculator — Free Material Estimator (Sq Ft) | figgn">
-<meta property="og:description" content="Free flooring calculator. Enter your room length and width to get the square footage you need, including a waste factor for cuts, offcuts and mistakes.">
-<meta property="og:url" content="https://figgn.xyz/flooring-calculator/">
+<meta property="og:title" content="Concrete Calculator — Free Concrete Estimator (Cubic Yards &amp; Bags) | figgn">
+<meta property="og:description" content="Calculate how much concrete you need in cubic yards and bags. Free concrete calculator for slabs, footings, and post holes. Instant results.">
+<meta property="og:url" content="https://figgn.xyz/concrete-calculator/">
 <meta property="og:type" content="website">
 <script>
 (function(){
@@ -162,11 +162,13 @@ body.stickyad{padding-bottom:58px}
 }
 h1{font-size:24px;margin:0 0 4px;letter-spacing:-.3px}
 h2{font-size:18px;margin:0 0 10px;letter-spacing:-.2px}
+h3{font-size:14px;margin:18px 0 8px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em}
 .sub{color:var(--text2);font-size:14px;margin:0 0 16px}
 
 /* form */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media (max-width:560px){.two{grid-template-columns:1fr}}
+.field{margin-top:16px}
 label,.flabel{display:block;font-size:13px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
 input[type=number]{
   width:100%;min-height:56px;padding:0 10px;
@@ -183,23 +185,37 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
   border-radius:0 4px 4px 0;color:var(--text2);font-size:15px;
   font-family:"SF Mono","Cascadia Code","Consolas",monospace;
 }
-.wastefield{margin-top:16px}
-.presets{display:flex;gap:8px}
+.presets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .preset{
-  flex:1;min-height:56px;padding:8px 4px;
+  min-height:56px;padding:6px 4px;
   background:var(--input-bg);color:var(--text);
   border:1px solid var(--border);border-radius:4px;
-  font-size:16px;font-family:"SF Mono","Cascadia Code","Consolas",monospace;cursor:pointer;
+  font-size:14px;font-family:inherit;cursor:pointer;line-height:1.25;
 }
-.preset.on{background:var(--accent-btn);border-color:var(--accent-btn);color:#fff;font-weight:700}
+.preset b{display:block;font-family:"SF Mono","Cascadia Code","Consolas",monospace;font-size:16px}
+.preset.on{background:var(--accent-btn);border-color:var(--accent-btn);color:#fff;font-weight:600}
+.custom{margin-top:8px;display:flex;align-items:stretch;max-width:240px}
+.custom input{border-radius:4px 0 0 4px;border-right:0}
+.custom span{
+  min-height:56px;display:flex;align-items:center;padding:0 12px;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:0 4px 4px 0;color:var(--text2);font-size:15px;
+  font-family:"SF Mono","Cascadia Code","Consolas",monospace;
+}
+.presets.two-up{grid-template-columns:1fr 1fr}
 
 /* results */
-#results{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
-@media (max-width:480px){#results{grid-template-columns:1fr}}
-.res{background:var(--result-bg);color:var(--result-text);border-radius:4px;padding:14px}
+#results{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:18px}
+@media (max-width:640px){.res.main{grid-column:1 / -1}}
+@media (min-width:641px){#results{grid-template-columns:repeat(4,1fr)}}
+.res{background:var(--result-bg);color:var(--result-text);border-radius:4px;padding:14px;
+     border:2px solid transparent}
+.res.sel{border-color:var(--accent-text)}
 .res .k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;opacity:.9}
-.res .v{font-size:34px;font-weight:700;line-height:1.1;margin-top:2px}
-.res .u{font-size:15px;font-weight:600;margin-left:4px}
+.res .v{font-size:28px;font-weight:700;line-height:1.1;margin-top:2px}
+.res .u{font-size:13px;font-weight:600;margin-left:4px}
+.res.main .v{font-size:34px}
+.res .fine{font-size:12px;opacity:.8;margin-top:2px}
 .detail{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);
         border:1px solid var(--line);border-radius:4px;margin-top:12px;overflow:hidden}
 .detail div{background:var(--card);padding:10px 12px}
@@ -242,34 +258,34 @@ footer a{color:#bbb}
   "@graph":[
     {
       "@type":"WebApplication",
-      "name":"Flooring Calculator",
-      "url":"https://figgn.xyz/flooring-calculator/",
+      "name":"Concrete Calculator",
+      "url":"https://figgn.xyz/concrete-calculator/",
       "applicationCategory":"UtilitiesApplication",
       "operatingSystem":"Any",
       "browserRequirements":"Requires JavaScript",
-      "description":"Free flooring estimator that converts room length and width into square footage and adds a waste factor for cuts and offcuts.",
+      "description":"Free concrete estimator that converts slab, footing or post hole dimensions into cubic yards and the number of 60 lb or 80 lb bags needed.",
       "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
     },
     {
       "@type":"HowTo",
-      "name":"How to Use the Flooring Calculator",
-      "description":"Work out how much flooring material to order for a room.",
+      "name":"How to Use the Concrete Calculator",
+      "description":"Estimate concrete in cubic yards and bags for a slab, footing or post hole.",
       "step":[
-        {"@type":"HowToStep","position":1,"name":"Measure the room","text":"Measure the length and width of the room in feet at the widest points and enter both numbers."},
-        {"@type":"HowToStep","position":2,"name":"Choose a waste factor","text":"Use 10 percent for standard straight-lay installations, or 15 to 20 percent for tile, diagonal patterns and irregular rooms."},
-        {"@type":"HowToStep","position":3,"name":"Read both figures","text":"Net square footage is the floor itself. The figure with waste is the amount to order."},
-        {"@type":"HowToStep","position":4,"name":"Order by the box","text":"Divide the total with waste by the square feet per box printed on the packaging and round up to whole boxes."}
+        {"@type":"HowToStep","position":1,"name":"Measure the pour","text":"Enter the length and width of the area in feet. Break L-shaped pours into rectangles and add the results together."},
+        {"@type":"HowToStep","position":2,"name":"Set the depth","text":"Tap slab, footing or post hole, or enter a custom depth in inches."},
+        {"@type":"HowToStep","position":3,"name":"Choose a waste factor","text":"Ten percent is standard and covers spillage, uneven subgrade and over-excavation."},
+        {"@type":"HowToStep","position":4,"name":"Order yards or bags","text":"Use cubic yards when booking ready-mix and the bag count when buying at a store."}
       ]
     },
     {
       "@type":"FAQPage",
       "mainEntity":[
-        {"@type":"Question","name":"What is a waste factor?",
-         "acceptedAnswer":{"@type":"Answer","text":"A waste factor is the extra material you buy beyond the size of the floor, to cover offcuts at the walls, damaged or defective planks, mis-cuts, and pieces kept back for future repairs. Ten percent is standard for a simple rectangular room laid straight. Add more for diagonal or herringbone patterns, large-format tile, angled walls and rooms with lots of doorways or obstacles."}},
-        {"@type":"Question","name":"How much does flooring installation cost?",
-         "acceptedAnswer":{"@type":"Answer","text":"Professional labour generally runs between 3 and 10 US dollars per square foot, on top of the material. Carpet and floating vinyl or laminate sit at the low end, glue-down and nail-down hardwood in the middle, and tile at the top because of substrate prep and layout time. Removing and disposing of old flooring, levelling a subfloor and moving furniture are usually billed separately."}},
-        {"@type":"Question","name":"How do I measure an irregular room?",
-         "acceptedAnswer":{"@type":"Answer","text":"Break the space into rectangles. Draw the floor plan, split it into rectangular sections, measure the length and width of each section, calculate the square footage of each one, then add them together. Measure closets, bay windows and hallway extensions as their own rectangles, and apply the waste factor to the combined total rather than to each piece."}}
+        {"@type":"Question","name":"Should I order ready-mix or mix concrete myself?",
+         "acceptedAnswer":{"@type":"Answer","text":"Volume decides it. Below about half a cubic yard, bags are simpler and cheaper. Between half a yard and roughly two yards, bags remain workable if you have a mixer and help, though it is hard physical work. Above two yards, order ready-mix. One cubic yard is 45 eighty pound bags or 60 sixty pound bags, and mixing that by hand while keeping a consistent mix and beating the set time is not realistic for most people."}},
+        {"@type":"Question","name":"How much does concrete cost?",
+         "acceptedAnswer":{"@type":"Answer","text":"Ready-mix delivered typically runs 140 to 200 US dollars per cubic yard, plus delivery and a short load fee of roughly 60 to 150 dollars on orders under four or five yards. Bagged concrete works out considerably more per yard: at 5 to 8 dollars for an eighty pound bag, the 45 bags in a cubic yard land near 225 to 360 dollars. Prices vary widely by region and by year, so treat these as a starting point and get a local quote."}},
+        {"@type":"Question","name":"Do I need rebar in a concrete slab?",
+         "acceptedAnswer":{"@type":"Answer","text":"For anything carrying vehicle weight, yes. A residential driveway or garage slab normally uses number three or number four rebar on an eighteen to twenty four inch grid, or welded wire mesh for lighter duty. Footings almost always require rebar and are usually governed by local code. A small patio or shed pad on well compacted base can be poured without steel, though fibre reinforcement helps control cracking. Reinforcement does not stop concrete cracking, it holds the crack together, which is why control joints still matter."}}
       ]
     }
   ]
@@ -289,14 +305,14 @@ footer a{color:#bbb}
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Home & DIY",
-      "item": "https://figgn.xyz/#home"
+      "name": "Construction",
+      "item": "https://figgn.xyz/#construction"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Flooring Calculator",
-      "item": "https://figgn.xyz/flooring-calculator/"
+      "name": "Concrete Calculator",
+      "item": "https://figgn.xyz/concrete-calculator/"
     }
   ]
 }
@@ -307,7 +323,7 @@ footer a{color:#bbb}
 <div id="stickyBar">
   <div class="sbar">
     <span class="val mono" id="sVal">—</span>
-    <span class="det" id="sDet">Order this much</span>
+    <span class="det" id="sDet">Concrete needed</span>
     <button type="button" class="copybtn" id="copyBtn">Copy</button>
   </div>
 </div>
@@ -322,65 +338,96 @@ footer a{color:#bbb}
   </div>
 </header>
 
-<aside class="adwrap" data-ad="leaderboard">
-  <span class="adlabel">Advertisement</span>
-  <!-- AdSense: replace the .adslot contents with your <ins class="adsbygoogle"> unit -->
-  <div class="adslot" data-size="728x90"></div>
-</aside>
+<div class="wrap">
+  <aside class="adwrap" data-ad="leaderboard">
+    <span class="adlabel">Advertisement</span>
+    <!-- AdSense: replace the .adslot contents with your <ins class="adsbygoogle"> unit -->
+    <div class="adslot" data-size="728x90"></div>
+  </aside>
+</div>
 
 <main class="wrap">
 
-  <p class="crumb"><a href="/">figgn</a> / <a href="/#home">Home &amp; DIY</a> / Flooring Calculator</p>
+  <p class="crumb"><a href="/">figgn</a> / <a href="/#construction">Construction</a> / Concrete Calculator</p>
 
   <div class="card">
-    <h1>Flooring Calculator</h1>
-    <p class="sub">Room size in, square footage out — with the extra you need to actually order.</p>
+    <h1>Concrete Calculator</h1>
+    <p class="sub">Slabs, footings and post holes — cubic yards for the truck, bag counts for the store.</p>
 
     <div class="two">
       <div>
-        <label for="length">Room length</label>
+        <label for="length">Length</label>
         <div class="suffix">
-          <input type="number" id="length" inputmode="decimal" min="0" step="0.5" value="12">
+          <input type="number" id="length" inputmode="decimal" min="0" step="0.5" value="20">
           <span aria-hidden="true">ft</span>
         </div>
       </div>
       <div>
-        <label for="width">Room width</label>
+        <label for="width">Width</label>
         <div class="suffix">
-          <input type="number" id="width" inputmode="decimal" min="0" step="0.5" value="14">
+          <input type="number" id="width" inputmode="decimal" min="0" step="0.5" value="10">
           <span aria-hidden="true">ft</span>
         </div>
       </div>
     </div>
 
-    <div class="wastefield">
+    <div class="field">
+      <span class="flabel" id="depthLabel">Depth</span>
+      <div class="presets" role="group" aria-labelledby="depthLabel">
+        <button type="button" class="preset depth on" data-depth="4">Slab<b>4"</b></button>
+        <button type="button" class="preset depth" data-depth="12">Footing<b>12"</b></button>
+        <button type="button" class="preset depth" data-depth="24">Post hole<b>24"</b></button>
+      </div>
+      <div class="custom">
+        <input type="number" id="customDepth" inputmode="decimal" min="0" step="0.5" placeholder="Custom" aria-label="Custom depth in inches">
+        <span aria-hidden="true">in</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="flabel" id="bagLabel">Bag size</span>
+      <div class="presets two-up" role="group" aria-labelledby="bagLabel">
+        <button type="button" class="preset bag" data-bag="0.45">60 lb<b>0.45 ft³</b></button>
+        <button type="button" class="preset bag on" data-bag="0.6">80 lb<b>0.6 ft³</b></button>
+      </div>
+    </div>
+
+    <div class="field">
       <span class="flabel" id="wasteLabel">Waste factor</span>
       <div class="presets" role="group" aria-labelledby="wasteLabel">
-        <button type="button" class="preset" data-waste="5">5%</button>
-        <button type="button" class="preset on" data-waste="10">10%</button>
-        <button type="button" class="preset" data-waste="15">15%</button>
-        <button type="button" class="preset" data-waste="20">20%</button>
+        <button type="button" class="preset waste" data-waste="5">5%</button>
+        <button type="button" class="preset waste on" data-waste="10">10%</button>
+        <button type="button" class="preset waste" data-waste="15">15%</button>
       </div>
     </div>
 
     <div id="results">
-      <div class="res">
-        <div class="k">Net floor area</div>
-        <div class="v mono"><span id="rNet">—</span><span class="u">sq ft</span></div>
+      <div class="res main">
+        <div class="k">Cubic yards to order</div>
+        <div class="v mono"><span id="rYards">—</span><span class="u">yd³</span></div>
+        <div class="fine mono" id="rYardsBare">—</div>
+      </div>
+      <div class="res" id="card60">
+        <div class="k">60 lb bags</div>
+        <div class="v mono"><span id="r60">—</span><span class="u">bags</span></div>
+      </div>
+      <div class="res sel" id="card80">
+        <div class="k">80 lb bags</div>
+        <div class="v mono"><span id="r80">—</span><span class="u">bags</span></div>
       </div>
       <div class="res">
-        <div class="k">Order with waste</div>
-        <div class="v mono"><span id="rWaste">—</span><span class="u">sq ft</span></div>
+        <div class="k">Volume with waste</div>
+        <div class="v mono"><span id="rVol">—</span><span class="u">ft³</span></div>
       </div>
     </div>
 
     <div class="detail">
-      <div><div class="k">Extra for waste</div><div class="v mono" id="dExtra">—</div></div>
-      <div><div class="k">Room size</div><div class="v mono" id="dSize">—</div></div>
-      <div><div class="k">Carpet equivalent</div><div class="v mono" id="dYards">—</div></div>
+      <div><div class="k">Area</div><div class="v mono" id="dArea">—</div></div>
+      <div><div class="k">Volume before waste</div><div class="v mono" id="dFeet">—</div></div>
+      <div><div class="k">1 yd³ covers at this depth</div><div class="v mono" id="dCover">—</div></div>
     </div>
 
-    <p class="tip">Order it all in one go. Flooring is made in batches, and a second order weeks later can arrive a shade off — visible in daylight across a finished floor.</p>
+    <p class="tip">Concrete sets on its own schedule. Have everything — forms, tools, screed, help — ready before the first bag is opened or the truck arrives.</p>
   </div>
 
   <aside class="adwrap" data-ad="primary">
@@ -390,39 +437,62 @@ footer a{color:#bbb}
   </aside>
 
   <div class="card">
-    <h2>How to Use the Flooring Calculator</h2>
+    <h2>How to Use the Concrete Calculator</h2>
     <ol>
-      <li>Measure the <strong>length and width</strong> of the room in feet, at the widest points, and enter both.</li>
-      <li>Pick a <strong>waste factor</strong>. 10% covers a normal straight-lay room; go to 15–20% for tile, diagonal patterns or an awkward layout.</li>
-      <li>Read both numbers: <strong>net</strong> is the floor itself, <strong>with waste</strong> is what to order.</li>
-      <li>Divide the order figure by the square feet per box on the packaging and round up to whole boxes.</li>
+      <li>Measure the <strong>length and width</strong> of the pour in feet. Split L-shaped slabs into rectangles and run each one.</li>
+      <li>Set the <strong>depth</strong> — 4" for a standard slab, 12" for a footing, 24" for a post hole, or type a custom depth.</li>
+      <li>Pick your <strong>bag size</strong> and <strong>waste factor</strong>. 10% is standard and covers spillage, an uneven subgrade and over-dug holes.</li>
+      <li>Use <strong>cubic yards</strong> when booking ready-mix, and the <strong>bag count</strong> when buying at a store.</li>
     </ol>
   </div>
 
   <div class="card">
     <h2>How It's Calculated</h2>
-    <p>Floor area is length times width. The waste factor is a straight percentage added on top.</p>
-    <div class="formula mono">Square feet = length × width<br>With waste = square feet × (1 + waste ÷ 100)</div>
-    <p><strong>Worked example:</strong> a 12 ft × 14 ft room is <span class="mono">168 sq ft</span>. At a 10% waste factor that is 168 × 1.10 = 184.8, so you order <span class="mono">185 sq ft</span>.</p>
-    <p>The order figure rounds up to the next whole square foot, and boxes round up again — flooring is sold in fixed box sizes, so real orders almost always land slightly above the calculated number.</p>
-    <p>Carpet is priced by the square yard in some markets. Divide square feet by 9 to convert: 185 sq ft is about 20.6 sq yd.</p>
+    <p>Volume is area times depth. Depth is in inches, so it's divided by 12 to get feet; cubic feet are divided by 27 because a cubic yard is 3 × 3 × 3 feet.</p>
+    <div class="formula mono">Cubic feet = length × width × (depth ÷ 12)<br>Cubic yards = cubic feet ÷ 27<br>Bags = ⌈ cubic feet × (1 + waste ÷ 100) ÷ bag yield ⌉</div>
+    <p><strong>Worked example:</strong> a 20 ft × 10 ft slab at 4 inches is 200 sq ft × 0.333 ft = 66.7 cubic feet, or <span class="mono">2.47 yd³</span> of finished slab. With the standard 10% waste factor you order <span class="mono">2.72 yd³</span> — 73.3 cubic feet — which is <span class="mono">163 sixty-pound bags</span> or <span class="mono">123 eighty-pound bags</span>. Without any waste allowance the bare figures are 149 and 112 — worth knowing, but not worth ordering to.</p>
+    <p>Bag yields are the printed volumes: a 60 lb bag makes about 0.45 cubic feet of mixed concrete and an 80 lb bag about 0.6. That means <strong>60 bags of 60 lb, or 45 bags of 80 lb, per cubic yard</strong> — the number that decides bags versus truck.</p>
+    <p>Round post holes aren't rectangles. For a round hole, area is π × radius², so a 12 inch diameter hole is 0.785 sq ft. Enter that as your length and width equivalent, or measure the hole as a square of the same area.</p>
   </div>
 
   <div class="card">
-    <h2>Material Buying Guide</h2>
-    <p class="sub">Typical waste allowances and how each material is sold. Add 5% on top of these for diagonal or herringbone layouts.</p>
+    <h2>Concrete Coverage Reference</h2>
+    <p class="sub">One cubic yard is 27 cubic feet. How far it spreads depends entirely on depth.</p>
     <table>
-      <thead><tr><th>Material</th><th>Waste</th><th>Sold as</th><th>Notes</th></tr></thead>
+      <thead><tr><th>Depth</th><th>1 yd³ covers</th><th>Typical use</th></tr></thead>
       <tbody>
-        <tr><td>Hardwood</td><td class="n">+10%</td><td>Boxes, 20–25 sq ft</td><td>Cull boards with defects as you go — that's what the 10% is for.</td></tr>
-        <tr><td>Engineered wood</td><td class="n">+10%</td><td>Boxes, 20–30 sq ft</td><td>Same as hardwood. Acclimatise in the room before laying.</td></tr>
-        <tr><td>Tile</td><td class="n">+15%</td><td>Boxes, 10–15 sq ft</td><td>Breakage plus cuts. Go 20% for large format or diagonal.</td></tr>
-        <tr><td>LVP / vinyl plank</td><td class="n">+10%</td><td>Boxes, 20–30 sq ft</td><td>Offcuts over 6 in can usually start the next row.</td></tr>
-        <tr><td>Laminate</td><td class="n">+10%</td><td>Boxes, 20–25 sq ft</td><td>Click-lock, so damaged ends can't be reused.</td></tr>
-        <tr><td>Carpet</td><td class="n">+10–20%</td><td>Rolls, by sq yd</td><td>Sold in 12 ft widths — room width drives waste more than area does.</td></tr>
-        <tr><td>Sheet vinyl</td><td class="n">+10–15%</td><td>Rolls, 6 or 12 ft wide</td><td>Seam placement decides the real waste. Template first.</td></tr>
+        <tr><td>2"</td><td class="n">162 sq ft</td><td>Thin topping slab over existing concrete.</td></tr>
+        <tr><td>4"</td><td class="n">81 sq ft</td><td>Patios, sidewalks, shed pads, standard residential slab.</td></tr>
+        <tr><td>5"</td><td class="n">65 sq ft</td><td>Driveways carrying cars and light trucks.</td></tr>
+        <tr><td>6"</td><td class="n">54 sq ft</td><td>Garage slabs, heavy vehicle or RV parking.</td></tr>
+        <tr><td>8"</td><td class="n">40.5 sq ft</td><td>Footings, foundation walls, load-bearing pads.</td></tr>
+        <tr><td>12"</td><td class="n">27 sq ft</td><td>Deep footings, pier pads, frost-depth work.</td></tr>
       </tbody>
     </table>
+    <h3>Bags per cubic yard</h3>
+    <table>
+      <thead><tr><th>Bag</th><th>Yield</th><th>Per yd³</th><th>Dry mix weight</th></tr></thead>
+      <tbody>
+        <tr><td>60 lb</td><td class="n">0.45 ft³</td><td class="n">60 bags</td><td class="n">3,600 lb</td></tr>
+        <tr><td>80 lb</td><td class="n">0.60 ft³</td><td class="n">45 bags</td><td class="n">3,600 lb</td></tr>
+      </tbody>
+    </table>
+    <p class="tip">That is dry mix weight — 1.8 tons per cubic yard to carry, open and mix. Once water is added, placed concrete weighs closer to 4,000 lb per cubic yard. Either number is the strongest argument for ready-mix that exists.</p>
+  </div>
+
+  <div class="card">
+    <h2>Bags or a Truck?</h2>
+    <p class="sub">Volume decides this, not budget. Both ends of the range have a clear winner.</p>
+    <table>
+      <thead><tr><th>Volume</th><th>Method</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td class="n">Under 0.5 yd³</td><td>Bags, hand mixed</td><td>Under 25 bags. No delivery minimum, no short-load fee, no waste.</td></tr>
+        <tr><td class="n">0.5–1 yd³</td><td>Bags with a mixer</td><td>Doable but real work. Rent a mixer and bring help.</td></tr>
+        <tr><td class="n">1–2 yd³</td><td>Either — trailer mixer or ready-mix</td><td>The crossover. A short-load fee may still beat 90 bags.</td></tr>
+        <tr><td class="n">Over 2 yd³</td><td>Ready-mix</td><td>Consistent mix, one continuous pour, no fighting the set time.</td></tr>
+      </tbody>
+    </table>
+    <p>The hidden constraint is time, not money. Concrete starts setting as soon as it's wet, and a slab poured in batches over three hours has cold joints through it — weak lines where one batch had already stiffened before the next arrived. A truck delivers the whole pour at once, which is why the crossover point is lower than the raw cost comparison suggests.</p>
   </div>
 
   <aside class="adwrap" data-ad="secondary">
@@ -435,18 +505,18 @@ footer a{color:#bbb}
     <h2>Frequently Asked Questions</h2>
 
     <details>
-      <summary>What is a waste factor?</summary>
-      <p>The extra material you buy beyond the size of the floor — for offcuts at the walls, damaged or defective planks, mis-cuts, and a few spare pieces kept for future repairs. 10% is standard for a simple rectangular room laid straight. Push it to 15–20% for diagonal or herringbone patterns, large-format tile, angled walls, or a room full of doorways and obstacles.</p>
+      <summary>Should I order ready-mix or mix it myself?</summary>
+      <p>Volume decides. Under about half a cubic yard, bags are simpler and cheaper. Between half a yard and two yards, bags still work if you have a mixer and help — but it's hard physical work against a clock. Above two yards, order ready-mix. A cubic yard is 45 eighty-pound bags or 60 sixty-pound bags, and mixing that by hand while keeping the mix consistent and beating the set time isn't realistic for most people.</p>
     </details>
 
     <details>
-      <summary>How much does flooring installation cost?</summary>
-      <p>Labour typically runs $3–10 per square foot on top of the material. Carpet and floating vinyl or laminate sit at the low end; glue-down and nail-down hardwood in the middle; tile at the top, because of substrate prep and layout time. Tear-out and disposal of the old floor, subfloor levelling and furniture moving are usually billed separately — ask what's included before comparing quotes.</p>
+      <summary>How much does concrete cost?</summary>
+      <p>Ready-mix delivered typically runs $140–200 per cubic yard, plus delivery and a short-load fee of roughly $60–150 on orders under four or five yards. Bagged works out considerably more per yard: at $5–8 for an 80 lb bag, the 45 bags in a cubic yard land near $225–360. Prices swing hard by region and year — treat these as a starting point and get a local quote before budgeting.</p>
     </details>
 
     <details>
-      <summary>How do I measure an irregular room?</summary>
-      <p>Break it into rectangles. Sketch the floor plan, split it into rectangular sections, measure each one, work out the square footage of each, then add them up. Closets, bay windows and hallway extensions each count as their own rectangle. Apply the waste factor once, to the combined total.</p>
+      <summary>Do I need rebar in a concrete slab?</summary>
+      <p>For anything carrying vehicle weight, yes. A residential driveway or garage slab normally uses #3 or #4 rebar on an 18–24" grid, or welded wire mesh for lighter duty. Footings almost always require rebar and are usually governed by local code, so check before you pour. A small patio or shed pad on well-compacted base can go without steel, though fibre reinforcement helps control cracking. Worth understanding: reinforcement doesn't stop concrete cracking — it holds the crack together. Control joints are what manage where the cracks go.</p>
     </details>
   </div>
 
@@ -458,10 +528,10 @@ footer a{color:#bbb}
 
   <div class="card rel">
     <h2>More Free Calculators</h2>
-    <a href="/paint-calculator/">Paint Calculator</a>
-    <p>Gallons needed for a room, with doors, windows and coats accounted for.</p>
+    <a href="/rebar-calculator/">Rebar Calculator</a>
+    <p>Bar counts and spacing for a slab or footing grid.</p>
     <a href="/gravel-calculator/">Gravel Calculator</a>
-    <p>Cubic yards and tons of gravel for a driveway, path or bed.</p>
+    <p>Cubic yards and tons of gravel for a base layer, driveway or path.</p>
   </div>
 
 </main>
@@ -485,7 +555,13 @@ footer a{color:#bbb}
 (function(){
   var length = document.getElementById('length');
   var width = document.getElementById('width');
+  var customDepth = document.getElementById('customDepth');
+  var depth = 4;
+  var presetDepth = 4;
+  var bag = 0.6;
   var waste = 10;
+
+  var Y60 = 0.45, Y80 = 0.6;
 
   function num(v){
     var n = parseFloat(v);
@@ -493,7 +569,7 @@ footer a{color:#bbb}
   }
 
   function fmt(x, dp){
-    var d = (dp === undefined) ? 1 : dp;
+    var d = (dp === undefined) ? 2 : dp;
     var s = (Math.round(x * Math.pow(10, d)) / Math.pow(10, d)).toString();
     var p = s.split('.');
     p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -504,51 +580,110 @@ footer a{color:#bbb}
     var l = num(length.value);
     var w = num(width.value);
 
-    var rNet = document.getElementById('rNet');
-    var rWaste = document.getElementById('rWaste');
-    var dExtra = document.getElementById('dExtra');
-    var dSize = document.getElementById('dSize');
-    var dYards = document.getElementById('dYards');
+    var rYards = document.getElementById('rYards');
+    var r60 = document.getElementById('r60');
+    var r80 = document.getElementById('r80');
+    var rVol = document.getElementById('rVol');
+    var dArea = document.getElementById('dArea');
+    var dFeet = document.getElementById('dFeet');
+    var dCover = document.getElementById('dCover');
     var sVal = document.getElementById('sVal');
     var sDet = document.getElementById('sDet');
 
-    if(l <= 0 || w <= 0){
-      rNet.textContent = '—';
-      rWaste.textContent = '—';
-      dExtra.textContent = '—';
-      dSize.textContent = '—';
-      dYards.textContent = '—';
+    document.getElementById('card60').classList.toggle('sel', bag === Y60);
+    document.getElementById('card80').classList.toggle('sel', bag === Y80);
+    dCover.textContent = depth > 0 ? fmt(324 / depth, 1) + ' sq ft' : '—';
+
+    if(l <= 0 || w <= 0 || depth <= 0){
+      rYards.textContent = '—';
+      document.getElementById('rYardsBare').textContent = '—';
+      r60.textContent = '—';
+      r80.textContent = '—';
+      rVol.textContent = '—';
+      dArea.textContent = '—';
+      dFeet.textContent = '—';
       sVal.textContent = '—';
-      sDet.textContent = 'Enter a room length and width above 0';
+      sDet.textContent = 'Enter a length, width and depth above 0';
       return;
     }
 
-    var net = l * w;
-    var withWaste = Math.ceil(net * (1 + waste / 100));
-    var extra = withWaste - net;
+    var area = l * w;
+    var cubicFeet = area * (depth / 12);
+    var yards = cubicFeet / 27;
+    var withWaste = cubicFeet * (1 + waste / 100);
+    var bags60 = Math.ceil(withWaste / Y60);
+    var bags80 = Math.ceil(withWaste / Y80);
 
-    rNet.textContent = fmt(net);
-    rWaste.textContent = fmt(withWaste, 0);
-    dExtra.textContent = '+' + fmt(extra) + ' sq ft';
-    dSize.textContent = fmt(l) + ' × ' + fmt(w) + ' ft';
-    dYards.textContent = fmt(withWaste / 9) + ' sq yd';
+    rYards.textContent = fmt(yards * (1 + waste / 100));
+    document.getElementById('rYardsBare').textContent = fmt(yards) + ' yd³ before waste';
+    r60.textContent = fmt(bags60, 0);
+    r80.textContent = fmt(bags80, 0);
+    rVol.textContent = fmt(withWaste, 1);
+    dArea.textContent = fmt(area, 1) + ' sq ft';
+    dFeet.textContent = fmt(cubicFeet, 1) + ' ft³';
 
-    sVal.textContent = fmt(withWaste, 0) + ' sq ft';
-    sDet.textContent = 'Order this much · ' + fmt(net) + ' sq ft floor + ' + waste + '% waste';
+    var chosen = (bag === Y60) ? bags60 : bags80;
+    var label = (bag === Y60) ? '60 lb' : '80 lb';
+
+    sVal.textContent = fmt(yards * (1 + waste / 100)) + ' yd³';
+    sDet.textContent = fmt(chosen, 0) + ' × ' + label + ' bags · ' +
+                       fmt(area, 1) + ' sq ft at ' + fmt(depth, 1) + '" · ' + waste + '% waste';
   }
 
   length.addEventListener('input', calc);
   width.addEventListener('input', calc);
 
-  document.querySelectorAll('.preset').forEach(function(p){
-    p.setAttribute('aria-pressed', p.classList.contains('on') ? 'true' : 'false');
+  function selectIn(group, el){
+    group.forEach(function(x){
+      var on = (x === el);
+      x.classList.toggle('on', on);
+      x.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  var depthBtns = [].slice.call(document.querySelectorAll('.preset.depth'));
+  var bagBtns = [].slice.call(document.querySelectorAll('.preset.bag'));
+  var wasteBtns = [].slice.call(document.querySelectorAll('.preset.waste'));
+
+  [depthBtns, bagBtns, wasteBtns].forEach(function(g){
+    g.forEach(function(p){ p.setAttribute('aria-pressed', p.classList.contains('on') ? 'true' : 'false'); });
+  });
+
+  depthBtns.forEach(function(p){
+    p.addEventListener('click', function(){
+      depth = parseFloat(p.dataset.depth);
+      presetDepth = depth;
+      customDepth.value = '';
+      selectIn(depthBtns, p);
+      calc();
+    });
+  });
+
+  customDepth.addEventListener('input', function(){
+    var v = parseFloat(customDepth.value);
+    if(customDepth.value === '' || isNaN(v) || v <= 0){
+      depth = presetDepth;
+      var active = depthBtns.filter(function(b){ return parseFloat(b.dataset.depth) === presetDepth; })[0];
+      selectIn(depthBtns, active || depthBtns[0]);
+    }else{
+      depth = v;
+      selectIn(depthBtns, null);
+    }
+    calc();
+  });
+
+  bagBtns.forEach(function(p){
+    p.addEventListener('click', function(){
+      bag = parseFloat(p.dataset.bag);
+      selectIn(bagBtns, p);
+      calc();
+    });
+  });
+
+  wasteBtns.forEach(function(p){
     p.addEventListener('click', function(){
       waste = parseFloat(p.dataset.waste);
-      document.querySelectorAll('.preset').forEach(function(x){
-        var on = (x === p);
-        x.classList.toggle('on', on);
-        x.setAttribute('aria-pressed', on ? 'true' : 'false');
-      });
+      selectIn(wasteBtns, p);
       calc();
     });
   });
@@ -599,10 +734,10 @@ footer a{color:#bbb}
     syncToggle();
   });
 
-
   calc();
 })();
 </script>
+
 <script>
 /* Ad controller: lazy fill, engagement-gated sticky, session dismissal. */
 (function(){

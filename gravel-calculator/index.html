@@ -2,11 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gravel Calculator — Free Gravel Estimator (Tons &amp; Cubic Yards) | figgn</title>
 <meta name="description" content="Free gravel calculator. Enter length, width and depth to get cubic yards and tons for crushed stone, pea gravel, road base or river rock.">
 <link rel="canonical" href="https://figgn.xyz/gravel-calculator/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#e65c00">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+<link rel="dns-prefetch" href="https://tpc.googlesyndication.com">
+<meta property="og:site_name" content="figgn">
+<meta property="og:image" content="https://figgn.xyz/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://figgn.xyz/og-image.png">
 <meta property="og:title" content="Gravel Calculator — Free Gravel Estimator (Tons &amp; Cubic Yards) | figgn">
 <meta property="og:description" content="Free gravel calculator. Enter length, width and depth to get cubic yards and tons for crushed stone, pea gravel, road base or river rock.">
 <meta property="og:url" content="https://figgn.xyz/gravel-calculator/">
@@ -33,6 +41,8 @@
   --border:#cccccc;
   --input-bg:#ffffff;
   --accent:#e65c00;
+  --accent-btn:#c24d00;
+  --accent-text:#c24d00;
   --result-bg:#e7f5ec;
   --result-text:#0d5c2e;
   --ad-bg:#f0f0f0;
@@ -47,7 +57,7 @@
   --text2:#999999;
   --border:#3a3a48;
   --input-bg:#252530;
-  --accent:#e65c00;
+  --accent:#e65c00;--accent-btn:#c24d00;--accent-text:#ff8a3d;
   --result-bg:#0a3020;
   --result-text:#4ade80;
   --ad-bg:#22222b;
@@ -74,8 +84,11 @@ a{color:#c24d00}
 header{background:var(--accent);color:#fff}
 .hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
 .wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700;letter-spacing:-.5px}
+.hnav{display:flex;align-items:center;gap:12px}
+.hnav a{color:#fff;text-decoration:none;font-size:14px;font-weight:600}
+.hnav a:hover{text-decoration:underline}
 #themeToggle{
-  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.65);
+  background:var(--accent-btn);color:#fff;border:1px solid rgba(255,255,255,.65);
   border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;
   font-family:inherit;min-height:32px;
 }
@@ -97,7 +110,7 @@ header{background:var(--accent);color:#fff}
 .sbar .val{font-size:26px;font-weight:700;line-height:1.1}
 .sbar .det{font-size:12px;color:var(--result-text);opacity:.85;flex:1}
 .copybtn{
-  background:var(--accent);color:#fff;border:0;border-radius:4px;
+  background:var(--accent-btn);color:#fff;border:0;border-radius:4px;
   padding:8px 14px;font-size:14px;font-family:inherit;cursor:pointer;min-height:36px;
 }
 .copybtn:hover{background:#cf5300}
@@ -111,12 +124,14 @@ header{background:var(--accent);color:#fff}
   font-size:11px;letter-spacing:.08em;text-transform:uppercase}
 .adwrap[data-ad="leaderboard"]{display:none;max-width:728px}
 .adwrap[data-ad="leaderboard"] .adslot{min-height:90px}
-.adwrap[data-ad="primary"],.adwrap[data-ad="secondary"]{max-width:300px}
-.adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot{min-height:250px}
+.adwrap[data-ad="primary"],.adwrap[data-ad="secondary"],.adwrap[data-ad="tertiary"]{max-width:300px}
+.adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot,
+.adwrap[data-ad="tertiary"] .adslot{min-height:250px}
 @media (min-width:768px){
   .adwrap[data-ad="leaderboard"]{display:block}
-  .adwrap[data-ad="primary"],.adwrap[data-ad="secondary"]{max-width:336px}
-  .adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot{min-height:280px}
+  .adwrap[data-ad="primary"],.adwrap[data-ad="secondary"],.adwrap[data-ad="tertiary"]{max-width:336px}
+  .adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot,
+  .adwrap[data-ad="tertiary"] .adslot{min-height:280px}
 }
 #stickyAd{
   position:fixed;left:0;right:0;bottom:0;z-index:55;height:50px;
@@ -178,7 +193,7 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid 
   font-size:14px;font-family:inherit;cursor:pointer;line-height:1.25;
 }
 .preset b{display:block;font-family:"SF Mono","Cascadia Code","Consolas",monospace;font-size:16px}
-.preset.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.preset.on{background:var(--accent-btn);border-color:var(--accent-btn);color:#fff;font-weight:600}
 
 /* results */
 #results{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
@@ -208,11 +223,17 @@ details{border-bottom:1px solid var(--line);padding:10px 0}
 details:last-of-type{border-bottom:0;padding-bottom:0}
 summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
 summary::-webkit-details-marker{display:none}
-summary::before{content:"+ ";color:var(--accent);font-weight:700}
+summary::before{content:"+ ";color:var(--accent-text);font-weight:700}
 details[open] summary::before{content:"– "}
 details p{margin:8px 0 0;color:var(--text2);font-size:14px}
 .rel a{display:block;font-weight:600;margin-top:12px}
 .rel p{font-size:13px;color:var(--text2);margin:2px 0 0}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+.crumb{font-size:13px;color:var(--text2);padding-top:14px;margin:0}
+.crumb a{color:var(--text2)}
+
 footer{background:#1c1c24;color:#999;font-size:13px;margin-top:24px}
 footer .wrap{padding:14px 12px;display:flex;gap:14px;flex-wrap:wrap}
 footer a{color:#bbb}
@@ -256,10 +277,36 @@ footer a{color:#bbb}
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "figgn",
+      "item": "https://figgn.xyz/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Landscape",
+      "item": "https://figgn.xyz/#landscape"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Gravel Calculator",
+      "item": "https://figgn.xyz/gravel-calculator/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
-<div id="stickyBar" role="status" aria-live="polite">
+<div id="stickyBar">
   <div class="sbar">
     <span class="val mono" id="sVal">—</span>
     <span class="det" id="sDet">Gravel needed</span>
@@ -270,7 +317,10 @@ footer a{color:#bbb}
 <header>
   <div class="hbar">
     <a href="/" class="wordmark">figgn</a>
-    <nav style="display:flex;gap:14px;align-items:center"><a href="/blog/">Blog</a><button type="button" id="themeToggle">Dark</button></nav>
+    <div class="hnav">
+      <a href="/blog/">Blog</a>
+      <button type="button" id="themeToggle">Dark</button>
+    </div>
   </div>
 </header>
 
@@ -281,6 +331,8 @@ footer a{color:#bbb}
 </aside>
 
 <main class="wrap">
+
+  <p class="crumb"><a href="/">figgn</a> / <a href="/#landscape">Landscape</a> / Gravel Calculator</p>
 
   <div class="card">
     <h1>Gravel Calculator</h1>
@@ -409,6 +461,12 @@ footer a{color:#bbb}
     </details>
   </div>
 
+  <aside class="adwrap" data-ad="tertiary">
+    <span class="adlabel">Advertisement</span>
+    <!-- AdSense: replace the .adslot contents with your <ins class="adsbygoogle"> unit -->
+    <div class="adslot" data-size="300x250 / 336x280"></div>
+  </aside>
+
   <div class="card rel">
     <h2>More Free Calculators</h2>
     <a href="/mulch-calculator/">Mulch Calculator</a>
@@ -421,9 +479,10 @@ footer a{color:#bbb}
 
 <footer>
   <div class="wrap">
-    <span>© 2026 figgn</span>
+    <span>© <span id="yr">2026</span> figgn</span>
     <a href="/privacy/">Privacy</a>
-    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+    <a href="/">All calculators</a>
   </div>
 </footer>
 
@@ -616,6 +675,93 @@ footer a{color:#bbb}
     try{ sessionStorage.setItem('adDismissed','1'); }catch(e){}
   });
 })();
+</script>
+<script>
+/* Shared fixes: announce results on commit (not every keystroke), stop
+   scroll-wheel from silently changing number inputs, keep the year current. */
+(function(){
+  document.addEventListener('wheel', function(e){
+    var a = document.activeElement;
+    if(a && a.type === 'number' && a === e.target) a.blur();
+  }, {passive:true});
+
+  var yr = document.getElementById('yr');
+  if(yr) yr.textContent = new Date().getFullYear();
+
+  var v = document.getElementById('sVal');
+  var d = document.getElementById('sDet');
+  if(!v) return;
+
+  var live = document.createElement('p');
+  live.className = 'visually-hidden';
+  live.setAttribute('aria-live','polite');
+  document.body.appendChild(live);
+
+  function announce(){
+    live.textContent = v.textContent + '. ' + d.textContent;
+  }
+  document.addEventListener('change', announce, true);
+  document.addEventListener('click', function(e){
+    if(e.target.closest && e.target.closest('.preset, .stepper button, .rm, .addbtn')) {
+      setTimeout(announce, 0);
+    }
+  }, true);
+})();
+</script>
+<script>
+/* AdSense loader: script is fetched only after the visitor engages, so it never
+   competes with first paint. Replace ca-pub-XXXXXXXXXXXXXXXX with your ID. */
+(function(){
+  var PUB = 'ca-pub-XXXXXXXXXXXXXXXX';
+  var loaded = false;
+  function load(){
+    if(loaded || PUB.indexOf('XXXX') > -1) return;
+    loaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + PUB;
+    s.crossOrigin = 'anonymous';
+    document.head.appendChild(s);
+  }
+  ['scroll','pointerdown','keydown'].forEach(function(e){
+    window.addEventListener(e, load, {once:true, passive:true});
+  });
+  setTimeout(load, 3500);
+})();
+
+/* Shareable state: numeric inputs with an id round-trip through the query
+   string, so a result can be linked, bookmarked and reopened. */
+(function(){
+  var fields = [].slice.call(document.querySelectorAll('input[type=number][id]'));
+  if(!fields.length) return;
+
+  var params = new URLSearchParams(location.search);
+  var applied = false;
+  fields.forEach(function(f){
+    var v = params.get(f.id);
+    if(v !== null && v !== '' && isFinite(parseFloat(v))){
+      f.value = parseFloat(v);
+      applied = true;
+    }
+  });
+  if(applied){
+    fields[0].dispatchEvent(new Event('input', {bubbles:true}));
+    document.dispatchEvent(new Event('change', {bubbles:true}));
+  }
+
+  var t;
+  function sync(){
+    clearTimeout(t);
+    t = setTimeout(function(){
+      var q = new URLSearchParams();
+      fields.forEach(function(f){ if(f.value !== '') q.set(f.id, f.value); });
+      var qs = q.toString();
+      history.replaceState(null, '', qs ? location.pathname + '?' + qs : location.pathname);
+    }, 500);
+  }
+  fields.forEach(function(f){ f.addEventListener('input', sync); });
+})();
+
 </script>
 </body>
 </html>
