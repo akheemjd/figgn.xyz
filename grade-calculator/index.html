@@ -1,51 +1,628 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grade Calculator — Free Percentage & Letter Grade Calculator</title>
-<meta name="description" content="Calculate your grade percentage and letter grade instantly. Also find what score you need on your final exam. Free grade calculator for students.">
-<meta name="robots" content="index, follow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grade Calculator — Free Percentage &amp; Letter Grade Tool | figgn</title>
+<meta name="description" content="Free grade calculator. Turn points earned into a percentage and letter grade, and work out the score you need on the final exam to hit your target grade.">
 <link rel="canonical" href="https://figgn.xyz/grade-calculator/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Grade Calculator","url":"https://figgn.xyz/grade-calculator/","description":"Calculate grade percentage and find what you need on your final exam.","applicationCategory":"EducationalApplication","operatingSystem":"All"}</script>
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,sans-serif;line-height:1.6;color:#1a1a1a;background:#f5f5f7}.container{max-width:800px;margin:0 auto;padding:0 20px}header{background:#1a1a2e;color:#fff;padding:24px 0 18px}header .container{display:flex;align-items:center;gap:12px;flex-wrap:wrap}header a{color:#a0a0b8;text-decoration:none;font-size:.9rem}header a:hover{color:#fff}header h1{font-size:clamp(1.3rem,3.5vw,1.7rem)}.breadcrumbs{font-size:.82rem;color:#888;padding:12px 0}.breadcrumbs a{color:#2563eb;text-decoration:none}.ad-top{max-width:728px;margin:16px auto;min-height:90px;background:#e8e8ed;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8rem;border-radius:4px}.tool-box{background:#fff;border-radius:8px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin:20px 0}.tool-box h2{font-size:1.2rem;margin-bottom:18px;color:#1a1a2e}.form-group{margin-bottom:14px}.form-group label{display:block;font-weight:600;margin-bottom:4px;font-size:.92rem}.form-group input{width:100%;padding:10px 12px;border:1.5px solid #d0d0d8;border-radius:6px;font-size:1rem}.form-group input:focus{outline:none;border-color:#2563eb}.tab-btn{padding:10px 20px;border:none;background:#e5e7eb;cursor:pointer;font-size:.9rem;border-radius:6px 6px 0 0;margin-right:4px}.tab-btn.active{background:#2563eb;color:#fff}.tab-content{display:none;background:#fff;padding:20px;border-radius:0 8px 8px 8px;margin-top:-1px}.tab-content.active{display:block}.result{background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:20px;margin-top:20px;display:none}.result.show{display:block}.result .big{font-size:2rem;font-weight:700;color:#166534}.result .sub{color:#555;font-size:.92rem;margin-top:4px}.content-section{margin:30px 0}.content-section h2{font-size:1.2rem;color:#1a1a2e;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e5e7eb}.content-section p,.content-section li{color:#555;font-size:.95rem;margin-bottom:8px}.content-section table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9rem}.content-section td,.content-section th{border:1px solid #ddd;padding:8px 12px}.content-section th{background:#f9fafb;font-weight:600}.ad-inline{min-height:250px;background:#e8e8ed;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8rem;border-radius:4px;margin:24px 0}.faq details{margin-bottom:10px;background:#fff;border-radius:6px;padding:14px 18px;box-shadow:0 1px 2px rgba(0,0,0,.05)}.faq summary{font-weight:600;cursor:pointer;font-size:.95rem}.faq p{margin-top:8px;color:#555;font-size:.9rem}.related{margin:24px 0;padding:20px;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08)}.related h3{margin-bottom:10px;font-size:1rem}.related a{color:#2563eb;text-decoration:none;margin-right:16px;font-size:.92rem}footer{background:#1a1a2e;color:#888;padding:24px 0;margin-top:40px;text-align:center;font-size:.82rem}footer a{color:#a0a0b8;text-decoration:none}</style>
+<meta property="og:title" content="Grade Calculator — Free Percentage &amp; Letter Grade Tool | figgn">
+<meta property="og:description" content="Free grade calculator. Turn points earned into a percentage and letter grade, and work out the score you need on the final exam to hit your target grade.">
+<meta property="og:url" content="https://figgn.xyz/grade-calculator/">
+<meta property="og:type" content="website">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('theme');
+    if(t !== 'light' && t !== 'dark'){
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  }catch(e){
+    document.documentElement.setAttribute('data-theme','light');
+  }
+})();
+</script>
+<style>
+:root{
+  --bg:#f8f9fb;
+  --card:#ffffff;
+  --text:#111111;
+  --text2:#555555;
+  --border:#cccccc;
+  --input-bg:#ffffff;
+  --accent:#e65c00;
+  --result-bg:#e7f5ec;
+  --result-text:#0d5c2e;
+  --ad-bg:#f0f0f0;
+  --ad-text:#888888;
+  --shadow:0 1px 3px rgba(0,0,0,.08);
+  --line:#e4e4ea;
+}
+[data-theme="dark"]{
+  --bg:#131318;
+  --card:#1c1c24;
+  --text:#e0e0e0;
+  --text2:#999999;
+  --border:#3a3a48;
+  --input-bg:#252530;
+  --accent:#e65c00;
+  --result-bg:#0a3020;
+  --result-text:#4ade80;
+  --ad-bg:#22222b;
+  --ad-text:#777777;
+  --shadow:0 1px 3px rgba(0,0,0,.3);
+  --line:#2a2a34;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+}
+.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:#c24d00}
+[data-theme="dark"] a{color:#ff8a3d}
+
+/* header */
+header{background:var(--accent);color:#fff}
+.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700;letter-spacing:-.5px}
+#themeToggle{
+  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.65);
+  border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;
+  font-family:inherit;min-height:32px;
+}
+#themeToggle:hover{background:rgba(255,255,255,.15)}
+
+/* sticky result bar */
+#stickyBar{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:var(--result-bg);color:var(--result-text);
+  border-bottom:1px solid var(--border);
+  transform:translateY(-100%);
+  visibility:hidden;
+}
+#stickyBar.show{transform:translateY(0);visibility:visible}
+@media (prefers-reduced-motion:no-preference){
+  #stickyBar{transition:transform .15s ease-out}
+}
+.sbar{max-width:760px;margin:0 auto;padding:8px 12px;display:flex;align-items:center;gap:12px}
+.sbar .val{font-size:26px;font-weight:700;line-height:1.1}
+.sbar .det{font-size:12px;color:var(--result-text);opacity:.85;flex:1}
+.copybtn{
+  background:var(--accent);color:#fff;border:0;border-radius:4px;
+  padding:8px 14px;font-size:14px;font-family:inherit;cursor:pointer;min-height:36px;
+}
+.copybtn:hover{background:#cf5300}
+
+/* ads */
+.ad{background:var(--ad-bg);color:var(--ad-text);text-align:center;margin:16px auto;
+    display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.ad-lb{max-width:728px;height:90px}
+.ad-rect{max-width:300px;height:250px}
+#stickyAd{
+  position:fixed;left:0;right:0;bottom:0;z-index:55;height:50px;
+  background:var(--ad-bg);color:var(--ad-text);
+  border-top:1px solid var(--border);
+  display:none;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+}
+#stickyAd button{
+  position:absolute;right:4px;top:4px;width:26px;height:26px;line-height:1;
+  background:transparent;border:1px solid var(--border);border-radius:4px;
+  color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;padding:0;
+}
+@media (max-width:640px){
+  #stickyAd{display:flex}
+  body{padding-bottom:58px}
+  body.adclosed{padding-bottom:0}
+}
+
+/* cards */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:4px;
+  box-shadow:var(--shadow);padding:16px;margin:16px 0;
+}
+h1{font-size:24px;margin:0 0 4px;letter-spacing:-.3px}
+h2{font-size:18px;margin:0 0 10px;letter-spacing:-.2px}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+
+/* form */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media (max-width:560px){.grid2,.grid3{grid-template-columns:1fr}}
+label{display:block;font-size:13px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+input[type=number]{
+  width:100%;min-height:56px;padding:0 10px;
+  background:var(--input-bg);color:var(--text);
+  border:1px solid var(--border);border-radius:4px;
+  font-size:18px;font-family:"SF Mono","Cascadia Code","Consolas",monospace;
+}
+input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.suffix{display:flex;align-items:stretch}
+.suffix input{border-radius:4px 0 0 4px;border-right:0}
+.suffix span{
+  min-height:56px;display:flex;align-items:center;padding:0 12px;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:0 4px 4px 0;color:var(--text2);font-size:18px;
+  font-family:"SF Mono","Cascadia Code","Consolas",monospace;
+}
+
+/* results */
+.res{background:var(--result-bg);color:var(--result-text);border-radius:4px;padding:14px;margin-top:18px;
+     display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.res .big{font-size:40px;font-weight:700;line-height:1}
+.res .letter{font-size:26px;font-weight:700;border:2px solid currentColor;border-radius:4px;padding:0 10px;line-height:1.3}
+.res .lbl{font-size:13px;text-transform:uppercase;letter-spacing:.06em;opacity:.9}
+.note{font-size:14px;color:var(--text2);margin-top:10px}
+.note.warn{color:var(--accent);font-weight:600}
+.detail{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);
+        border:1px solid var(--line);border-radius:4px;margin-top:12px;overflow:hidden}
+.detail div{background:var(--card);padding:10px 12px}
+.detail .k{font-size:12px;color:var(--text2)}
+.detail .v{font-size:18px;font-weight:600}
+
+/* content */
+ol,ul{padding-left:20px;margin:0}
+ol li,ul li{margin-bottom:8px}
+p{margin:0 0 12px}
+.formula{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:12px;margin:12px 0;
+         font-size:15px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2)}
+td.n{font-family:"SF Mono","Cascadia Code","Consolas",monospace;white-space:nowrap}
+details{border-bottom:1px solid var(--line);padding:10px 0}
+details:last-of-type{border-bottom:0;padding-bottom:0}
+summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";color:var(--accent);font-weight:700}
+details[open] summary::before{content:"– "}
+details p{margin:8px 0 0;color:var(--text2);font-size:14px}
+.rel a{display:block;font-weight:600;margin-top:12px}
+.rel p{font-size:13px;color:var(--text2);margin:2px 0 0}
+footer{background:#1c1c24;color:#999;font-size:13px;margin-top:24px}
+footer .wrap{padding:14px 12px;display:flex;gap:14px;flex-wrap:wrap}
+footer a{color:#bbb}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebApplication",
+      "name":"Points-Based Grade Calculator",
+      "url":"https://figgn.xyz/grade-calculator/#points",
+      "applicationCategory":"EducationalApplication",
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "description":"Convert points earned out of total points possible into a percentage and a letter grade.",
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+    },
+    {
+      "@type":"WebApplication",
+      "name":"Final Exam Grade Calculator",
+      "url":"https://figgn.xyz/grade-calculator/#final",
+      "applicationCategory":"EducationalApplication",
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "description":"Work out the score you need on a final exam to reach a target course grade, based on your current grade and the weight of the final.",
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+    },
+    {
+      "@type":"HowTo",
+      "name":"How to Use the Points-Based Grade Calculator",
+      "description":"Turn points earned into a percentage and letter grade.",
+      "step":[
+        {"@type":"HowToStep","position":1,"name":"Enter points earned","text":"Type the number of points you scored on the assignment or test."},
+        {"@type":"HowToStep","position":2,"name":"Enter total points","text":"Type the total points the assignment was out of."},
+        {"@type":"HowToStep","position":3,"name":"Read the grade","text":"The percentage and letter grade appear instantly and update as you type."}
+      ]
+    },
+    {
+      "@type":"HowTo",
+      "name":"How to Use the Final Exam Calculator",
+      "description":"Find the score you need on a final exam to reach a target course grade.",
+      "step":[
+        {"@type":"HowToStep","position":1,"name":"Enter your current grade","text":"Type your course grade as a percentage before the final exam."},
+        {"@type":"HowToStep","position":2,"name":"Enter your target grade","text":"Type the overall course percentage you want to finish with."},
+        {"@type":"HowToStep","position":3,"name":"Enter the weight of the final","text":"Type what percentage of your course grade the final exam is worth. Your syllabus lists this."},
+        {"@type":"HowToStep","position":4,"name":"Read the score you need","text":"The required exam score updates as you type, including a warning if it is above 100 percent."}
+      ]
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"Why does my school use a different grading scale?",
+         "acceptedAnswer":{"@type":"Answer","text":"Grading scales are set by each school or instructor. The most common is the 10-point scale where 90 and above is an A, 80 to 89 is a B and so on. Some schools use a 7-point scale where an A starts at 93, and many add plus and minus grades within each band. Percentages themselves do not change, only the letter that is attached to them, so check your syllabus before assuming a cutoff."}},
+        {"@type":"Question","name":"How does the final exam formula work?",
+         "acceptedAnswer":{"@type":"Answer","text":"Your course grade is a weighted average of the work before the final and the final itself. If the final is worth w as a decimal, your existing work is worth 1 minus w. Required final score equals your target grade minus your current grade times one minus w, all divided by w. With an 85 percent current grade, a 90 percent target and a final worth 20 percent, you need 110 percent on the exam."}},
+        {"@type":"Question","name":"What if I need more than 100 percent on the final?",
+         "acceptedAnswer":{"@type":"Answer","text":"It means the target grade is no longer reachable through the exam alone, because even a perfect score cannot make up the gap. Options are extra credit, a grade replacement or drop policy, regrade requests on earlier work, or resetting the target to a grade that is still achievable. Ask your instructor early rather than after the exam."}},
+        {"@type":"Question","name":"Does this account for extra credit or dropped scores?",
+         "acceptedAnswer":{"@type":"Answer","text":"No. The calculator uses a straight weighted average of your current grade and the final. If your course drops the lowest test score, curves grades, or offers extra credit, enter the current grade you would have after those adjustments to get an accurate result."}}
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
-<header><div class="container"><a href="/">← Figgn</a><h1>Grade Calculator</h1></div></header>
-<div class="container"><div class="breadcrumbs"><a href="/">Home</a> › Grade Calculator</div></div>
-<div class="container"><div class="ad-top">Advertisement</div></div>
-<div class="container">
-<div class="tool-box">
-<div style="margin-bottom:16px"><button class="tab-btn active" onclick="switchTab('points')">Points-Based</button><button class="tab-btn" onclick="switchTab('final')">Final Exam</button></div>
 
-<div id="tab-points" class="tab-content active">
-<h2>Points-Based Grade</h2>
-<div class="form-group"><label>Points Earned</label><input type="number" id="earned" placeholder="e.g. 85" min="0" oninput="calcPoints()"></div>
-<div class="form-group"><label>Total Points Possible</label><input type="number" id="total" placeholder="e.g. 100" min="1" oninput="calcPoints()"></div>
-<div class="result" id="resultPoints"><div class="big" id="gradePct">0%</div><div class="sub" id="gradeLetter"></div></div>
+<div id="stickyBar" role="status" aria-live="polite">
+  <div class="sbar">
+    <span class="val mono" id="sVal">—</span>
+    <span class="det" id="sDet">Grade</span>
+    <button type="button" class="copybtn" id="copyBtn">Copy</button>
+  </div>
 </div>
 
-<div id="tab-final" class="tab-content">
-<h2>Final Exam Calculator</h2>
-<div class="form-group"><label>Current Grade (%)</label><input type="number" id="currentGrade" placeholder="e.g. 85" min="0" max="100" oninput="calcFinal()"></div>
-<div class="form-group"><label>Desired Grade (%)</label><input type="number" id="desiredGrade" placeholder="e.g. 90" min="0" max="100" oninput="calcFinal()"></div>
-<div class="form-group"><label>Final Exam Weight (% of grade)</label><input type="number" id="finalWeight" placeholder="e.g. 20" min="1" max="100" oninput="calcFinal()"></div>
-<div class="result" id="resultFinal"><div class="big" id="finalScore">0%</div><div class="sub" id="finalMsg"></div></div>
-</div>
+<header>
+  <div class="hbar">
+    <a href="/" class="wordmark">figgn</a>
+    <button type="button" id="themeToggle">Dark</button>
+  </div>
+</header>
+
+<div class="ad ad-lb">Advertisement</div>
+
+<main class="wrap">
+
+  <div class="card" id="points">
+    <h1>Grade Calculator</h1>
+    <p class="sub">Two calculators: turn points into a letter grade, and find the score you need on the final.</p>
+
+    <h2>Points-Based Grade</h2>
+    <div class="grid2">
+      <div>
+        <label for="earned">Points earned</label>
+        <input type="number" id="earned" inputmode="decimal" min="0" step="0.5" value="85">
+      </div>
+      <div>
+        <label for="total">Total points possible</label>
+        <input type="number" id="total" inputmode="decimal" min="0" step="0.5" value="100">
+      </div>
+    </div>
+
+    <div class="res">
+      <span class="big mono" id="pVal">—</span>
+      <span class="letter mono" id="pLetter">—</span>
+      <span class="lbl">Grade</span>
+    </div>
+    <p class="note" id="pNote">85 out of 100 points.</p>
+  </div>
+
+  <div class="card" id="final">
+    <h2>Final Exam Calculator</h2>
+    <p class="sub">The score you need on the final to finish the course where you want.</p>
+
+    <div class="grid3">
+      <div>
+        <label for="current">Current grade</label>
+        <div class="suffix">
+          <input type="number" id="current" inputmode="decimal" min="0" step="0.1" value="85">
+          <span aria-hidden="true">%</span>
+        </div>
+      </div>
+      <div>
+        <label for="desired">Desired grade</label>
+        <div class="suffix">
+          <input type="number" id="desired" inputmode="decimal" min="0" step="0.1" value="90">
+          <span aria-hidden="true">%</span>
+        </div>
+      </div>
+      <div>
+        <label for="weight">Final exam weight</label>
+        <div class="suffix">
+          <input type="number" id="weight" inputmode="decimal" min="0" max="100" step="1" value="20">
+          <span aria-hidden="true">%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="res">
+      <span class="big mono" id="fVal">—</span>
+      <span class="lbl" id="fLbl">Needed on the final</span>
+    </div>
+    <p class="note" id="fNote"></p>
+
+    <div class="detail">
+      <div><div class="k">Existing work is worth</div><div class="v mono" id="dPrior">—</div></div>
+      <div><div class="k">Final is worth</div><div class="v mono" id="dWeight">—</div></div>
+      <div><div class="k">Grade if you score 100%</div><div class="v mono" id="dMax">—</div></div>
+    </div>
+  </div>
+
+  <div class="ad ad-rect">Advertisement</div>
+
+  <div class="card">
+    <h2>How to Use the Grade Calculator</h2>
+    <ol>
+      <li><strong>Points-based:</strong> enter the points you earned and the points the assignment was out of. The percentage and letter grade appear instantly.</li>
+      <li><strong>Final exam:</strong> enter your current course grade and the grade you want to end with.</li>
+      <li>Enter the <strong>weight of the final</strong> — your syllabus lists this, usually 15% to 30% of the course grade.</li>
+      <li>Read the score you need. If it lands above 100%, the target is out of reach on the exam alone.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>How It's Calculated</h2>
+    <p><strong>Points-based grade.</strong> Divide the points you earned by the points possible and multiply by 100. The letter comes from the standard 10-point scale.</p>
+    <div class="formula mono">Percentage = (points earned ÷ points possible) × 100</div>
+    <p><strong>Final exam score needed.</strong> Your course grade is a weighted average: everything before the final counts for 1 − w, and the final counts for w, where w is the weight written as a decimal. Solving that average for the exam score gives:</p>
+    <div class="formula mono">Needed = (desired − current × (1 − w)) ÷ w<br>where w = weight ÷ 100</div>
+    <p><strong>Worked example:</strong> an 85% current grade, a 90% target and a final worth 20% gives (90 − 85 × 0.8) ÷ 0.2 = (90 − 68) ÷ 0.2 = <span class="mono">110%</span>. A perfect exam would only reach 88%, so the target needs extra credit or a lower goal.</p>
+    <p>This assumes a straight weighted average. Curves, dropped scores and extra credit are not modelled — enter the current grade you would have after those adjustments.</p>
+  </div>
+
+  <div class="card">
+    <h2>Grade Scale Reference</h2>
+    <p class="sub">The 10-point scale used by this calculator, with the plus/minus and 7-point variants many schools use instead.</p>
+    <table>
+      <thead><tr><th>Letter</th><th>10-point</th><th>With +/−</th><th>7-point</th></tr></thead>
+      <tbody>
+        <tr><td>A</td><td class="n">90–100</td><td class="n">93–100</td><td class="n">93–100</td></tr>
+        <tr><td>A−</td><td class="n">—</td><td class="n">90–92</td><td class="n">90–92</td></tr>
+        <tr><td>B+</td><td class="n">—</td><td class="n">87–89</td><td class="n">87–89</td></tr>
+        <tr><td>B</td><td class="n">80–89</td><td class="n">83–86</td><td class="n">85–86</td></tr>
+        <tr><td>B−</td><td class="n">—</td><td class="n">80–82</td><td class="n">83–84</td></tr>
+        <tr><td>C+</td><td class="n">—</td><td class="n">77–79</td><td class="n">80–82</td></tr>
+        <tr><td>C</td><td class="n">70–79</td><td class="n">73–76</td><td class="n">77–79</td></tr>
+        <tr><td>C−</td><td class="n">—</td><td class="n">70–72</td><td class="n">75–76</td></tr>
+        <tr><td>D</td><td class="n">60–69</td><td class="n">63–66</td><td class="n">70–74</td></tr>
+        <tr><td>F</td><td class="n">0–59</td><td class="n">0–59</td><td class="n">0–69</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Cutoffs are set by your school or instructor. The syllabus wins over any chart.</p>
+  </div>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+      <summary>Why does my school use a different grading scale?</summary>
+      <p>Scales are set locally. The most common is the 10-point scale — 90 and up is an A, 80–89 a B, and so on. Some schools use a 7-point scale where an A starts at 93, and many add plus and minus grades inside each band. The percentage never changes, only the letter attached to it, so check your syllabus before trusting a cutoff.</p>
+    </details>
+
+    <details>
+      <summary>How does the final exam formula work?</summary>
+      <p>Your course grade is a weighted average. If the final is worth w as a decimal, everything before it is worth 1 − w. Solving that average for the exam score gives (desired − current × (1 − w)) ÷ w. With an 85% current grade, a 90% target and a final worth 20%, you need 110% — which is the calculator's way of saying a perfect exam still lands you at 88%.</p>
+    </details>
+
+    <details>
+      <summary>What if I need more than 100% on the final?</summary>
+      <p>The target is no longer reachable through the exam alone — even a perfect score cannot close the gap. Your options are extra credit, a grade replacement or lowest-score-drop policy, a regrade on earlier work, or resetting the target to something still achievable. Ask your instructor before the exam, not after.</p>
+    </details>
+
+    <details>
+      <summary>Does this handle extra credit or dropped scores?</summary>
+      <p>No. Both calculators use straight arithmetic — a simple percentage and a plain weighted average. If your course drops the lowest test, curves the class, or offers extra credit, work out the current grade you would have after those adjustments and enter that number instead.</p>
+    </details>
+  </div>
+
+  <div class="card rel">
+    <h2>More Free Calculators</h2>
+    <a href="/gpa-calculator/">GPA Calculator</a>
+    <p>Weighted and unweighted GPA from your letter grades and credit hours.</p>
+    <a href="/tip-calculator/">Tip Calculator</a>
+    <p>Tip, total and per-person share for any bill.</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 figgn</span>
+    <a href="/privacy/">Privacy</a>
+    <a href="/">Home</a>
+  </div>
+</footer>
+
+<div id="stickyAd">
+  Advertisement
+  <button type="button" id="closeAd" aria-label="Close ad">✕</button>
 </div>
 
-<div class="content-section"><h2>How to Use</h2><p><strong>Points-Based:</strong> Enter the points you earned and the total possible points. Instantly see your percentage and letter grade.</p><p><strong>Final Exam:</strong> Enter your current grade, your desired final grade, and how much the final exam is worth. The calculator tells you exactly what score you need.</p></div>
-<div class="ad-inline">Advertisement</div>
-<div class="content-section"><h2>Grade Scale</h2><table><tr><th>Percentage</th><th>Letter Grade</th></tr><tr><td>90–100%</td><td>A</td></tr><tr><td>80–89%</td><td>B</td></tr><tr><td>70–79%</td><td>C</td></tr><tr><td>60–69%</td><td>D</td></tr><tr><td>Below 60%</td><td>F</td></tr></table></div>
-<div class="content-section faq"><h2>FAQs</h2><details><summary>What if my school uses a different grading scale?</summary><p>Different schools use different cutoffs (e.g. 93%+ for an A). This calculator uses the most common standard. Adjust your target based on your school's specific scale.</p></details><details><summary>How is the final exam score calculated?</summary><p>Formula: (Desired Grade − Current Grade × (1 − Final Weight)) ÷ Final Weight. If the result is over 100%, you may need extra credit to reach your goal.</p></details></div>
-<div class="related"><h3>You might also need:</h3><a href="/gpa-calculator/">GPA Calculator</a><a href="/tip-calculator/">Tip Calculator</a></div>
-</div>
-<footer><div class="container"><p>&copy; 2026 Figgn. <a href="/">Home</a> · <a href="/privacy/">Privacy</a></p></div></footer>
 <script>
-function switchTab(t){document.querySelectorAll('.tab-btn,.tab-content').forEach(e=>e.classList.remove('active'));document.querySelectorAll('.tab-btn')[t==='final'?1:0].classList.add('active');document.getElementById('tab-'+t).classList.add('active')}
-function getLetter(p){if(p>=90)return'A';if(p>=80)return'B';if(p>=70)return'C';if(p>=60)return'D';return'F'}
-function calcPoints(){const e=parseFloat(document.getElementById('earned').value)||0;const t=parseFloat(document.getElementById('total').value)||0;if(t===0)return;const p=(e/t*100).toFixed(1);document.getElementById('gradePct').textContent=p+'%';document.getElementById('gradeLetter').textContent='Letter Grade: '+getLetter(parseFloat(p));document.getElementById('resultPoints').classList.add('show')}
-function calcFinal(){const c=parseFloat(document.getElementById('currentGrade').value)||0;const d=parseFloat(document.getElementById('desiredGrade').value)||0;const w=(parseFloat(document.getElementById('finalWeight').value)||0)/100;if(w===0)return;const s=((d-c*(1-w))/w).toFixed(1);document.getElementById('finalScore').textContent=s+'%';document.getElementById('finalMsg').textContent=parseFloat(s)>100?'⚠️ You need more than 100% — may need extra credit':parseFloat(s)<=0?'✅ You already have your desired grade!':'You need to score '+s+'% on the final';document.getElementById('resultFinal').classList.add('show')}
+(function(){
+  var earned = document.getElementById('earned');
+  var total = document.getElementById('total');
+  var current = document.getElementById('current');
+  var desired = document.getElementById('desired');
+  var weight = document.getElementById('weight');
+
+  var sVal = document.getElementById('sVal');
+  var sDet = document.getElementById('sDet');
+  var active = 'points';
+
+  function trim(x){
+    return (Math.round(x * 100) / 100).toString();
+  }
+
+  function letterFor(p){
+    if(p >= 90) return 'A';
+    if(p >= 80) return 'B';
+    if(p >= 70) return 'C';
+    if(p >= 60) return 'D';
+    return 'F';
+  }
+
+  var pState = {ok:false, val:'—', det:''};
+  var fState = {ok:false, val:'—', det:''};
+
+  function calcPoints(){
+    var e = parseFloat(earned.value);
+    var t = parseFloat(total.value);
+    var val = document.getElementById('pVal');
+    var lt = document.getElementById('pLetter');
+    var note = document.getElementById('pNote');
+
+    if(isNaN(e) || isNaN(t) || t <= 0){
+      val.textContent = '—';
+      lt.textContent = '—';
+      note.textContent = 'Enter points earned and a total above 0.';
+      pState = {ok:false, val:'—', det:'Enter points earned and a total above 0'};
+      return;
+    }
+
+    var pct = (e / t) * 100;
+    val.textContent = trim(pct) + '%';
+    lt.textContent = letterFor(pct);
+    note.textContent = trim(e) + ' out of ' + trim(t) + ' points' +
+      (pct > 100 ? ' — above 100%, so extra credit is included.' : '.');
+    pState = {ok:true, val:trim(pct) + '%', det:'Grade · ' + letterFor(pct) + ' · ' + trim(e) + '/' + trim(t) + ' points'};
+  }
+
+  function calcFinal(){
+    var c = parseFloat(current.value);
+    var d = parseFloat(desired.value);
+    var w = parseFloat(weight.value);
+    var val = document.getElementById('fVal');
+    var lbl = document.getElementById('fLbl');
+    var note = document.getElementById('fNote');
+    var dPrior = document.getElementById('dPrior');
+    var dWeight = document.getElementById('dWeight');
+    var dMax = document.getElementById('dMax');
+
+    note.className = 'note';
+
+    if(isNaN(c) || isNaN(d) || isNaN(w) || w <= 0 || w > 100){
+      val.textContent = '—';
+      lbl.textContent = 'Needed on the final';
+      note.textContent = 'Enter your current grade, your target, and a final exam weight between 1% and 100%.';
+      dPrior.textContent = '—';
+      dWeight.textContent = '—';
+      dMax.textContent = '—';
+      fState = {ok:false, val:'—', det:'Enter a final exam weight between 1% and 100%'};
+      return;
+    }
+
+    var wd = w / 100;
+    var needed = (d - c * (1 - wd)) / wd;
+    var max = c * (1 - wd) + 100 * wd;
+
+    dPrior.textContent = trim(100 - w) + '%';
+    dWeight.textContent = trim(w) + '%';
+    dMax.textContent = trim(max) + '%';
+
+    if(needed <= 0){
+      val.textContent = '0%';
+      lbl.textContent = 'Needed on the final';
+      note.textContent = "You've already achieved your desired grade!";
+      note.className = 'note warn';
+      fState = {ok:true, val:'0%', det:"Already at your target — a 0 on the final still lands at " + trim(c * (1 - wd)) + '%'};
+      return;
+    }
+
+    val.textContent = trim(needed) + '%';
+    lbl.textContent = 'Needed on the final';
+
+    if(needed > 100){
+      note.textContent = 'You need more than 100% — extra credit may be needed. A perfect final would finish the course at ' + trim(max) + '%.';
+      note.className = 'note warn';
+    }else{
+      note.textContent = 'Score ' + trim(needed) + '% on a final worth ' + trim(w) + '% to finish the course at ' + trim(d) + '%.';
+    }
+    fState = {ok:true, val:trim(needed) + '%', det:'Needed on the final · target ' + trim(d) + '%'};
+  }
+
+  function syncBar(){
+    var s = (active === 'points') ? pState : fState;
+    sVal.textContent = s.val;
+    sDet.textContent = s.det || (active === 'points' ? 'Grade' : 'Needed on the final');
+  }
+
+  function bind(el, which, fn){
+    el.addEventListener('input', function(){
+      active = which;
+      fn();
+      syncBar();
+    });
+    el.addEventListener('focus', function(){
+      active = which;
+      syncBar();
+    });
+  }
+
+  bind(earned, 'points', calcPoints);
+  bind(total, 'points', calcPoints);
+  bind(current, 'final', calcFinal);
+  bind(desired, 'final', calcFinal);
+  bind(weight, 'final', calcFinal);
+
+  var copyBtn = document.getElementById('copyBtn');
+  copyBtn.addEventListener('click', function(){
+    var v = sVal.textContent;
+    var done = function(){
+      copyBtn.textContent = 'Copied!';
+      setTimeout(function(){ copyBtn.textContent = 'Copy'; }, 2000);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(v).then(done, done);
+    }else{
+      var t = document.createElement('textarea');
+      t.value = v;
+      t.style.position = 'fixed';
+      t.style.opacity = '0';
+      document.body.appendChild(t);
+      t.select();
+      try{ document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(t);
+      done();
+    }
+  });
+
+  var barEl = document.getElementById('stickyBar');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var isPoints = (en.target.id === 'points');
+        if(en.isIntersecting){
+          active = isPoints ? 'points' : 'final';
+          syncBar();
+        }
+      });
+      var pointsCard = document.getElementById('points');
+      var top = pointsCard.getBoundingClientRect().bottom;
+      barEl.classList.toggle('show', top < 0);
+    }, {threshold: 0});
+    io.observe(document.getElementById('points'));
+    io.observe(document.getElementById('final'));
+
+    window.addEventListener('scroll', function(){
+      var pointsCard = document.getElementById('points');
+      barEl.classList.toggle('show', pointsCard.getBoundingClientRect().bottom < 0);
+    }, {passive:true});
+  }
+
+  var toggle = document.getElementById('themeToggle');
+  function syncToggle(){
+    var t = document.documentElement.getAttribute('data-theme');
+    toggle.textContent = (t === 'dark' ? 'Light' : 'Dark');
+    toggle.setAttribute('aria-label','Switch to ' + (t === 'dark' ? 'light' : 'dark') + ' mode');
+  }
+  syncToggle();
+  toggle.addEventListener('click', function(){
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    try{ localStorage.setItem('theme', t); }catch(e){}
+    syncToggle();
+  });
+
+  document.getElementById('closeAd').addEventListener('click', function(){
+    document.getElementById('stickyAd').style.display = 'none';
+    document.body.classList.add('adclosed');
+  });
+
+  calcPoints();
+  calcFinal();
+  syncBar();
+})();
 </script>
 </body>
 </html>
