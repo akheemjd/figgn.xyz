@@ -1,36 +1,520 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flooring Calculator — Free Flooring Material Estimator (Sq Ft)</title>
-<meta name="description" content="Calculate square footage and flooring material needed for any room. Works for hardwood, tile, carpet, vinyl, and laminate. Free, instant results.">
-<meta name="robots" content="index, follow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flooring Calculator — Free Material Estimator (Sq Ft) | figgn</title>
+<meta name="description" content="Free flooring calculator. Enter your room length and width to get the square footage you need, including a waste factor for cuts, offcuts and mistakes.">
 <link rel="canonical" href="https://figgn.xyz/flooring-calculator/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Flooring Calculator","url":"https://figgn.xyz/flooring-calculator/","description":"Calculate square footage and flooring material needed. Works for hardwood, tile, carpet, LVP.","applicationCategory":"HomeApplication","operatingSystem":"All"}</script>
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,sans-serif;line-height:1.6;color:#1a1a1a;background:#f5f5f7}.container{max-width:800px;margin:0 auto;padding:0 20px}header{background:#1a1a2e;color:#fff;padding:24px 0 18px}header .container{display:flex;align-items:center;gap:12px;flex-wrap:wrap}header a{color:#a0a0b8;text-decoration:none;font-size:.9rem}header a:hover{color:#fff}header h1{font-size:clamp(1.3rem,3.5vw,1.7rem)}.breadcrumbs{font-size:.82rem;color:#888;padding:12px 0}.breadcrumbs a{color:#2563eb;text-decoration:none}.ad-top{max-width:728px;margin:16px auto;min-height:90px;background:#e8e8ed;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8rem;border-radius:4px}.tool-box{background:#fff;border-radius:8px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin:20px 0}.tool-box h2{font-size:1.2rem;margin-bottom:18px;color:#1a1a2e}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-group{margin-bottom:14px}.form-group label{display:block;font-weight:600;margin-bottom:4px;font-size:.92rem}.form-group input,.form-group select{width:100%;padding:10px 12px;border:1.5px solid #d0d0d8;border-radius:6px;font-size:1rem}.form-group input:focus,.form-group select:focus{outline:none;border-color:#2563eb}.result{background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:24px;margin-top:20px;display:none}.result.show{display:block;display:grid;grid-template-columns:1fr 1fr;gap:16px}.result-card{text-align:center;padding:12px}.result-card .big{font-size:1.8rem;font-weight:700;color:#166534}.result-card .label{font-size:.85rem;color:#555;margin-top:4px}.content-section{margin:30px 0}.content-section h2{font-size:1.2rem;color:#1a1a2e;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e5e7eb}.content-section p,.content-section li{color:#555;font-size:.95rem;margin-bottom:8px}.content-section ul{padding-left:20px}.ad-inline{min-height:250px;background:#e8e8ed;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8rem;border-radius:4px;margin:24px 0}.related,.faq{margin-top:20px}.related{padding:20px;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08)}.related a{color:#2563eb;text-decoration:none;margin-right:16px;font-size:.92rem}.faq details{background:#fff;border-radius:6px;padding:14px 18px;box-shadow:0 1px 2px rgba(0,0,0,.05);margin-bottom:10px}.faq summary{font-weight:600;cursor:pointer;font-size:.95rem}.faq p{margin-top:8px;color:#555;font-size:.9rem}footer{background:#1a1a2e;color:#888;padding:24px 0;margin-top:40px;text-align:center;font-size:.82rem}footer a{color:#a0a0b8;text-decoration:none}@media(max-width:500px){.form-row{grid-template-columns:1fr}}</style>
+<meta property="og:title" content="Flooring Calculator — Free Material Estimator (Sq Ft) | figgn">
+<meta property="og:description" content="Free flooring calculator. Enter your room length and width to get the square footage you need, including a waste factor for cuts, offcuts and mistakes.">
+<meta property="og:url" content="https://figgn.xyz/flooring-calculator/">
+<meta property="og:type" content="website">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('theme');
+    if(t !== 'light' && t !== 'dark'){
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  }catch(e){
+    document.documentElement.setAttribute('data-theme','light');
+  }
+})();
+</script>
+<style>
+:root{
+  --bg:#f8f9fb;
+  --card:#ffffff;
+  --text:#111111;
+  --text2:#555555;
+  --border:#cccccc;
+  --input-bg:#ffffff;
+  --accent:#e65c00;
+  --result-bg:#e7f5ec;
+  --result-text:#0d5c2e;
+  --ad-bg:#f0f0f0;
+  --ad-text:#888888;
+  --shadow:0 1px 3px rgba(0,0,0,.08);
+  --line:#e4e4ea;
+}
+[data-theme="dark"]{
+  --bg:#131318;
+  --card:#1c1c24;
+  --text:#e0e0e0;
+  --text2:#999999;
+  --border:#3a3a48;
+  --input-bg:#252530;
+  --accent:#e65c00;
+  --result-bg:#0a3020;
+  --result-text:#4ade80;
+  --ad-bg:#22222b;
+  --ad-text:#777777;
+  --shadow:0 1px 3px rgba(0,0,0,.3);
+  --line:#2a2a34;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+}
+.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:#c24d00}
+[data-theme="dark"] a{color:#ff8a3d}
+
+/* header */
+header{background:var(--accent);color:#fff}
+.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700;letter-spacing:-.5px}
+#themeToggle{
+  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.65);
+  border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;
+  font-family:inherit;min-height:32px;
+}
+#themeToggle:hover{background:rgba(255,255,255,.15)}
+
+/* sticky result bar */
+#stickyBar{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:var(--result-bg);color:var(--result-text);
+  border-bottom:1px solid var(--border);
+  transform:translateY(-100%);
+  visibility:hidden;
+}
+#stickyBar.show{transform:translateY(0);visibility:visible}
+@media (prefers-reduced-motion:no-preference){
+  #stickyBar{transition:transform .15s ease-out}
+}
+.sbar{max-width:760px;margin:0 auto;padding:8px 12px;display:flex;align-items:center;gap:12px}
+.sbar .val{font-size:26px;font-weight:700;line-height:1.1}
+.sbar .det{font-size:12px;color:var(--result-text);opacity:.85;flex:1}
+.copybtn{
+  background:var(--accent);color:#fff;border:0;border-radius:4px;
+  padding:8px 14px;font-size:14px;font-family:inherit;cursor:pointer;min-height:36px;
+}
+.copybtn:hover{background:#cf5300}
+
+/* ads */
+.ad{background:var(--ad-bg);color:var(--ad-text);text-align:center;margin:16px auto;
+    display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.ad-lb{max-width:728px;height:90px}
+.ad-rect{max-width:300px;height:250px}
+#stickyAd{
+  position:fixed;left:0;right:0;bottom:0;z-index:55;height:50px;
+  background:var(--ad-bg);color:var(--ad-text);
+  border-top:1px solid var(--border);
+  display:none;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+}
+#stickyAd button{
+  position:absolute;right:4px;top:4px;width:26px;height:26px;line-height:1;
+  background:transparent;border:1px solid var(--border);border-radius:4px;
+  color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;padding:0;
+}
+@media (max-width:640px){
+  #stickyAd{display:flex}
+  body{padding-bottom:58px}
+  body.adclosed{padding-bottom:0}
+}
+
+/* cards */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:4px;
+  box-shadow:var(--shadow);padding:16px;margin:16px 0;
+}
+h1{font-size:24px;margin:0 0 4px;letter-spacing:-.3px}
+h2{font-size:18px;margin:0 0 10px;letter-spacing:-.2px}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+
+/* form */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.two{grid-template-columns:1fr}}
+label,.flabel{display:block;font-size:13px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+input[type=number]{
+  width:100%;min-height:56px;padding:0 10px;
+  background:var(--input-bg);color:var(--text);
+  border:1px solid var(--border);border-radius:4px;
+  font-size:18px;font-family:"SF Mono","Cascadia Code","Consolas",monospace;
+}
+input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.suffix{display:flex;align-items:stretch}
+.suffix input{border-radius:4px 0 0 4px;border-right:0}
+.suffix span{
+  min-height:56px;display:flex;align-items:center;padding:0 10px;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:0 4px 4px 0;color:var(--text2);font-size:15px;
+  font-family:"SF Mono","Cascadia Code","Consolas",monospace;
+}
+.wastefield{margin-top:16px}
+.presets{display:flex;gap:8px}
+.preset{
+  flex:1;min-height:56px;padding:8px 4px;
+  background:var(--input-bg);color:var(--text);
+  border:1px solid var(--border);border-radius:4px;
+  font-size:16px;font-family:"SF Mono","Cascadia Code","Consolas",monospace;cursor:pointer;
+}
+.preset.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+
+/* results */
+#results{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+@media (max-width:480px){#results{grid-template-columns:1fr}}
+.res{background:var(--result-bg);color:var(--result-text);border-radius:4px;padding:14px}
+.res .k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;opacity:.9}
+.res .v{font-size:34px;font-weight:700;line-height:1.1;margin-top:2px}
+.res .u{font-size:15px;font-weight:600;margin-left:4px}
+.detail{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);
+        border:1px solid var(--line);border-radius:4px;margin-top:12px;overflow:hidden}
+.detail div{background:var(--card);padding:10px 12px}
+.detail .k{font-size:12px;color:var(--text2)}
+.detail .v{font-size:18px;font-weight:600}
+.tip{font-size:14px;color:var(--text2);margin-top:12px;border-left:3px solid var(--accent);padding-left:10px}
+
+/* content */
+ol,ul{padding-left:20px;margin:0}
+ol li,ul li{margin-bottom:8px}
+p{margin:0 0 12px}
+.formula{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:12px;margin:12px 0;
+         font-size:15px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2)}
+td.n{font-family:"SF Mono","Cascadia Code","Consolas",monospace;white-space:nowrap}
+details{border-bottom:1px solid var(--line);padding:10px 0}
+details:last-of-type{border-bottom:0;padding-bottom:0}
+summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";color:var(--accent);font-weight:700}
+details[open] summary::before{content:"– "}
+details p{margin:8px 0 0;color:var(--text2);font-size:14px}
+.rel a{display:block;font-weight:600;margin-top:12px}
+.rel p{font-size:13px;color:var(--text2);margin:2px 0 0}
+footer{background:#1c1c24;color:#999;font-size:13px;margin-top:24px}
+footer .wrap{padding:14px 12px;display:flex;gap:14px;flex-wrap:wrap}
+footer a{color:#bbb}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebApplication",
+      "name":"Flooring Calculator",
+      "url":"https://figgn.xyz/flooring-calculator/",
+      "applicationCategory":"UtilitiesApplication",
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "description":"Free flooring estimator that converts room length and width into square footage and adds a waste factor for cuts and offcuts.",
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+    },
+    {
+      "@type":"HowTo",
+      "name":"How to Use the Flooring Calculator",
+      "description":"Work out how much flooring material to order for a room.",
+      "step":[
+        {"@type":"HowToStep","position":1,"name":"Measure the room","text":"Measure the length and width of the room in feet at the widest points and enter both numbers."},
+        {"@type":"HowToStep","position":2,"name":"Choose a waste factor","text":"Use 10 percent for standard straight-lay installations, or 15 to 20 percent for tile, diagonal patterns and irregular rooms."},
+        {"@type":"HowToStep","position":3,"name":"Read both figures","text":"Net square footage is the floor itself. The figure with waste is the amount to order."},
+        {"@type":"HowToStep","position":4,"name":"Order by the box","text":"Divide the total with waste by the square feet per box printed on the packaging and round up to whole boxes."}
+      ]
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"What is a waste factor?",
+         "acceptedAnswer":{"@type":"Answer","text":"A waste factor is the extra material you buy beyond the size of the floor, to cover offcuts at the walls, damaged or defective planks, mis-cuts, and pieces kept back for future repairs. Ten percent is standard for a simple rectangular room laid straight. Add more for diagonal or herringbone patterns, large-format tile, angled walls and rooms with lots of doorways or obstacles."}},
+        {"@type":"Question","name":"How much does flooring installation cost?",
+         "acceptedAnswer":{"@type":"Answer","text":"Professional labour generally runs between 3 and 10 US dollars per square foot, on top of the material. Carpet and floating vinyl or laminate sit at the low end, glue-down and nail-down hardwood in the middle, and tile at the top because of substrate prep and layout time. Removing and disposing of old flooring, levelling a subfloor and moving furniture are usually billed separately."}},
+        {"@type":"Question","name":"How do I measure an irregular room?",
+         "acceptedAnswer":{"@type":"Answer","text":"Break the space into rectangles. Draw the floor plan, split it into rectangular sections, measure the length and width of each section, calculate the square footage of each one, then add them together. Measure closets, bay windows and hallway extensions as their own rectangles, and apply the waste factor to the combined total rather than to each piece."}}
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
-<header><div class="container"><a href="/">← Figgn</a><h1>Flooring Calculator</h1></div></header>
-<div class="container"><div class="breadcrumbs"><a href="/">Home</a> › Flooring Calculator</div></div>
-<div class="container"><div class="ad-top">Advertisement</div></div>
-<div class="container">
-<div class="tool-box">
-<h2>Calculate Flooring Material</h2>
-<div class="form-row">
-<div class="form-group"><label>Room Length (feet)</label><input type="number" id="length" placeholder="12" min="0" step="0.5" oninput="calc()"></div>
-<div class="form-group"><label>Room Width (feet)</label><input type="number" id="width" placeholder="14" min="0" step="0.5" oninput="calc()"></div>
+
+<div id="stickyBar" role="status" aria-live="polite">
+  <div class="sbar">
+    <span class="val mono" id="sVal">—</span>
+    <span class="det" id="sDet">Order this much</span>
+    <button type="button" class="copybtn" id="copyBtn">Copy</button>
+  </div>
 </div>
-<div class="form-group"><label>Waste Factor</label><select id="waste" oninput="calc()"><option value="5">5% (standard)</option><option value="10" selected>10% (recommended)</option><option value="15">15% (diagonal pattern)</option><option value="20">20% (herringbone)</option></select></div>
-<div class="result show" id="result"><div class="result-card"><div class="big" id="sqft">0</div><div class="label">Square Feet (net)</div></div><div class="result-card"><div class="big" id="withWaste">0</div><div class="label" id="wasteLabel">With 10% waste</div></div></div>
+
+<header>
+  <div class="hbar">
+    <a href="/" class="wordmark">figgn</a>
+    <button type="button" id="themeToggle">Dark</button>
+  </div>
+</header>
+
+<div class="ad ad-lb">Advertisement</div>
+
+<main class="wrap">
+
+  <div class="card">
+    <h1>Flooring Calculator</h1>
+    <p class="sub">Room size in, square footage out — with the extra you need to actually order.</p>
+
+    <div class="two">
+      <div>
+        <label for="length">Room length</label>
+        <div class="suffix">
+          <input type="number" id="length" inputmode="decimal" min="0" step="0.5" value="12">
+          <span aria-hidden="true">ft</span>
+        </div>
+      </div>
+      <div>
+        <label for="width">Room width</label>
+        <div class="suffix">
+          <input type="number" id="width" inputmode="decimal" min="0" step="0.5" value="14">
+          <span aria-hidden="true">ft</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="wastefield">
+      <span class="flabel" id="wasteLabel">Waste factor</span>
+      <div class="presets" role="group" aria-labelledby="wasteLabel">
+        <button type="button" class="preset" data-waste="5">5%</button>
+        <button type="button" class="preset on" data-waste="10">10%</button>
+        <button type="button" class="preset" data-waste="15">15%</button>
+        <button type="button" class="preset" data-waste="20">20%</button>
+      </div>
+    </div>
+
+    <div id="results">
+      <div class="res">
+        <div class="k">Net floor area</div>
+        <div class="v mono"><span id="rNet">—</span><span class="u">sq ft</span></div>
+      </div>
+      <div class="res">
+        <div class="k">Order with waste</div>
+        <div class="v mono"><span id="rWaste">—</span><span class="u">sq ft</span></div>
+      </div>
+    </div>
+
+    <div class="detail">
+      <div><div class="k">Extra for waste</div><div class="v mono" id="dExtra">—</div></div>
+      <div><div class="k">Room size</div><div class="v mono" id="dSize">—</div></div>
+      <div><div class="k">Carpet equivalent</div><div class="v mono" id="dYards">—</div></div>
+    </div>
+
+    <p class="tip">Order it all in one go. Flooring is made in batches, and a second order weeks later can arrive a shade off — visible in daylight across a finished floor.</p>
+  </div>
+
+  <div class="ad ad-rect">Advertisement</div>
+
+  <div class="card">
+    <h2>How to Use the Flooring Calculator</h2>
+    <ol>
+      <li>Measure the <strong>length and width</strong> of the room in feet, at the widest points, and enter both.</li>
+      <li>Pick a <strong>waste factor</strong>. 10% covers a normal straight-lay room; go to 15–20% for tile, diagonal patterns or an awkward layout.</li>
+      <li>Read both numbers: <strong>net</strong> is the floor itself, <strong>with waste</strong> is what to order.</li>
+      <li>Divide the order figure by the square feet per box on the packaging and round up to whole boxes.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>How It's Calculated</h2>
+    <p>Floor area is length times width. The waste factor is a straight percentage added on top.</p>
+    <div class="formula mono">Square feet = length × width<br>With waste = square feet × (1 + waste ÷ 100)</div>
+    <p><strong>Worked example:</strong> a 12 ft × 14 ft room is <span class="mono">168 sq ft</span>. At a 10% waste factor that is 168 × 1.10 = 184.8, so you order <span class="mono">185 sq ft</span>.</p>
+    <p>The order figure rounds up to the next whole square foot, and boxes round up again — flooring is sold in fixed box sizes, so real orders almost always land slightly above the calculated number.</p>
+    <p>Carpet is priced by the square yard in some markets. Divide square feet by 9 to convert: 185 sq ft is about 20.6 sq yd.</p>
+  </div>
+
+  <div class="card">
+    <h2>Material Buying Guide</h2>
+    <p class="sub">Typical waste allowances and how each material is sold. Add 5% on top of these for diagonal or herringbone layouts.</p>
+    <table>
+      <thead><tr><th>Material</th><th>Waste</th><th>Sold as</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Hardwood</td><td class="n">+10%</td><td>Boxes, 20–25 sq ft</td><td>Cull boards with defects as you go — that's what the 10% is for.</td></tr>
+        <tr><td>Engineered wood</td><td class="n">+10%</td><td>Boxes, 20–30 sq ft</td><td>Same as hardwood. Acclimatise in the room before laying.</td></tr>
+        <tr><td>Tile</td><td class="n">+15%</td><td>Boxes, 10–15 sq ft</td><td>Breakage plus cuts. Go 20% for large format or diagonal.</td></tr>
+        <tr><td>LVP / vinyl plank</td><td class="n">+10%</td><td>Boxes, 20–30 sq ft</td><td>Offcuts over 6 in can usually start the next row.</td></tr>
+        <tr><td>Laminate</td><td class="n">+10%</td><td>Boxes, 20–25 sq ft</td><td>Click-lock, so damaged ends can't be reused.</td></tr>
+        <tr><td>Carpet</td><td class="n">+10–20%</td><td>Rolls, by sq yd</td><td>Sold in 12 ft widths — room width drives waste more than area does.</td></tr>
+        <tr><td>Sheet vinyl</td><td class="n">+10–15%</td><td>Rolls, 6 or 12 ft wide</td><td>Seam placement decides the real waste. Template first.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+      <summary>What is a waste factor?</summary>
+      <p>The extra material you buy beyond the size of the floor — for offcuts at the walls, damaged or defective planks, mis-cuts, and a few spare pieces kept for future repairs. 10% is standard for a simple rectangular room laid straight. Push it to 15–20% for diagonal or herringbone patterns, large-format tile, angled walls, or a room full of doorways and obstacles.</p>
+    </details>
+
+    <details>
+      <summary>How much does flooring installation cost?</summary>
+      <p>Labour typically runs $3–10 per square foot on top of the material. Carpet and floating vinyl or laminate sit at the low end; glue-down and nail-down hardwood in the middle; tile at the top, because of substrate prep and layout time. Tear-out and disposal of the old floor, subfloor levelling and furniture moving are usually billed separately — ask what's included before comparing quotes.</p>
+    </details>
+
+    <details>
+      <summary>How do I measure an irregular room?</summary>
+      <p>Break it into rectangles. Sketch the floor plan, split it into rectangular sections, measure each one, work out the square footage of each, then add them up. Closets, bay windows and hallway extensions each count as their own rectangle. Apply the waste factor once, to the combined total.</p>
+    </details>
+  </div>
+
+  <div class="card rel">
+    <h2>More Free Calculators</h2>
+    <a href="/paint-calculator/">Paint Calculator</a>
+    <p>Gallons needed for a room, with doors, windows and coats accounted for.</p>
+    <a href="/gravel-calculator/">Gravel Calculator</a>
+    <p>Cubic yards and tons of gravel for a driveway, path or bed.</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 figgn</span>
+    <a href="/privacy/">Privacy</a>
+    <a href="/">Home</a>
+  </div>
+</footer>
+
+<div id="stickyAd">
+  Advertisement
+  <button type="button" id="closeAd" aria-label="Close ad">✕</button>
 </div>
-<div class="content-section"><h2>How to Use</h2><ol><li>Measure your room's length and width in feet.</li><li>For irregular rooms, break into rectangles and calculate separately.</li><li>Select the waste factor — 10% is standard for straight-lay patterns.</li></ol></div>
-<div class="ad-inline">Advertisement</div>
-<div class="content-section"><h2>Flooring Material Guide</h2><ul><li><strong>Hardwood:</strong> Sold by sq ft. Add 10% waste for cuts.</li><li><strong>Tile:</strong> Sold by sq ft or per box. Add 15% waste for cuts and breakage.</li><li><strong>Carpet:</strong> Sold by sq yard (1 sq yd = 9 sq ft). Typically 12 ft wide rolls.</li><li><strong>LVP / Laminate:</strong> Sold by sq ft per box. Add 10% waste.</li></ul></div>
-<div class="faq"><h2 style="font-size:1.2rem;color:#1a1a2e;margin-bottom:12px">FAQs</h2><details><summary>What does waste factor mean?</summary><p>Waste accounts for cuts, pattern matching, and mistakes. 10% is the minimum you should add to your net square footage to ensure you have enough material.</p></details><details><summary>How much does flooring installation cost?</summary><p>Installation averages $3–10 per sq ft for labor, depending on material type and your location. Get at least 3 quotes from local contractors.</p></details></div>
-<div class="related"><h3 style="margin-bottom:10px;font-size:1rem">You might also need:</h3><a href="/paint-calculator/">Paint Calculator</a><a href="/gravel-calculator/">Gravel Calculator</a></div>
-</div>
-<footer><div class="container"><p>&copy; 2026 Figgn. <a href="/">Home</a> · <a href="/privacy/">Privacy</a></p></div></footer>
-<script>function calc(){const l=parseFloat(document.getElementById('length').value)||0;const w=parseFloat(document.getElementById('width').value)||0;const waste=parseInt(document.getElementById('waste').value)||10;const sqft=l*w;const withWaste=Math.ceil(sqft*(1+waste/100));document.getElementById('sqft').textContent=Math.round(sqft);document.getElementById('withWaste').textContent=withWaste;document.getElementById('wasteLabel').textContent=`With ${waste}% waste`}</script>
+
+<script>
+(function(){
+  var length = document.getElementById('length');
+  var width = document.getElementById('width');
+  var waste = 10;
+
+  function num(v){
+    var n = parseFloat(v);
+    return isNaN(n) || n < 0 ? 0 : n;
+  }
+
+  function fmt(x, dp){
+    var d = (dp === undefined) ? 1 : dp;
+    var s = (Math.round(x * Math.pow(10, d)) / Math.pow(10, d)).toString();
+    var p = s.split('.');
+    p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return p.join('.');
+  }
+
+  function calc(){
+    var l = num(length.value);
+    var w = num(width.value);
+
+    var rNet = document.getElementById('rNet');
+    var rWaste = document.getElementById('rWaste');
+    var dExtra = document.getElementById('dExtra');
+    var dSize = document.getElementById('dSize');
+    var dYards = document.getElementById('dYards');
+    var sVal = document.getElementById('sVal');
+    var sDet = document.getElementById('sDet');
+
+    if(l <= 0 || w <= 0){
+      rNet.textContent = '—';
+      rWaste.textContent = '—';
+      dExtra.textContent = '—';
+      dSize.textContent = '—';
+      dYards.textContent = '—';
+      sVal.textContent = '—';
+      sDet.textContent = 'Enter a room length and width above 0';
+      return;
+    }
+
+    var net = l * w;
+    var withWaste = Math.ceil(net * (1 + waste / 100));
+    var extra = withWaste - net;
+
+    rNet.textContent = fmt(net);
+    rWaste.textContent = fmt(withWaste, 0);
+    dExtra.textContent = '+' + fmt(extra) + ' sq ft';
+    dSize.textContent = fmt(l) + ' × ' + fmt(w) + ' ft';
+    dYards.textContent = fmt(withWaste / 9) + ' sq yd';
+
+    sVal.textContent = fmt(withWaste, 0) + ' sq ft';
+    sDet.textContent = 'Order this much · ' + fmt(net) + ' sq ft floor + ' + waste + '% waste';
+  }
+
+  length.addEventListener('input', calc);
+  width.addEventListener('input', calc);
+
+  document.querySelectorAll('.preset').forEach(function(p){
+    p.setAttribute('aria-pressed', p.classList.contains('on') ? 'true' : 'false');
+    p.addEventListener('click', function(){
+      waste = parseFloat(p.dataset.waste);
+      document.querySelectorAll('.preset').forEach(function(x){
+        var on = (x === p);
+        x.classList.toggle('on', on);
+        x.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      calc();
+    });
+  });
+
+  var copyBtn = document.getElementById('copyBtn');
+  copyBtn.addEventListener('click', function(){
+    var v = document.getElementById('sVal').textContent;
+    var done = function(){
+      copyBtn.textContent = 'Copied!';
+      setTimeout(function(){ copyBtn.textContent = 'Copy'; }, 2000);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(v).then(done, done);
+    }else{
+      var t = document.createElement('textarea');
+      t.value = v;
+      t.style.position = 'fixed';
+      t.style.opacity = '0';
+      document.body.appendChild(t);
+      t.select();
+      try{ document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(t);
+      done();
+    }
+  });
+
+  var barEl = document.getElementById('stickyBar');
+  var resultsEl = document.getElementById('results');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        barEl.classList.toggle('show', !en.isIntersecting && en.boundingClientRect.top < 0);
+      });
+    }, {threshold: 0}).observe(resultsEl);
+  }
+
+  var toggle = document.getElementById('themeToggle');
+  function syncToggle(){
+    var t = document.documentElement.getAttribute('data-theme');
+    toggle.textContent = (t === 'dark' ? 'Light' : 'Dark');
+    toggle.setAttribute('aria-label','Switch to ' + (t === 'dark' ? 'light' : 'dark') + ' mode');
+  }
+  syncToggle();
+  toggle.addEventListener('click', function(){
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    try{ localStorage.setItem('theme', t); }catch(e){}
+    syncToggle();
+  });
+
+  document.getElementById('closeAd').addEventListener('click', function(){
+    document.getElementById('stickyAd').style.display = 'none';
+    document.body.classList.add('adclosed');
+  });
+
+  calc();
+})();
+</script>
 </body>
 </html>
