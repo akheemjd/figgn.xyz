@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flooring Calculator — Free Flooring Material Estimator (Sq Ft)</title>
+<meta name="description" content="Calculate square footage and flooring material needed for any room. Works for hardwood, tile, carpet, vinyl, and laminate. Free, instant results.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://figgn.xyz/flooring-calculator/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Flooring Calculator","url":"https://figgn.xyz/flooring-calculator/","description":"Calculate square footage and flooring material needed. Works for hardwood, tile, carpet, LVP.","applicationCategory":"HomeApplication","operatingSystem":"All"}</script>
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,sans-serif;line-height:1.6;color:#1a1a1a;background:#f5f5f7}.container{max-width:800px;margin:0 auto;padding:0 20px}header{background:#1a1a2e;color:#fff;padding:24px 0 18px}header .container{display:flex;align-items:center;gap:12px;flex-wrap:wrap}header a{color:#a0a0b8;text-decoration:none;font-size:.9rem}header a:hover{color:#fff}header h1{font-size:clamp(1.3rem,3.5vw,1.7rem)}.breadcrumbs{font-size:.82rem;color:#888;padding:12px 0}.breadcrumbs a{color:#2563eb;text-decoration:none}.ad-top{max-width:728px;margin:16px auto;min-height:90px;background:#e8e8ed;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8rem;border-radius:4px}.tool-box{background:#fff;border-radius:8px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin:20px 0}.tool-box h2{font-size:1.2rem;margin-bottom:18px;color:#1a1a2e}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-group{margin-bottom:14px}.form-group label{display:block;font-weight:600;margin-bottom:4px;font-size:.92rem}.form-group input,.form-group select{width:100%;padding:10px 12px;border:1.5px solid #d0d0d8;border-radius:6px;font-size:1rem}.form-group input:focus,.form-group select:focus{outline:none;border-color:#2563eb}.result{background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:24px;margin-top:20px;display:none}.result.show{display:block;display:grid;grid-template-columns:1fr 1fr;gap:16px}.result-card{text-align:center;padding:12px}.result-card .big{font-size:1.8rem;font-weight:700;color:#166534}.result-card .label{font-size:.85rem;color:#555;margin-top:4px}.content-section{margin:30px 0}.content-section h2{font-size:1.2rem;color:#1a1a2e;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e5e7eb}.content-section p,.content-section li{color:#555;font-size:.95rem;margin-bottom:8px}.content-section ul{padding-left:20px}.ad-inline{min-height:250px;background:#e8e8ed;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8rem;border-radius:4px;margin:24px 0}.related,.faq{margin-top:20px}.related{padding:20px;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08)}.related a{color:#2563eb;text-decoration:none;margin-right:16px;font-size:.92rem}.faq details{background:#fff;border-radius:6px;padding:14px 18px;box-shadow:0 1px 2px rgba(0,0,0,.05);margin-bottom:10px}.faq summary{font-weight:600;cursor:pointer;font-size:.95rem}.faq p{margin-top:8px;color:#555;font-size:.9rem}footer{background:#1a1a2e;color:#888;padding:24px 0;margin-top:40px;text-align:center;font-size:.82rem}footer a{color:#a0a0b8;text-decoration:none}@media(max-width:500px){.form-row{grid-template-columns:1fr}}</style>
+</head>
+<body>
+<header><div class="container"><a href="/">← Figgn</a><h1>Flooring Calculator</h1></div></header>
+<div class="container"><div class="breadcrumbs"><a href="/">Home</a> › Flooring Calculator</div></div>
+<div class="container"><div class="ad-top">Advertisement</div></div>
+<div class="container">
+<div class="tool-box">
+<h2>Calculate Flooring Material</h2>
+<div class="form-row">
+<div class="form-group"><label>Room Length (feet)</label><input type="number" id="length" placeholder="12" min="0" step="0.5" oninput="calc()"></div>
+<div class="form-group"><label>Room Width (feet)</label><input type="number" id="width" placeholder="14" min="0" step="0.5" oninput="calc()"></div>
+</div>
+<div class="form-group"><label>Waste Factor</label><select id="waste" oninput="calc()"><option value="5">5% (standard)</option><option value="10" selected>10% (recommended)</option><option value="15">15% (diagonal pattern)</option><option value="20">20% (herringbone)</option></select></div>
+<div class="result show" id="result"><div class="result-card"><div class="big" id="sqft">0</div><div class="label">Square Feet (net)</div></div><div class="result-card"><div class="big" id="withWaste">0</div><div class="label" id="wasteLabel">With 10% waste</div></div></div>
+</div>
+<div class="content-section"><h2>How to Use</h2><ol><li>Measure your room's length and width in feet.</li><li>For irregular rooms, break into rectangles and calculate separately.</li><li>Select the waste factor — 10% is standard for straight-lay patterns.</li></ol></div>
+<div class="ad-inline">Advertisement</div>
+<div class="content-section"><h2>Flooring Material Guide</h2><ul><li><strong>Hardwood:</strong> Sold by sq ft. Add 10% waste for cuts.</li><li><strong>Tile:</strong> Sold by sq ft or per box. Add 15% waste for cuts and breakage.</li><li><strong>Carpet:</strong> Sold by sq yard (1 sq yd = 9 sq ft). Typically 12 ft wide rolls.</li><li><strong>LVP / Laminate:</strong> Sold by sq ft per box. Add 10% waste.</li></ul></div>
+<div class="faq"><h2 style="font-size:1.2rem;color:#1a1a2e;margin-bottom:12px">FAQs</h2><details><summary>What does waste factor mean?</summary><p>Waste accounts for cuts, pattern matching, and mistakes. 10% is the minimum you should add to your net square footage to ensure you have enough material.</p></details><details><summary>How much does flooring installation cost?</summary><p>Installation averages $3–10 per sq ft for labor, depending on material type and your location. Get at least 3 quotes from local contractors.</p></details></div>
+<div class="related"><h3 style="margin-bottom:10px;font-size:1rem">You might also need:</h3><a href="/paint-calculator/">Paint Calculator</a><a href="/gravel-calculator/">Gravel Calculator</a></div>
+</div>
+<footer><div class="container"><p>&copy; 2026 Figgn. <a href="/">Home</a> · <a href="/privacy/">Privacy</a></p></div></footer>
+<script>function calc(){const l=parseFloat(document.getElementById('length').value)||0;const w=parseFloat(document.getElementById('width').value)||0;const waste=parseInt(document.getElementById('waste').value)||10;const sqft=l*w;const withWaste=Math.ceil(sqft*(1+waste/100));document.getElementById('sqft').textContent=Math.round(sqft);document.getElementById('withWaste').textContent=withWaste;document.getElementById('wasteLabel').textContent=`With ${waste}% waste`}</script>
+</body>
+</html>

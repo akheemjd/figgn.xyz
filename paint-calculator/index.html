@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paint Calculator — Free Paint Estimator (Gallons Needed)</title>
+<meta name="description" content="Calculate exactly how many gallons of paint you need for any room. Accounts for doors, windows, and multiple coats. Free paint estimator for homeowners and contractors.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://figgn.xyz/paint-calculator/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Paint Calculator","url":"https://figgn.xyz/paint-calculator/","description":"Calculate how many gallons of paint you need. Accounts for doors, windows, and coats.","applicationCategory":"HomeApplication","operatingSystem":"All"}</script>
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,sans-serif;line-height:1.6;color:#1a1a1a;background:#f5f5f7}.container{max-width:800px;margin:0 auto;padding:0 20px}header{background:#1a1a2e;color:#fff;padding:24px 0 18px}header .container{display:flex;align-items:center;gap:12px;flex-wrap:wrap}header a{color:#a0a0b8;text-decoration:none;font-size:.9rem}header a:hover{color:#fff}header h1{font-size:clamp(1.3rem,3.5vw,1.7rem)}.breadcrumbs{font-size:.82rem;color:#888;padding:12px 0}.breadcrumbs a{color:#2563eb;text-decoration:none}.ad-top{max-width:728px;margin:16px auto;min-height:90px;background:#e8e8ed;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8rem;border-radius:4px}.tool-box{background:#fff;border-radius:8px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin:20px 0}.tool-box h2{font-size:1.2rem;margin-bottom:18px;color:#1a1a2e}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-group{margin-bottom:14px}.form-group label{display:block;font-weight:600;margin-bottom:4px;font-size:.92rem}.form-group input,.form-group select{width:100%;padding:10px 12px;border:1.5px solid #d0d0d8;border-radius:6px;font-size:1rem}.form-group input:focus,.form-group select:focus{outline:none;border-color:#2563eb}.form-group .unit{font-size:.82rem;color:#888}.result{background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:24px;margin-top:20px;display:none}.result.show{display:block}.result .big{font-size:2.2rem;font-weight:700;color:#166534}.result .sub{color:#555;font-size:.92rem;margin-top:6px}.content-section{margin:30px 0}.content-section h2,.content-section h3{font-size:1.2rem;color:#1a1a2e;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e5e7eb}.content-section p,.content-section li{color:#555;font-size:.95rem;margin-bottom:8px}.content-section ul{padding-left:20px;margin-bottom:12px}.ad-inline{min-height:250px;background:#e8e8ed;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8rem;border-radius:4px;margin:24px 0}.faq details{margin-bottom:10px;background:#fff;border-radius:6px;padding:14px 18px;box-shadow:0 1px 2px rgba(0,0,0,.05)}.faq summary{font-weight:600;cursor:pointer;font-size:.95rem}.faq p{margin-top:8px;color:#555;font-size:.9rem}.related{margin:24px 0;padding:20px;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08)}.related h3{margin-bottom:10px;font-size:1rem}.related a{color:#2563eb;text-decoration:none;margin-right:16px;font-size:.92rem}footer{background:#1a1a2e;color:#888;padding:24px 0;margin-top:40px;text-align:center;font-size:.82rem}footer a{color:#a0a0b8;text-decoration:none}@media(max-width:500px){.form-row{grid-template-columns:1fr}}</style>
+</head>
+<body>
+<header><div class="container"><a href="/">← Figgn</a><h1>Paint Calculator</h1></div></header>
+<div class="container"><div class="breadcrumbs"><a href="/">Home</a> › Paint Calculator</div></div>
+<div class="container"><div class="ad-top">Advertisement</div></div>
+<div class="container">
+<div class="tool-box">
+<h2>How Much Paint Do You Need?</h2>
+<div class="form-row">
+<div class="form-group"><label>Wall 1 Length (feet)</label><input type="number" id="w1" placeholder="12" min="0" step="0.5" oninput="calc()"></div>
+<div class="form-group"><label>Wall 2 Length (feet)</label><input type="number" id="w2" placeholder="14" min="0" step="0.5" oninput="calc()"></div>
+<div class="form-group"><label>Wall 3 Length (feet)</label><input type="number" id="w3" placeholder="12" min="0" step="0.5" oninput="calc()"></div>
+<div class="form-group"><label>Wall 4 Length (feet)</label><input type="number" id="w4" placeholder="14" min="0" step="0.5" oninput="calc()"></div>
+</div>
+<div class="form-group"><label>Ceiling Height (feet)</label><input type="number" id="height" placeholder="8" value="8" min="0" step="0.5" oninput="calc()"></div>
+<div class="form-row">
+<div class="form-group"><label>Number of Doors</label><input type="number" id="doors" value="1" min="0" oninput="calc()"><span class="unit">~20 sq ft each</span></div>
+<div class="form-group"><label>Number of Windows</label><input type="number" id="windows" value="2" min="0" oninput="calc()"><span class="unit">~15 sq ft each</span></div>
+</div>
+<div class="form-group"><label>Number of Coats</label><select id="coats" oninput="calc()"><option value="1">1 coat</option><option value="2" selected>2 coats</option><option value="3">3 coats</option></select></div>
+<div class="result" id="result"><div class="big" id="gallons">0</div><div class="sub" id="detail">gallons needed</div></div>
+</div>
+<div class="content-section"><h2>How to Use</h2><ol><li>Measure each wall in feet and enter the lengths.</li><li>Enter your ceiling height (typically 8 feet).</li><li>Enter the number of doors and windows to subtract.</li><li>Select how many coats you plan to apply.</li></ol></div>
+<div class="ad-inline">Advertisement</div>
+<div class="content-section"><h2>Paint Coverage Guide</h2><ul><li>One gallon covers approximately <strong>350–400 sq ft</strong> with one coat.</li><li>This calculator uses <strong>350 sq ft per gallon</strong> for a conservative estimate.</li><li>Rough or textured surfaces may require more paint.</li><li>Always buy an extra quart for touch-ups.</li></ul></div>
+<div class="content-section faq"><h2>FAQs</h2><details><summary>Should I buy paint by the gallon or 5-gallon bucket?</summary><p>5-gallon buckets are cheaper per gallon and make sense for large projects (3+ gallons). For smaller rooms, individual gallons give you more flexibility.</p></details><details><summary>Do I need primer?</summary><p>Primer is recommended for: painting over dark colors, new drywall, stained surfaces, or when switching from oil-based to latex paint. Primer covers ~200-300 sq ft per gallon.</p></details></div>
+<div class="related"><h3>You might also need:</h3><a href="/flooring-calculator/">Flooring Calculator</a><a href="/gravel-calculator/">Gravel Calculator</a></div>
+</div>
+<footer><div class="container"><p>&copy; 2026 Figgn. <a href="/">Home</a> · <a href="/privacy/">Privacy</a></p></div></footer>
+<script>function calc(){const walls=[parseFloat(document.getElementById('w1').value)||0,parseFloat(document.getElementById('w2').value)||0,parseFloat(document.getElementById('w3').value)||0,parseFloat(document.getElementById('w4').value)||0];const h=parseFloat(document.getElementById('height').value)||0;const doors=(parseInt(document.getElementById('doors').value)||0)*20;const windows=(parseInt(document.getElementById('windows').value)||0)*15;const coats=parseInt(document.getElementById('coats').value)||1;const area=walls.reduce((s,w)=>s+w*h,0)-doors-windows;const gallons=Math.max(0,Math.ceil(area*coats/350));document.getElementById('gallons').textContent=gallons;document.getElementById('detail').textContent=`gallons needed · ${Math.round(area)} sq ft wall area · ${coats} coat${coats>1?'s':''} at 350 sq ft/gal`;document.getElementById('result').classList.add('show')}</script>
+</body>
+</html>
