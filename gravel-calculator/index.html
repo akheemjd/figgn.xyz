@@ -1,37 +1,540 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gravel Calculator — Free Gravel Estimator (Tons & Cubic Yards)</title>
-<meta name="description" content="Calculate exactly how much gravel you need in cubic yards and tons. Free gravel calculator for driveways, paths, and landscaping. Instant results.">
-<meta name="robots" content="index, follow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gravel Calculator — Free Gravel Estimator (Tons &amp; Cubic Yards) | figgn</title>
+<meta name="description" content="Free gravel calculator. Enter length, width and depth to get cubic yards and tons for crushed stone, pea gravel, road base or river rock.">
 <link rel="canonical" href="https://figgn.xyz/gravel-calculator/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Gravel Calculator","url":"https://figgn.xyz/gravel-calculator/","description":"Calculate gravel needed in cubic yards and tons for driveways, paths, and landscaping.","applicationCategory":"HomeApplication","operatingSystem":"All"}</script>
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,sans-serif;line-height:1.6;color:#1a1a1a;background:#f5f5f7}.container{max-width:800px;margin:0 auto;padding:0 20px}header{background:#1a1a2e;color:#fff;padding:24px 0 18px}header .container{display:flex;align-items:center;gap:12px;flex-wrap:wrap}header a{color:#a0a0b8;text-decoration:none;font-size:.9rem}header a:hover{color:#fff}header h1{font-size:clamp(1.3rem,3.5vw,1.7rem)}.breadcrumbs{font-size:.82rem;color:#888;padding:12px 0}.breadcrumbs a{color:#2563eb;text-decoration:none}.ad-top{max-width:728px;margin:16px auto;min-height:90px;background:#e8e8ed;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8rem;border-radius:4px}.tool-box{background:#fff;border-radius:8px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin:20px 0}.tool-box h2{font-size:1.2rem;margin-bottom:18px;color:#1a1a2e}.form-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.form-group{margin-bottom:14px}.form-group label{display:block;font-weight:600;margin-bottom:4px;font-size:.92rem}.form-group input,.form-group select{width:100%;padding:10px 12px;border:1.5px solid #d0d0d8;border-radius:6px;font-size:1rem}.form-group input:focus,.form-group select:focus{outline:none;border-color:#2563eb}.form-group .hint{font-size:.8rem;color:#888;margin-top:3px}.result{background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:24px;margin-top:20px;display:none}.result.show{display:grid;grid-template-columns:1fr 1fr;gap:16px}.result-card{text-align:center}.result-card .big{font-size:1.8rem;font-weight:700;color:#166534}.result-card .label{font-size:.85rem;color:#555;margin-top:4px}.content-section{margin:30px 0}.content-section h2{font-size:1.2rem;color:#1a1a2e;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e5e7eb}.content-section p,.content-section li{color:#555;font-size:.95rem;margin-bottom:8px}.content-section ul{padding-left:20px}.ad-inline{min-height:250px;background:#e8e8ed;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8rem;border-radius:4px;margin:24px 0}.related{padding:20px;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-top:20px}.related a{color:#2563eb;text-decoration:none;margin-right:16px;font-size:.92rem}.faq details{background:#fff;border-radius:6px;padding:14px 18px;box-shadow:0 1px 2px rgba(0,0,0,.05);margin-bottom:10px}.faq summary{font-weight:600;cursor:pointer;font-size:.95rem}.faq p{margin-top:8px;color:#555;font-size:.9rem}footer{background:#1a1a2e;color:#888;padding:24px 0;margin-top:40px;text-align:center;font-size:.82rem}footer a{color:#a0a0b8;text-decoration:none}@media(max-width:500px){.form-row{grid-template-columns:1fr}}</style>
+<meta property="og:title" content="Gravel Calculator — Free Gravel Estimator (Tons &amp; Cubic Yards) | figgn">
+<meta property="og:description" content="Free gravel calculator. Enter length, width and depth to get cubic yards and tons for crushed stone, pea gravel, road base or river rock.">
+<meta property="og:url" content="https://figgn.xyz/gravel-calculator/">
+<meta property="og:type" content="website">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('theme');
+    if(t !== 'light' && t !== 'dark'){
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  }catch(e){
+    document.documentElement.setAttribute('data-theme','light');
+  }
+})();
+</script>
+<style>
+:root{
+  --bg:#f8f9fb;
+  --card:#ffffff;
+  --text:#111111;
+  --text2:#555555;
+  --border:#cccccc;
+  --input-bg:#ffffff;
+  --accent:#e65c00;
+  --result-bg:#e7f5ec;
+  --result-text:#0d5c2e;
+  --ad-bg:#f0f0f0;
+  --ad-text:#888888;
+  --shadow:0 1px 3px rgba(0,0,0,.08);
+  --line:#e4e4ea;
+}
+[data-theme="dark"]{
+  --bg:#131318;
+  --card:#1c1c24;
+  --text:#e0e0e0;
+  --text2:#999999;
+  --border:#3a3a48;
+  --input-bg:#252530;
+  --accent:#e65c00;
+  --result-bg:#0a3020;
+  --result-text:#4ade80;
+  --ad-bg:#22222b;
+  --ad-text:#777777;
+  --shadow:0 1px 3px rgba(0,0,0,.3);
+  --line:#2a2a34;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+}
+.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:#c24d00}
+[data-theme="dark"] a{color:#ff8a3d}
+
+/* header */
+header{background:var(--accent);color:#fff}
+.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700;letter-spacing:-.5px}
+#themeToggle{
+  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.65);
+  border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;
+  font-family:inherit;min-height:32px;
+}
+#themeToggle:hover{background:rgba(255,255,255,.15)}
+
+/* sticky result bar */
+#stickyBar{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:var(--result-bg);color:var(--result-text);
+  border-bottom:1px solid var(--border);
+  transform:translateY(-100%);
+  visibility:hidden;
+}
+#stickyBar.show{transform:translateY(0);visibility:visible}
+@media (prefers-reduced-motion:no-preference){
+  #stickyBar{transition:transform .15s ease-out}
+}
+.sbar{max-width:760px;margin:0 auto;padding:8px 12px;display:flex;align-items:center;gap:12px}
+.sbar .val{font-size:26px;font-weight:700;line-height:1.1}
+.sbar .det{font-size:12px;color:var(--result-text);opacity:.85;flex:1}
+.copybtn{
+  background:var(--accent);color:#fff;border:0;border-radius:4px;
+  padding:8px 14px;font-size:14px;font-family:inherit;cursor:pointer;min-height:36px;
+}
+.copybtn:hover{background:#cf5300}
+
+/* ads */
+.ad{background:var(--ad-bg);color:var(--ad-text);text-align:center;margin:16px auto;
+    display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.ad-lb{max-width:728px;height:90px}
+.ad-rect{max-width:300px;height:250px}
+#stickyAd{
+  position:fixed;left:0;right:0;bottom:0;z-index:55;height:50px;
+  background:var(--ad-bg);color:var(--ad-text);
+  border-top:1px solid var(--border);
+  display:none;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+}
+#stickyAd button{
+  position:absolute;right:4px;top:4px;width:26px;height:26px;line-height:1;
+  background:transparent;border:1px solid var(--border);border-radius:4px;
+  color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;padding:0;
+}
+@media (max-width:640px){
+  #stickyAd{display:flex}
+  body{padding-bottom:58px}
+  body.adclosed{padding-bottom:0}
+}
+
+/* cards */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:4px;
+  box-shadow:var(--shadow);padding:16px;margin:16px 0;
+}
+h1{font-size:24px;margin:0 0 4px;letter-spacing:-.3px}
+h2{font-size:18px;margin:0 0 10px;letter-spacing:-.2px}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+
+/* form */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.two{grid-template-columns:1fr}}
+.field{margin-top:16px}
+label,.flabel{display:block;font-size:13px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+input[type=number],select{
+  width:100%;min-height:56px;padding:0 10px;
+  background:var(--input-bg);color:var(--text);
+  border:1px solid var(--border);border-radius:4px;
+  font-size:18px;font-family:"SF Mono","Cascadia Code","Consolas",monospace;
+}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.suffix{display:flex;align-items:stretch}
+.suffix input{border-radius:4px 0 0 4px;border-right:0}
+.suffix span{
+  min-height:56px;display:flex;align-items:center;padding:0 10px;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:0 4px 4px 0;color:var(--text2);font-size:15px;
+  font-family:"SF Mono","Cascadia Code","Consolas",monospace;
+}
+.presets{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:560px){.presets{grid-template-columns:1fr 1fr}}
+.preset{
+  min-height:56px;padding:6px 4px;
+  background:var(--input-bg);color:var(--text);
+  border:1px solid var(--border);border-radius:4px;
+  font-size:14px;font-family:inherit;cursor:pointer;line-height:1.25;
+}
+.preset b{display:block;font-family:"SF Mono","Cascadia Code","Consolas",monospace;font-size:16px}
+.preset.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+
+/* results */
+#results{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+@media (max-width:480px){#results{grid-template-columns:1fr}}
+.res{background:var(--result-bg);color:var(--result-text);border-radius:4px;padding:14px}
+.res .k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;opacity:.9}
+.res .v{font-size:34px;font-weight:700;line-height:1.1;margin-top:2px}
+.res .u{font-size:15px;font-weight:600;margin-left:4px}
+.detail{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);
+        border:1px solid var(--line);border-radius:4px;margin-top:12px;overflow:hidden}
+.detail div{background:var(--card);padding:10px 12px}
+.detail .k{font-size:12px;color:var(--text2)}
+.detail .v{font-size:18px;font-weight:600}
+.tip{font-size:14px;color:var(--text2);margin-top:12px;border-left:3px solid var(--accent);padding-left:10px}
+
+/* content */
+ol,ul{padding-left:20px;margin:0}
+ol li,ul li{margin-bottom:8px}
+p{margin:0 0 12px}
+.formula{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:12px;margin:12px 0;
+         font-size:15px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2)}
+td.n{font-family:"SF Mono","Cascadia Code","Consolas",monospace;white-space:nowrap}
+details{border-bottom:1px solid var(--line);padding:10px 0}
+details:last-of-type{border-bottom:0;padding-bottom:0}
+summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";color:var(--accent);font-weight:700}
+details[open] summary::before{content:"– "}
+details p{margin:8px 0 0;color:var(--text2);font-size:14px}
+.rel a{display:block;font-weight:600;margin-top:12px}
+.rel p{font-size:13px;color:var(--text2);margin:2px 0 0}
+footer{background:#1c1c24;color:#999;font-size:13px;margin-top:24px}
+footer .wrap{padding:14px 12px;display:flex;gap:14px;flex-wrap:wrap}
+footer a{color:#bbb}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebApplication",
+      "name":"Gravel Calculator",
+      "url":"https://figgn.xyz/gravel-calculator/",
+      "applicationCategory":"UtilitiesApplication",
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "description":"Free gravel estimator that converts an area and depth into cubic yards and tons for crushed stone, pea gravel, road base and river rock.",
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+    },
+    {
+      "@type":"HowTo",
+      "name":"How to Use the Gravel Calculator",
+      "description":"Work out how much gravel to order in cubic yards and tons.",
+      "step":[
+        {"@type":"HowToStep","position":1,"name":"Measure the area","text":"Enter the length and width of the area in feet. Break irregular shapes into rectangles and add the results together."},
+        {"@type":"HowToStep","position":2,"name":"Choose a depth","text":"Tap the use that matches your project: two inches for a path, three for a driveway, four for heavy use, six for a base layer."},
+        {"@type":"HowToStep","position":3,"name":"Pick the gravel type","text":"Each material has a different weight per cubic yard, which is what converts volume into tons."},
+        {"@type":"HowToStep","position":4,"name":"Order by yards or tons","text":"Read both figures and use whichever unit your supplier prices by."}
+      ]
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"Should I order gravel by the cubic yard or by the ton?",
+         "acceptedAnswer":{"@type":"Answer","text":"Order in whichever unit your supplier prices by, since both describe the same pile. Quarries and bulk haulers usually sell by the ton because the truck is weighed on a scale. Landscape supply yards more often sell by the cubic yard because they load with a bucket of known volume. A cubic yard of gravel weighs roughly 1.2 to 1.5 tons depending on the stone, so always compare quotes in the same unit before deciding which is cheaper."}},
+        {"@type":"Question","name":"How deep should gravel be?",
+         "acceptedAnswer":{"@type":"Answer","text":"Two inches is enough for a garden path or a decorative bed that only carries foot traffic. Three inches suits a residential driveway surface layer, and four inches is better where trucks, trailers or regular turning are involved. Six inches is a compacted base course under pavers, a shed or a new driveway. A new driveway built from bare soil is usually three separate layers totalling eight to twelve inches, not a single deep pour."}},
+        {"@type":"Question","name":"Should I add extra gravel for compaction?",
+         "acceptedAnswer":{"@type":"Answer","text":"Yes if the gravel is being compacted. Angular crushed stone and road base lose roughly ten to twenty percent of their loose volume once plated or rolled, so order about fifteen percent more than the calculated figure when the finished depth matters. Rounded stone such as pea gravel and river rock is not compacted and needs no allowance beyond a little extra for spreading losses and low spots."}}
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
-<header><div class="container"><a href="/">← Figgn</a><h1>Gravel Calculator</h1></div></header>
-<div class="container"><div class="breadcrumbs"><a href="/">Home</a> › Gravel Calculator</div></div>
-<div class="container"><div class="ad-top">Advertisement</div></div>
-<div class="container">
-<div class="tool-box">
-<h2>How Much Gravel Do You Need?</h2>
-<div class="form-row">
-<div class="form-group"><label>Length (feet)</label><input type="number" id="length" placeholder="20" min="0" step="0.5" oninput="calc()"></div>
-<div class="form-group"><label>Width (feet)</label><input type="number" id="width" placeholder="10" min="0" step="0.5" oninput="calc()"></div>
-<div class="form-group"><label>Depth</label><select id="depth" oninput="calc()"><option value="2">2 inches</option><option value="3" selected>3 inches</option><option value="4">4 inches</option><option value="6">6 inches</option></select></div>
+
+<div id="stickyBar" role="status" aria-live="polite">
+  <div class="sbar">
+    <span class="val mono" id="sVal">—</span>
+    <span class="det" id="sDet">Gravel needed</span>
+    <button type="button" class="copybtn" id="copyBtn">Copy</button>
+  </div>
 </div>
-<div class="form-group"><label>Gravel Type</label><select id="type" oninput="calc()"><option value="1.4">Crushed stone (1.4 tons/cy)</option><option value="1.3">Pea gravel (1.3 tons/cy)</option><option value="1.5" selected>Road base gravel (1.5 tons/cy)</option><option value="1.2">River rock (1.2 tons/cy)</option></select><span class="hint">Different gravel types have different densities</span></div>
-<div class="result show" id="result"><div class="result-card"><div class="big" id="cubicYards">0</div><div class="label">Cubic Yards</div></div><div class="result-card"><div class="big" id="tons">0</div><div class="label">Tons</div></div></div>
+
+<header>
+  <div class="hbar">
+    <a href="/" class="wordmark">figgn</a>
+    <button type="button" id="themeToggle">Dark</button>
+  </div>
+</header>
+
+<div class="ad ad-lb">Advertisement</div>
+
+<main class="wrap">
+
+  <div class="card">
+    <h1>Gravel Calculator</h1>
+    <p class="sub">Area and depth in, cubic yards and tons out — ready to quote to a supplier.</p>
+
+    <div class="two">
+      <div>
+        <label for="length">Length</label>
+        <div class="suffix">
+          <input type="number" id="length" inputmode="decimal" min="0" step="0.5" value="20">
+          <span aria-hidden="true">ft</span>
+        </div>
+      </div>
+      <div>
+        <label for="width">Width</label>
+        <div class="suffix">
+          <input type="number" id="width" inputmode="decimal" min="0" step="0.5" value="10">
+          <span aria-hidden="true">ft</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="flabel" id="depthLabel">Depth</span>
+      <div class="presets" role="group" aria-labelledby="depthLabel">
+        <button type="button" class="preset" data-depth="2">Path<b>2"</b></button>
+        <button type="button" class="preset on" data-depth="3">Driveway<b>3"</b></button>
+        <button type="button" class="preset" data-depth="4">Heavy use<b>4"</b></button>
+        <button type="button" class="preset" data-depth="6">Base<b>6"</b></button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="type">Gravel type</label>
+      <select id="type">
+        <option value="1.4" selected>Crushed stone — 1.4 tons/yd³</option>
+        <option value="1.3">Pea gravel — 1.3 tons/yd³</option>
+        <option value="1.5">Road base — 1.5 tons/yd³</option>
+        <option value="1.2">River rock — 1.2 tons/yd³</option>
+      </select>
+    </div>
+
+    <div id="results">
+      <div class="res">
+        <div class="k">Volume</div>
+        <div class="v mono"><span id="rYards">—</span><span class="u">yd³</span></div>
+      </div>
+      <div class="res">
+        <div class="k">Weight</div>
+        <div class="v mono"><span id="rTons">—</span><span class="u">tons</span></div>
+      </div>
+    </div>
+
+    <div class="detail">
+      <div><div class="k">Area</div><div class="v mono" id="dArea">—</div></div>
+      <div><div class="k">Volume in cubic feet</div><div class="v mono" id="dFeet">—</div></div>
+      <div><div class="k">1 yd³ covers at this depth</div><div class="v mono" id="dCover">—</div></div>
+    </div>
+
+    <p class="tip">Compacted gravel settles. If the finished depth matters, order about 15% more than the figure above — see the compaction question below.</p>
+  </div>
+
+  <div class="ad ad-rect">Advertisement</div>
+
+  <div class="card">
+    <h2>How to Use the Gravel Calculator</h2>
+    <ol>
+      <li>Measure the <strong>length and width</strong> of the area in feet. Split irregular shapes into rectangles and run each one separately.</li>
+      <li>Tap the <strong>depth</strong> that matches the job — path, driveway, heavy use or base layer.</li>
+      <li>Pick the <strong>gravel type</strong>. This only affects the tonnage: different stone weighs different amounts per cubic yard.</li>
+      <li>Quote your supplier in whichever unit they price by. Both numbers describe the same pile.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>How It's Calculated</h2>
+    <p>Volume is area times depth, converted to yards. Depth is in inches, so it is divided by 12 to get feet, and the cubic feet are divided by 27 because a cubic yard is 3 × 3 × 3 feet.</p>
+    <div class="formula mono">Cubic yards = (length × width × (depth ÷ 12)) ÷ 27<br>Tons = cubic yards × density</div>
+    <p><strong>Worked example:</strong> a 20 ft × 10 ft driveway at 3 inches is 200 sq ft × 0.25 ft = 50 cubic feet, and 50 ÷ 27 = <span class="mono">1.85 yd³</span>. In crushed stone at 1.4 tons per cubic yard, that is <span class="mono">2.59 tons</span>.</p>
+    <p>Densities are loose, dry weights and are approximate — 1.2 to 1.5 tons per cubic yard covers most gravels. Wet material weighs more, and a supplier's own figure for their stone beats any general number, so ask if the order is large.</p>
+  </div>
+
+  <div class="card">
+    <h2>Gravel Coverage Reference</h2>
+    <p class="sub">One cubic yard is 27 cubic feet. How far it spreads depends entirely on depth.</p>
+    <table>
+      <thead><tr><th>Depth</th><th>1 yd³ covers</th><th>Typical use</th></tr></thead>
+      <tbody>
+        <tr><td>1"</td><td class="n">324 sq ft</td><td>Top dressing over existing gravel.</td></tr>
+        <tr><td>2"</td><td class="n">162 sq ft</td><td>Garden paths, decorative beds, foot traffic only.</td></tr>
+        <tr><td>3"</td><td class="n">108 sq ft</td><td>Residential driveway surface layer.</td></tr>
+        <tr><td>4"</td><td class="n">81 sq ft</td><td>Driveways with trucks, trailers or regular turning.</td></tr>
+        <tr><td>6"</td><td class="n">54 sq ft</td><td>Compacted base under pavers, sheds or new driveways.</td></tr>
+        <tr><td>12"</td><td class="n">27 sq ft</td><td>Trench backfill, French drains, deep sub-base.</td></tr>
+      </tbody>
+    </table>
+    <p class="tip">A cubic yard of gravel weighs 1.2–1.5 tons, so a standard pickup bed handles about half a yard before you are over the axle rating. Two yards is a job for a dump truck.</p>
+  </div>
+
+  <div class="card">
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+      <summary>Should I order by the cubic yard or by the ton?</summary>
+      <p>Whichever your supplier prices by — both describe the same pile. Quarries and bulk haulers usually sell by the ton, because the truck crosses a scale. Landscape yards more often sell by the cubic yard, because they load with a bucket of known volume. A cubic yard runs roughly 1.2–1.5 tons depending on the stone, so convert before comparing two quotes; the cheaper-looking unit is often just the smaller one.</p>
+    </details>
+
+    <details>
+      <summary>How deep should gravel be?</summary>
+      <p>2" is plenty for a garden path or decorative bed carrying foot traffic. 3" suits a residential driveway surface. 4" is better where trucks, trailers or regular turning are involved. 6" is a compacted base course under pavers, a shed or a new driveway. Note that a driveway built from bare soil is normally three layers totalling 8–12" — a large angular base, a middle layer, then the surface stone — rather than one deep pour.</p>
+    </details>
+
+    <details>
+      <summary>Should I add extra for compaction?</summary>
+      <p>Yes, if the gravel is being compacted. Angular crushed stone and road base lose roughly 10–20% of their loose volume once plated or rolled, so order about 15% over the calculated figure when the finished depth matters. Rounded stone — pea gravel, river rock — isn't compacted and needs no allowance beyond a little extra for spreading and low spots.</p>
+    </details>
+  </div>
+
+  <div class="card rel">
+    <h2>More Free Calculators</h2>
+    <a href="/mulch-calculator/">Mulch Calculator</a>
+    <p>Cubic yards and bags of mulch for any bed size and depth.</p>
+    <a href="/flooring-calculator/">Flooring Calculator</a>
+    <p>Square footage and waste allowance for any room.</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 figgn</span>
+    <a href="/privacy/">Privacy</a>
+    <a href="/">Home</a>
+  </div>
+</footer>
+
+<div id="stickyAd">
+  Advertisement
+  <button type="button" id="closeAd" aria-label="Close ad">✕</button>
 </div>
-<div class="content-section"><h2>How to Use</h2><ol><li>Enter the length and width of your area in feet.</li><li>Select the gravel depth — 3 inches is standard for driveways.</li><li>Choose your gravel type for accurate tonnage.</li></ol></div>
-<div class="ad-inline">Advertisement</div>
-<div class="content-section"><h2>Gravel Coverage Reference</h2><ul><li><strong>1 cubic yard</strong> covers ~108 sq ft at 3 inches deep.</li><li><strong>1 ton of gravel</strong> covers ~80–100 sq ft at 2 inches deep.</li><li><strong>Driveways:</strong> 4–6 inches of road base + 2 inches of surface gravel.</li><li><strong>Paths:</strong> 2–3 inches is sufficient.</li><li><strong>Drainage:</strong> Use clean crushed stone (no fines) at 6+ inches.</li></ul></div>
-<div class="faq"><h2 style="font-size:1.2rem;color:#1a1a2e;margin-bottom:12px">FAQs</h2><details><summary>How much does a cubic yard of gravel weigh?</summary><p>Approximately 2,400–3,000 lbs (1.2–1.5 tons) depending on the type. Crushed stone with fines is heavier than pea gravel.</p></details><details><summary>Should I buy by the ton or cubic yard?</summary><p>Most suppliers sell by the ton. Always order 5–10% extra to account for compaction and settling.</p></details></div>
-<div class="related"><h3 style="margin-bottom:10px;font-size:1rem">You might also need:</h3><a href="/mulch-calculator/">Mulch Calculator</a><a href="/flooring-calculator/">Flooring Calculator</a></div>
-</div>
-<footer><div class="container"><p>&copy; 2026 Figgn. <a href="/">Home</a> · <a href="/privacy/">Privacy</a></p></div></footer>
-<script>function calc(){const l=parseFloat(document.getElementById('length').value)||0;const w=parseFloat(document.getElementById('width').value)||0;const d=parseInt(document.getElementById('depth').value)||3;const t=parseFloat(document.getElementById('type').value)||1.5;const cy=(l*w*(d/12))/27;const tons=cy*t;document.getElementById('cubicYards').textContent=cy.toFixed(2);document.getElementById('tons').textContent=tons.toFixed(2)}</script>
+
+<script>
+(function(){
+  var length = document.getElementById('length');
+  var width = document.getElementById('width');
+  var type = document.getElementById('type');
+  var depth = 3;
+
+  function num(v){
+    var n = parseFloat(v);
+    return isNaN(n) || n < 0 ? 0 : n;
+  }
+
+  function fmt(x, dp){
+    var d = (dp === undefined) ? 2 : dp;
+    var s = (Math.round(x * Math.pow(10, d)) / Math.pow(10, d)).toString();
+    var p = s.split('.');
+    p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return p.join('.');
+  }
+
+  function typeName(){
+    return type.options[type.selectedIndex].text.split('—')[0].trim();
+  }
+
+  function calc(){
+    var l = num(length.value);
+    var w = num(width.value);
+    var density = parseFloat(type.value);
+
+    var rYards = document.getElementById('rYards');
+    var rTons = document.getElementById('rTons');
+    var dArea = document.getElementById('dArea');
+    var dFeet = document.getElementById('dFeet');
+    var dCover = document.getElementById('dCover');
+    var sVal = document.getElementById('sVal');
+    var sDet = document.getElementById('sDet');
+
+    if(l <= 0 || w <= 0){
+      rYards.textContent = '—';
+      rTons.textContent = '—';
+      dArea.textContent = '—';
+      dFeet.textContent = '—';
+      dCover.textContent = fmt(324 / depth, 0) + ' sq ft';
+      sVal.textContent = '—';
+      sDet.textContent = 'Enter a length and width above 0';
+      return;
+    }
+
+    var area = l * w;
+    var cubicFeet = area * (depth / 12);
+    var yards = cubicFeet / 27;
+    var tons = yards * density;
+
+    rYards.textContent = fmt(yards);
+    rTons.textContent = fmt(tons);
+    dArea.textContent = fmt(area, 1) + ' sq ft';
+    dFeet.textContent = fmt(cubicFeet, 1) + ' ft³';
+    dCover.textContent = fmt(324 / depth, 0) + ' sq ft';
+
+    sVal.textContent = fmt(yards) + ' yd³';
+    sDet.textContent = fmt(tons) + ' tons of ' + typeName().toLowerCase() +
+                       ' · ' + fmt(area, 1) + ' sq ft at ' + depth + '"';
+  }
+
+  length.addEventListener('input', calc);
+  width.addEventListener('input', calc);
+  type.addEventListener('change', calc);
+
+  document.querySelectorAll('.preset').forEach(function(p){
+    p.setAttribute('aria-pressed', p.classList.contains('on') ? 'true' : 'false');
+    p.addEventListener('click', function(){
+      depth = parseFloat(p.dataset.depth);
+      document.querySelectorAll('.preset').forEach(function(x){
+        var on = (x === p);
+        x.classList.toggle('on', on);
+        x.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      calc();
+    });
+  });
+
+  var copyBtn = document.getElementById('copyBtn');
+  copyBtn.addEventListener('click', function(){
+    var v = document.getElementById('sVal').textContent;
+    var done = function(){
+      copyBtn.textContent = 'Copied!';
+      setTimeout(function(){ copyBtn.textContent = 'Copy'; }, 2000);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(v).then(done, done);
+    }else{
+      var t = document.createElement('textarea');
+      t.value = v;
+      t.style.position = 'fixed';
+      t.style.opacity = '0';
+      document.body.appendChild(t);
+      t.select();
+      try{ document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(t);
+      done();
+    }
+  });
+
+  var barEl = document.getElementById('stickyBar');
+  var resultsEl = document.getElementById('results');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        barEl.classList.toggle('show', !en.isIntersecting && en.boundingClientRect.top < 0);
+      });
+    }, {threshold: 0}).observe(resultsEl);
+  }
+
+  var toggle = document.getElementById('themeToggle');
+  function syncToggle(){
+    var t = document.documentElement.getAttribute('data-theme');
+    toggle.textContent = (t === 'dark' ? 'Light' : 'Dark');
+    toggle.setAttribute('aria-label','Switch to ' + (t === 'dark' ? 'light' : 'dark') + ' mode');
+  }
+  syncToggle();
+  toggle.addEventListener('click', function(){
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    try{ localStorage.setItem('theme', t); }catch(e){}
+    syncToggle();
+  });
+
+  document.getElementById('closeAd').addEventListener('click', function(){
+    document.getElementById('stickyAd').style.display = 'none';
+    document.body.classList.add('adclosed');
+  });
+
+  calc();
+})();
+</script>
 </body>
 </html>
