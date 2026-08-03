@@ -1,150 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Online Calculators & Tools — Quick, Accurate, No Sign-Up</title>
-<meta name="description" content="Free online calculators for GPA, tips, grades, paint, flooring, gravel, mulch, and more. Fast, accurate, mobile-friendly. No sign-up required.">
-<meta name="robots" content="index, follow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Online Calculators — Instant Answers | figgn</title>
+<meta name="description" content="Free online calculators for GPA, grades, tips, paint, flooring, gravel, mulch and more. Instant results, no sign-up required.">
 <link rel="canonical" href="https://figgn.xyz/">
-<meta property="og:title" content="Free Online Calculators & Tools — Quick, Accurate, No Sign-Up">
-<meta property="og:description" content="Free online calculators for GPA, tips, grades, paint, flooring, gravel, mulch, and more. Fast, accurate, mobile-friendly. No sign-up required.">
-<meta property="og:type" content="website">
+<meta property="og:title" content="Free Online Calculators — Instant Answers | figgn">
+<meta property="og:description" content="Free online calculators for GPA, grades, tips, paint, flooring, gravel, mulch and more. Instant results, no sign-up required.">
 <meta property="og:url" content="https://figgn.xyz/">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Figgn",
-  "url": "https://figgn.xyz/",
-  "description": "Free online calculators for school, home improvement, construction, and finance.",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://figgn.xyz/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
+<meta property="og:type" content="website">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('theme');
+    if(t !== 'light' && t !== 'dark'){
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  }catch(e){
+    document.documentElement.setAttribute('data-theme','light');
   }
-}
+})();
 </script>
 <style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,sans-serif;line-height:1.6;color:#1a1a1a;background:#f5f5f7}
-  .container{max-width:1100px;margin:0 auto;padding:0 20px}
-  
-  header{background:#1a1a2e;color:#fff;padding:40px 0 30px}
-  header h1{font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:8px}
-  header p{color:#a0a0b8;font-size:1.05rem}
-  
-  .ad-leaderboard{max-width:728px;margin:20px auto;min-height:90px;background:#e8e8ed;display:flex;align-items:center;justify-content:center;color:#888;font-size:.85rem;border-radius:4px}
-  
-  .intro{padding:30px 0;border-bottom:1px solid #ddd}
-  .intro h2{font-size:1.4rem;margin-bottom:10px}
-  .intro p{color:#555;max-width:700px}
-  
-  .tools-grid{padding:40px 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
-  .tool-card{background:#fff;border-radius:8px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.08);transition:box-shadow .2s}
-  .tool-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.12)}
-  .tool-card h3{font-size:1.15rem;margin-bottom:6px}
-  .tool-card h3 a{color:#1a1a2e;text-decoration:none}
-  .tool-card h3 a:hover{color:#2563eb}
-  .tool-card p{color:#666;font-size:.92rem;margin-bottom:8px}
-  .tool-card .tag{display:inline-block;font-size:.75rem;padding:2px 8px;border-radius:3px;background:#eef2ff;color:#2563eb;margin-right:4px}
-  
-  .category-section{margin-bottom:40px}
-  .category-section h2{font-size:1.3rem;color:#1a1a2e;border-bottom:2px solid #2563eb;padding-bottom:6px;margin-bottom:20px;display:inline-block}
-  
-  footer{background:#1a1a2e;color:#888;padding:30px 0;margin-top:40px;text-align:center;font-size:.85rem}
-  footer a{color:#a0a0b8;text-decoration:none}
-  footer a:hover{color:#fff}
-  
-  .breadcrumbs{font-size:.85rem;color:#888;padding:12px 0}
-  .breadcrumbs a{color:#2563eb;text-decoration:none}
-  .breadcrumbs a:hover{text-decoration:underline}
+:root{
+  --bg:#f8f9fb;
+  --card:#ffffff;
+  --text:#111111;
+  --text2:#555555;
+  --border:#cccccc;
+  --input-bg:#ffffff;
+  --accent:#e65c00;
+  --result-bg:#e7f5ec;
+  --result-text:#0d5c2e;
+  --shadow:0 1px 3px rgba(0,0,0,.08);
+  --line:#e4e4ea;
+}
+[data-theme="dark"]{
+  --bg:#131318;
+  --card:#1c1c24;
+  --text:#e0e0e0;
+  --text2:#999999;
+  --border:#3a3a48;
+  --input-bg:#252530;
+  --accent:#e65c00;
+  --result-bg:#0a3020;
+  --result-text:#4ade80;
+  --shadow:0 1px 3px rgba(0,0,0,.3);
+  --line:#2a2a34;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+}
+.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:#c24d00}
+[data-theme="dark"] a{color:#ff8a3d}
+
+/* header */
+header{background:var(--accent);color:#fff}
+.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700;letter-spacing:-.5px}
+#themeToggle{
+  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.65);
+  border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;
+  font-family:inherit;min-height:32px;
+}
+#themeToggle:hover{background:rgba(255,255,255,.15)}
+
+/* intro */
+.intro{padding:22px 0 4px}
+h1{font-size:26px;margin:0 0 6px;letter-spacing:-.4px}
+.lede{color:var(--text2);font-size:15px;margin:0}
+.count{font-size:13px;color:var(--text2);margin-top:10px;font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+
+/* cards */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:4px;
+  box-shadow:var(--shadow);padding:16px;margin:16px 0;
+}
+h2{font-size:15px;margin:0 0 12px;text-transform:uppercase;letter-spacing:.08em;color:var(--text2)}
+
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:560px){.tools{grid-template-columns:1fr}}
+.tool{
+  display:block;padding:12px;text-decoration:none;color:var(--text);
+  border:1px solid var(--line);border-radius:4px;background:var(--bg);
+}
+.tool:hover{border-color:var(--accent)}
+.tool:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.tool .n{font-weight:700;font-size:16px;color:var(--accent)}
+.tool .d{font-size:13px;color:var(--text2);margin-top:2px}
+
+footer{background:#1c1c24;color:#999;font-size:13px;margin-top:24px}
+footer .wrap{padding:14px 12px;display:flex;gap:14px;flex-wrap:wrap}
+footer a{color:#bbb}
 </style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "name":"figgn",
+      "url":"https://figgn.xyz/",
+      "description":"Free online calculators for school, home, landscaping and everyday maths. Instant results, no sign-up required."
+    },
+    {
+      "@type":"ItemList",
+      "name":"Free Online Calculators",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"GPA Calculator","url":"https://figgn.xyz/gpa-calculator/"},
+        {"@type":"ListItem","position":2,"name":"Grade Calculator","url":"https://figgn.xyz/grade-calculator/"},
+        {"@type":"ListItem","position":3,"name":"Paint Calculator","url":"https://figgn.xyz/paint-calculator/"},
+        {"@type":"ListItem","position":4,"name":"Flooring Calculator","url":"https://figgn.xyz/flooring-calculator/"},
+        {"@type":"ListItem","position":5,"name":"Gravel Calculator","url":"https://figgn.xyz/gravel-calculator/"},
+        {"@type":"ListItem","position":6,"name":"Mulch Calculator","url":"https://figgn.xyz/mulch-calculator/"},
+        {"@type":"ListItem","position":7,"name":"Tip Calculator","url":"https://figgn.xyz/tip-calculator/"}
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
 <header>
-  <div class="container">
-    <h1>Free Online Calculators & Tools</h1>
-    <p>Fast, accurate, private. No sign-up. No ads that block the tool. Just answers.</p>
+  <div class="hbar">
+    <a href="/" class="wordmark">figgn</a>
+    <button type="button" id="themeToggle">Dark</button>
   </div>
 </header>
 
-<div class="container">
-  <div class="ad-leaderboard"><!-- Google AdSense Leaderboard 728×90 -->Advertisement</div>
-</div>
+<main class="wrap">
 
-<div class="container">
   <div class="intro">
-    <h2>Every calculator you need, in one place</h2>
-    <p>Figgn gives you free, instant calculations — whether you're figuring out your GPA, splitting a dinner bill, estimating paint for a room, or ordering gravel for a driveway. No sign-up. No paywall. Just type your numbers and get your answer.</p>
+    <h1>Free Online Calculators</h1>
+    <p class="lede">Instant answers. No sign-up. Every tool updates as you type.</p>
+    <p class="count">7 calculators</p>
   </div>
 
-  <div class="category-section">
-    <h2>School & Grades</h2>
-    <div class="tools-grid">
-      <div class="tool-card">
-        <h3><a href="/gpa-calculator/">GPA Calculator</a></h3>
-        <p>Calculate your GPA from letter grades and credit hours. Supports 4.0, 5.0, and weighted scales.</p>
-        <span class="tag">Students</span><span class="tag">High School</span><span class="tag">College</span>
-      </div>
-      <div class="tool-card">
-        <h3><a href="/grade-calculator/">Grade Calculator</a></h3>
-        <p>Find your percentage and letter grade from points earned. Also calculate what you need on your final exam.</p>
-        <span class="tag">Students</span><span class="tag">Quick</span>
-      </div>
+  <section class="card">
+    <h2>School &amp; Grades</h2>
+    <div class="tools">
+      <a class="tool" href="/gpa-calculator/">
+        <span class="n">GPA Calculator</span>
+        <span class="d">Weighted and unweighted from letter grades</span>
+      </a>
+      <a class="tool" href="/grade-calculator/">
+        <span class="n">Grade Calculator</span>
+        <span class="d">Percentage, letter grade, and final exam score needed</span>
+      </a>
     </div>
-  </div>
+  </section>
 
-  <div class="category-section">
-    <h2>Home & DIY</h2>
-    <div class="tools-grid">
-      <div class="tool-card">
-        <h3><a href="/paint-calculator/">Paint Calculator</a></h3>
-        <p>Estimate how many gallons of paint you need for any room. Accounts for doors, windows, and coats.</p>
-        <span class="tag">Homeowners</span><span class="tag">DIY</span>
-      </div>
-      <div class="tool-card">
-        <h3><a href="/flooring-calculator/">Flooring Calculator</a></h3>
-        <p>Calculate square footage and flooring material needed. Works for hardwood, tile, carpet, and vinyl.</p>
-        <span class="tag">Homeowners</span><span class="tag">Renovation</span>
-      </div>
+  <section class="card">
+    <h2>Home &amp; DIY</h2>
+    <div class="tools">
+      <a class="tool" href="/paint-calculator/">
+        <span class="n">Paint Calculator</span>
+        <span class="d">Gallons needed, doors/windows/coats</span>
+      </a>
+      <a class="tool" href="/flooring-calculator/">
+        <span class="n">Flooring Calculator</span>
+        <span class="d">Sq ft with waste factor</span>
+      </a>
     </div>
-  </div>
+  </section>
 
-  <div class="category-section">
-    <h2>Landscape & Construction</h2>
-    <div class="tools-grid">
-      <div class="tool-card">
-        <h3><a href="/gravel-calculator/">Gravel Calculator</a></h3>
-        <p>Calculate how many cubic yards or tons of gravel you need for driveways, paths, and landscaping.</p>
-        <span class="tag">Construction</span><span class="tag">Landscaping</span>
-      </div>
-      <div class="tool-card">
-        <h3><a href="/mulch-calculator/">Mulch Calculator</a></h3>
-        <p>Find out exactly how many bags or cubic yards of mulch your garden beds need.</p>
-        <span class="tag">Landscaping</span><span class="tag">Gardening</span>
-      </div>
+  <section class="card">
+    <h2>Landscape &amp; Construction</h2>
+    <div class="tools">
+      <a class="tool" href="/gravel-calculator/">
+        <span class="n">Gravel Calculator</span>
+        <span class="d">Cubic yards and tons</span>
+      </a>
+      <a class="tool" href="/mulch-calculator/">
+        <span class="n">Mulch Calculator</span>
+        <span class="d">Bags and cubic yards</span>
+      </a>
     </div>
-  </div>
+  </section>
 
-  <div class="category-section">
+  <section class="card">
     <h2>Everyday</h2>
-    <div class="tools-grid">
-      <div class="tool-card">
-        <h3><a href="/tip-calculator/">Tip Calculator</a></h3>
-        <p>Quickly split a bill and calculate the tip. Adjust percentages and number of people instantly.</p>
-        <span class="tag">Dining</span><span class="tag">Everyday</span>
-      </div>
+    <div class="tools">
+      <a class="tool" href="/tip-calculator/">
+        <span class="n">Tip Calculator</span>
+        <span class="d">Bill split and tip</span>
+      </a>
     </div>
-  </div>
-</div>
+  </section>
+
+</main>
 
 <footer>
-  <div class="container">
-    <p>&copy; 2026 Figgn. Free online calculators. <a href="/">Home</a> · <a href="/privacy/">Privacy</a></p>
+  <div class="wrap">
+    <span>© 2026 figgn</span>
+    <a href="/privacy/">Privacy</a>
+    <a href="/">Home</a>
   </div>
 </footer>
 
+<script>
+(function(){
+  var toggle = document.getElementById('themeToggle');
+  function syncToggle(){
+    var t = document.documentElement.getAttribute('data-theme');
+    toggle.textContent = (t === 'dark' ? 'Light' : 'Dark');
+    toggle.setAttribute('aria-label','Switch to ' + (t === 'dark' ? 'light' : 'dark') + ' mode');
+  }
+  syncToggle();
+  toggle.addEventListener('click', function(){
+    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    try{ localStorage.setItem('theme', t); }catch(e){}
+    syncToggle();
+  });
+})();
+</script>
 </body>
 </html>
