@@ -101,26 +101,42 @@ header{background:var(--accent);color:#fff}
 }
 .copybtn:hover{background:#cf5300}
 
-/* ads */
-.ad{background:var(--ad-bg);color:var(--ad-text);text-align:center;margin:16px auto;
-    display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
-.ad-lb{max-width:728px;height:90px}
-.ad-rect{max-width:300px;height:250px}
+/* ad slots — reserved space, lazy filled, never above the answer on mobile */
+.adwrap{margin:20px auto;text-align:center}
+.adwrap .adlabel{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text2);margin-bottom:4px}
+.adwrap .adslot{background:var(--ad-bg);color:var(--ad-text);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.adwrap[data-ad="leaderboard"]{display:none;max-width:728px}
+.adwrap[data-ad="leaderboard"] .adslot{min-height:90px}
+.adwrap[data-ad="primary"],.adwrap[data-ad="secondary"]{max-width:300px}
+.adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot{min-height:250px}
+@media (min-width:768px){
+  .adwrap[data-ad="leaderboard"]{display:block}
+  .adwrap[data-ad="primary"],.adwrap[data-ad="secondary"]{max-width:336px}
+  .adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot{min-height:280px}
+}
 #stickyAd{
   position:fixed;left:0;right:0;bottom:0;z-index:55;height:50px;
-  background:var(--ad-bg);color:var(--ad-text);
-  border-top:1px solid var(--border);
-  display:none;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--ad-bg);color:var(--ad-text);border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  transform:translateY(100%);visibility:hidden;
+}
+#stickyAd.show{transform:translateY(0);visibility:visible}
+@media (prefers-reduced-motion:no-preference){
+  #stickyAd{transition:transform .2s ease-out}
 }
 #stickyAd button{
   position:absolute;right:4px;top:4px;width:26px;height:26px;line-height:1;
-  background:transparent;border:1px solid var(--border);border-radius:4px;
+  background:var(--card);border:1px solid var(--border);border-radius:4px;
   color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;padding:0;
 }
-@media (max-width:640px){
-  #stickyAd{display:flex}
-  body{padding-bottom:58px}
-  body.adclosed{padding-bottom:0}
+body.stickyad{padding-bottom:58px}
+@media (min-width:641px){
+  #stickyAd{display:none}
+  body.stickyad{padding-bottom:0}
 }
 
 /* cards */
@@ -279,7 +295,11 @@ footer a{color:#bbb}
   </div>
 </header>
 
-<div class="ad ad-lb">Advertisement</div>
+<aside class="adwrap" data-ad="leaderboard">
+  <span class="adlabel">Advertisement</span>
+  <!-- AdSense: replace the .adslot contents with your <ins class="adsbygoogle"> unit -->
+  <div class="adslot" data-size="728x90"></div>
+</aside>
 
 <main class="wrap">
 
@@ -314,7 +334,11 @@ footer a{color:#bbb}
     </div>
   </div>
 
-  <div class="ad ad-rect">Advertisement</div>
+  <aside class="adwrap" data-ad="primary">
+    <span class="adlabel">Advertisement</span>
+    <!-- AdSense: replace the .adslot contents with your <ins class="adsbygoogle"> unit -->
+    <div class="adslot" data-size="300x250 / 336x280"></div>
+  </aside>
 
   <div class="card">
     <h2>How to Use the GPA Calculator</h2>
@@ -358,6 +382,12 @@ footer a{color:#bbb}
       </tbody>
     </table>
   </div>
+
+  <aside class="adwrap" data-ad="secondary">
+    <span class="adlabel">Advertisement</span>
+    <!-- AdSense: replace the .adslot contents with your <ins class="adsbygoogle"> unit -->
+    <div class="adslot" data-size="300x250 / 336x280"></div>
+  </aside>
 
   <div class="card">
     <h2>Frequently Asked Questions</h2>
@@ -403,8 +433,9 @@ footer a{color:#bbb}
   </div>
 </footer>
 
-<div id="stickyAd">
-  Advertisement
+<div id="stickyAd" aria-label="Advertisement">
+  <!-- AdSense: 320x50 anchor unit goes here -->
+  <span data-size="320x50">Advertisement</span>
   <button type="button" id="closeAd" aria-label="Close ad">✕</button>
 </div>
 
@@ -644,12 +675,61 @@ footer a{color:#bbb}
     syncToggle();
   });
 
-  document.getElementById('closeAd').addEventListener('click', function(){
-    document.getElementById('stickyAd').style.display = 'none';
-    document.body.classList.add('adclosed');
-  });
 
   calc();
+})();
+</script>
+<script>
+/* Ad controller: lazy fill, engagement-gated sticky, session dismissal. */
+(function(){
+  function fill(el){
+    if(el.dataset.filled) return;
+    el.dataset.filled = '1';
+    el.textContent = 'Advertisement \u00b7 ' + (el.dataset.size || '');
+    /* AdSense: (adsbygoogle = window.adsbygoogle || []).push({}); */
+  }
+
+  var slots = document.querySelectorAll('.adslot');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ fill(en.target); io.unobserve(en.target); }
+      });
+    }, {rootMargin: '600px 0px'});
+    slots.forEach(function(s){ io.observe(s); });
+  }else{
+    slots.forEach(fill);
+  }
+
+  var sticky = document.getElementById('stickyAd');
+  if(!sticky) return;
+
+  var dismissed = false;
+  try{ dismissed = sessionStorage.getItem('adDismissed') === '1'; }catch(e){}
+
+  var armed = false;
+  function reveal(){
+    if(dismissed || sticky.classList.contains('show')) return;
+    sticky.classList.add('show');
+    document.body.classList.add('stickyad');
+  }
+  function arm(){
+    if(armed || dismissed) return;
+    armed = true;
+    setTimeout(reveal, 400);
+  }
+
+  document.addEventListener('input', arm, {once:true, passive:true});
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > window.innerHeight * 0.5) arm();
+  }, {passive:true});
+
+  document.getElementById('closeAd').addEventListener('click', function(){
+    sticky.classList.remove('show');
+    document.body.classList.remove('stickyad');
+    dismissed = true;
+    try{ sessionStorage.setItem('adDismissed','1'); }catch(e){}
+  });
 })();
 </script>
 </body>

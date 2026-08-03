@@ -97,8 +97,25 @@ h2{font-size:15px;margin:0 0 12px;text-transform:uppercase;letter-spacing:.08em;
 }
 .tool:hover{border-color:var(--accent)}
 .tool:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
-.tool .n{font-weight:700;font-size:16px;color:var(--accent)}
-.tool .d{font-size:13px;color:var(--text2);margin-top:2px}
+.tool .n{display:block;font-weight:700;font-size:16px;color:var(--accent)}
+.tool .d{display:block;font-size:13px;color:var(--text2);margin-top:2px}
+
+/* ad slots — reserved space, lazy filled, never above the answer on mobile */
+.adwrap{margin:20px auto;text-align:center}
+.adwrap .adlabel{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text2);margin-bottom:4px}
+.adwrap .adslot{background:var(--ad-bg);color:var(--ad-text);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.adwrap[data-ad="leaderboard"]{display:none;max-width:728px}
+.adwrap[data-ad="leaderboard"] .adslot{min-height:90px}
+.adwrap[data-ad="primary"],.adwrap[data-ad="secondary"]{max-width:300px}
+.adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot{min-height:250px}
+@media (min-width:768px){
+  .adwrap[data-ad="leaderboard"]{display:block}
+  .adwrap[data-ad="primary"],.adwrap[data-ad="secondary"]{max-width:336px}
+  .adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot{min-height:280px}
+}
 
 footer{background:#1c1c24;color:#999;font-size:13px;margin-top:24px}
 footer .wrap{padding:14px 12px;display:flex;gap:14px;flex-wrap:wrap}
@@ -200,6 +217,12 @@ footer a{color:#bbb}
     </div>
   </section>
 
+
+  <aside class="adwrap" data-ad="secondary">
+    <span class="adlabel">Advertisement</span>
+    <!-- AdSense: replace the .adslot contents with your <ins class="adsbygoogle"> unit -->
+    <div class="adslot" data-size="300x250 / 336x280"></div>
+  </aside>
 </main>
 
 <footer>
@@ -224,6 +247,59 @@ footer a{color:#bbb}
     document.documentElement.setAttribute('data-theme', t);
     try{ localStorage.setItem('theme', t); }catch(e){}
     syncToggle();
+  });
+})();
+</script>
+<script>
+/* Ad controller: lazy fill, engagement-gated sticky, session dismissal. */
+(function(){
+  function fill(el){
+    if(el.dataset.filled) return;
+    el.dataset.filled = '1';
+    el.textContent = 'Advertisement \u00b7 ' + (el.dataset.size || '');
+    /* AdSense: (adsbygoogle = window.adsbygoogle || []).push({}); */
+  }
+
+  var slots = document.querySelectorAll('.adslot');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ fill(en.target); io.unobserve(en.target); }
+      });
+    }, {rootMargin: '600px 0px'});
+    slots.forEach(function(s){ io.observe(s); });
+  }else{
+    slots.forEach(fill);
+  }
+
+  var sticky = document.getElementById('stickyAd');
+  if(!sticky) return;
+
+  var dismissed = false;
+  try{ dismissed = sessionStorage.getItem('adDismissed') === '1'; }catch(e){}
+
+  var armed = false;
+  function reveal(){
+    if(dismissed || sticky.classList.contains('show')) return;
+    sticky.classList.add('show');
+    document.body.classList.add('stickyad');
+  }
+  function arm(){
+    if(armed || dismissed) return;
+    armed = true;
+    setTimeout(reveal, 400);
+  }
+
+  document.addEventListener('input', arm, {once:true, passive:true});
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > window.innerHeight * 0.5) arm();
+  }, {passive:true});
+
+  document.getElementById('closeAd').addEventListener('click', function(){
+    sticky.classList.remove('show');
+    document.body.classList.remove('stickyad');
+    dismissed = true;
+    try{ sessionStorage.setItem('adDismissed','1'); }catch(e){}
   });
 })();
 </script>
