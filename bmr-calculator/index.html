@@ -593,7 +593,7 @@ function compute(V, G){
       rBmr: fmt(bmr, 0), rHour: fmt(bmr / 24, 0), rTdee: fmt(bmr * 1.2, 0),
       dEq: 'Mifflin-St Jeor',
       dWeight: imp ? fmt(b.kg / 0.453592, 0) + ' lb' : fmt(b.kg, 1) + ' kg',
-      dHeight: imp ? fmt(b.cm / 2.54 / 12, 0) + '\u2032 ' + fmt((b.cm / 2.54) % 12, 0) + '\u2033'
+      dHeight: imp ? Math.floor(b.cm / 2.54 / 12) + '\u2032 ' + fmt(Math.round(b.cm / 2.54) % 12, 0) + '\u2033'
                    : fmt(b.cm, 0) + ' cm'
     },
     sticky:{ val: fmt(bmr, 0) + ' cal', det: 'BMR at rest \u00b7 ' + fmt(bmr * 1.2, 0) + ' cal/day sedentary' }

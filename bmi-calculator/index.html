@@ -614,7 +614,7 @@ function compute(V, G){
       rBmi: fmt(bmi, 1), rCat: cat,
       rRange: w(lo) + '–' + w(hi),
       dWeight: w(b.kg),
-      dHeight: imp ? fmt(b.cm / 2.54 / 12, 0) + '\u2032 ' + fmt((b.cm / 2.54) % 12, 0) + '\u2033'
+      dHeight: imp ? Math.floor(b.cm / 2.54 / 12) + '\u2032 ' + fmt(Math.round(b.cm / 2.54) % 12, 0) + '\u2033'
                    : fmt(b.cm, 0) + ' cm',
       dTo: to
     },
