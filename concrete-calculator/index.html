@@ -84,7 +84,7 @@ header{background:var(--accent);color:#fff}
 .diagram .ln{stroke:var(--accent);stroke-width:2;fill:none;opacity:.85}
 .diagram .fillshape{fill:var(--accent);opacity:.12}
 .diagram .dim{stroke:var(--text2);stroke-width:1;opacity:.5}
-[data-mode][hidden]{display:none !important}
+[data-mode][hidden]{display:none !important;visibility:hidden !important;height:0 !important;margin:0 !important;padding:0 !important;overflow:hidden !important}
 .qtyrow{display:grid;grid-template-columns:1fr;gap:12px;margin-top:16px}
 .qtynote{font-size:13px;color:var(--text2);margin-top:8px}
 
@@ -821,6 +821,9 @@ function compute(V, G){
     });
   }
   if(G.mode !== undefined) paintMode();
+
+  /* Ensure mode visibility on first paint */
+  paintMode();
 
   var qtyEl = document.getElementById('qty');
   if(qtyEl){
