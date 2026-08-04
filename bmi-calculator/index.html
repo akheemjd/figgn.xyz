@@ -707,7 +707,7 @@ function compute(V, G){
       i.value = Math.round((toMetric ? v * f : v / f) * 100) / 100;
     });
     metric = toMetric;
-    try{ localStorage.setItem('units', metric ? 'metric' : 'imperial'); }catch(e){}
+    /* unit choice not persisted across sessions */
     paintUnits();
     run();
   }
@@ -715,9 +715,10 @@ function compute(V, G){
     b.addEventListener('click', function(){ setUnits(b.dataset.unit === 'metric'); });
   });
   if(unitBtns.length){
-  /* Sync unit toggle with persisted state on load */
+  /* Always start in imperial. No persistence across sessions. */
+  metric = false;
+  try{ localStorage.setItem('units', 'imperial'); }catch(e){}
   paintUnits();
-  if(metric) setUnits(true);
 
   var inputs = [].slice.call(document.querySelectorAll('[data-var]'));
   var last = null;
