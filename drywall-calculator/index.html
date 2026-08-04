@@ -709,9 +709,9 @@ function compute(V, G){
     b.addEventListener('click', function(){ setUnits(b.dataset.unit === 'metric'); });
   });
   if(unitBtns.length){
-    var want = metric; metric = !metric; setUnits(want);
-    paintUnits();
-  }
+  /* Sync unit toggle with persisted state on load */
+  paintUnits();
+  if(metric) setUnits(true);
 
   var inputs = [].slice.call(document.querySelectorAll('[data-var]'));
   var last = null;
