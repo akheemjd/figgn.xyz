@@ -843,6 +843,7 @@ function compute(V, G){
   }
 
   function run(){
+    console.log('run() called, G:', JSON.stringify(G));
     if(G.mode !== undefined) paintMode();
     var V = {};
     inputs.forEach(function(i){
@@ -865,6 +866,7 @@ function compute(V, G){
     }
 
     var r = compute(V, G, last, R) || {};
+    console.log('compute result:', JSON.stringify(r));
     var sVal = document.getElementById('sVal');
     var sDet = document.getElementById('sDet');
 
