@@ -67,6 +67,27 @@ header{background:var(--accent);color:#fff}
   border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
 #themeToggle:hover{filter:brightness(1.1)}
 
+.unitrow{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.unitrow .flabel{margin:0}
+.unitbtns{display:inline-flex;border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.unitbtns button{min-height:36px;padding:0 14px;background:var(--input-bg);color:var(--text);
+  border:0;border-left:1px solid var(--border);font-size:13px;font-family:inherit;cursor:pointer}
+.unitbtns button:first-child{border-left:0}
+.unitbtns button.on{background:var(--accent-btn);color:#fff;font-weight:600}
+.formwrap{display:grid;grid-template-columns:1fr;gap:16px}
+@media (min-width:641px){.formwrap{grid-template-columns:1fr 210px;align-items:start}}
+.diagram{order:-1;display:flex;justify-content:center;align-items:flex-start}
+@media (min-width:641px){.diagram{order:0;position:sticky;top:64px}}
+.diagram svg{max-width:200px;height:auto}
+.diagram text{font-family:"SF Mono","Cascadia Code","Consolas",monospace;font-size:11px;
+  fill:var(--text2)}
+.diagram .ln{stroke:var(--accent);stroke-width:2;fill:none;opacity:.85}
+.diagram .fillshape{fill:var(--accent);opacity:.12}
+.diagram .dim{stroke:var(--text2);stroke-width:1;opacity:.5}
+[data-mode][hidden]{display:none !important}
+.qtyrow{display:grid;grid-template-columns:1fr;gap:12px;margin-top:16px}
+.qtynote{font-size:13px;color:var(--text2);margin-top:8px}
+
 .rowset .row{display:grid;gap:8px;grid-template-columns:1fr 1fr 44px;padding:8px 0;
   border-bottom:1px solid var(--line)}
 .rowset .row:first-child{border-top:1px solid var(--line)}
@@ -308,15 +329,6 @@ footer a{color:#bbb}
   ]
 }
 </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E1C1FEHY7Z"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-E1C1FEHY7Z');
-</script>
-
 </head>
 <body>
 
@@ -354,23 +366,68 @@ footer a{color:#bbb}
     <h1>Deck Calculator</h1>
     <p class="sub">Deck size in — boards, joists and screws out.</p>
 
-    <div class="two">
-      <div>
-        <label for="length">Deck length</label>
-        <div class="suffix">
-          <input type="number" id="length" data-var="length" inputmode="decimal" min="0" step="0.5" value="16">
-          <span aria-hidden="true">ft</span>
-        </div>
-      </div>
-      <div>
-        <label for="width">Deck width</label>
-        <div class="suffix">
-          <input type="number" id="width" data-var="width" inputmode="decimal" min="0" step="0.5" value="12">
-          <span aria-hidden="true">ft</span>
-        </div>
+    <div class="unitrow">
+      <span class="flabel" id="unitLabel">Units</span>
+      <div class="unitbtns" role="group" aria-labelledby="unitLabel">
+        <button type="button" data-unit="imperial" class="on">ft / in</button>
+        <button type="button" data-unit="metric">m / cm</button>
       </div>
     </div>
 
+    <div class="formwrap">
+      <div class="formcol">
+        <div class="two">
+      <div data-mode="0">
+        <label for="length">Deck length</label>
+        <div class="suffix">
+          <input type="number" id="length" data-var="length" data-u="len" inputmode="decimal" min="0" step="0.5" value="16">
+          <span class="u-len" aria-hidden="true">ft</span>
+        </div>
+      </div>
+      <div data-mode="0">
+        <label for="width">Deck width</label>
+        <div class="suffix">
+          <input type="number" id="width" data-var="width" data-u="len" inputmode="decimal" min="0" step="0.5" value="12">
+          <span class="u-len" aria-hidden="true">ft</span>
+        </div>
+      </div>
+      <div data-mode="1">
+        <label for="la">Section A length</label>
+        <div class="suffix">
+          <input type="number" id="la" data-var="la" data-u="len" inputmode="decimal" min="0" step="0.5" value="16">
+          <span class="u-len" aria-hidden="true">ft</span>
+        </div>
+      </div>
+      <div data-mode="1">
+        <label for="wa">Section A width</label>
+        <div class="suffix">
+          <input type="number" id="wa" data-var="wa" data-u="len" inputmode="decimal" min="0" step="0.5" value="12">
+          <span class="u-len" aria-hidden="true">ft</span>
+        </div>
+      </div>
+      <div data-mode="1">
+        <label for="lb">Section B length</label>
+        <div class="suffix">
+          <input type="number" id="lb" data-var="lb" data-u="len" inputmode="decimal" min="0" step="0.5" value="8">
+          <span class="u-len" aria-hidden="true">ft</span>
+        </div>
+      </div>
+      <div data-mode="1">
+        <label for="wb">Section B width</label>
+        <div class="suffix">
+          <input type="number" id="wb" data-var="wb" data-u="len" inputmode="decimal" min="0" step="0.5" value="6">
+          <span class="u-len" aria-hidden="true">ft</span>
+        </div>
+      </div>
+        </div>
+
+    <div class="field">
+      <span class="flabel" id="modeLabel">Deck shape</span>
+      <div class="presets" data-cols="2" data-group="mode" role="group" aria-labelledby="modeLabel">
+        <button type="button" class="preset on" data-val="0">Rectangle</button>
+        <button type="button" class="preset" data-val="1">L-shape</button>
+      </div>
+    </div>
     <div class="field">
       <span class="flabel" id="spacingLabel">Joist spacing</span>
       <div class="presets" data-cols="3" data-group="spacing" role="group" aria-labelledby="spacingLabel">
@@ -393,6 +450,33 @@ footer a{color:#bbb}
         <button type="button" class="preset on" data-val="16">16 ft</button>
         <button type="button" class="preset" data-val="20">20 ft</button>
       </div>
+    </div>
+    <div class="field">
+      <label for="qty">Quantity (decks)</label>
+      <div class="stepper">
+        <button type="button" id="qtyMinus" aria-label="One fewer">&minus;</button>
+        <input type="number" id="qty" data-var="qty" inputmode="numeric" min="1" step="1" value="1">
+        <button type="button" id="qtyPlus" aria-label="One more">+</button>
+      </div>
+    </div>
+      </div>
+
+    <div class="diagram" aria-hidden="false">
+      <svg data-mode="0" viewBox="0 0 200 150" role="img" aria-label="Rectangle diagram">
+        <rect class="fillshape" x="30" y="35" width="140" height="80"/>
+        <rect class="ln" x="30" y="35" width="140" height="80"/>
+        <line class="dim" x1="30" y1="128" x2="170" y2="128"/>
+        <text x="100" y="142" text-anchor="middle">L</text>
+        <line class="dim" x1="18" y1="35" x2="18" y2="115"/>
+        <text x="12" y="79" text-anchor="middle" transform="rotate(-90 12 79)">W</text>
+      </svg>
+      <svg data-mode="1" viewBox="0 0 200 150" role="img" aria-label="L-shape deck">
+        <polygon class="fillshape" points="30,35 120,35 120,80 170,80 170,115 30,115"/>
+        <polygon class="ln" points="30,35 120,35 120,80 170,80 170,115 30,115"/>
+        <text x="72" y="62" text-anchor="middle">A</text>
+        <text x="145" y="102" text-anchor="middle">B</text>
+      </svg>
+    </div>
     </div>
 
     <div id="results" data-cards="4">
@@ -517,7 +601,6 @@ footer a{color:#bbb}
   <div class="wrap">
     <span>&copy; <span id="yr">2026</span> figgn</span>
     <a href="/privacy/">Privacy</a>
-    <a href="mailto:contact@figgn.xyz">Contact</a>
     <a href="/">All calculators</a>
   </div>
 </footer>
@@ -531,15 +614,20 @@ footer a{color:#bbb}
 <script>
 
 function compute(V, G){
-  if(V.length <= 0 || V.width <= 0) return {invalid:'Enter a deck length and width above 0'};
+  var L = (G.mode === 1) ? V.la : V.length;
+  var W = (G.mode === 1) ? V.wa : V.width;
+  if(L <= 0 || W <= 0) return {invalid:'Enter deck dimensions above 0'};
 
   var gap = 0.25;
-  var area = V.length * V.width;
-  var rows = Math.ceil((V.width * 12) / (G.board + gap));
-  var lf = rows * V.length;
+  var area = (L * W + (G.mode === 1 ? V.lb * V.wb : 0)) * V.qty;
+  var rows = Math.ceil((W * 12) / (G.board + gap)) +
+             (G.mode === 1 ? Math.ceil((V.wb * 12) / (G.board + gap)) : 0);
+  var lf = (G.mode === 1 ? Math.ceil((V.wa*12)/(G.board+gap)) * V.la +
+                            Math.ceil((V.wb*12)/(G.board+gap)) * V.lb
+                         : rows * L) * V.qty;
   var boards = Math.ceil(lf * 1.10 / G.stock);
-  var joists = Math.floor((V.length * 12) / G.spacing) + 1;
-  var joistLF = joists * V.width;
+  var joists = (Math.floor((L * 12) / G.spacing) + 1) * V.qty;
+  var joistLF = joists * W;
   var screws = rows * joists * 2;
 
   return {
@@ -616,6 +704,42 @@ function compute(V, G){
     }
   });
 
+  /* ---- unit system: inputs are entered in the displayed unit, compute always
+     receives feet (data-u="len") or inches (data-u="small"). */
+  var metric = false;
+  try{ metric = localStorage.getItem('units') === 'metric'; }catch(e){}
+
+  var unitBtns = [].slice.call(document.querySelectorAll('.unitbtns button'));
+  function paintUnits(){
+    unitBtns.forEach(function(b){
+      var on = (b.dataset.unit === (metric ? 'metric' : 'imperial'));
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    document.querySelectorAll('.u-len').forEach(function(el){ el.textContent = metric ? 'm' : 'ft'; });
+    document.querySelectorAll('.u-small').forEach(function(el){ el.textContent = metric ? 'cm' : 'in'; });
+  }
+  function setUnits(toMetric){
+    if(toMetric === metric) return;
+    document.querySelectorAll('[data-u]').forEach(function(i){
+      var v = parseFloat(i.value);
+      if(isNaN(v)) return;
+      var f = (i.dataset.u === 'small') ? 2.54 : 0.3048;
+      i.value = Math.round((toMetric ? v * f : v / f) * 100) / 100;
+    });
+    metric = toMetric;
+    try{ localStorage.setItem('units', metric ? 'metric' : 'imperial'); }catch(e){}
+    paintUnits();
+    run();
+  }
+  unitBtns.forEach(function(b){
+    b.addEventListener('click', function(){ setUnits(b.dataset.unit === 'metric'); });
+  });
+  if(unitBtns.length){
+    var want = metric; metric = !metric; setUnits(want);
+    paintUnits();
+  }
+
   var inputs = [].slice.call(document.querySelectorAll('[data-var]'));
   var last = null;
   inputs.forEach(function(i){
@@ -663,12 +787,42 @@ function compute(V, G){
     });
   }
 
+  function paintMode(){
+    var m = String(G.mode === undefined ? 0 : G.mode);
+    document.querySelectorAll('[data-mode]').forEach(function(el){
+      el.hidden = (el.dataset.mode.split(' ').indexOf(m) === -1);
+    });
+  }
+  if(G.mode !== undefined) paintMode();
+
+  var qtyEl = document.getElementById('qty');
+  if(qtyEl){
+    var minus = document.getElementById('qtyMinus'), plus = document.getElementById('qtyPlus');
+    function setQty(n){
+      if(n < 1) n = 1;
+      qtyEl.value = n;
+      minus.disabled = (n <= 1);
+      run();
+    }
+    minus.addEventListener('click', function(){ setQty((parseInt(qtyEl.value,10)||1) - 1); });
+    plus.addEventListener('click', function(){ setQty((parseInt(qtyEl.value,10)||1) + 1); });
+    qtyEl.addEventListener('blur', function(){
+      var n = parseInt(qtyEl.value,10);
+      if(isNaN(n) || n < 1) setQty(1);
+    });
+    minus.disabled = ((parseInt(qtyEl.value,10)||1) <= 1);
+  }
+
   function run(){
+    if(G.mode !== undefined) paintMode();
     var V = {};
     inputs.forEach(function(i){
       var n = parseFloat(i.value);
-      V[i.dataset.var] = (isNaN(n) || n < 0) ? 0 : n;
+      n = (isNaN(n) || n < 0) ? 0 : n;
+      if(metric && i.dataset.u) n = n * (i.dataset.u === 'small' ? 0.393701 : 3.28084);
+      V[i.dataset.var] = n;
     });
+    V.qty = Math.max(1, Math.round(V.qty || 1));
 
     var R = [];
     if(rowset){

@@ -325,15 +325,6 @@ footer a{color:#bbb}
   ]
 }
 </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E1C1FEHY7Z"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-E1C1FEHY7Z');
-</script>
-
 </head>
 <body>
 
@@ -394,6 +385,26 @@ footer a{color:#bbb}
       <div><div class="k">Unweighted GPA</div><div class="v mono" id="dUnw">—</div></div>
       <div><div class="k">Weighted GPA</div><div class="v mono" id="dW">—</div></div>
     </div>
+  </div>
+
+  <div class="card" id="cumulative">
+    <h2>Cumulative GPA</h2>
+    <p class="sub">Combine this semester with everything before it. Averaging two GPAs directly gives the wrong answer &mdash; credits have to carry the weight.</p>
+    <div class="two">
+      <div>
+        <label for="priorGpa">Prior cumulative GPA</label>
+        <input type="number" id="priorGpa" inputmode="decimal" min="0" max="5" step="0.01" value="3.20">
+      </div>
+      <div>
+        <label for="priorCr">Credits completed</label>
+        <input type="number" id="priorCr" inputmode="decimal" min="0" step="1" value="30">
+      </div>
+    </div>
+    <div id="cumResult" class="res">
+      <span class="big mono" id="cVal">&mdash;</span>
+      <span class="lbl">New cumulative GPA</span>
+    </div>
+    <p class="note" id="cNote"></p>
   </div>
 
   <aside class="adwrap" data-ad="primary">
@@ -495,7 +506,6 @@ footer a{color:#bbb}
   <div class="wrap">
     <span>© <span id="yr">2026</span> figgn</span>
     <a href="/privacy/">Privacy</a>
-    <a href="mailto:contact@figgn.xyz">Contact</a>
     <a href="/blog/">Blog</a>
     <a href="/">All calculators</a>
   </div>
@@ -886,6 +896,34 @@ footer a{color:#bbb}
   fields.forEach(function(f){ f.addEventListener('input', sync); });
 })();
 
+</script>
+<script>
+/* Cumulative GPA: prior quality points plus this semester's, over combined credits. */
+(function(){
+  var pg = document.getElementById('priorGpa'), pc = document.getElementById('priorCr');
+  if(!pg) return;
+  function num(el){ var n = parseFloat(el.textContent.replace(/,/g,'')); return isNaN(n) ? 0 : n; }
+  function update(){
+    var g = parseFloat(pg.value), c = parseFloat(pc.value);
+    if(isNaN(g) || isNaN(c) || c < 0){ g = 0; c = 0; }
+    var curCr = num(document.getElementById('dCredits'));
+    var curQP = num(document.getElementById('dPoints'));
+    var totCr = c + curCr;
+    var cVal = document.getElementById('cVal');
+    var cNote = document.getElementById('cNote');
+    if(totCr <= 0){
+      cVal.textContent = '\u2014';
+      cNote.textContent = 'Add courses above and your completed credits here.';
+      return;
+    }
+    var cum = (g * c + curQP) / totCr;
+    cVal.textContent = cum.toFixed(2);
+    cNote.textContent = (g * c).toFixed(1) + ' prior quality points + ' + curQP.toFixed(1) +
+      ' this term, over ' + totCr + ' credits.';
+  }
+  ['input','change','click'].forEach(function(e){ document.addEventListener(e, function(){ setTimeout(update,0); }, true); });
+  update();
+})();
 </script>
 </body>
 </html>

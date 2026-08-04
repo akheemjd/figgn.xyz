@@ -316,15 +316,6 @@ footer a{color:#bbb}
   ]
 }
 </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E1C1FEHY7Z"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-E1C1FEHY7Z');
-</script>
-
 </head>
 <body>
 
@@ -389,6 +380,14 @@ footer a{color:#bbb}
         <button type="button" id="minus" aria-label="One fewer person">−</button>
         <input type="number" id="people" inputmode="numeric" min="1" step="1" value="1">
         <button type="button" id="plus" aria-label="One more person">+</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="flabel" id="roundLabel">Per-person rounding</span>
+      <div class="presets" role="group" aria-labelledby="roundLabel">
+        <button type="button" class="rnd preset on" data-round="0">Exact</button>
+        <button type="button" class="rnd preset" data-round="1">Round up to $1</button>
       </div>
     </div>
 
@@ -492,7 +491,6 @@ footer a{color:#bbb}
   <div class="wrap">
     <span>© <span id="yr">2026</span> figgn</span>
     <a href="/privacy/">Privacy</a>
-    <a href="mailto:contact@figgn.xyz">Contact</a>
     <a href="/blog/">Blog</a>
     <a href="/">All calculators</a>
   </div>
@@ -506,6 +504,7 @@ footer a{color:#bbb}
 
 <script>
 (function(){
+  var roundUp = false;
   var bill = document.getElementById('bill');
   var customTip = document.getElementById('customTip');
   var people = document.getElementById('people');
@@ -548,14 +547,20 @@ footer a{color:#bbb}
     var tip = b * (tipPct / 100);
     var total = b + tip;
     var each = total / n;
+    var eachShown = roundUp ? Math.ceil(each * 100) / 100 : each;
+    if(roundUp) eachShown = Math.ceil(each);
 
     rTip.textContent = money(tip);
     rTotal.textContent = money(total);
-    rEach.textContent = money(each);
+    rEach.textContent = money(eachShown);
 
     note.textContent = pctText(tipPct) + ' tip on ' + money(b) +
       (n > 1 ? ', split ' + n + ' ways.' : '.');
 
+    if(roundUp && n > 1){
+      note.textContent += ' Rounded up, the table pays ' + money(eachShown * n) +
+        ' \u2014 ' + money(eachShown * n - total) + ' over.';
+    }
     sVal.textContent = money(total);
     sDet.textContent = 'Total · ' + money(tip) + ' tip' +
       (n > 1 ? ' · ' + money(each) + ' each' : '');
@@ -616,6 +621,18 @@ footer a{color:#bbb}
   document.getElementById('minus').disabled = true;
 
   bill.addEventListener('input', calc);
+
+  document.querySelectorAll('.rnd').forEach(function(b){
+    b.addEventListener('click', function(){
+      roundUp = (b.dataset.round === '1');
+      document.querySelectorAll('.rnd').forEach(function(x){
+        var on = (x === b);
+        x.classList.toggle('on', on);
+        x.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      calc();
+    });
+  });
 
   var copyBtn = document.getElementById('copyBtn');
   copyBtn.addEventListener('click', function(){

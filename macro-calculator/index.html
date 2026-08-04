@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Drywall Calculator — Free Sheet, Screw &amp; Mud Estimator | figgn</title>
-<meta name="description" content="Calculate how many drywall sheets a room needs, plus screws, joint compound and tape. Free drywall calculator for 4x8, 4x10 and 4x12 sheets.">
-<link rel="canonical" href="https://figgn.xyz/drywall-calculator/">
+<title>Macro Calculator — Free Protein, Carb &amp; Fat Split | figgn</title>
+<meta name="description" content="Free macro calculator. Split a daily calorie target into protein, carbs and fat in grams, with presets for balanced, high protein and low carb approaches.">
+<link rel="canonical" href="https://figgn.xyz/macro-calculator/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#e65c00">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
@@ -14,12 +14,12 @@
 <meta property="og:site_name" content="figgn">
 <meta property="og:image" content="https://figgn.xyz/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Drywall Calculator — Free Sheet, Screw &amp; Mud Estimator | figgn">
-<meta name="twitter:description" content="Calculate how many drywall sheets a room needs, plus screws, joint compound and tape. Free drywall calculator for 4x8, 4x10 and 4x12 sheets.">
+<meta name="twitter:title" content="Macro Calculator — Free Protein, Carb &amp; Fat Split | figgn">
+<meta name="twitter:description" content="Free macro calculator. Split a daily calorie target into protein, carbs and fat in grams, with presets for balanced, high protein and low carb approaches.">
 <meta name="twitter:image" content="https://figgn.xyz/og-image.png">
-<meta property="og:title" content="Drywall Calculator — Free Sheet, Screw &amp; Mud Estimator | figgn">
-<meta property="og:description" content="Calculate how many drywall sheets a room needs, plus screws, joint compound and tape. Free drywall calculator for 4x8, 4x10 and 4x12 sheets.">
-<meta property="og:url" content="https://figgn.xyz/drywall-calculator/">
+<meta property="og:title" content="Macro Calculator — Free Protein, Carb &amp; Fat Split | figgn">
+<meta property="og:description" content="Free macro calculator. Split a daily calorie target into protein, carbs and fat in grams, with presets for balanced, high protein and low carb approaches.">
+<meta property="og:url" content="https://figgn.xyz/macro-calculator/">
 <meta property="og:type" content="website">
 <script>
 (function(){
@@ -66,6 +66,19 @@ header{background:var(--accent);color:#fff}
 #themeToggle{background:var(--accent-btn);color:#fff;border:1px solid rgba(255,255,255,.65);
   border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
 #themeToggle:hover{filter:brightness(1.1)}
+
+.scalebar{position:relative;height:34px;border-radius:4px;margin-top:14px;
+  background:linear-gradient(90deg,#3b82f6 0%,#3b82f6 18%,#16a34a 18%,#16a34a 46%,
+  #e65c00 46%,#e65c00 66%,#c0392b 66%,#c0392b 100%)}
+.scalebar .marker{position:absolute;top:-6px;width:3px;height:46px;background:var(--text);
+  border-radius:2px;transform:translateX(-50%);transition:left .15s ease-out}
+@media (prefers-reduced-motion:reduce){.scalebar .marker{transition:none}}
+.scalelabels{display:flex;justify-content:space-between;font-size:11px;color:var(--text2);
+  margin-top:4px;font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+.res .cat{font-size:15px;font-weight:700;margin-top:4px}
+.disclaimer{font-size:13px;color:var(--text2);border-left:3px solid var(--border);
+  padding-left:10px;margin-top:14px}
+.split{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
 
 .unitrow{display:flex;align-items:center;gap:8px;margin-bottom:14px}
 .unitrow .flabel{margin:0}
@@ -228,12 +241,12 @@ footer a{color:#bbb}
   "@graph": [
     {
       "@type": "WebApplication",
-      "name": "Drywall Calculator",
-      "url": "https://figgn.xyz/drywall-calculator/",
-      "applicationCategory": "UtilitiesApplication",
+      "name": "Macro Calculator",
+      "url": "https://figgn.xyz/macro-calculator/",
+      "applicationCategory": "HealthApplication",
       "operatingSystem": "Any",
       "browserRequirements": "Requires JavaScript",
-      "description": "Free drywall estimator that turns room dimensions into sheet counts, screws, joint compound and tape for walls and ceilings.",
+      "description": "Free macronutrient calculator that splits a daily calorie target into protein, carbohydrate and fat in grams using selectable ratios.",
       "dateModified": "2026-08-03",
       "inLanguage": "en",
       "isAccessibleForFree": true,
@@ -245,32 +258,32 @@ footer a{color:#bbb}
     },
     {
       "@type": "HowTo",
-      "name": "How to Use the Drywall Calculator",
-      "description": "Estimate drywall sheets and finishing materials for a room.",
+      "name": "How to Use the Macro Calculator",
+      "description": "Split a daily calorie target into macronutrient grams.",
       "step": [
         {
           "@type": "HowToStep",
           "position": 1,
-          "name": "Measure the room",
-          "text": "Enter the length and width in feet, then set the ceiling height."
+          "name": "Enter your calorie target",
+          "text": "Use the TDEE calculator first if you do not have one."
         },
         {
           "@type": "HowToStep",
           "position": 2,
-          "name": "Pick a sheet size",
-          "text": "Four by eight is standard and easiest to handle. Longer sheets mean fewer seams to tape."
+          "name": "Enter your bodyweight",
+          "text": "Used to show protein relative to bodyweight, which is the number that matters."
         },
         {
           "@type": "HowToStep",
           "position": 3,
-          "name": "Choose what you are covering",
-          "text": "Walls only, or walls plus the ceiling."
+          "name": "Pick a split",
+          "text": "Balanced suits most people. High protein helps when in a deficit."
         },
         {
           "@type": "HowToStep",
           "position": 4,
-          "name": "Read the totals",
-          "text": "Sheets round up. Screws, compound and tape are estimated from the board area."
+          "name": "Read the grams",
+          "text": "Protein and carbs are 4 calories per gram, fat is 9."
         }
       ]
     },
@@ -279,26 +292,26 @@ footer a{color:#bbb}
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Should I deduct doors and windows from a drywall estimate?",
+          "name": "What macronutrient split is best?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No, and this calculator does not. Drywall is hung over openings and cut out afterwards, which is faster and avoids placing a seam at the corner of an opening where cracks tend to start. The offcuts are then used as patches elsewhere in the job."
+            "text": "For most goals the split matters considerably less than total calories and adequate protein intake. Once calorie and protein targets are met, the ratio of carbohydrate to fat is largely a matter of satiety, training fuel and personal preference, and adherence matters more than optimisation."
           }
         },
         {
           "@type": "Question",
-          "name": "How many screws does a drywall sheet need?",
+          "name": "Is high protein necessary for fat loss?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "About thirty six for a four by eight sheet on sixteen inch centres, spaced roughly every twelve inches along studs and every eight inches around the perimeter of a ceiling. At around three hundred and twenty screws per pound for one and a quarter inch coarse thread screws, one pound covers about nine sheets."
+            "text": "Higher protein intake helps meaningfully during a calorie deficit because it preserves lean mass, is more satiating per calorie and has a slightly higher thermic effect. Around two grams per kilogram of bodyweight is a reasonable target for people training in a deficit, and benefits diminish beyond roughly 2.4 grams per kilogram."
           }
         },
         {
           "@type": "Question",
-          "name": "Should I use four by eight sheets or longer ones?",
+          "name": "Do carbohydrates eaten at night cause fat gain?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Longer sheets create fewer butt joints, which are the hardest joints to finish because they have no tapered edge to conceal the tape. On twelve foot walls, twelve foot sheets eliminate butt joints entirely, but they need two people to handle. Working alone, four by eight sheets are far more manageable."
+            "text": "No. Fat gain is determined by total energy balance across days and weeks rather than by the time of day food is eaten. Meal timing can have modest effects on training performance and sleep for some people, but carbohydrate eaten later in the day is not stored differently."
           }
         }
       ]
@@ -315,14 +328,14 @@ footer a{color:#bbb}
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Home & DIY",
-          "item": "https://figgn.xyz/#home"
+          "name": "Fitness & Health",
+          "item": "https://figgn.xyz/#fitness"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Drywall Calculator",
-          "item": "https://figgn.xyz/drywall-calculator/"
+          "name": "Macro Calculator",
+          "item": "https://figgn.xyz/macro-calculator/"
         }
       ]
     }
@@ -335,7 +348,7 @@ footer a{color:#bbb}
 <div id="stickyBar">
   <div class="sbar">
     <span class="val mono" id="sVal">&mdash;</span>
-    <span class="det" id="sDet">Drywall needed</span>
+    <span class="det" id="sDet">Macros</span>
     <button type="button" class="copybtn" id="copyBtn">Copy</button>
   </div>
 </div>
@@ -360,79 +373,53 @@ footer a{color:#bbb}
 
 <main class="wrap">
 
-  <p class="crumb"><a href="/">figgn</a> / <a href="/#home">Home &amp; DIY</a> / Drywall Calculator</p>
+  <p class="crumb"><a href="/">figgn</a> / <a href="/#fitness">Fitness &amp; Health</a> / Macro Calculator</p>
 
   <div class="card">
-    <h1>Drywall Calculator</h1>
-    <p class="sub">Room size in — sheets, screws, mud and tape out.</p>
+    <h1>Macro Calculator</h1>
+    <p class="sub">Turn a calorie target into grams of protein, carbs and fat.</p>
 
-    <div class="unitrow">
-      <span class="flabel" id="unitLabel">Units</span>
-      <div class="unitbtns" role="group" aria-labelledby="unitLabel">
-        <button type="button" data-unit="imperial" class="on">ft / in</button>
-        <button type="button" data-unit="metric">m / cm</button>
-      </div>
-    </div>
 
     <div class="formwrap">
       <div class="formcol">
         <div class="two">
-      <div data-mode="0 2">
-        <label for="length">Room length</label>
+      <div>
+        <label for="cal">Daily calories</label>
         <div class="suffix">
-          <input type="number" id="length" data-var="length" data-u="len" inputmode="decimal" min="0" step="0.5" value="12">
-          <span class="u-len" aria-hidden="true">ft</span>
+          <input type="number" id="cal" data-var="cal" inputmode="decimal" min="0" step="10" value="2500">
+          <span aria-hidden="true">cal</span>
         </div>
       </div>
-      <div data-mode="0 2">
-        <label for="width">Room width</label>
+      <div data-umode="0">
+        <label for="wlb">Bodyweight</label>
         <div class="suffix">
-          <input type="number" id="width" data-var="width" data-u="len" inputmode="decimal" min="0" step="0.5" value="14">
-          <span class="u-len" aria-hidden="true">ft</span>
+          <input type="number" id="wlb" data-var="wlb" inputmode="decimal" min="0" step="1" value="180">
+          <span aria-hidden="true">lb</span>
         </div>
       </div>
-      <div data-mode="1">
-        <label for="wall">Wall length</label>
+      <div data-umode="1">
+        <label for="wkg">Bodyweight</label>
         <div class="suffix">
-          <input type="number" id="wall" data-var="wall" data-u="len" inputmode="decimal" min="0" step="0.5" value="16">
-          <span class="u-len" aria-hidden="true">ft</span>
+          <input type="number" id="wkg" data-var="wkg" inputmode="decimal" min="0" step="1" value="82">
+          <span aria-hidden="true">kg</span>
         </div>
       </div>
         </div>
 
     <div class="field">
-      <span class="flabel" id="modeLabel">What are you boarding</span>
-      <div class="presets" data-cols="3" data-group="mode" role="group" aria-labelledby="modeLabel">
-        <button type="button" class="preset on" data-val="0">Room walls</button>
-        <button type="button" class="preset" data-val="1">Single wall</button>
-        <button type="button" class="preset" data-val="2">Walls + ceiling</button>
+      <span class="flabel" id="umodeLabel">Units</span>
+      <div class="presets" data-cols="2" data-group="umode" role="group" aria-labelledby="umodeLabel">
+        <button type="button" class="preset on" data-val="0">Imperial<b>lb / ft</b></button>
+        <button type="button" class="preset" data-val="1">Metric<b>kg / cm</b></button>
       </div>
     </div>
     <div class="field">
-      <span class="flabel" id="heightLabel">Ceiling height</span>
-      <div class="presets" data-cols="3" data-group="height" role="group" aria-labelledby="heightLabel">
-        <button type="button" class="preset on" data-val="8">Standard<b>8 ft</b></button>
-        <button type="button" class="preset" data-val="9">Tall<b>9 ft</b></button>
-        <button type="button" class="preset" data-val="10">High<b>10 ft</b></button>
-      </div>
-      <div class="custom">
-        <input type="number" data-custom="height" inputmode="decimal" min="0" step="0.5" placeholder="Custom" aria-label="Custom ceiling height in feet">
-        <span aria-hidden="true">ft</span>
-      </div>
-    </div>
-    <div class="field">
-      <span class="flabel" id="sheetLabel">Sheet size</span>
-      <div class="presets" data-cols="3" data-group="sheet" role="group" aria-labelledby="sheetLabel">
-        <button type="button" class="preset on" data-val="32">4 &times; 8<b>32 ft&sup2;</b></button>
-        <button type="button" class="preset" data-val="40">4 &times; 10<b>40 ft&sup2;</b></button>
-        <button type="button" class="preset" data-val="48">4 &times; 12<b>48 ft&sup2;</b></button>
-      </div>
-    </div>
-    <div class="field">
-      <span class="flabel" id="wasteLabel">Waste factor</span>
-      <div class="presets" data-cols="2" data-group="waste" role="group" aria-labelledby="wasteLabel">
-        <button type="button" class="preset on" data-val="10">Standard<b>10%</b></button>
-        <button type="button" class="preset" data-val="15">Complex<b>15%</b></button>
+      <span class="flabel" id="splitLabel">Macro split</span>
+      <div class="presets" data-cols="4" data-group="split" role="group" aria-labelledby="splitLabel">
+        <button type="button" class="preset on" data-val="0">Balanced<b>30/40/30</b></button>
+        <button type="button" class="preset" data-val="1">High protein<b>40/30/30</b></button>
+        <button type="button" class="preset" data-val="2">Lower carb<b>35/25/40</b></button>
+        <button type="button" class="preset" data-val="3">Higher carb<b>25/50/25</b></button>
       </div>
     </div>
       </div>
@@ -441,30 +428,31 @@ footer a{color:#bbb}
 
     <div id="results" data-cards="4">
       <div class="res main">
-        <div class="k">Sheets needed</div>
-        <div class="v mono"><span id="rSheets" data-out>—</span><span class="u">sheets</span></div>
+        <div class="k">Calories</div>
+        <div class="v mono"><span id="rCal" data-out>—</span><span class="u">cal</span></div>
       </div>
       <div class="res">
-        <div class="k">Total board area</div>
-        <div class="v mono"><span id="rArea" data-out>—</span><span class="u">sq ft</span></div>
+        <div class="k">Protein</div>
+        <div class="v mono"><span id="rProtein" data-out>—</span><span class="u">g</span></div>
       </div>
       <div class="res">
-        <div class="k">Screws</div>
-        <div class="v mono"><span id="rScrews" data-out>—</span><span class="u">lb</span></div>
+        <div class="k">Carbs</div>
+        <div class="v mono"><span id="rCarbs" data-out>—</span><span class="u">g</span></div>
       </div>
       <div class="res">
-        <div class="k">Joint compound</div>
-        <div class="v mono"><span id="rMud" data-out>—</span><span class="u">gal</span></div>
+        <div class="k">Fat</div>
+        <div class="v mono"><span id="rFat" data-out>—</span><span class="u">g</span></div>
       </div>
     </div>
 
     <div class="detail">
-      <div><div class="k">Wall area</div><div class="v mono" id="dWall" data-out>—</div></div>
-      <div><div class="k">Ceiling area</div><div class="v mono" id="dCeil" data-out>—</div></div>
-      <div><div class="k">Joint tape</div><div class="v mono" id="dTape" data-out>—</div></div>
+      <div><div class="k">Protein per kg</div><div class="v mono" id="dPerKg" data-out>—</div></div>
+      <div><div class="k">Fiber target</div><div class="v mono" id="dFiber" data-out>—</div></div>
+      <div><div class="k">Per meal (3 + 2 snacks)</div><div class="v mono" id="dMeal" data-out>—</div></div>
     </div>
 
-    <p class="tip">Hang ceilings first, then walls, with sheets running perpendicular to the framing. Fewer seams to tape is the whole game.</p>
+    <p class="tip">Protein and total calories are what the evidence actually supports. The carb-to-fat ratio below that is mostly preference &mdash; pick the one you can stick to.</p>
+    <p class="disclaimer">These are population-average estimates, not medical advice. Individual metabolism, body composition and health conditions vary widely &mdash; talk to a doctor or dietitian before making significant changes.</p>
   </div>
 
   <aside class="adwrap" data-ad="primary">
@@ -474,52 +462,44 @@ footer a{color:#bbb}
   </aside>
 
   <div class="card">
-    <h2>How to Use the Drywall Calculator</h2>
+    <h2>How to Use the Macro Calculator</h2>
     <ol>
-      <li>Enter the room's <strong>length and width</strong>, then set the <strong>ceiling height</strong>.</li>
-      <li>Pick a <strong>sheet size</strong>. 4&times;8 is easiest to handle alone; longer sheets mean fewer seams to tape.</li>
-      <li>Choose <strong>walls only</strong> or <strong>walls plus ceiling</strong>.</li>
-      <li>Read the totals. Sheets round up — screws, compound and tape follow from the board area.</li>
+      <li>Enter a <strong>daily calorie target</strong> — the <a href="/tdee-calculator/">TDEE calculator</a> gives you one.</li>
+      <li>Enter your <strong>bodyweight</strong>, used to express protein per kilogram.</li>
+      <li>Pick a <strong>split</strong>. Balanced works for most people; high protein helps during a deficit.</li>
+      <li>Read the <strong>grams</strong> — protein and carbs are 4 cal/g, fat is 9 cal/g.</li>
     </ol>
   </div>
 
   <div class="card">
     <h2>How It's Calculated</h2>
-    <p>Wall area is the room perimeter times the ceiling height. The ceiling, if you are boarding it, is simply length times width.</p>
-    <div class="formula mono">Wall area = 2 &times; (length + width) &times; height<br>Sheets = &#8968; total area &times; (1 + waste) &divide; sheet size &#8969;</div>
-    <p><strong>Worked example:</strong> a 12 &times; 14 ft room with an 8 ft ceiling has 416 sq ft of wall plus 168 sq ft of ceiling — 584 sq ft. With 10% waste that is 642 sq ft, and at 32 sq ft per 4 &times; 8 sheet, <span class="mono">21 sheets</span>.</p>
-    <p><strong>Openings are not deducted.</strong> That is deliberate and it is how drywall is actually hung: you board straight over a window or door opening and cut it out afterwards, because a continuous sheet is faster and leaves fewer seams. The offcuts become your patches.</p>
-    <p>Finishing materials are estimated at roughly 36 screws per sheet (about 320 screws to the pound in 1&frac14;" coarse thread), one gallon of all-purpose compound per 100 sq ft of board for tape plus two coats, and 0.4 linear feet of tape per square foot. Treat those as starting figures — technique moves them more than arithmetic does.</p>
+    <p>Macros are a percentage of calories converted to grams using the energy density of each nutrient.</p>
+    <div class="formula mono">Protein g = calories &times; % &divide; 4<br>Carbs g&nbsp;&nbsp; = calories &times; % &divide; 4<br>Fat g&nbsp;&nbsp;&nbsp;&nbsp; = calories &times; % &divide; 9</div>
+    <p><strong>Worked example:</strong> 2,500 calories on a balanced 30/40/30 split gives 750 calories of protein (<span class="mono">188 g</span>), 1,000 of carbs (<span class="mono">250 g</span>) and 750 of fat (<span class="mono">83 g</span>).</p>
+    <p><strong>Protein is the macro worth getting right.</strong> Research broadly supports 1.6 to 2.2 g per kg of bodyweight for people training with weights, with the upper end more useful in a calorie deficit, where protein protects lean mass. Below about 1.2 g/kg, active people tend to lose muscle alongside fat.</p>
+    <p>Fat has a floor too — roughly 0.5 g per kg — because it is required for hormone production and fat-soluble vitamin absorption. Very low fat intakes sustained for long periods are a bad trade. Carbohydrate is what remains, and it is largely a performance and preference decision rather than a health one.</p>
+    <p>Fiber is set at roughly 14 g per 1,000 calories, which is the standard dietary recommendation and is missed by most people by a wide margin.</p>
   </div>
 
   <div class="card">
-    <h2>Drywall Sheet &amp; Material Reference</h2>
-    <p class="sub">Standard sheet sizes and what each one covers.</p>
+    <h2>Common Splits &amp; Protein Targets</h2>
     <table>
-      <thead><tr><th>Sheet</th><th>Area</th><th>Weight (1/2")</th><th>Notes</th></tr></thead>
+      <thead><tr><th>Split</th><th>P / C / F</th><th>Suits</th></tr></thead>
       <tbody>
-        <tr><td>4 &times; 8</td><td class="n">32 sq ft</td><td class="n">~52 lb</td><td>Standard. One person can manage it.</td></tr>
-        <tr><td>4 &times; 10</td><td class="n">40 sq ft</td><td class="n">~65 lb</td><td>Fewer butt joints on longer walls.</td></tr>
-        <tr><td>4 &times; 12</td><td class="n">48 sq ft</td><td class="n">~78 lb</td><td>Best seam count, needs two people.</td></tr>
+        <tr><td>Balanced</td><td class="n">30/40/30</td><td>General health, maintenance, most people.</td></tr>
+        <tr><td>High protein</td><td class="n">40/30/30</td><td>Fat loss phases, preserving lean mass.</td></tr>
+        <tr><td>Lower carb</td><td class="n">35/25/40</td><td>Appetite control, preference.</td></tr>
+        <tr><td>Higher carb</td><td class="n">25/50/25</td><td>Endurance training, high training volume.</td></tr>
       </tbody>
     </table>
-    <h3>Thickness by use</h3>
+    <h3>Protein by situation</h3>
     <table>
-      <thead><tr><th>Thickness</th><th>Where it goes</th></tr></thead>
+      <thead><tr><th>Situation</th><th>Protein</th></tr></thead>
       <tbody>
-        <tr><td>1/4"</td><td>Skimming over existing walls, curved surfaces.</td></tr>
-        <tr><td>3/8"</td><td>Repairs and remodel patching.</td></tr>
-        <tr><td>1/2"</td><td>Standard for walls and ceilings.</td></tr>
-        <tr><td>5/8" Type X</td><td>Fire rating, garages, ceilings on 24" centres.</td></tr>
-      </tbody>
-    </table>
-    <h3>Finishing materials</h3>
-    <table>
-      <thead><tr><th>Material</th><th>Rule of thumb</th></tr></thead>
-      <tbody>
-        <tr><td>Screws</td><td class="n">~36 per sheet &middot; ~320 per lb</td></tr>
-        <tr><td>All-purpose compound</td><td class="n">~1 gal per 100 sq ft</td></tr>
-        <tr><td>Paper joint tape</td><td class="n">~0.4 linear ft per sq ft</td></tr>
+        <tr><td>Sedentary adult</td><td class="n">0.8&ndash;1.0 g/kg</td></tr>
+        <tr><td>Recreational training</td><td class="n">1.2&ndash;1.6 g/kg</td></tr>
+        <tr><td>Resistance training</td><td class="n">1.6&ndash;2.2 g/kg</td></tr>
+        <tr><td>Training in a deficit</td><td class="n">2.0&ndash;2.4 g/kg</td></tr>
       </tbody>
     </table>
   </div>
@@ -534,18 +514,18 @@ footer a{color:#bbb}
     <h2>Frequently Asked Questions</h2>
 
     <details>
-      <summary>Should I deduct doors and windows?</summary>
-      <p>No, and this calculator does not. Drywall is hung straight over openings and cut out afterwards — it is faster, the cut lines land where they should, and it avoids a seam at the corner of an opening, which is exactly where cracks like to start. The offcuts get used as patches elsewhere.</p>
+      <summary>What macro split is best?</summary>
+      <p>For most goals, the split matters far less than total calories and adequate protein. Hit your calorie target and your protein target, and the carb-to-fat ratio underneath becomes largely a question of what keeps you full, fuels your training and fits your life. Adherence beats optimisation every time.</p>
     </details>
 
     <details>
-      <summary>How many screws per drywall sheet?</summary>
-      <p>Around 36 for a 4 &times; 8 sheet on 16" centres — roughly every 12 inches along the studs and every 8 inches around the perimeter for ceilings. At about 320 screws per pound for 1&frac14;" coarse thread, a pound covers nine sheets. Buy more than you need; they are cheap and you will strip some.</p>
+      <summary>Do I need high protein to lose fat?</summary>
+      <p>Higher protein helps meaningfully during a deficit — it preserves lean mass, is more satiating per calorie, and has a slightly higher thermic effect. Around 2 g per kg of bodyweight is a reasonable target for people training in a deficit. Beyond roughly 2.4 g/kg the added benefit is minimal.</p>
     </details>
 
     <details>
-      <summary>Should I use 4x8 or longer sheets?</summary>
-      <p>Longer sheets mean fewer butt joints, and butt joints are the hardest thing in drywall to finish invisibly because there is no tapered edge to hide the tape. If your walls are 12 feet and you have a second pair of hands, 12-foot sheets give a wall with no butt joints at all. Working alone, 4 &times; 8 is far more manageable.</p>
+      <summary>Do carbs at night cause fat gain?</summary>
+      <p>No. Total energy balance over days and weeks determines fat gain, not the clock. Meal timing has modest effects on training performance and sleep quality for some people, but the idea that carbohydrate eaten after a certain hour is stored differently is not supported.</p>
     </details>
   </div>
 
@@ -557,10 +537,12 @@ footer a{color:#bbb}
 
   <div class="card rel">
     <h2>More Free Calculators</h2>
-    <a href="/paint-calculator/">Paint Calculator</a>
-    <p>Gallons needed once the board is finished.</p>
-    <a href="/flooring-calculator/">Flooring Calculator</a>
-    <p>Square footage and waste for the same room.</p>
+    <a href="/tdee-calculator/">TDEE Calculator</a>
+    <p>Work out the calorie target first.</p>
+    <a href="/bmr-calculator/">BMR Calculator</a>
+    <p>Resting calorie burn.</p>
+    <a href="/calorie-calculator/">Calorie Burn Calculator</a>
+    <p>Calories burned by activity.</p>
   </div>
 
 </main>
@@ -582,37 +564,28 @@ footer a{color:#bbb}
 <script>
 
 function compute(V, G){
-  if(G.height <= 0) return {invalid:'Enter a ceiling height above 0'};
-  var wall, ceil = 0;
-  if(G.mode === 1){
-    if(V.wall <= 0) return {invalid:'Enter a wall length above 0'};
-    wall = V.wall * G.height;
-  }else{
-    if(V.length <= 0 || V.width <= 0) return {invalid:'Enter a room length and width above 0'};
-    wall = 2 * (V.length + V.width) * G.height;
-    if(G.mode === 2) ceil = V.length * V.width;
-  }
-  wall = wall * V.qty; ceil = ceil * V.qty;
-  var total = wall + ceil;
-  var withWaste = total * (1 + G.waste/100);
-  var sheets = Math.ceil(withWaste / G.sheet);
-  var screws = sheets * 36;
-  var screwLb = screws / 320;
-  var mud = total / 100;
-  var tape = total * 0.4;
-  var sheetName = (G.sheet === 32) ? '4\u00d78' : (G.sheet === 40 ? '4\u00d710' : '4\u00d712');
+  if(V.cal <= 0) return {invalid:'Enter a daily calorie target above 0'};
+  var kg = (G.umode === 1) ? V.wkg : V.wlb * 0.453592;
+
+  var splits = [[30,40,30],[40,30,30],[35,25,40],[25,50,25]];
+  var s = splits[G.split] || splits[0];
+
+  var p = V.cal * s[0]/100 / 4;
+  var c = V.cal * s[1]/100 / 4;
+  var f = V.cal * s[2]/100 / 9;
+  var fiber = V.cal / 1000 * 14;
 
   return {
     out:{
-      rSheets: fmt(sheets, 0), rArea: fmt(total, 0),
-      rScrews: fmt(screwLb, 1), rMud: fmt(mud, 1),
-      dWall: fmt(wall, 0) + ' sq ft',
-      dCeil: ceil > 0 ? fmt(ceil, 0) + ' sq ft' : 'not included',
-      dTape: fmt(tape, 0) + ' ft'
+      rCal: fmt(V.cal, 0), rProtein: fmt(p, 0), rCarbs: fmt(c, 0), rFat: fmt(f, 0),
+      dPerKg: kg > 0 ? fmt(p / kg, 2) + ' g/kg' : '—',
+      dFiber: fmt(fiber, 0) + ' g',
+      dMeal: fmt(V.cal / 5, 0) + ' cal avg'
     },
     sticky:{
-      val: fmt(sheets, 0) + ' sheets',
-      det: sheetName + ' \u00b7 ' + fmt(total, 0) + ' sq ft of board \u00b7 ' + fmt(screwLb,1) + ' lb screws'
+      val: fmt(p, 0) + 'p / ' + fmt(c, 0) + 'c / ' + fmt(f, 0) + 'f',
+      det: fmt(V.cal, 0) + ' cal \u00b7 ' + s[0] + '/' + s[1] + '/' + s[2] +
+           (kg > 0 ? ' \u00b7 ' + fmt(p/kg, 2) + ' g/kg protein' : '')
     }
   };
 }
@@ -761,12 +734,20 @@ function compute(V, G){
   }
 
   function paintMode(){
-    var m = String(G.mode === undefined ? 0 : G.mode);
-    document.querySelectorAll('[data-mode]').forEach(function(el){
-      el.hidden = (el.dataset.mode.split(' ').indexOf(m) === -1);
-    });
+    if(G.mode !== undefined){
+      var m = String(G.mode);
+      document.querySelectorAll('[data-mode]').forEach(function(el){
+        el.hidden = (el.dataset.mode.split(' ').indexOf(m) === -1);
+      });
+    }
+    if(G.umode !== undefined){
+      var u = String(G.umode);
+      document.querySelectorAll('[data-umode]').forEach(function(el){
+        el.hidden = (el.dataset.umode.split(' ').indexOf(u) === -1);
+      });
+    }
   }
-  if(G.mode !== undefined) paintMode();
+  paintMode();
 
   var qtyEl = document.getElementById('qty');
   if(qtyEl){
@@ -787,7 +768,7 @@ function compute(V, G){
   }
 
   function run(){
-    if(G.mode !== undefined) paintMode();
+    paintMode();
     var V = {};
     inputs.forEach(function(i){
       var n = parseFloat(i.value);
@@ -821,6 +802,15 @@ function compute(V, G){
     Object.keys(r.out || {}).forEach(function(k){
       var el = document.getElementById(k);
       if(el) el.textContent = r.out[k];
+    });
+    Object.keys(r.css || {}).forEach(function(k){
+      var el = document.getElementById(k);
+      if(!el) return;
+      Object.keys(r.css[k]).forEach(function(prop){ el.style[prop] = r.css[k][prop]; });
+    });
+    Object.keys(r.cls || {}).forEach(function(k){
+      var el = document.getElementById(k);
+      if(el) el.className = r.cls[k];
     });
     sVal.textContent = r.sticky.val;
     sDet.textContent = r.sticky.det;

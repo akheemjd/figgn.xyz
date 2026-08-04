@@ -67,6 +67,27 @@ header{background:var(--accent);color:#fff}
   border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
 #themeToggle:hover{filter:brightness(1.1)}
 
+.unitrow{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.unitrow .flabel{margin:0}
+.unitbtns{display:inline-flex;border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.unitbtns button{min-height:36px;padding:0 14px;background:var(--input-bg);color:var(--text);
+  border:0;border-left:1px solid var(--border);font-size:13px;font-family:inherit;cursor:pointer}
+.unitbtns button:first-child{border-left:0}
+.unitbtns button.on{background:var(--accent-btn);color:#fff;font-weight:600}
+.formwrap{display:grid;grid-template-columns:1fr;gap:16px}
+@media (min-width:641px){.formwrap{grid-template-columns:1fr 210px;align-items:start}}
+.diagram{order:-1;display:flex;justify-content:center;align-items:flex-start}
+@media (min-width:641px){.diagram{order:0;position:sticky;top:64px}}
+.diagram svg{max-width:200px;height:auto}
+.diagram text{font-family:"SF Mono","Cascadia Code","Consolas",monospace;font-size:11px;
+  fill:var(--text2)}
+.diagram .ln{stroke:var(--accent);stroke-width:2;fill:none;opacity:.85}
+.diagram .fillshape{fill:var(--accent);opacity:.12}
+.diagram .dim{stroke:var(--text2);stroke-width:1;opacity:.5}
+[data-mode][hidden]{display:none !important}
+.qtyrow{display:grid;grid-template-columns:1fr;gap:12px;margin-top:16px}
+.qtynote{font-size:13px;color:var(--text2);margin-top:8px}
+
 .rowset .row{display:grid;gap:8px;grid-template-columns:1fr 1fr 44px;padding:8px 0;
   border-bottom:1px solid var(--line)}
 .rowset .row:first-child{border-top:1px solid var(--line)}
@@ -249,15 +270,6 @@ article li{margin-bottom:8px;font-size:17px;line-height:1.55}
   "keywords": "gravel driveway, how much gravel, cubic yards to tons, gravel depth"
 }
 </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E1C1FEHY7Z"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-E1C1FEHY7Z');
-</script>
-
 </head>
 <body>
 
@@ -407,7 +419,6 @@ article li{margin-bottom:8px;font-size:17px;line-height:1.55}
   <div class="wrap">
     <span>&copy; <span id="yr">2026</span> figgn</span>
     <a href="/privacy/">Privacy</a>
-    <a href="mailto:contact@figgn.xyz">Contact</a>
     <a href="/blog/">Blog</a>
     <a href="/">All calculators</a>
   </div>

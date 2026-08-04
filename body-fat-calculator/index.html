@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Drywall Calculator — Free Sheet, Screw &amp; Mud Estimator | figgn</title>
-<meta name="description" content="Calculate how many drywall sheets a room needs, plus screws, joint compound and tape. Free drywall calculator for 4x8, 4x10 and 4x12 sheets.">
-<link rel="canonical" href="https://figgn.xyz/drywall-calculator/">
+<title>Body Fat Calculator — Free Navy Method Estimator | figgn</title>
+<meta name="description" content="Free body fat calculator using the US Navy tape method or a BMI-based estimate. Get body fat percentage, category, lean mass and fat mass.">
+<link rel="canonical" href="https://figgn.xyz/body-fat-calculator/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#e65c00">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
@@ -14,12 +14,12 @@
 <meta property="og:site_name" content="figgn">
 <meta property="og:image" content="https://figgn.xyz/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Drywall Calculator — Free Sheet, Screw &amp; Mud Estimator | figgn">
-<meta name="twitter:description" content="Calculate how many drywall sheets a room needs, plus screws, joint compound and tape. Free drywall calculator for 4x8, 4x10 and 4x12 sheets.">
+<meta name="twitter:title" content="Body Fat Calculator — Free Navy Method Estimator | figgn">
+<meta name="twitter:description" content="Free body fat calculator using the US Navy tape method or a BMI-based estimate. Get body fat percentage, category, lean mass and fat mass.">
 <meta name="twitter:image" content="https://figgn.xyz/og-image.png">
-<meta property="og:title" content="Drywall Calculator — Free Sheet, Screw &amp; Mud Estimator | figgn">
-<meta property="og:description" content="Calculate how many drywall sheets a room needs, plus screws, joint compound and tape. Free drywall calculator for 4x8, 4x10 and 4x12 sheets.">
-<meta property="og:url" content="https://figgn.xyz/drywall-calculator/">
+<meta property="og:title" content="Body Fat Calculator — Free Navy Method Estimator | figgn">
+<meta property="og:description" content="Free body fat calculator using the US Navy tape method or a BMI-based estimate. Get body fat percentage, category, lean mass and fat mass.">
+<meta property="og:url" content="https://figgn.xyz/body-fat-calculator/">
 <meta property="og:type" content="website">
 <script>
 (function(){
@@ -66,6 +66,19 @@ header{background:var(--accent);color:#fff}
 #themeToggle{background:var(--accent-btn);color:#fff;border:1px solid rgba(255,255,255,.65);
   border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
 #themeToggle:hover{filter:brightness(1.1)}
+
+.scalebar{position:relative;height:34px;border-radius:4px;margin-top:14px;
+  background:linear-gradient(90deg,#3b82f6 0%,#3b82f6 18%,#16a34a 18%,#16a34a 46%,
+  #e65c00 46%,#e65c00 66%,#c0392b 66%,#c0392b 100%)}
+.scalebar .marker{position:absolute;top:-6px;width:3px;height:46px;background:var(--text);
+  border-radius:2px;transform:translateX(-50%);transition:left .15s ease-out}
+@media (prefers-reduced-motion:reduce){.scalebar .marker{transition:none}}
+.scalelabels{display:flex;justify-content:space-between;font-size:11px;color:var(--text2);
+  margin-top:4px;font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+.res .cat{font-size:15px;font-weight:700;margin-top:4px}
+.disclaimer{font-size:13px;color:var(--text2);border-left:3px solid var(--border);
+  padding-left:10px;margin-top:14px}
+.split{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
 
 .unitrow{display:flex;align-items:center;gap:8px;margin-bottom:14px}
 .unitrow .flabel{margin:0}
@@ -228,12 +241,12 @@ footer a{color:#bbb}
   "@graph": [
     {
       "@type": "WebApplication",
-      "name": "Drywall Calculator",
-      "url": "https://figgn.xyz/drywall-calculator/",
-      "applicationCategory": "UtilitiesApplication",
+      "name": "Body Fat Calculator",
+      "url": "https://figgn.xyz/body-fat-calculator/",
+      "applicationCategory": "HealthApplication",
       "operatingSystem": "Any",
       "browserRequirements": "Requires JavaScript",
-      "description": "Free drywall estimator that turns room dimensions into sheet counts, screws, joint compound and tape for walls and ceilings.",
+      "description": "Free body fat percentage calculator using the US Navy circumference method or a BMI based estimate, returning body fat percentage, lean mass and fat mass.",
       "dateModified": "2026-08-03",
       "inLanguage": "en",
       "isAccessibleForFree": true,
@@ -245,32 +258,32 @@ footer a{color:#bbb}
     },
     {
       "@type": "HowTo",
-      "name": "How to Use the Drywall Calculator",
-      "description": "Estimate drywall sheets and finishing materials for a room.",
+      "name": "How to Use the Body Fat Calculator",
+      "description": "Estimate body fat percentage from tape measurements or from BMI.",
       "step": [
         {
           "@type": "HowToStep",
           "position": 1,
-          "name": "Measure the room",
-          "text": "Enter the length and width in feet, then set the ceiling height."
+          "name": "Choose a method",
+          "text": "The Navy tape method needs a tape measure and is considerably more accurate than the BMI estimate."
         },
         {
           "@type": "HowToStep",
           "position": 2,
-          "name": "Pick a sheet size",
-          "text": "Four by eight is standard and easiest to handle. Longer sheets mean fewer seams to tape."
+          "name": "Take the measurements",
+          "text": "Neck below the larynx, waist at the navel, and for women hips at the widest point."
         },
         {
           "@type": "HowToStep",
           "position": 3,
-          "name": "Choose what you are covering",
-          "text": "Walls only, or walls plus the ceiling."
+          "name": "Enter height, weight and sex",
+          "text": "Height is part of both formulas."
         },
         {
           "@type": "HowToStep",
           "position": 4,
-          "name": "Read the totals",
-          "text": "Sheets round up. Screws, compound and tape are estimated from the board area."
+          "name": "Read the result",
+          "text": "Body fat percentage, category, and the split between lean and fat mass."
         }
       ]
     },
@@ -279,26 +292,26 @@ footer a{color:#bbb}
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Should I deduct doors and windows from a drywall estimate?",
+          "name": "Which body fat measurement method is most accurate?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No, and this calculator does not. Drywall is hung over openings and cut out afterwards, which is faster and avoids placing a seam at the corner of an opening where cracks tend to start. The offcuts are then used as patches elsewhere in the job."
+            "text": "DEXA scanning is the practical gold standard, followed by hydrostatic weighing and air displacement plethysmography. Among home methods the Navy circumference method is the most reliable and typically falls within three to four percentage points, while bioimpedance scales are strongly affected by hydration and can vary by several points from day to day."
           }
         },
         {
           "@type": "Question",
-          "name": "How many screws does a drywall sheet need?",
+          "name": "How accurate is the Navy body fat formula?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "About thirty six for a four by eight sheet on sixteen inch centres, spaced roughly every twelve inches along studs and every eight inches around the perimeter of a ceiling. At around three hundred and twenty screws per pound for one and a quarter inch coarse thread screws, one pound covers about nine sheets."
+            "text": "It is reasonably accurate for a tape measure method and was validated on military populations, though it performs less well for very lean or very heavy individuals. Its main strength is consistency, so when measured the same way each time it tracks change reliably even when the absolute value is slightly off."
           }
         },
         {
           "@type": "Question",
-          "name": "Should I use four by eight sheets or longer ones?",
+          "name": "What is a healthy body fat percentage?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Longer sheets create fewer butt joints, which are the hardest joints to finish because they have no tapered edge to conceal the tape. On twelve foot walls, twelve foot sheets eliminate butt joints entirely, but they need two people to handle. Working alone, four by eight sheets are far more manageable."
+            "text": "Broadly fourteen to twenty four percent for men and twenty one to thirty one percent for women, with trained athletes below those ranges. Lower is not automatically better, because body fat is required for hormone production, temperature regulation and organ protection, and very low levels carry health consequences."
           }
         }
       ]
@@ -315,14 +328,14 @@ footer a{color:#bbb}
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Home & DIY",
-          "item": "https://figgn.xyz/#home"
+          "name": "Fitness & Health",
+          "item": "https://figgn.xyz/#fitness"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Drywall Calculator",
-          "item": "https://figgn.xyz/drywall-calculator/"
+          "name": "Body Fat Calculator",
+          "item": "https://figgn.xyz/body-fat-calculator/"
         }
       ]
     }
@@ -335,7 +348,7 @@ footer a{color:#bbb}
 <div id="stickyBar">
   <div class="sbar">
     <span class="val mono" id="sVal">&mdash;</span>
-    <span class="det" id="sDet">Drywall needed</span>
+    <span class="det" id="sDet">Body fat</span>
     <button type="button" class="copybtn" id="copyBtn">Copy</button>
   </div>
 </div>
@@ -360,79 +373,121 @@ footer a{color:#bbb}
 
 <main class="wrap">
 
-  <p class="crumb"><a href="/">figgn</a> / <a href="/#home">Home &amp; DIY</a> / Drywall Calculator</p>
+  <p class="crumb"><a href="/">figgn</a> / <a href="/#fitness">Fitness &amp; Health</a> / Body Fat Calculator</p>
 
   <div class="card">
-    <h1>Drywall Calculator</h1>
-    <p class="sub">Room size in — sheets, screws, mud and tape out.</p>
+    <h1>Body Fat Calculator</h1>
+    <p class="sub">Navy tape method or a BMI estimate — percentage, lean mass and fat mass.</p>
 
-    <div class="unitrow">
-      <span class="flabel" id="unitLabel">Units</span>
-      <div class="unitbtns" role="group" aria-labelledby="unitLabel">
-        <button type="button" data-unit="imperial" class="on">ft / in</button>
-        <button type="button" data-unit="metric">m / cm</button>
-      </div>
-    </div>
 
     <div class="formwrap">
       <div class="formcol">
         <div class="two">
-      <div data-mode="0 2">
-        <label for="length">Room length</label>
+      <div data-umode="0">
+        <label for="wlb">Weight</label>
         <div class="suffix">
-          <input type="number" id="length" data-var="length" data-u="len" inputmode="decimal" min="0" step="0.5" value="12">
-          <span class="u-len" aria-hidden="true">ft</span>
+          <input type="number" id="wlb" data-var="wlb" inputmode="decimal" min="0" step="1" value="180">
+          <span aria-hidden="true">lb</span>
         </div>
       </div>
-      <div data-mode="0 2">
-        <label for="width">Room width</label>
+      <div data-umode="0">
+        <label for="hft">Height (feet)</label>
         <div class="suffix">
-          <input type="number" id="width" data-var="width" data-u="len" inputmode="decimal" min="0" step="0.5" value="14">
-          <span class="u-len" aria-hidden="true">ft</span>
+          <input type="number" id="hft" data-var="hft" inputmode="decimal" min="0" step="1" value="5">
+          <span aria-hidden="true">ft</span>
+        </div>
+      </div>
+      <div data-umode="0">
+        <label for="hin">Height (inches)</label>
+        <div class="suffix">
+          <input type="number" id="hin" data-var="hin" inputmode="decimal" min="0" step="1" value="10">
+          <span aria-hidden="true">in</span>
+        </div>
+      </div>
+      <div data-umode="1">
+        <label for="wkg">Weight</label>
+        <div class="suffix">
+          <input type="number" id="wkg" data-var="wkg" inputmode="decimal" min="0" step="1" value="82">
+          <span aria-hidden="true">kg</span>
+        </div>
+      </div>
+      <div data-umode="1">
+        <label for="hcm">Height</label>
+        <div class="suffix">
+          <input type="number" id="hcm" data-var="hcm" inputmode="decimal" min="0" step="1" value="178">
+          <span aria-hidden="true">cm</span>
+        </div>
+      </div>
+      <div data-mode="0" data-umode="0">
+        <label for="neck">Neck circumference</label>
+        <div class="suffix">
+          <input type="number" id="neck" data-var="neck" inputmode="decimal" min="0" step="0.25" value="15">
+          <span aria-hidden="true">in</span>
+        </div>
+      </div>
+      <div data-mode="0" data-umode="0">
+        <label for="waist">Waist at navel</label>
+        <div class="suffix">
+          <input type="number" id="waist" data-var="waist" inputmode="decimal" min="0" step="0.25" value="34">
+          <span aria-hidden="true">in</span>
+        </div>
+      </div>
+      <div data-mode="0" data-umode="0">
+        <label for="hip">Hip at widest</label>
+        <div class="suffix">
+          <input type="number" id="hip" data-var="hip" inputmode="decimal" min="0" step="0.25" value="38">
+          <span aria-hidden="true">in</span>
+        </div>
+      </div>
+      <div data-mode="0" data-umode="1">
+        <label for="neckc">Neck circumference</label>
+        <div class="suffix">
+          <input type="number" id="neckc" data-var="neckc" inputmode="decimal" min="0" step="0.5" value="38">
+          <span aria-hidden="true">cm</span>
+        </div>
+      </div>
+      <div data-mode="0" data-umode="1">
+        <label for="waistc">Waist at navel</label>
+        <div class="suffix">
+          <input type="number" id="waistc" data-var="waistc" inputmode="decimal" min="0" step="0.5" value="86">
+          <span aria-hidden="true">cm</span>
+        </div>
+      </div>
+      <div data-mode="0" data-umode="1">
+        <label for="hipc">Hip at widest</label>
+        <div class="suffix">
+          <input type="number" id="hipc" data-var="hipc" inputmode="decimal" min="0" step="0.5" value="97">
+          <span aria-hidden="true">cm</span>
         </div>
       </div>
       <div data-mode="1">
-        <label for="wall">Wall length</label>
+        <label for="age">Age</label>
         <div class="suffix">
-          <input type="number" id="wall" data-var="wall" data-u="len" inputmode="decimal" min="0" step="0.5" value="16">
-          <span class="u-len" aria-hidden="true">ft</span>
+          <input type="number" id="age" data-var="age" inputmode="decimal" min="0" step="1" value="30">
+          <span aria-hidden="true">yrs</span>
         </div>
       </div>
         </div>
 
     <div class="field">
-      <span class="flabel" id="modeLabel">What are you boarding</span>
-      <div class="presets" data-cols="3" data-group="mode" role="group" aria-labelledby="modeLabel">
-        <button type="button" class="preset on" data-val="0">Room walls</button>
-        <button type="button" class="preset" data-val="1">Single wall</button>
-        <button type="button" class="preset" data-val="2">Walls + ceiling</button>
+      <span class="flabel" id="modeLabel">Method</span>
+      <div class="presets" data-cols="2" data-group="mode" role="group" aria-labelledby="modeLabel">
+        <button type="button" class="preset on" data-val="0">Navy tape</button>
+        <button type="button" class="preset" data-val="1">BMI estimate</button>
       </div>
     </div>
     <div class="field">
-      <span class="flabel" id="heightLabel">Ceiling height</span>
-      <div class="presets" data-cols="3" data-group="height" role="group" aria-labelledby="heightLabel">
-        <button type="button" class="preset on" data-val="8">Standard<b>8 ft</b></button>
-        <button type="button" class="preset" data-val="9">Tall<b>9 ft</b></button>
-        <button type="button" class="preset" data-val="10">High<b>10 ft</b></button>
-      </div>
-      <div class="custom">
-        <input type="number" data-custom="height" inputmode="decimal" min="0" step="0.5" placeholder="Custom" aria-label="Custom ceiling height in feet">
-        <span aria-hidden="true">ft</span>
+      <span class="flabel" id="umodeLabel">Units</span>
+      <div class="presets" data-cols="2" data-group="umode" role="group" aria-labelledby="umodeLabel">
+        <button type="button" class="preset on" data-val="0">Imperial<b>lb / ft</b></button>
+        <button type="button" class="preset" data-val="1">Metric<b>kg / cm</b></button>
       </div>
     </div>
     <div class="field">
-      <span class="flabel" id="sheetLabel">Sheet size</span>
-      <div class="presets" data-cols="3" data-group="sheet" role="group" aria-labelledby="sheetLabel">
-        <button type="button" class="preset on" data-val="32">4 &times; 8<b>32 ft&sup2;</b></button>
-        <button type="button" class="preset" data-val="40">4 &times; 10<b>40 ft&sup2;</b></button>
-        <button type="button" class="preset" data-val="48">4 &times; 12<b>48 ft&sup2;</b></button>
-      </div>
-    </div>
-    <div class="field">
-      <span class="flabel" id="wasteLabel">Waste factor</span>
-      <div class="presets" data-cols="2" data-group="waste" role="group" aria-labelledby="wasteLabel">
-        <button type="button" class="preset on" data-val="10">Standard<b>10%</b></button>
-        <button type="button" class="preset" data-val="15">Complex<b>15%</b></button>
+      <span class="flabel" id="sexLabel">Sex at birth</span>
+      <div class="presets" data-cols="2" data-group="sex" role="group" aria-labelledby="sexLabel">
+        <button type="button" class="preset on" data-val="0">Male</button>
+        <button type="button" class="preset" data-val="1">Female</button>
       </div>
     </div>
       </div>
@@ -441,30 +496,31 @@ footer a{color:#bbb}
 
     <div id="results" data-cards="4">
       <div class="res main">
-        <div class="k">Sheets needed</div>
-        <div class="v mono"><span id="rSheets" data-out>—</span><span class="u">sheets</span></div>
+        <div class="k">Body fat</div>
+        <div class="v mono"><span id="rBf" data-out>—</span><span class="u">%</span></div>
       </div>
       <div class="res">
-        <div class="k">Total board area</div>
-        <div class="v mono"><span id="rArea" data-out>—</span><span class="u">sq ft</span></div>
+        <div class="k">Category</div>
+        <div class="v mono"><span id="rCat" data-out>—</span><span class="u"></span></div>
       </div>
       <div class="res">
-        <div class="k">Screws</div>
-        <div class="v mono"><span id="rScrews" data-out>—</span><span class="u">lb</span></div>
+        <div class="k">Lean mass</div>
+        <div class="v mono"><span id="rLean" data-out>—</span><span class="u"></span></div>
       </div>
       <div class="res">
-        <div class="k">Joint compound</div>
-        <div class="v mono"><span id="rMud" data-out>—</span><span class="u">gal</span></div>
+        <div class="k">Fat mass</div>
+        <div class="v mono"><span id="rFat" data-out>—</span><span class="u"></span></div>
       </div>
     </div>
 
     <div class="detail">
-      <div><div class="k">Wall area</div><div class="v mono" id="dWall" data-out>—</div></div>
-      <div><div class="k">Ceiling area</div><div class="v mono" id="dCeil" data-out>—</div></div>
-      <div><div class="k">Joint tape</div><div class="v mono" id="dTape" data-out>—</div></div>
+      <div><div class="k">Method</div><div class="v mono" id="dMethod" data-out>—</div></div>
+      <div><div class="k">Measurements</div><div class="v mono" id="dInputs" data-out>—</div></div>
+      <div><div class="k">Hip measurement</div><div class="v mono" id="dNote" data-out>—</div></div>
     </div>
 
-    <p class="tip">Hang ceilings first, then walls, with sheets running perpendicular to the framing. Fewer seams to tape is the whole game.</p>
+    <p class="tip">Measure first thing in the morning, tape snug but not compressing, and always in the same places. Consistency matters more than absolute accuracy &mdash; the trend is the signal.</p>
+    <p class="disclaimer">These are population-average estimates, not medical advice. Individual metabolism, body composition and health conditions vary widely &mdash; talk to a doctor or dietitian before making significant changes.</p>
   </div>
 
   <aside class="adwrap" data-ad="primary">
@@ -474,54 +530,38 @@ footer a{color:#bbb}
   </aside>
 
   <div class="card">
-    <h2>How to Use the Drywall Calculator</h2>
+    <h2>How to Use the Body Fat Calculator</h2>
     <ol>
-      <li>Enter the room's <strong>length and width</strong>, then set the <strong>ceiling height</strong>.</li>
-      <li>Pick a <strong>sheet size</strong>. 4&times;8 is easiest to handle alone; longer sheets mean fewer seams to tape.</li>
-      <li>Choose <strong>walls only</strong> or <strong>walls plus ceiling</strong>.</li>
-      <li>Read the totals. Sheets round up — screws, compound and tape follow from the board area.</li>
+      <li>Choose a <strong>method</strong> — the Navy tape method is much better than the BMI estimate if you have a tape measure.</li>
+      <li>Measure <strong>neck below the larynx</strong> and <strong>waist at the navel</strong>; women also measure <strong>hips at the widest point</strong>.</li>
+      <li>Enter <strong>height, weight and sex</strong>.</li>
+      <li>Read the percentage, category, and the split between <strong>lean mass and fat mass</strong>.</li>
     </ol>
   </div>
 
   <div class="card">
     <h2>How It's Calculated</h2>
-    <p>Wall area is the room perimeter times the ceiling height. The ceiling, if you are boarding it, is simply length times width.</p>
-    <div class="formula mono">Wall area = 2 &times; (length + width) &times; height<br>Sheets = &#8968; total area &times; (1 + waste) &divide; sheet size &#8969;</div>
-    <p><strong>Worked example:</strong> a 12 &times; 14 ft room with an 8 ft ceiling has 416 sq ft of wall plus 168 sq ft of ceiling — 584 sq ft. With 10% waste that is 642 sq ft, and at 32 sq ft per 4 &times; 8 sheet, <span class="mono">21 sheets</span>.</p>
-    <p><strong>Openings are not deducted.</strong> That is deliberate and it is how drywall is actually hung: you board straight over a window or door opening and cut it out afterwards, because a continuous sheet is faster and leaves fewer seams. The offcuts become your patches.</p>
-    <p>Finishing materials are estimated at roughly 36 screws per sheet (about 320 screws to the pound in 1&frac14;" coarse thread), one gallon of all-purpose compound per 100 sq ft of board for tape plus two coats, and 0.4 linear feet of tape per square foot. Treat those as starting figures — technique moves them more than arithmetic does.</p>
+    <p>The US Navy circumference method uses the relationship between girth measurements and body density. It needs different measurements for men and women because fat distribution differs.</p>
+    <div class="formula mono">Male:&nbsp;&nbsp; 86.010 &times; log&#8321;&#8320;(waist &minus; neck) &minus; 70.041 &times; log&#8321;&#8320;(height) + 36.76<br>Female: 163.205 &times; log&#8321;&#8320;(waist + hip &minus; neck) &minus; 97.684 &times; log&#8321;&#8320;(height) &minus; 78.387<br><span style="opacity:.7">all measurements in inches</span></div>
+    <p><strong>Worked example:</strong> a man 70 inches tall with a 34-inch waist and 15-inch neck: 86.010 &times; log&#8321;&#8320;(19) &minus; 70.041 &times; log&#8321;&#8320;(70) + 36.76 &asymp; <span class="mono">17.5%</span>.</p>
+    <p>Lean mass is total weight minus fat mass, and it is often the more useful number of the two &mdash; during a diet, holding lean mass steady while fat mass falls is exactly what you want to see.</p>
+    <p>The Navy method typically lands within 3 to 4 percentage points of a DEXA scan, which is respectable for a tape measure. The BMI-based estimate is considerably rougher and should be treated as a ballpark only.</p>
   </div>
 
   <div class="card">
-    <h2>Drywall Sheet &amp; Material Reference</h2>
-    <p class="sub">Standard sheet sizes and what each one covers.</p>
+    <h2>Body Fat Categories</h2>
+    <p class="sub">American Council on Exercise ranges. Women carry more essential fat than men, which is physiological rather than a difference in condition.</p>
     <table>
-      <thead><tr><th>Sheet</th><th>Area</th><th>Weight (1/2")</th><th>Notes</th></tr></thead>
+      <thead><tr><th>Category</th><th>Men</th><th>Women</th></tr></thead>
       <tbody>
-        <tr><td>4 &times; 8</td><td class="n">32 sq ft</td><td class="n">~52 lb</td><td>Standard. One person can manage it.</td></tr>
-        <tr><td>4 &times; 10</td><td class="n">40 sq ft</td><td class="n">~65 lb</td><td>Fewer butt joints on longer walls.</td></tr>
-        <tr><td>4 &times; 12</td><td class="n">48 sq ft</td><td class="n">~78 lb</td><td>Best seam count, needs two people.</td></tr>
+        <tr><td>Essential fat</td><td class="n">2&ndash;5%</td><td class="n">10&ndash;13%</td></tr>
+        <tr><td>Athletes</td><td class="n">6&ndash;13%</td><td class="n">14&ndash;20%</td></tr>
+        <tr><td>Fitness</td><td class="n">14&ndash;17%</td><td class="n">21&ndash;24%</td></tr>
+        <tr><td>Acceptable</td><td class="n">18&ndash;24%</td><td class="n">25&ndash;31%</td></tr>
+        <tr><td>Obese</td><td class="n">25%+</td><td class="n">32%+</td></tr>
       </tbody>
     </table>
-    <h3>Thickness by use</h3>
-    <table>
-      <thead><tr><th>Thickness</th><th>Where it goes</th></tr></thead>
-      <tbody>
-        <tr><td>1/4"</td><td>Skimming over existing walls, curved surfaces.</td></tr>
-        <tr><td>3/8"</td><td>Repairs and remodel patching.</td></tr>
-        <tr><td>1/2"</td><td>Standard for walls and ceilings.</td></tr>
-        <tr><td>5/8" Type X</td><td>Fire rating, garages, ceilings on 24" centres.</td></tr>
-      </tbody>
-    </table>
-    <h3>Finishing materials</h3>
-    <table>
-      <thead><tr><th>Material</th><th>Rule of thumb</th></tr></thead>
-      <tbody>
-        <tr><td>Screws</td><td class="n">~36 per sheet &middot; ~320 per lb</td></tr>
-        <tr><td>All-purpose compound</td><td class="n">~1 gal per 100 sq ft</td></tr>
-        <tr><td>Paper joint tape</td><td class="n">~0.4 linear ft per sq ft</td></tr>
-      </tbody>
-    </table>
+    <p class="tip">Essential fat is the minimum required for normal physiological function. Sustained levels at or below it carry real health consequences and are not a target.</p>
   </div>
 
   <aside class="adwrap" data-ad="secondary">
@@ -534,18 +574,18 @@ footer a{color:#bbb}
     <h2>Frequently Asked Questions</h2>
 
     <details>
-      <summary>Should I deduct doors and windows?</summary>
-      <p>No, and this calculator does not. Drywall is hung straight over openings and cut out afterwards — it is faster, the cut lines land where they should, and it avoids a seam at the corner of an opening, which is exactly where cracks like to start. The offcuts get used as patches elsewhere.</p>
+      <summary>Which body fat method is most accurate?</summary>
+      <p>DEXA scanning is the practical gold standard, followed by hydrostatic weighing and air displacement. Of the at-home options, the Navy tape method is the most reliable and typically lands within 3 to 4 percentage points. Bioimpedance scales are heavily affected by hydration and can swing several points day to day.</p>
     </details>
 
     <details>
-      <summary>How many screws per drywall sheet?</summary>
-      <p>Around 36 for a 4 &times; 8 sheet on 16" centres — roughly every 12 inches along the studs and every 8 inches around the perimeter for ceilings. At about 320 screws per pound for 1&frac14;" coarse thread, a pound covers nine sheets. Buy more than you need; they are cheap and you will strip some.</p>
+      <summary>How accurate is the Navy formula?</summary>
+      <p>Reasonably, for a method that costs the price of a tape measure. It was validated on military populations and performs less well at the extremes — very lean and very heavy individuals both tend to be estimated poorly. Its real strength is consistency: measured the same way each time, it tracks change well even if the absolute number is a little off.</p>
     </details>
 
     <details>
-      <summary>Should I use 4x8 or longer sheets?</summary>
-      <p>Longer sheets mean fewer butt joints, and butt joints are the hardest thing in drywall to finish invisibly because there is no tapered edge to hide the tape. If your walls are 12 feet and you have a second pair of hands, 12-foot sheets give a wall with no butt joints at all. Working alone, 4 &times; 8 is far more manageable.</p>
+      <summary>What is a healthy body fat percentage?</summary>
+      <p>Broadly 14 to 24% for men and 21 to 31% for women, with athletes below those ranges. Lower is not automatically better — fat is required for hormone production, temperature regulation and organ protection, and very low levels carry real consequences, particularly for women. Context and individual health matter more than hitting a number.</p>
     </details>
   </div>
 
@@ -557,10 +597,12 @@ footer a{color:#bbb}
 
   <div class="card rel">
     <h2>More Free Calculators</h2>
-    <a href="/paint-calculator/">Paint Calculator</a>
-    <p>Gallons needed once the board is finished.</p>
-    <a href="/flooring-calculator/">Flooring Calculator</a>
-    <p>Square footage and waste for the same room.</p>
+    <a href="/bmi-calculator/">BMI Calculator</a>
+    <p>Body mass index and healthy weight range.</p>
+    <a href="/ideal-weight-calculator/">Ideal Weight Calculator</a>
+    <p>Four classic formulas compared.</p>
+    <a href="/bmr-calculator/">BMR Calculator</a>
+    <p>Resting calorie burn.</p>
   </div>
 
 </main>
@@ -581,39 +623,66 @@ footer a{color:#bbb}
 
 <script>
 
+/* Normalise to kg and cm regardless of which unit set is showing. */
+function body(V, G){
+  if(G.umode === 1) return {kg: V.wkg, cm: V.hcm};
+  var inches = V.hft * 12 + V.hin;
+  return {kg: V.wlb * 0.453592, cm: inches * 2.54};
+}
+function mifflin(kg, cm, age, female){
+  return 10 * kg + 6.25 * cm - 5 * age + (female ? -161 : 5);
+}
+
 function compute(V, G){
-  if(G.height <= 0) return {invalid:'Enter a ceiling height above 0'};
-  var wall, ceil = 0;
+  var b = body(V, G);
+  if(b.kg <= 0 || b.cm <= 0) return {invalid:'Enter a weight and height above 0'};
+  var female = (G.sex === 1);
+  var hIn = b.cm / 2.54;
+  var bf, method, inputs;
+
   if(G.mode === 1){
-    if(V.wall <= 0) return {invalid:'Enter a wall length above 0'};
-    wall = V.wall * G.height;
+    if(V.age <= 0) return {invalid:'Enter an age above 0'};
+    var m = b.cm / 100, bmi = b.kg / (m * m);
+    bf = 1.20 * bmi + 0.23 * V.age - 10.8 * (female ? 0 : 1) - 5.4;
+    method = 'BMI estimate';
+    inputs = 'BMI ' + fmt(bmi, 1) + ', age ' + fmt(V.age, 0);
   }else{
-    if(V.length <= 0 || V.width <= 0) return {invalid:'Enter a room length and width above 0'};
-    wall = 2 * (V.length + V.width) * G.height;
-    if(G.mode === 2) ceil = V.length * V.width;
+    var imp = (G.umode !== 1);
+    var neck = imp ? V.neck : V.neckc / 2.54;
+    var waist = imp ? V.waist : V.waistc / 2.54;
+    var hip = imp ? V.hip : V.hipc / 2.54;
+    if(neck <= 0 || waist <= 0) return {invalid:'Enter neck and waist measurements above 0'};
+    if(female && hip <= 0) return {invalid:'Enter a hip measurement above 0'};
+    if(female){
+      var g1 = waist + hip - neck;
+      if(g1 <= 0) return {invalid:'Check the measurements entered'};
+      bf = 163.205 * Math.log(g1)/Math.LN10 - 97.684 * Math.log(hIn)/Math.LN10 - 78.387;
+    }else{
+      var g2 = waist - neck;
+      if(g2 <= 0) return {invalid:'Waist must be larger than neck'};
+      bf = 86.010 * Math.log(g2)/Math.LN10 - 70.041 * Math.log(hIn)/Math.LN10 + 36.76;
+    }
+    method = 'Navy tape';
+    inputs = fmt(waist,1) + '" waist, ' + fmt(neck,1) + '" neck';
   }
-  wall = wall * V.qty; ceil = ceil * V.qty;
-  var total = wall + ceil;
-  var withWaste = total * (1 + G.waste/100);
-  var sheets = Math.ceil(withWaste / G.sheet);
-  var screws = sheets * 36;
-  var screwLb = screws / 320;
-  var mud = total / 100;
-  var tape = total * 0.4;
-  var sheetName = (G.sheet === 32) ? '4\u00d78' : (G.sheet === 40 ? '4\u00d710' : '4\u00d712');
+
+  bf = Math.max(2, Math.min(70, bf));
+  var cat;
+  if(female) cat = bf < 14 ? 'Essential' : (bf < 21 ? 'Athlete' : (bf < 25 ? 'Fitness' : (bf < 32 ? 'Acceptable' : 'Obese')));
+  else cat = bf < 6 ? 'Essential' : (bf < 14 ? 'Athlete' : (bf < 18 ? 'Fitness' : (bf < 25 ? 'Acceptable' : 'Obese')));
+
+  var imp2 = (G.umode !== 1);
+  var w = function(kg){ return imp2 ? fmt(kg / 0.453592, 1) + ' lb' : fmt(kg, 1) + ' kg'; };
+  var fatKg = b.kg * bf / 100;
 
   return {
     out:{
-      rSheets: fmt(sheets, 0), rArea: fmt(total, 0),
-      rScrews: fmt(screwLb, 1), rMud: fmt(mud, 1),
-      dWall: fmt(wall, 0) + ' sq ft',
-      dCeil: ceil > 0 ? fmt(ceil, 0) + ' sq ft' : 'not included',
-      dTape: fmt(tape, 0) + ' ft'
+      rBf: fmt(bf, 1), rCat: cat,
+      rLean: w(b.kg - fatKg), rFat: w(fatKg),
+      dMethod: method, dInputs: inputs,
+      dNote: female ? 'required for women' : 'not used for men'
     },
-    sticky:{
-      val: fmt(sheets, 0) + ' sheets',
-      det: sheetName + ' \u00b7 ' + fmt(total, 0) + ' sq ft of board \u00b7 ' + fmt(screwLb,1) + ' lb screws'
-    }
+    sticky:{ val: fmt(bf, 1) + '%', det: cat + ' \u00b7 ' + w(b.kg - fatKg) + ' lean, ' + w(fatKg) + ' fat' }
   };
 }
 
@@ -761,12 +830,20 @@ function compute(V, G){
   }
 
   function paintMode(){
-    var m = String(G.mode === undefined ? 0 : G.mode);
-    document.querySelectorAll('[data-mode]').forEach(function(el){
-      el.hidden = (el.dataset.mode.split(' ').indexOf(m) === -1);
-    });
+    if(G.mode !== undefined){
+      var m = String(G.mode);
+      document.querySelectorAll('[data-mode]').forEach(function(el){
+        el.hidden = (el.dataset.mode.split(' ').indexOf(m) === -1);
+      });
+    }
+    if(G.umode !== undefined){
+      var u = String(G.umode);
+      document.querySelectorAll('[data-umode]').forEach(function(el){
+        el.hidden = (el.dataset.umode.split(' ').indexOf(u) === -1);
+      });
+    }
   }
-  if(G.mode !== undefined) paintMode();
+  paintMode();
 
   var qtyEl = document.getElementById('qty');
   if(qtyEl){
@@ -787,7 +864,7 @@ function compute(V, G){
   }
 
   function run(){
-    if(G.mode !== undefined) paintMode();
+    paintMode();
     var V = {};
     inputs.forEach(function(i){
       var n = parseFloat(i.value);
@@ -821,6 +898,15 @@ function compute(V, G){
     Object.keys(r.out || {}).forEach(function(k){
       var el = document.getElementById(k);
       if(el) el.textContent = r.out[k];
+    });
+    Object.keys(r.css || {}).forEach(function(k){
+      var el = document.getElementById(k);
+      if(!el) return;
+      Object.keys(r.css[k]).forEach(function(prop){ el.style[prop] = r.css[k][prop]; });
+    });
+    Object.keys(r.cls || {}).forEach(function(k){
+      var el = document.getElementById(k);
+      if(el) el.className = r.cls[k];
     });
     sVal.textContent = r.sticky.val;
     sDet.textContent = r.sticky.det;

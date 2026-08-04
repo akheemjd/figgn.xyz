@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Free Online Calculators — Instant Answers | figgn</title>
-<meta name="description" content="Free online calculators for GPA, grades, tips, paint, flooring, concrete, rebar, roofing, drywall, fencing, decking, gravel and mulch. Instant results, no sign-up.">
+<meta name="description" content="Free calculators for construction, home improvement, landscaping, fitness, school and everyday math. Concrete, rebar, roofing, drywall, fencing, decking, gravel, mulch, paint, flooring, GPA, grade, tip, percentage, weighted average. No sign-up required.">
 <link rel="canonical" href="https://figgn.xyz/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#e65c00">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
 <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
-<link rel="dns-prefetch" href="https://tpc.googlesyndication.com">
 <meta property="og:site_name" content="figgn">
 <meta property="og:image" content="https://figgn.xyz/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Online Calculators — Instant Answers | figgn">
 <meta name="twitter:image" content="https://figgn.xyz/og-image.png">
 <meta property="og:title" content="Free Online Calculators — Instant Answers | figgn">
 <meta property="og:description" content="Free online calculators for school, home, construction and landscaping. Instant results, no sign-up required.">
@@ -64,6 +64,40 @@ header{background:var(--accent);color:#fff}
 #themeToggle{background:var(--accent-btn);color:#fff;border:1px solid rgba(255,255,255,.65);
   border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
 #themeToggle:hover{filter:brightness(1.1)}
+
+.scalebar{position:relative;height:34px;border-radius:4px;margin-top:14px;
+  background:linear-gradient(90deg,#3b82f6 0%,#3b82f6 18%,#16a34a 18%,#16a34a 46%,
+  #e65c00 46%,#e65c00 66%,#c0392b 66%,#c0392b 100%)}
+.scalebar .marker{position:absolute;top:-6px;width:3px;height:46px;background:var(--text);
+  border-radius:2px;transform:translateX(-50%);transition:left .15s ease-out}
+@media (prefers-reduced-motion:reduce){.scalebar .marker{transition:none}}
+.scalelabels{display:flex;justify-content:space-between;font-size:11px;color:var(--text2);
+  margin-top:4px;font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+.res .cat{font-size:15px;font-weight:700;margin-top:4px}
+.disclaimer{font-size:13px;color:var(--text2);border-left:3px solid var(--border);
+  padding-left:10px;margin-top:14px}
+.split{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+
+.unitrow{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.unitrow .flabel{margin:0}
+.unitbtns{display:inline-flex;border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.unitbtns button{min-height:36px;padding:0 14px;background:var(--input-bg);color:var(--text);
+  border:0;border-left:1px solid var(--border);font-size:13px;font-family:inherit;cursor:pointer}
+.unitbtns button:first-child{border-left:0}
+.unitbtns button.on{background:var(--accent-btn);color:#fff;font-weight:600}
+.formwrap{display:grid;grid-template-columns:1fr;gap:16px}
+@media (min-width:641px){.formwrap{grid-template-columns:1fr 210px;align-items:start}}
+.diagram{order:-1;display:flex;justify-content:center;align-items:flex-start}
+@media (min-width:641px){.diagram{order:0;position:sticky;top:64px}}
+.diagram svg{max-width:200px;height:auto}
+.diagram text{font-family:"SF Mono","Cascadia Code","Consolas",monospace;font-size:11px;
+  fill:var(--text2)}
+.diagram .ln{stroke:var(--accent);stroke-width:2;fill:none;opacity:.85}
+.diagram .fillshape{fill:var(--accent);opacity:.12}
+.diagram .dim{stroke:var(--text2);stroke-width:1;opacity:.5}
+[data-mode][hidden]{display:none !important}
+.qtyrow{display:grid;grid-template-columns:1fr;gap:12px;margin-top:16px}
+.qtynote{font-size:13px;color:var(--text2);margin-top:8px}
 
 .rowset .row{display:grid;gap:8px;grid-template-columns:1fr 1fr 44px;padding:8px 0;
   border-bottom:1px solid var(--line)}
@@ -233,90 +267,144 @@ h1{font-size:26px;margin:0 0 6px;letter-spacing:-.4px}
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "GPA Calculator",
-          "url": "https://figgn.xyz/gpa-calculator/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Grade Calculator",
-          "url": "https://figgn.xyz/grade-calculator/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Weighted Average Calculator",
-          "url": "https://figgn.xyz/weighted-average-calculator/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "name": "Paint Calculator",
-          "url": "https://figgn.xyz/paint-calculator/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 5,
-          "name": "Flooring Calculator",
-          "url": "https://figgn.xyz/flooring-calculator/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 6,
-          "name": "Drywall Calculator",
-          "url": "https://figgn.xyz/drywall-calculator/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 7,
           "name": "Concrete Calculator",
           "url": "https://figgn.xyz/concrete-calculator/"
         },
         {
           "@type": "ListItem",
-          "position": 8,
+          "position": 2,
           "name": "Rebar Calculator",
           "url": "https://figgn.xyz/rebar-calculator/"
         },
         {
           "@type": "ListItem",
-          "position": 9,
+          "position": 3,
           "name": "Roofing Calculator",
           "url": "https://figgn.xyz/roofing-calculator/"
         },
         {
           "@type": "ListItem",
-          "position": 10,
+          "position": 4,
+          "name": "Drywall Calculator",
+          "url": "https://figgn.xyz/drywall-calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
           "name": "Fence Calculator",
           "url": "https://figgn.xyz/fence-calculator/"
         },
         {
           "@type": "ListItem",
-          "position": 11,
+          "position": 6,
           "name": "Deck Calculator",
           "url": "https://figgn.xyz/deck-calculator/"
         },
         {
           "@type": "ListItem",
-          "position": 12,
+          "position": 7,
           "name": "Gravel Calculator",
           "url": "https://figgn.xyz/gravel-calculator/"
         },
         {
           "@type": "ListItem",
-          "position": 13,
+          "position": 8,
           "name": "Mulch Calculator",
           "url": "https://figgn.xyz/mulch-calculator/"
         },
         {
           "@type": "ListItem",
+          "position": 9,
+          "name": "Paint Calculator",
+          "url": "https://figgn.xyz/paint-calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "name": "Flooring Calculator",
+          "url": "https://figgn.xyz/flooring-calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "name": "GPA Calculator",
+          "url": "https://figgn.xyz/gpa-calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "name": "Grade Calculator",
+          "url": "https://figgn.xyz/grade-calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "name": "Weighted Average Calculator",
+          "url": "https://figgn.xyz/weighted-average-calculator/"
+        },
+        {
+          "@type": "ListItem",
           "position": 14,
+          "name": "BMI Calculator",
+          "url": "https://figgn.xyz/bmi-calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 15,
+          "name": "BMR Calculator",
+          "url": "https://figgn.xyz/bmr-calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 16,
+          "name": "TDEE Calculator",
+          "url": "https://figgn.xyz/tdee-calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 17,
+          "name": "Body Fat Calculator",
+          "url": "https://figgn.xyz/body-fat-calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 18,
+          "name": "Ideal Weight Calculator",
+          "url": "https://figgn.xyz/ideal-weight-calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 19,
+          "name": "Macro Calculator",
+          "url": "https://figgn.xyz/macro-calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 20,
+          "name": "One-Rep Max Calculator",
+          "url": "https://figgn.xyz/one-rep-max-calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 21,
+          "name": "Pace Calculator",
+          "url": "https://figgn.xyz/pace-calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 22,
+          "name": "Calorie Burn Calculator",
+          "url": "https://figgn.xyz/calorie-calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 23,
           "name": "Tip Calculator",
           "url": "https://figgn.xyz/tip-calculator/"
         },
         {
           "@type": "ListItem",
-          "position": 15,
+          "position": 24,
           "name": "Percentage Calculator",
           "url": "https://figgn.xyz/percentage-calculator/"
         }
@@ -325,15 +413,6 @@ h1{font-size:26px;margin:0 0 6px;letter-spacing:-.4px}
   ]
 }
 </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E1C1FEHY7Z"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-E1C1FEHY7Z');
-</script>
-
 </head>
 <body>
 
@@ -355,56 +434,24 @@ h1{font-size:26px;margin:0 0 6px;letter-spacing:-.4px}
     <p class="count" id="count"></p>
   </div>
 
-  <section class="card" id="school">
-    <h2>School &amp; Grades</h2>
-    <div class="tools">
-      <a class="tool" href="/gpa-calculator/">
-        <span class="n">GPA Calculator</span>
-        <span class="d">Weighted and unweighted from letter grades</span>
-      </a>
-      <a class="tool" href="/grade-calculator/">
-        <span class="n">Grade Calculator</span>
-        <span class="d">Percentage, letter grade, and final exam score needed</span>
-      </a>
-      <a class="tool" href="/weighted-average-calculator/">
-        <span class="n">Weighted Average Calculator</span>
-        <span class="d">Weighted mean from any values and weights</span>
-      </a>
-    </div>
-  </section>
-
-  <section class="card" id="home">
-    <h2>Home &amp; DIY</h2>
-    <div class="tools">
-      <a class="tool" href="/paint-calculator/">
-        <span class="n">Paint Calculator</span>
-        <span class="d">Gallons needed, doors/windows/coats</span>
-      </a>
-      <a class="tool" href="/flooring-calculator/">
-        <span class="n">Flooring Calculator</span>
-        <span class="d">Sq ft with waste factor</span>
-      </a>
-      <a class="tool" href="/drywall-calculator/">
-        <span class="n">Drywall Calculator</span>
-        <span class="d">Sheets, screws, compound and tape</span>
-      </a>
-    </div>
-  </section>
-
   <section class="card" id="construction">
     <h2>Construction</h2>
     <div class="tools">
       <a class="tool" href="/concrete-calculator/">
         <span class="n">Concrete Calculator</span>
-        <span class="d">Cubic yards and bags for slabs, footings and post holes</span>
+        <span class="d">Slabs, footings, circular pads and curb</span>
       </a>
       <a class="tool" href="/rebar-calculator/">
         <span class="n">Rebar Calculator</span>
-        <span class="d">Bar counts, linear feet and tie intersections</span>
+        <span class="d">Bar counts, spacing, laps and tie intersections</span>
       </a>
       <a class="tool" href="/roofing-calculator/">
         <span class="n">Roofing Calculator</span>
-        <span class="d">Squares, shingle bundles and underlayment</span>
+        <span class="d">Squares, bundles and underlayment by roof type</span>
+      </a>
+      <a class="tool" href="/drywall-calculator/">
+        <span class="n">Drywall Calculator</span>
+        <span class="d">Sheets, screws, compound and tape</span>
       </a>
       <a class="tool" href="/fence-calculator/">
         <span class="n">Fence Calculator</span>
@@ -412,7 +459,7 @@ h1{font-size:26px;margin:0 0 6px;letter-spacing:-.4px}
       </a>
       <a class="tool" href="/deck-calculator/">
         <span class="n">Deck Calculator</span>
-        <span class="d">Decking boards, joists and fasteners</span>
+        <span class="d">Boards, joists and fasteners</span>
       </a>
     </div>
   </section>
@@ -422,11 +469,85 @@ h1{font-size:26px;margin:0 0 6px;letter-spacing:-.4px}
     <div class="tools">
       <a class="tool" href="/gravel-calculator/">
         <span class="n">Gravel Calculator</span>
-        <span class="d">Cubic yards and tons</span>
+        <span class="d">Cubic yards and tons for any shape</span>
       </a>
       <a class="tool" href="/mulch-calculator/">
         <span class="n">Mulch Calculator</span>
-        <span class="d">Bags and cubic yards</span>
+        <span class="d">Bags and cubic yards for any bed</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="card" id="home">
+    <h2>Home &amp; DIY</h2>
+    <div class="tools">
+      <a class="tool" href="/paint-calculator/">
+        <span class="n">Paint Calculator</span>
+        <span class="d">Walls, ceiling and trim in gallons</span>
+      </a>
+      <a class="tool" href="/flooring-calculator/">
+        <span class="n">Flooring Calculator</span>
+        <span class="d">Square footage, waste and boxes</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="card" id="school">
+    <h2>School &amp; Grades</h2>
+    <div class="tools">
+      <a class="tool" href="/gpa-calculator/">
+        <span class="n">GPA Calculator</span>
+        <span class="d">Weighted, unweighted and cumulative</span>
+      </a>
+      <a class="tool" href="/grade-calculator/">
+        <span class="n">Grade Calculator</span>
+        <span class="d">Percentage, letter grade and final exam score</span>
+      </a>
+      <a class="tool" href="/weighted-average-calculator/">
+        <span class="n">Weighted Average Calculator</span>
+        <span class="d">Weighted mean from any values and weights</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="card" id="fitness">
+    <h2>Fitness &amp; Health</h2>
+    <div class="tools">
+      <a class="tool" href="/bmi-calculator/">
+        <span class="n">BMI Calculator</span>
+        <span class="d">Body mass index, category and healthy range</span>
+      </a>
+      <a class="tool" href="/bmr-calculator/">
+        <span class="n">BMR Calculator</span>
+        <span class="d">Calories burned at complete rest</span>
+      </a>
+      <a class="tool" href="/tdee-calculator/">
+        <span class="n">TDEE Calculator</span>
+        <span class="d">Total daily calorie needs by activity level</span>
+      </a>
+      <a class="tool" href="/body-fat-calculator/">
+        <span class="n">Body Fat Calculator</span>
+        <span class="d">Navy tape method, lean and fat mass</span>
+      </a>
+      <a class="tool" href="/ideal-weight-calculator/">
+        <span class="n">Ideal Weight Calculator</span>
+        <span class="d">Four classic formulas compared</span>
+      </a>
+      <a class="tool" href="/macro-calculator/">
+        <span class="n">Macro Calculator</span>
+        <span class="d">Protein, carbs and fat from a calorie target</span>
+      </a>
+      <a class="tool" href="/one-rep-max-calculator/">
+        <span class="n">One-Rep Max Calculator</span>
+        <span class="d">1RM estimate and training percentages</span>
+      </a>
+      <a class="tool" href="/pace-calculator/">
+        <span class="n">Pace Calculator</span>
+        <span class="d">Running pace, time and distance</span>
+      </a>
+      <a class="tool" href="/calorie-calculator/">
+        <span class="n">Calorie Burn Calculator</span>
+        <span class="d">Calories burned by activity and duration</span>
       </a>
     </div>
   </section>
@@ -436,7 +557,7 @@ h1{font-size:26px;margin:0 0 6px;letter-spacing:-.4px}
     <div class="tools">
       <a class="tool" href="/tip-calculator/">
         <span class="n">Tip Calculator</span>
-        <span class="d">Bill split and tip</span>
+        <span class="d">Bill split, tip and per-person rounding</span>
       </a>
       <a class="tool" href="/percentage-calculator/">
         <span class="n">Percentage Calculator</span>
@@ -447,10 +568,12 @@ h1{font-size:26px;margin:0 0 6px;letter-spacing:-.4px}
 
   <section class="card">
     <h2>Guides</h2>
+    <a class="readmore" href="/blog/how-much-concrete-for-slab/">How Much Concrete Do I Need for a Slab?</a>
+    <p>Depths, cubic yards, bag counts, and when to stop buying bags and order a truck.</p>
     <a class="readmore" href="/blog/how-much-gravel-for-driveway/">How Much Gravel Do I Need for a Driveway?</a>
     <p>Depth, layers, cubic yards to tons, and what a real driveway order looks like.</p>
-    <a class="readmore" href="/blog/estimate-paint-for-room/">How to Estimate Paint for Any Room</a>
-    <p>Measuring walls, subtracting openings, and the arithmetic behind the gallons.</p>
+    <a class="readmore" href="/blog/">All twelve guides &rarr;</a>
+    <p>Costs, measuring and materials for every calculator on the site.</p>
   </section>
 
   <aside class="adwrap" data-ad="secondary">
@@ -465,7 +588,6 @@ h1{font-size:26px;margin:0 0 6px;letter-spacing:-.4px}
   <div class="wrap">
     <span>&copy; <span id="yr">2026</span> figgn</span>
     <a href="/privacy/">Privacy</a>
-    <a href="mailto:contact@figgn.xyz">Contact</a>
     <a href="/blog/">Blog</a>
     <a href="/">All calculators</a>
   </div>
