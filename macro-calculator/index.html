@@ -193,120 +193,14 @@ details p{padding-top:8px;font-size:14px;color:var(--text2);line-height:1.6}
 
 <div class="card">
 <h2>Related Calculators</h2>
-<div class="related">
-  <a href="/body-fat-calculator/">Body Fat</a>
-  <a href="/ideal-weight-calculator/">Ideal Weight</a>
-  <a href="/calorie-calculator/">Calorie Burned</a>
-  <a href="/one-rep-max-calculator/">One Rep Max</a>
+<div class="cat">
+<a href="/body-fat-calculator/"><span class="t">Body Fat</span></a>
+<a href="/ideal-weight-calculator/"><span class="t">Ideal Weight</span></a>
+<a href="/calorie-calculator/"><span class="t">Calorie Burned</span></a>
+<a href="/one-rep-max-calculator/"><span class="t">One Rep Max</span></a>
+<a href="/privacy/"><span class="t">Privacy</span></a>
+<a href="/blog/"><span class="t">Blog</span></a>
+<a href="/"><span class="t">All calculators</span></a>
 </div>
-</div>
-</main>
-<footer style="text-align:center;padding:24px 16px;color:var(--text2);font-size:13px;border-top:1px solid var(--line)">
-  &copy; 2026 figgn <a href="/privacy/" style="color:var(--accent);text-decoration:none">Privacy</a> <a href="/blog/" style="color:var(--accent);text-decoration:none;margin-left:12px">Blog</a> <a href="/" style="color:var(--accent);text-decoration:none;margin-left:12px">All calculators</a>
-</footer>
 
-<script>
-(function(){
-  var tb=document.getElementById('themeBtn');
-  var theme=document.documentElement.getAttribute('data-theme');
-  tb.textContent=theme==='dark'?'Light':'Dark';
-  tb.onclick=function(){
-    theme=theme==='dark'?'light':'dark';
-    document.documentElement.setAttribute('data-theme',theme);
-    localStorage.setItem('theme',theme);
-    tb.textContent=theme==='dark'?'Light':'Dark';
-  };
 
-  var unit='imperial';
-  var activity=1.55;
-  var goal='maintain';
-
-  document.querySelectorAll('button[data-unit]').forEach(function(b){
-    b.onclick=function(){
-      unit=b.dataset.unit;
-      document.querySelectorAll('button[data-unit]').forEach(function(x){x.classList.toggle('on',x.dataset.unit===unit);});
-      document.getElementById('wtLabel').textContent=unit==='imperial'?'Weight (lbs)':'Weight (kg)';
-      document.getElementById('htLabel').textContent=unit==='imperial'?'Height (in)':'Height (cm)';
-      calc();
-    };
-  });
-
-  document.querySelectorAll('button[data-act]').forEach(function(b){
-    b.onclick=function(){
-      activity=parseFloat(b.dataset.act);
-      document.querySelectorAll('button[data-act]').forEach(function(x){x.classList.toggle('on',parseFloat(x.dataset.act)===activity);});
-      calc();
-    };
-  });
-
-  document.querySelectorAll('button[data-goal]').forEach(function(b){
-    b.onclick=function(){
-      goal=b.dataset.goal;
-      document.querySelectorAll('button[data-goal]').forEach(function(x){x.classList.toggle('on',x.dataset.goal===goal);});
-      calc();
-    };
-  });
-
-  ['weight','height','age'].forEach(function(id){
-    var el=document.getElementById(id);if(el)el.oninput=calc;
-  });
-  document.getElementById('sex').onchange=calc;
-
-  function calc(){
-    var w=parseFloat(document.getElementById('weight').value)||0;
-    var h=parseFloat(document.getElementById('height').value)||0;
-    var a=parseFloat(document.getElementById('age').value)||0;
-    var s=document.getElementById('sex').value;
-
-    if(w<=0||h<=0||a<=0){
-      document.getElementById('rCals').innerHTML='—<span style="font-size:18px;font-weight:400"> cal</span>';
-      document.getElementById('mCals').textContent='—';
-      document.getElementById('mProt').innerHTML='—<span style="font-size:14px">g</span>';
-      document.getElementById('mCarb').innerHTML='—<span style="font-size:14px">g</span>';
-      document.getElementById('mFat').innerHTML='—<span style="font-size:14px">g</span>';
-      document.getElementById('mProtDetail').textContent='30% of calories';
-      document.getElementById('mCarbDetail').textContent='40% of calories';
-      document.getElementById('mFatDetail').textContent='30% of calories';
-      document.getElementById('dBmr').textContent='—';
-      document.getElementById('dTdee').textContent='—';
-      document.getElementById('dGoalAdj').textContent='—';
-      return;
-    }
-
-    var wkg=unit==='imperial'?w*0.453592:w;
-    var hcm=unit==='imperial'?h*2.54:h;
-
-    var bmr;
-    if(s==='male')bmr=10*wkg+6.25*hcm-5*a+5;
-    else bmr=10*wkg+6.25*hcm-5*a-161;
-
-    var tdee=bmr*activity;
-    var goalCals=tdee;
-    var adjLabel='No change';
-    if(goal==='lose'){goalCals=tdee-500;if(goalCals<1200)goalCals=1200;adjLabel='−500 cal';}
-    if(goal==='gain'){goalCals=tdee+500;adjLabel='+500 cal';}
-
-    goalCals=Math.round(goalCals);
-    var protG=Math.round(goalCals*0.30/4);
-    var carbG=Math.round(goalCals*0.40/4);
-    var fatG=Math.round(goalCals*0.30/9);
-    var protPerKg=(protG/wkg).toFixed(1);
-
-    document.getElementById('rCals').innerHTML=goalCals.toLocaleString()+'<span style="font-size:18px;font-weight:400"> cal</span>';
-    document.getElementById('mCals').textContent=goalCals.toLocaleString();
-    document.getElementById('mProt').innerHTML=protG+'<span style="font-size:14px">g</span>';
-    document.getElementById('mCarb').innerHTML=carbG+'<span style="font-size:14px">g</span>';
-    document.getElementById('mFat').innerHTML=fatG+'<span style="font-size:14px">g</span>';
-    document.getElementById('mProtDetail').textContent=protPerKg+' g/kg';
-    document.getElementById('mCarbDetail').textContent='40% · '+Math.round(carbG*4)+' cal';
-    document.getElementById('mFatDetail').textContent='30% · '+Math.round(fatG*9)+' cal';
-    document.getElementById('dBmr').textContent=Math.round(bmr).toLocaleString()+' cal';
-    document.getElementById('dTdee').textContent=Math.round(tdee).toLocaleString()+' cal';
-    document.getElementById('dGoalAdj').textContent=adjLabel;
-  }
-
-  calc();
-})();
-</script>
-</body>
-</html>

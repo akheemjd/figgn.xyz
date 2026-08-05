@@ -151,93 +151,13 @@ details p{padding-top:8px;font-size:14px;color:var(--text2);line-height:1.6}
 
 <div class="card">
 <h2>Related Calculators</h2>
-<div class="related">
-  <a href="/macro-calculator/">Macro Calculator</a>
-  <a href="/body-fat-calculator/">Body Fat</a>
-  <a href="/pace-calculator/">Pace Calculator</a>
+<div class="cat">
+<a href="/macro-calculator/"><span class="t">Macro Calculator</span></a>
+<a href="/body-fat-calculator/"><span class="t">Body Fat</span></a>
+<a href="/pace-calculator/"><span class="t">Pace Calculator</span></a>
+<a href="/privacy/"><span class="t">Privacy</span></a>
+<a href="/blog/"><span class="t">Blog</span></a>
+<a href="/"><span class="t">All calculators</span></a>
 </div>
-</div>
-</main>
-<footer style="text-align:center;padding:24px 16px;color:var(--text2);font-size:13px;border-top:1px solid var(--line)">
-  &copy; 2026 figgn <a href="/privacy/" style="color:var(--accent);text-decoration:none">Privacy</a> <a href="/blog/" style="color:var(--accent);text-decoration:none;margin-left:12px">Blog</a> <a href="/" style="color:var(--accent);text-decoration:none;margin-left:12px">All calculators</a>
-</footer>
 
-<script>
-(function(){
-  var tb=document.getElementById('themeBtn');
-  var theme=document.documentElement.getAttribute('data-theme');
-  tb.textContent=theme==='dark'?'Light':'Dark';
-  tb.onclick=function(){
-    theme=theme==='dark'?'light':'dark';
-    document.documentElement.setAttribute('data-theme',theme);
-    localStorage.setItem('theme',theme);
-    tb.textContent=theme==='dark'?'Light':'Dark';
-  };
 
-  var formula='epley';
-
-  document.querySelectorAll('button[data-formula]').forEach(function(b){
-    b.onclick=function(){
-      formula=b.dataset.formula;
-      document.querySelectorAll('button[data-formula]').forEach(function(x){x.classList.toggle('on',x.dataset.formula===formula);});
-      calc();
-    };
-  });
-
-  ['weight','reps'].forEach(function(id){
-    var el=document.getElementById(id);if(el)el.oninput=calc;
-  });
-
-  function calc(){
-    var w=parseFloat(document.getElementById('weight').value)||0;
-    var r=parseInt(document.getElementById('reps').value)||0;
-    var fname='Epley';
-
-    if(w<=0||r<=0||r>=37){
-      document.getElementById('r1rm').innerHTML=r>=37?'<span style="font-size:16px">Reps must be &lt;37</span>':'—<span style="font-size:18px;font-weight:400"> lbs</span>';
-      document.getElementById('dWeight').textContent='—';
-      document.getElementById('dReps').textContent='—';
-      document.getElementById('dFormula').textContent='—';
-      document.getElementById('pctTable').innerHTML='<tr><th>% of 1RM</th><th>Weight</th><th>Reps (Est.)</th></tr>';
-      return;
-    }
-
-    var rm;
-    if(formula==='epley'){
-      rm=w*(1+r/30);
-      fname='Epley';
-    }else{
-      rm=w*36/(37-r);
-      fname='Brzycki';
-    }
-
-    document.getElementById('r1rm').innerHTML=rm.toFixed(1)+'<span style="font-size:18px;font-weight:400"> lbs</span>';
-    document.getElementById('dWeight').textContent=w+' lbs';
-    document.getElementById('dReps').textContent=r;
-    document.getElementById('dFormula').textContent=fname;
-
-    var pcts=[95,90,85,80,75,70,65,60,55,50];
-    var rows='<tr><th>% of 1RM</th><th>Weight</th><th>Reps (Est.)</th></tr>';
-    pcts.forEach(function(p){
-      var pctWeight=(rm*p/100).toFixed(0);
-      var estReps;
-      if(p>=95)estReps='1–2';
-      else if(p>=90)estReps='2–3';
-      else if(p>=85)estReps='3–5';
-      else if(p>=80)estReps='5–7';
-      else if(p>=75)estReps='6–8';
-      else if(p>=70)estReps='8–10';
-      else if(p>=65)estReps='10–12';
-      else if(p>=60)estReps='12–15';
-      else if(p>=55)estReps='15–18';
-      else estReps='18–20';
-      rows+='<tr><td>'+p+'%</td><td>'+pctWeight+' lbs</td><td>'+estReps+'</td></tr>';
-    });
-    document.getElementById('pctTable').innerHTML=rows;
-  }
-
-  calc();
-})();
-</script>
-</body>
-</html>
