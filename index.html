@@ -209,7 +209,7 @@
   var c = document.getElementById('count');
   if(c) c.textContent = document.querySelectorAll('.tool').length + ' calculators';
 
-  var toggle = document.getElementById('themeToggle');
+  // themeBtn removed — using themeBtn from script above
   function syncToggle(){
     var t = document.documentElement.getAttribute('data-theme');
     toggle.textContent = (t === 'dark' ? 'Light' : 'Dark');
@@ -227,121 +227,6 @@
 
 <script>
 
-/* Ad controller: lazy fill, engagement-gated sticky, session dismissal. */
-(function(){
-  function fill(el){
-    if(el.dataset.filled) return;
-    el.dataset.filled = '1';
-    el.textContent = 'Advertisement \u00b7 ' + (el.dataset.size || '');
-    /* AdSense: (adsbygoogle = window.adsbygoogle || []).push({}); */
-  }
-  var slots = document.querySelectorAll('.adslot');
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){ fill(en.target); io.unobserve(en.target); }
-      });
-    }, {rootMargin: '600px 0px'});
-    slots.forEach(function(s){ io.observe(s); });
-  }else{ slots.forEach(fill); }
 
-  var sticky = document.getElementById('stickyAd');
-  if(!sticky) return;
-  var dismissed = false;
-  try{ dismissed = sessionStorage.getItem('adDismissed') === '1'; }catch(e){}
-  var armed = false;
-  function reveal(){
-    if(dismissed || sticky.classList.contains('show')) return;
-    sticky.classList.add('show');
-    document.body.classList.add('stickyad');
-  }
-  function arm(){ if(armed || dismissed) return; armed = true; setTimeout(reveal, 400); }
-  document.addEventListener('input', arm, {once:true, passive:true});
-  window.addEventListener('scroll', function(){
-    if(window.scrollY > window.innerHeight * 0.5) arm();
-  }, {passive:true});
-  document.getElementById('closeAd').addEventListener('click', function(){
-    sticky.classList.remove('show');
-    document.body.classList.remove('stickyad');
-    dismissed = true;
-    try{ sessionStorage.setItem('adDismissed','1'); }catch(e){}
-  });
-})();
-
-/* AdSense loader: script is fetched only after the visitor engages, so it never
-   competes with first paint. Replace ca-pub-XXXXXXXXXXXXXXXX with your ID. */
-(function(){
-  var PUB = 'ca-pub-XXXXXXXXXXXXXXXX';
-  var loaded = false;
-  function load(){
-    if(loaded || PUB.indexOf('XXXX') > -1) return;
-    loaded = true;
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + PUB;
-    s.crossOrigin = 'anonymous';
-    document.head.appendChild(s);
-  }
-  ['scroll','pointerdown','keydown'].forEach(function(e){
-    window.addEventListener(e, load, {once:true, passive:true});
-  });
-  setTimeout(load, 3500);
-})();
-
-/* Shareable state: numeric inputs with an id round-trip through the query
-   string, so a result can be linked, bookmarked and reopened. */
-(function(){
-  var fields = [].slice.call(document.querySelectorAll('input[type=number][id]'));
-  if(!fields.length) return;
-
-  var params = new URLSearchParams(location.search);
-  var applied = false;
-  fields.forEach(function(f){
-    var v = params.get(f.id);
-    if(v !== null && v !== '' && isFinite(parseFloat(v))){
-      f.value = parseFloat(v);
-      applied = true;
-    }
-  });
-  if(applied){
-    fields[0].dispatchEvent(new Event('input', {bubbles:true}));
-    document.dispatchEvent(new Event('change', {bubbles:true}));
-  }
-
-  var t;
-  function sync(){
-    clearTimeout(t);
-    t = setTimeout(function(){
-      var q = new URLSearchParams();
-      fields.forEach(function(f){ if(f.value !== '') q.set(f.id, f.value); });
-      var qs = q.toString();
-      history.replaceState(null, '', qs ? location.pathname + '?' + qs : location.pathname);
-    }, 500);
-  }
-  fields.forEach(function(f){ f.addEventListener('input', sync); });
-})();
-
-/* Shared fixes: announce on commit, block scroll-wheel edits, current year. */
-(function(){
-  document.addEventListener('wheel', function(e){
-    var a = document.activeElement;
-    if(a && a.type === 'number' && a === e.target) a.blur();
-  }, {passive:true});
-  var yr = document.getElementById('yr');
-  if(yr) yr.textContent = new Date().getFullYear();
-  var v = document.getElementById('sVal'), d = document.getElementById('sDet');
-  if(!v) return;
-  var live = document.createElement('p');
-  live.className = 'visually-hidden';
-  live.setAttribute('aria-live','polite');
-  document.body.appendChild(live);
-  function announce(){ live.textContent = v.textContent + '. ' + d.textContent; }
-  document.addEventListener('change', announce, true);
-  document.addEventListener('click', function(e){
-    if(e.target.closest && e.target.closest('.preset')) setTimeout(announce, 0);
-  }, true);
-})();
-
-</script>
 </body>
 </html>
