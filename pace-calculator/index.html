@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Pace Calculator — Running Pace, Time &amp; Distance | figgn</title>
-<meta name="description" content="Calculate your running pace, finish time, or distance. Supports miles and kilometers.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pace Calculator — Free Running Pace, Time & Distance Calculator | figgn</title>
+<meta name="description" content="Calculate running pace, finish time, or distance. Three modes: find pace from time & distance, find time from pace & distance, or find distance from time & pace. Free online running calculator.">
 <link rel="canonical" href="https://figgn.xyz/pace-calculator/">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#e65c00">
-<meta property="og:title" content="Pace Calculator — Running Pace, Time &amp; Distance | figgn">
-<meta property="og:description" content="Calculate your running pace, finish time, or distance.">
+<meta property="og:title" content="Pace Calculator — Free Running Pace, Time & Distance Calculator | figgn">
+<meta property="og:description" content="Calculate running pace, finish time, or distance. Three modes with metric/imperial toggle. Free online running calculator.">
 <meta property="og:url" content="https://figgn.xyz/pace-calculator/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
 <style>
 :root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
 [data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#0a3020;--res-text:#4ade80;--border:#3a3a48;--line:#2a2a34;--ad-bg:#22222b;--ad-text:#777}
 *,*:before,*:after{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;font-size:16px;line-height:1.5}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
 .wrap{max-width:760px;margin:0 auto;padding:0 12px}
 a{color:var(--accent3)}a:hover{color:var(--accent2)}
 header{background:var(--accent);color:#fff}
@@ -35,138 +31,389 @@ h1{font-size:22px;margin:0 0 4px}
 .crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
 .crumb a{color:var(--text2)}
 label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px;font-weight:600}
-input[type=number]{width:100%;min-height:56px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text);text-align:center}
+input[type=number]{width:100%;min-height:56px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text)}
 input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.time-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}
+.time-row input{text-align:center;min-height:48px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
 .btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 .btnrow button{padding:8px 14px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);cursor:pointer;min-height:40px}
 .btnrow button.on{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:700}
 .result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
 .result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
 .result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
-.row-time{display:flex;gap:6px;align-items:center;margin-bottom:10px}
-.row-time span{font-size:18px;color:var(--text2)}
+.result .sub{font-size:13px;color:var(--res-text);margin-top:2px;opacity:.8}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
+.detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
+.split-table{width:100%;margin-top:10px;border-collapse:collapse}
+.split-table th,.split-table td{padding:10px 12px;text-align:center;border-bottom:1px solid var(--line)}
+.split-table th{font-weight:600;color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+.split-table td{font-family:"SF Mono","Cascadia Code",Consolas,monospace;font-size:15px}
+.split-table td.mile{font-weight:600;color:var(--accent3)}
 .note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
-.cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.preset-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.preset-row button{border:1px solid var(--border);background:var(--card);color:var(--text);font-size:12px;border-radius:4px;padding:6px 12px;cursor:pointer;font-family:inherit;min-height:34px}
+.preset-row button:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.hidden{display:none}
+h2{font-size:18px;margin:0 0 10px}
+h3{font-size:16px;margin:0 0 8px;color:var(--text)}
+.section-divider{border-top:1px solid var(--line);margin:16px 0;padding-top:16px}
+.content p,.content li{font-size:15px;color:var(--text2);margin-bottom:8px;line-height:1.6}
+.content ol,.content ul{padding-left:20px;margin-bottom:12px}
+details{border-top:1px solid var(--line);padding:14px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{font-weight:600;cursor:pointer;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"+";font-size:18px;color:var(--accent);font-weight:400;margin-left:12px;flex-shrink:0}
+details[open] summary::after{content:"\2212"}
+details p{padding-top:8px;font-size:14px;color:var(--text2);line-height:1.6}
+.cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:4px}
 .cat a{display:block;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.06);text-decoration:none}
 .cat a:hover{border-color:var(--accent)}
-.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent3)}
+.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent3);margin-bottom:2px}
+@media(max-width:480px){.row{grid-template-columns:1fr}.detail{grid-template-columns:1fr}.time-row{grid-template-columns:1fr 1fr 1fr}}
 </style>
-<script>var theme=localStorage.getItem('theme');if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',theme);</script>
 </head>
 <body>
-<header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
+<header>
+  <div class="hbar">
+    <a href="/" class="wordmark">figgn</a>
+    <div class="hnav">
+      <a href="/blog/">Blog</a>
+      <button id="themeBtn">Dark</button>
+    </div>
+  </div>
+</header>
 <main class="wrap">
-<p class="crumb"><a href="/">figgn</a> / <a href="/#fitness">Fitness &amp; Health</a> / Pace Calculator</p>
-<div class="card">
+
+<div class="crumb"><a href="/">figgn</a> &rsaquo; <a href="/#health">Fitness &amp; Health</a> &rsaquo; Pace Calculator</div>
 <h1>Pace Calculator</h1>
-<p class="sub">Find your pace, finish time, or distance.</p>
+<p class="sub">Calculate running pace, finish time, or distance. Switch between modes and toggle miles or kilometers. Pre-filled with a 5K at 25:00 (8:03/mile).</p>
 
-<div class="btnrow"><span class="flabel">Mode</span>
-<button class="on" data-mode="pace">Time + Distance → Pace</button>
-<button data-mode="time">Distance + Pace → Time</button>
-<button data-mode="dist">Time + Pace → Distance</button>
+<div class="card">
+  <label>Mode</label>
+  <div class="btnrow" id="modeToggle">
+    <button class="on" data-mode="pace">Find Pace</button>
+    <button data-mode="time">Find Time</button>
+    <button data-mode="dist">Find Distance</button>
+  </div>
+
+  <label>Units</label>
+  <div class="btnrow" id="unitToggle">
+    <button class="on" data-unit="miles">Miles</button>
+    <button data-unit="km">Kilometers</button>
+  </div>
+
+  <div id="modePace">
+    <h3>A. Find Pace (Time + Distance &rarr; Pace)</h3>
+    <label id="paceDistLabel">Distance (miles)</label>
+    <input type="number" id="paceDist" value="3.107" min="0.01" max="1000" step="0.001" oninput="calc()">
+
+    <label style="margin-top:10px">Time (HH:MM:SS)</label>
+    <div class="time-row">
+      <div><input type="number" id="paceH" value="0" min="0" max="99" placeholder="HH" oninput="calc()"></div>
+      <div><input type="number" id="paceM" value="25" min="0" max="59" placeholder="MM" oninput="calc()"></div>
+      <div><input type="number" id="paceS" value="0" min="0" max="59" placeholder="SS" oninput="calc()"></div>
+    </div>
+    <div class="preset-row">
+      <button onclick="setPacePreset(3.107,0,25,0)">5K</button>
+      <button onclick="setPacePreset(6.214,0,50,0)">10K</button>
+      <button onclick="setPacePreset(13.109,1,45,0)">Half Marathon</button>
+      <button onclick="setPacePreset(26.219,3,45,0)">Marathon</button>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div id="modeTime" class="hidden">
+    <h3>B. Find Time (Distance + Pace &rarr; Time)</h3>
+    <label id="timeDistLabel">Distance (miles)</label>
+    <input type="number" id="timeDist" value="6.214" min="0.01" max="1000" step="0.001" oninput="calc()">
+
+    <label style="margin-top:10px">Pace (per mile/km)</label>
+    <div class="time-row">
+      <div><input type="number" id="timePH" value="0" min="0" max="59" placeholder="MM" oninput="calc()"></div>
+      <div><input type="number" id="timePM" value="8" min="0" max="59" placeholder="SS" oninput="calc()"></div>
+      <div><input type="number" id="timePS" value="0" min="0" max="59" placeholder="SS" oninput="calc()"></div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div id="modeDist" class="hidden">
+    <h3>C. Find Distance (Time + Pace &rarr; Distance)</h3>
+    <label>Time (HH:MM:SS)</label>
+    <div class="time-row">
+      <div><input type="number" id="distH" value="0" min="0" max="99" placeholder="HH" oninput="calc()"></div>
+      <div><input type="number" id="distM" value="30" min="0" max="59" placeholder="MM" oninput="calc()"></div>
+      <div><input type="number" id="distS" value="0" min="0" max="59" placeholder="SS" oninput="calc()"></div>
+    </div>
+
+    <label style="margin-top:10px">Pace (per mile/km)</label>
+    <div class="time-row">
+      <div><input type="number" id="distPH" value="0" min="0" max="59" placeholder="MM" oninput="calc()"></div>
+      <div><input type="number" id="distPM" value="8" min="0" max="59" placeholder="SS" oninput="calc()"></div>
+      <div><input type="number" id="distPS" value="0" min="0" max="59" placeholder="SS" oninput="calc()"></div>
+    </div>
+  </div>
 </div>
 
-<div class="btnrow"><span class="flabel">Units</span>
-<button class="on" data-unit="mile">Miles</button>
-<button data-unit="km">Kilometers</button>
+<div class="card">
+  <div class="result" id="resultBox">
+    <div class="label" id="rLabel">PACE</div>
+    <div class="big" id="rMain">8:03 / mi</div>
+    <div class="sub" id="rSub">Speed: 7.46 mph</div>
+  </div>
+
+  <div class="detail">
+    <div class="stat"><div class="v" id="dSpeed">7.46 mph</div><div class="k">Speed</div></div>
+    <div class="stat"><div class="v" id="dAltUnit">5:00 / km</div><div class="k">Pace (per km)</div></div>
+  </div>
+
+  <table class="split-table" id="splitTable">
+    <tr><th>Mile</th><th>Cumulative Time</th></tr>
+    <tbody id="splitBody">
+      <tr><td class="mile">1</td><td>8:03</td></tr>
+      <tr><td class="mile">2</td><td>16:06</td></tr>
+      <tr><td class="mile">3</td><td>24:09</td></tr>
+      <tr><td class="mile">3.107</td><td>25:00</td></tr>
+    </tbody>
+  </table>
 </div>
 
-<div id="inputs">
-<div class="row-time"><span>Time</span>
-<input type="number" id="hrs" value="0" min="0" max="99" style="width:70px" oninput="calc()"><span>h</span>
-<input type="number" id="mins" value="25" min="0" max="59" style="width:70px" oninput="calc()"><span>m</span>
-<input type="number" id="secs" value="0" min="0" max="59" style="width:70px" oninput="calc()"><span>s</span>
-</div>
-<div class="row-time"><span>Distance</span>
-<input type="number" id="distance" value="3.1" min="0" step="0.1" oninput="calc()"><span id="distLabel">mi</span></div>
-<div class="row-time" id="paceRow" style="display:none"><span>Pace</span>
-<input type="number" id="paceMin" value="0" min="0" max="59" style="width:70px"><span>m</span>
-<input type="number" id="paceSec" value="0" min="0" max="59" style="width:70px"><span>s /<span id="paceLabel">mi</span></span></div>
+<div class="card content">
+<h2>How to Use This Calculator</h2>
+<ol>
+  <li><strong>Choose mode:</strong> Find Pace (distance + time &rarr; pace), Find Time (distance + pace &rarr; time), or Find Distance (time + pace &rarr; distance).</li>
+  <li><strong>Toggle units:</strong> Miles or kilometers.</li>
+  <li><strong>Enter your values:</strong> Complete the visible fields for your selected mode.</li>
+  <li>Results update instantly &mdash; see your pace, speed, equivalent pace, and per-mile split times.</li>
+</ol>
 </div>
 
-<div class="result" id="resultBox">
-<div class="label" id="resultLabel">Pace</div>
-<div class="big" id="rPace">—</div>
-<div class="sub" id="rNote"></div>
+<div class="card content">
+<h2>How It's Calculated</h2>
+<p><strong>Pace = Time &divide; Distance</strong></p>
+<p style="font-size:14px;color:var(--text2)">Example: 25:00 (1,500 sec) &divide; 3.107 mi = 482.8 sec/mi = 8:03/mi</p>
+<p><strong>Speed = Distance &divide; Time (in hours)</strong></p>
+<p style="font-size:14px;color:var(--text2);margin-bottom:8px">Example: 3.107 mi &divide; (1,500/3,600) hr = 7.46 mph</p>
+<p>When miles is selected, the per-km equivalent is shown for reference. When km is selected, the per-mile equivalent is shown.</p>
 </div>
-<p class="note">Common distances: 5K = 3.1 mi, 10K = 6.2 mi, Half Marathon = 13.1 mi, Marathon = 26.2 mi.</p>
+
+<div class="card">
+<h2>FAQ</h2>
+<details><summary>What's a good running pace?</summary><p>It depends on your fitness level and distance. A 10:00/mile (6:13/km) is comfortable for many beginners. 8:00/mile (4:58/km) is solid intermediate. Under 6:00/mile (3:44/km) for distance running is competitive. Focus on your own improvement rather than comparing.</p></details>
+<details><summary>How do I use this for race planning?</summary><p>Use Find Time mode: enter your race distance and your goal pace. The calculator tells you your predicted finish time. Or use Find Pace mode after a training run to find your current pace, then project to longer distances.</p></details>
+<details><summary>Why does my pace differ on a treadmill?</summary><p>Treadmills are calibrated differently and often read slightly fast or slow. Wind resistance, incline, and belt calibration all affect the actual effort. Use outdoor GPS-tracked runs for the most accurate pace data.</p></details>
 </div>
 
 <h2>Related Calculators</h2>
 <div class="cat">
-<a href="/calorie-calculator/"><span class="t">Calorie Burn Calculator</span></a>
-<a href="/bmi-calculator/"><span class="t">BMI Calculator</span></a>
+<a href="/calorie-calculator/"><span class="t">Calorie Burned</span></a>
+<a href="/one-rep-max-calculator/"><span class="t">One Rep Max</span></a>
+<a href="/macro-calculator/"><span class="t">Macro Calculator</span></a>
 </div>
+
 </main>
-<footer><div class="wrap">&copy; 2026 figgn <a href="/privacy/">Privacy</a> <a href="/blog/">Blog</a> <a href="/">All calculators</a></div></footer>
+<footer>
+  <div class="wrap">
+    &copy; 2026 figgn
+    <a href="/privacy/">Privacy</a>
+    <a href="/blog/">Blog</a>
+    <a href="/">All calculators</a>
+  </div>
+</footer>
+
 <script>
-var tb=document.getElementById('themeBtn');
-tb.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'Light':'Dark';
-tb.onclick=function(){var t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t);tb.textContent=t==='dark'?'Light':'Dark'};
+(function(){
+  var theme=localStorage.getItem('theme');
+  if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  document.documentElement.setAttribute('data-theme',theme);
+  var tb=document.getElementById('themeBtn');
+  if(tb){tb.textContent=theme==='dark'?'Light':'Dark';tb.onclick=function(){theme=theme==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',theme);localStorage.setItem('theme',theme);tb.textContent=theme==='dark'?'Light':'Dark';}};
+})();
 
-var mode='pace', unit='mile';
+var currentMode = 'pace';
+var currentUnit = 'miles';
 
-document.querySelectorAll('[data-mode]').forEach(function(b){
-  b.onclick=function(){
-    mode=b.dataset.mode;
-    b.parentElement.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});
-    b.classList.add('on');
-    document.getElementById('paceRow').style.display=(mode==='time'||mode==='dist')?'flex':'none';
-    document.getElementById('resultLabel').textContent=mode==='pace'?'Pace':mode==='time'?'Finish Time':'Distance';
-    if(mode==='dist'){document.getElementById('distance').parentElement.style.display='none'}
-    else{document.getElementById('distance').parentElement.style.display='flex'}
-    if(mode==='time'||mode==='dist'){document.getElementById('paceMin').oninput=calc;document.getElementById('paceSec').oninput=calc;}
-    calc();
-  };
+document.getElementById('modeToggle').addEventListener('click', function(e) {
+  if (e.target.tagName !== 'BUTTON') return;
+  currentMode = e.target.dataset.mode;
+  var btns = this.querySelectorAll('button');
+  btns.forEach(function(b) { b.classList.toggle('on', b.dataset.mode === currentMode); });
+  document.getElementById('modePace').classList.toggle('hidden', currentMode !== 'pace');
+  document.getElementById('modeTime').classList.toggle('hidden', currentMode !== 'time');
+  document.getElementById('modeDist').classList.toggle('hidden', currentMode !== 'dist');
+  updateResultLabel();
+  calc();
 });
 
-document.querySelectorAll('[data-unit]').forEach(function(b){
-  b.onclick=function(){
-    unit=b.dataset.unit;
-    b.parentElement.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});
-    b.classList.add('on');
-    document.getElementById('distLabel').textContent=unit==='mile'?'mi':'km';
-    document.getElementById('paceLabel').textContent=unit==='mile'?'mi':'km';
-    calc();
-  };
+document.getElementById('unitToggle').addEventListener('click', function(e) {
+  if (e.target.tagName !== 'BUTTON') return;
+  currentUnit = e.target.dataset.unit;
+  var btns = this.querySelectorAll('button');
+  btns.forEach(function(b) { b.classList.toggle('on', b.dataset.unit === currentUnit); });
+  var unitLabel = currentUnit === 'miles' ? 'miles' : 'km';
+  document.getElementById('paceDistLabel').textContent = 'Distance (' + unitLabel + ')';
+  document.getElementById('timeDistLabel').textContent = 'Distance (' + unitLabel + ')';
+  calc();
 });
 
-function calc(){
-  var h=parseInt(document.getElementById('hrs').value)||0;
-  var m=parseInt(document.getElementById('mins').value)||0;
-  var s=parseInt(document.getElementById('secs').value)||0;
-  var totalMin=h*60+m+s/60;
-  var dist=parseFloat(document.getElementById('distance').value)||0;
-  
-  if(mode==='pace'){
-    if(totalMin<=0||dist<=0){document.getElementById('rPace').textContent='\u2014';document.getElementById('rNote').textContent='';return;}
-    var paceMin=totalMin/dist;
-    var pm=Math.floor(paceMin);
-    var ps=Math.round((paceMin-pm)*60);
-    document.getElementById('rPace').textContent=pm+':'+(ps<10?'0':'')+ps+' /'+unit;
-    document.getElementById('rNote').textContent='at '+dist.toFixed(1)+' '+unit;
-  }else if(mode==='time'){
-    var pmin=parseInt(document.getElementById('paceMin').value)||0;
-    var psec=parseInt(document.getElementById('paceSec').value)||0;
-    var pace=pmin+psec/60;
-    if(pace<=0||dist<=0){document.getElementById('rPace').textContent='\u2014';document.getElementById('rNote').textContent='';return;}
-    var timeMin=pace*dist;
-    var th=Math.floor(timeMin/60);
-    var tm=Math.floor(timeMin%60);
-    var ts=Math.round((timeMin%1)*60);
-    document.getElementById('rPace').textContent=th+':'+(tm<10?'0':'')+tm+':'+(ts<10?'0':'')+ts;
-    document.getElementById('rNote').textContent='for '+dist.toFixed(1)+' '+unit;
-  }else{
-    var pmin2=parseInt(document.getElementById('paceMin').value)||0;
-    var psec2=parseInt(document.getElementById('paceSec').value)||0;
-    var pace2=pmin2+psec2/60;
-    if(totalMin<=0||pace2<=0){document.getElementById('rPace').textContent='\u2014';document.getElementById('rNote').textContent='';return;}
-    var d=totalMin/pace2;
-    document.getElementById('rPace').textContent=d.toFixed(1)+' '+unit;
-    document.getElementById('rNote').textContent='at '+pmin2+':'+(psec2<10?'0':'')+psec2+' /'+unit+' pace';
-  }
+function setPacePreset(dist, h, m, s) {
+  document.getElementById('paceDist').value = dist;
+  document.getElementById('paceH').value = h;
+  document.getElementById('paceM').value = m;
+  document.getElementById('paceS').value = s;
+  calc();
 }
+
+function updateResultLabel() {
+  var labels = {pace:'PACE', time:'FINISH TIME', dist:'DISTANCE'};
+  document.getElementById('rLabel').textContent = labels[currentMode] || 'PACE';
+}
+
+function toSeconds(h, m, s) {
+  return (parseInt(h)||0) * 3600 + (parseInt(m)||0) * 60 + (parseInt(s)||0);
+}
+
+function fmtTime(totalSec) {
+  if (isNaN(totalSec) || !isFinite(totalSec) || totalSec < 0) return '\u2014';
+  var h = Math.floor(totalSec / 3600);
+  var m = Math.floor((totalSec % 3600) / 60);
+  var s = Math.round(totalSec % 60);
+  if (s === 60) { m++; s = 0; }
+  if (m === 60) { h++; m = 0; }
+  if (h > 0) return h + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  return m + ':' + String(s).padStart(2,'0');
+}
+
+function fmtPace(secPerUnit) {
+  if (isNaN(secPerUnit) || !isFinite(secPerUnit) || secPerUnit <= 0) return '\u2014';
+  var m = Math.floor(secPerUnit / 60);
+  var s = Math.round(secPerUnit % 60);
+  if (s === 60) { m++; s = 0; }
+  return m + ':' + String(s).padStart(2,'0');
+}
+
+function calc() {
+  var distance, totalSec, paceSec;
+
+  if (currentMode === 'pace') {
+    distance = parseFloat(document.getElementById('paceDist').value);
+    totalSec = toSeconds(
+      document.getElementById('paceH').value,
+      document.getElementById('paceM').value,
+      document.getElementById('paceS').value
+    );
+  } else if (currentMode === 'time') {
+    distance = parseFloat(document.getElementById('timeDist').value);
+    paceSec = toSeconds(
+      document.getElementById('timePH').value,
+      document.getElementById('timePM').value,
+      document.getElementById('timePS').value
+    );
+  } else {
+    totalSec = toSeconds(
+      document.getElementById('distH').value,
+      document.getElementById('distM').value,
+      document.getElementById('distS').value
+    );
+    paceSec = toSeconds(
+      document.getElementById('distPH').value,
+      document.getElementById('distPM').value,
+      document.getElementById('distPS').value
+    );
+  }
+
+  var unitLabel = currentUnit === 'miles' ? ' mi' : ' km';
+  var altUnitLabel = currentUnit === 'miles' ? ' km' : ' mi';
+
+  var resultPace, resultTime, resultDist, speed;
+
+  if (currentMode === 'pace') {
+    if (isNaN(distance) || distance <= 0 || isNaN(totalSec) || totalSec <= 0) {
+      resultPace = '\u2014';
+      resultTime = totalSec;
+      resultDist = distance;
+      speed = 0;
+    } else {
+      paceSec = totalSec / distance;
+      resultPace = fmtPace(paceSec) + ' /' + unitLabel;
+      resultTime = totalSec;
+      resultDist = distance;
+      speed = (distance / (totalSec / 3600));
+    }
+  } else if (currentMode === 'time') {
+    if (isNaN(distance) || distance <= 0 || isNaN(paceSec) || paceSec <= 0) {
+      resultPace = (paceSec > 0 ? fmtPace(paceSec) + ' /' + unitLabel : '\u2014');
+      resultTime = 0;
+      resultDist = distance;
+      speed = 0;
+    } else {
+      totalSec = distance * paceSec;
+      resultPace = fmtPace(paceSec) + ' /' + unitLabel;
+      resultTime = totalSec;
+      resultDist = distance;
+      speed = (distance / (totalSec / 3600));
+    }
+  } else {
+    if (isNaN(totalSec) || totalSec <= 0 || isNaN(paceSec) || paceSec <= 0) {
+      resultPace = (paceSec > 0 ? fmtPace(paceSec) + ' /' + unitLabel : '\u2014');
+      resultTime = totalSec;
+      resultDist = 0;
+      speed = 0;
+    } else {
+      distance = totalSec / paceSec;
+      resultPace = fmtPace(paceSec) + ' /' + unitLabel;
+      resultTime = totalSec;
+      resultDist = distance;
+      speed = (distance / (totalSec / 3600));
+    }
+  }
+
+  if (currentMode === 'pace') {
+    document.getElementById('rMain').textContent = resultPace;
+    document.getElementById('rSub').textContent = speed > 0 ? 'Speed: ' + speed.toFixed(2) + (currentUnit==='miles'?' mph':' km/h') : '';
+    document.getElementById('dSpeed').textContent = speed > 0 ? speed.toFixed(2) + (currentUnit==='miles'?' mph':' km/h') : '\u2014';
+  } else if (currentMode === 'time') {
+    document.getElementById('rMain').textContent = resultTime > 0 ? fmtTime(resultTime) : '\u2014';
+    document.getElementById('rSub').textContent = distance > 0 ? 'Distance: ' + distance.toFixed(3) + unitLabel : '';
+    document.getElementById('dSpeed').textContent = speed > 0 ? speed.toFixed(2) + (currentUnit==='miles'?' mph':' km/h') : '\u2014';
+  } else {
+    document.getElementById('rMain').textContent = resultDist > 0 ? resultDist.toFixed(3) + unitLabel : '\u2014';
+    document.getElementById('rSub').textContent = resultTime > 0 ? 'Time: ' + fmtTime(resultTime) : '';
+    document.getElementById('dSpeed').textContent = speed > 0 ? speed.toFixed(2) + (currentUnit==='miles'?' mph':' km/h') : '\u2014';
+  }
+
+  if (paceSec > 0) {
+    var altPace = currentUnit === 'miles' ? paceSec / 1.60934 : paceSec * 1.60934;
+    document.getElementById('dAltUnit').textContent = fmtPace(altPace) + ' /' + altUnitLabel;
+  } else {
+    document.getElementById('dAltUnit').textContent = '\u2014';
+  }
+
+  var splitBody = document.getElementById('splitBody');
+  splitBody.innerHTML = '';
+  if (resultDist > 0 && resultTime > 0 && paceSec > 0) {
+    var wholeUnits = Math.floor(resultDist);
+    var i;
+    for (i = 1; i <= Math.min(wholeUnits, 20); i++) {
+      var cumTime = i * paceSec;
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td class="mile">' + i + '</td><td>' + fmtTime(cumTime) + '</td>';
+      splitBody.appendChild(tr);
+    }
+    if (resultDist > wholeUnits && wholeUnits < 20) {
+      var tr2 = document.createElement('tr');
+      tr2.innerHTML = '<td class="mile">' + resultDist.toFixed(3) + '</td><td>' + fmtTime(resultDist * paceSec) + '</td>';
+      splitBody.appendChild(tr2);
+    }
+  }
+
+  updateResultLabel();
+}
+
 calc();
 </script>
 </body>

@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>One Rep Max Calculator — 1RM Estimate | figgn</title>
-<meta name="description" content="Estimate your one-rep max using the Epley or Brzycki formula. See training percentages at 50-95%.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Rep Max Calculator — Free 1RM Estimator (Epley & Brzycki) | figgn</title>
+<meta name="description" content="Calculate your one rep max (1RM) using Epley or Brzycki formulas. Includes percentage breakdown table for programming. Free online 1RM calculator for weightlifting.">
 <link rel="canonical" href="https://figgn.xyz/one-rep-max-calculator/">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#e65c00">
-<meta property="og:title" content="One Rep Max Calculator — 1RM Estimate | figgn">
-<meta property="og:description" content="Estimate your one-rep max using Epley or Brzycki formula.">
+<meta property="og:title" content="One Rep Max Calculator — Free 1RM Estimator | figgn">
+<meta property="og:description" content="Calculate your one rep max (1RM) using Epley or Brzycki formulas. Includes percentage breakdown table for programming.">
 <meta property="og:url" content="https://figgn.xyz/one-rep-max-calculator/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
 <style>
 :root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
 [data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#0a3020;--res-text:#4ade80;--border:#3a3a48;--line:#2a2a34;--ad-bg:#22222b;--ad-text:#777}
 *,*:before,*:after{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;font-size:16px;line-height:1.5}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
 .wrap{max-width:760px;margin:0 auto;padding:0 12px}
 a{color:var(--accent3)}a:hover{color:var(--accent2)}
 header{background:var(--accent);color:#fff}
@@ -44,85 +40,224 @@ input:focus{outline:2px solid var(--accent);outline-offset:1px}
 .result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
 .result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
 .result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
-.detail{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:10px}
-.detail .stat{background:var(--ad-bg);padding:8px 4px;border-radius:4px;text-align:center}
-.detail .stat .v{font-size:14px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
-.detail .stat .k{font-size:10px;text-transform:uppercase;color:var(--text2)}
+.result .sub{font-size:13px;color:var(--res-text);margin-top:2px;opacity:.8}
+.detail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
+.detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
+.pct-table{width:100%;margin-top:10px;border-collapse:collapse}
+.pct-table th,.pct-table td{padding:10px 12px;text-align:center;border-bottom:1px solid var(--line)}
+.pct-table th{font-weight:600;color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+.pct-table td{font-family:"SF Mono","Cascadia Code",Consolas,monospace;font-size:16px;font-weight:700}
+.pct-table td.pct{font-weight:600;color:var(--accent3)}
 .note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
-.cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.hidden{display:none}
+h2{font-size:18px;margin:0 0 10px}
+.content p,.content li{font-size:15px;color:var(--text2);margin-bottom:8px;line-height:1.6}
+.content ol,.content ul{padding-left:20px;margin-bottom:12px}
+details{border-top:1px solid var(--line);padding:14px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{font-weight:600;cursor:pointer;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"+";font-size:18px;color:var(--accent);font-weight:400;margin-left:12px;flex-shrink:0}
+details[open] summary::after{content:"\2212"}
+details p{padding-top:8px;font-size:14px;color:var(--text2);line-height:1.6}
+.cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:4px}
 .cat a{display:block;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.06);text-decoration:none}
 .cat a:hover{border-color:var(--accent)}
-.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent3)}
-@media(max-width:600px){.detail{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:480px){.row{grid-template-columns:1fr}}
+.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent3);margin-bottom:2px}
+@media(max-width:480px){.row{grid-template-columns:1fr}.detail{grid-template-columns:1fr 1fr}}
 </style>
-<script>var theme=localStorage.getItem('theme');if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',theme);</script>
 </head>
 <body>
-<header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
+<header>
+  <div class="hbar">
+    <a href="/" class="wordmark">figgn</a>
+    <div class="hnav">
+      <a href="/blog/">Blog</a>
+      <button id="themeBtn">Dark</button>
+    </div>
+  </div>
+</header>
 <main class="wrap">
-<p class="crumb"><a href="/">figgn</a> / <a href="/#fitness">Fitness &amp; Health</a> / 1RM Calculator</p>
-<div class="card">
+
+<div class="crumb"><a href="/">figgn</a> &rsaquo; <a href="/#health">Fitness &amp; Health</a> &rsaquo; 1RM Calculator</div>
 <h1>One Rep Max Calculator</h1>
-<p class="sub">Estimate your one-rep max from a submaximal lift.</p>
+<p class="sub">Estimate your one-rep max (1RM) from a submaximal set. Choose between Epley and Brzycki formulas, then see your training percentages at every level.</p>
 
-<div class="row">
-<div><label>Weight Lifted (lbs)</label><input type="number" id="weight" value="185" min="0" oninput="calc()"></div>
-<div><label>Reps Performed</label><input type="number" id="reps" value="5" min="1" max="15" oninput="calc()"></div>
+<div class="card">
+  <label>Units</label>
+  <div class="btnrow" id="unitToggle">
+    <button class="on" data-unit="imperial">Imperial (lbs)</button>
+    <button data-unit="metric">Metric (kg)</button>
+  </div>
+
+  <label>Formula</label>
+  <div class="btnrow" id="formulaToggle">
+    <button class="on" data-fml="epley">Epley</button>
+    <button data-fml="brzycki">Brzycki</button>
+  </div>
+
+  <div class="row">
+    <div>
+      <label id="weightLabel">Weight Lifted (lbs)</label>
+      <input type="number" id="weight" value="185" min="1" max="2000" oninput="calc()">
+    </div>
+    <div>
+      <label>Reps Performed</label>
+      <input type="number" id="reps" value="5" min="1" max="30" oninput="calc()">
+    </div>
+  </div>
 </div>
 
-<div class="btnrow"><span class="flabel">Formula</span>
-<button class="on" data-formula="epley">Epley</button>
-<button data-formula="brzycki">Brzycki</button>
+<div class="card">
+  <div class="result" id="resultBox">
+    <div class="label">Estimated One Rep Max</div>
+    <div class="big" id="r1rm">216 lb</div>
+    <div class="sub" id="r1rmKg">(98.0 kg)</div>
+  </div>
+
+  <div class="detail">
+    <div class="stat"><div class="v" id="dWeight">185 lb</div><div class="k">Weight Lifted</div></div>
+    <div class="stat"><div class="v" id="dReps">5</div><div class="k">Reps</div></div>
+    <div class="stat"><div class="v" id="dFormula">Epley</div><div class="k">Formula</div></div>
+  </div>
+
+  <table class="pct-table">
+    <tr><th>% of 1RM</th><th id="thWeight">Weight (lbs)</th></tr>
+    <tbody id="pctBody">
+      <tr><td class="pct">50%</td><td id="p50">108</td></tr>
+      <tr><td class="pct">60%</td><td id="p60">130</td></tr>
+      <tr><td class="pct">70%</td><td id="p70">151</td></tr>
+      <tr><td class="pct">80%</td><td id="p80">173</td></tr>
+      <tr><td class="pct">90%</td><td id="p90">194</td></tr>
+      <tr><td class="pct">95%</td><td id="p95">205</td></tr>
+    </tbody>
+  </table>
+
+  <p class="note">These are estimates &mdash; actual 1RM depends on technique, fatigue, and individual variation. Always use a spotter when attempting heavy singles. For best accuracy, use a weight you can lift for 10 or fewer reps.</p>
 </div>
 
-<div class="result">
-<div class="label">Estimated 1RM</div>
-<div class="big" id="r1rm">—</div>
-<div class="sub">lbs</div>
+<div class="card content">
+<h2>How to Use This Calculator</h2>
+<ol>
+  <li><strong>Enter the weight</strong> you can lift for multiple reps (e.g., 185 lbs).</li>
+  <li><strong>Enter the number of reps</strong> you can complete with that weight (best if &le;10 reps).</li>
+  <li><strong>Choose a formula:</strong> Epley (most common) or Brzycki (more conservative at higher reps).</li>
+  <li>Your estimated 1RM and a full percentage breakdown table appear instantly.</li>
+</ol>
 </div>
 
-<div class="detail" id="pctGrid"></div>
+<div class="card content">
+<h2>How It's Calculated</h2>
+<p><strong>Epley Formula:</strong> 1RM = Weight &times; (1 + Reps &divide; 30)</p>
+<p style="font-size:14px;color:var(--text2)">Example: 185 lbs &times; (1 + 5/30) = 215.8 lbs</p>
+<p><strong>Brzycki Formula:</strong> 1RM = Weight &times; 36 &divide; (37 &minus; Reps)</p>
+<p style="font-size:14px;color:var(--text2)">Example: 185 &times; 36 &divide; (37 &minus; 5) = 208.1 lbs</p>
+<p style="margin-top:8px">Epley tends to estimate slightly higher. Brzycki is more conservative, especially at higher rep counts. For best accuracy, test with &le;10 reps.</p>
+</div>
 
-<p class="note">These are estimates, not tested under a barbell. Formulas become less accurate above 10 reps.</p>
+<div class="card">
+<h2>FAQ</h2>
+<details><summary>Which formula is more accurate?</summary><p>Both are well-validated. Epley is the most widely used and tends to be slightly more accurate for lower rep ranges (&le;5). Brzycki is more conservative at higher reps and may be better if you're testing with 8-10 reps. For the most accurate estimate, use a 3-5 rep set with either formula.</p></details>
+<details><summary>How should I use the percentage table?</summary><p>The percentage table is your programming cheat sheet. 85-95% for strength/power, 75-85% for hypertrophy, 65-75% for endurance. Most strength programs periodize across these ranges. Use the table to quickly find your working weights without recalculating.</p></details>
+<details><summary>Can I use this for any lift?</summary><p>Yes &mdash; bench press, squat, deadlift, overhead press, rows, and any barbell or dumbbell exercise. The formula works the same way. Just enter the weight and reps for that specific lift. Each lift will have its own 1RM.</p></details>
+<details><summary>Why shouldn't I use more than 10 reps?</summary><p>Above 10 reps, fatigue and muscular endurance become bigger factors than pure strength, and the formulas become less accurate. For the best estimate, test with a weight you can lift 10 or fewer times.</p></details>
 </div>
 
 <h2>Related Calculators</h2>
 <div class="cat">
 <a href="/macro-calculator/"><span class="t">Macro Calculator</span></a>
 <a href="/body-fat-calculator/"><span class="t">Body Fat Calculator</span></a>
+<a href="/pace-calculator/"><span class="t">Pace Calculator</span></a>
 </div>
-</main>
-<footer><div class="wrap">&copy; 2026 figgn <a href="/privacy/">Privacy</a> <a href="/blog/">Blog</a> <a href="/">All calculators</a></div></footer>
-<script>
-var tb=document.getElementById('themeBtn');
-tb.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'Light':'Dark';
-tb.onclick=function(){var t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t);tb.textContent=t==='dark'?'Light':'Dark'};
 
-var formula='epley';
-document.querySelectorAll('[data-formula]').forEach(function(b){
-  b.onclick=function(){
-    formula=b.dataset.formula;
-    b.parentElement.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});
-    b.classList.add('on');
-    calc();
-  };
+</main>
+<footer>
+  <div class="wrap">
+    &copy; 2026 figgn
+    <a href="/privacy/">Privacy</a>
+    <a href="/blog/">Blog</a>
+    <a href="/">All calculators</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var theme=localStorage.getItem('theme');
+  if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  document.documentElement.setAttribute('data-theme',theme);
+  var tb=document.getElementById('themeBtn');
+  if(tb){tb.textContent=theme==='dark'?'Light':'Dark';tb.onclick=function(){theme=theme==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',theme);localStorage.setItem('theme',theme);tb.textContent=theme==='dark'?'Light':'Dark';}};
+})();
+
+var currentUnit = 'imperial';
+var currentFormula = 'epley';
+
+document.getElementById('unitToggle').addEventListener('click', function(e) {
+  if (e.target.tagName !== 'BUTTON') return;
+  currentUnit = e.target.dataset.unit;
+  var btns = this.querySelectorAll('button');
+  btns.forEach(function(b) { b.classList.toggle('on', b.dataset.unit === currentUnit); });
+  document.getElementById('weightLabel').textContent = currentUnit === 'imperial' ? 'Weight Lifted (lbs)' : 'Weight Lifted (kg)';
+  document.getElementById('thWeight').textContent = currentUnit === 'imperial' ? 'Weight (lbs)' : 'Weight (kg)';
+  document.getElementById('weight').value = currentUnit === 'imperial' ? '185' : '84';
+  calc();
 });
 
-function calc(){
-  var w=parseFloat(document.getElementById('weight').value)||0;
-  var r=parseInt(document.getElementById('reps').value)||0;
-  if(w<=0||r<=0){document.getElementById('r1rm').textContent='\u2014';return;}
-  var rm=formula==='epley'?w*(1+r/30):w*36/(37-r);
-  rm=Math.round(rm);
-  document.getElementById('r1rm').textContent=rm.toLocaleString();
-  
-  var grid=document.getElementById('pctGrid');
-  grid.innerHTML='';
-  [50,60,70,80,90,95].forEach(function(p){
-    grid.innerHTML+='<div class="stat"><div class="v">'+Math.round(rm*p/100)+'</div><div class="k">'+p+'%</div></div>';
-  });
+document.getElementById('formulaToggle').addEventListener('click', function(e) {
+  if (e.target.tagName !== 'BUTTON') return;
+  currentFormula = e.target.dataset.fml;
+  var btns = this.querySelectorAll('button');
+  btns.forEach(function(b) { b.classList.toggle('on', b.dataset.fml === currentFormula); });
+  calc();
+});
+
+function calc() {
+  var weight = parseFloat(document.getElementById('weight').value);
+  var reps = parseInt(document.getElementById('reps').value);
+
+  if (isNaN(weight) || isNaN(reps) || weight <= 0 || reps < 1) {
+    document.getElementById('r1rm').textContent = '\u2014';
+    document.getElementById('r1rmKg').textContent = '';
+    document.getElementById('dWeight').textContent = '\u2014';
+    document.getElementById('dReps').textContent = '\u2014';
+    document.getElementById('dFormula').textContent = '\u2014';
+    ['p50','p60','p70','p80','p90','p95'].forEach(function(id) { document.getElementById(id).textContent = '\u2014'; });
+    return;
+  }
+
+  var oneRM;
+  if (currentFormula === 'epley') {
+    oneRM = weight * (1 + reps / 30);
+  } else {
+    if (reps >= 37) { oneRM = weight; }
+    else { oneRM = weight * 36 / (37 - reps); }
+  }
+
+  oneRM = Math.round(oneRM);
+  var unitLabel = currentUnit === 'imperial' ? ' lb' : ' kg';
+
+  document.getElementById('r1rm').textContent = oneRM + unitLabel;
+
+  if (currentUnit === 'imperial') {
+    document.getElementById('r1rmKg').textContent = '(' + (oneRM / 2.20462).toFixed(1) + ' kg)';
+    document.getElementById('dWeight').textContent = weight + ' lb';
+  } else {
+    document.getElementById('r1rmKg').textContent = '(' + Math.round(oneRM * 2.20462) + ' lb)';
+    document.getElementById('dWeight').textContent = weight + ' kg';
+  }
+
+  document.getElementById('dReps').textContent = reps;
+  document.getElementById('dFormula').textContent = currentFormula === 'epley' ? 'Epley' : 'Brzycki';
+
+  document.getElementById('p50').textContent = Math.round(oneRM * 0.50);
+  document.getElementById('p60').textContent = Math.round(oneRM * 0.60);
+  document.getElementById('p70').textContent = Math.round(oneRM * 0.70);
+  document.getElementById('p80').textContent = Math.round(oneRM * 0.80);
+  document.getElementById('p90').textContent = Math.round(oneRM * 0.90);
+  document.getElementById('p95').textContent = Math.round(oneRM * 0.95);
 }
+
 calc();
 </script>
 </body>
