@@ -44,7 +44,7 @@ header{background:var(--accent);color:#fff}
 .adwrap{background:var(--ad-bg);border-radius:4px;padding:10px;text-align:center;margin-bottom:14px}
 .adlabel{font-size:10px;text-transform:uppercase;color:var(--ad-text);display:block;margin-bottom:4px}
 .adwrap[data-ad="leaderboard"]{display:none}
-@media(min-width:768px){.adwrap[data-ad="leaderboard"]{display:block;max-width:728px;margin:0 auto 16px}}
+
 @media(max-width:480px){.row{grid-template-columns:1fr}}
 @media(max-width:767px){.ad-leaderboard{display:none}}
 .card{background:var(--card);border-radius:4px;box-shadow:var(--shadow);padding:24px;margin-bottom:16px}
@@ -96,10 +96,9 @@ footer a{color:var(--accent);text-decoration:none}
 </head>
 <body>
 <header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
-<aside class="adwrap" data-ad="leaderboard"><span class="adlabel">Advertisement</span><div class="adslot" data-size="728x90"></div></aside>
+
 <main class="wrap">
 <p class="crumb"><a href="/">figgn</a> / <a href="/#fitness">Fitness &amp; Health</a> / BMI Calculator</p>
-
 
 <div class="card" id="toolCard">
   <h1>BMI Calculator </h1>
