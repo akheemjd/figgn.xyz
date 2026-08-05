@@ -2,58 +2,75 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blog — Calculators, Guides &amp; Tips | figgn</title>
-<meta name="description" content="Practical guides on estimating materials and using the figgn calculators: gravel driveways, paint coverage, and more.">
+<meta name="description" content="Practical guides on estimating materials and using the figgn calculators.">
 <link rel="canonical" href="https://figgn.xyz/blog/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#e65c00">
-<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
-<link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
-<link rel="dns-prefetch" href="https://tpc.googlesyndication.com">
-<meta property="og:site_name" content="figgn">
-<meta property="og:image" content="https://figgn.xyz/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Blog — Calculators, Guides &amp; Tips | figgn">
-<meta name="twitter:description" content="Practical guides on estimating materials and using the figgn calculators: gravel driveways, paint coverage, and more.">
-<meta name="twitter:image" content="https://figgn.xyz/og-image.png">
 <meta property="og:title" content="Blog — Calculators, Guides &amp; Tips | figgn">
-<meta property="og:description" content="Practical guides on estimating materials and using the figgn calculators: gravel driveways, paint coverage, and more.">
+<meta property="og:description" content="Practical guides on estimating materials and using the figgn calculators.">
 <meta property="og:url" content="https://figgn.xyz/blog/">
 <meta property="og:type" content="website">
-<script>(function(){
-  var theme=localStorage.getItem('theme');
-  if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
-  document.documentElement.setAttribute('data-theme',theme);
-  var tb=document.getElementById('themeBtn');
-  if(tb){
-    tb.textContent=theme==='dark'?'Light':'Dark';
-    tb.onclick=function(){
-      theme=theme==='dark'?'light':'dark';
-      document.documentElement.setAttribute('data-theme',theme);
-      localStorage.setItem('theme',theme);
-      tb.textContent=theme==='dark'?'Light':'Dark';
-    };
-  }
-})();</script>
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--border:#ccc;--line:#e4e4ea}
+[data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--border:#3a3a48;--line:#2a2a34}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:var(--accent3);text-decoration:none}
+a:hover{color:var(--accent2)}
+header{background:var(--accent);color:#fff}
+.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700}
+.hnav{display:flex;align-items:center;gap:12px;font-size:14px}
+.hnav a{color:#fff;text-decoration:none;font-weight:600}
+#themeBtn{background:var(--accent2);color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit}
+footer{background:#1c1c24;padding:14px 0;margin-top:40px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;color:#aaa;font-size:13px}
+footer a{color:#aaa}
+h1{font-size:24px;margin:20px 0 4px}
+.sub{color:var(--text2);font-size:15px;margin:0 0 20px}
+.post{display:block;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:4px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.post:hover{border-color:var(--accent)}
+.post .t{font-size:17px;font-weight:700;color:var(--text)}
+.post .d{font-size:13px;color:var(--text2);margin-top:3px}
+.post .when{font-size:12px;color:var(--text2);margin-top:6px;font-family:monospace}
+</style>
+<script>
+var theme=localStorage.getItem('theme');
+if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+document.documentElement.setAttribute('data-theme',theme);
+</script>
 </head>
 <body>
 
 <header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
 
-
-
 <main class="wrap">
-  <p class="crumb"><a href="/">figgn</a> / Blog</p>
+<h1>Blog</h1>
+<p class="sub">Guides for the calculators — measuring, ordering, and the parts people get wrong.</p>
 
-  <div class="card">
-    <h1>Blog</h1>
-    <p class="sub">Guides for the calculators &mdash; measuring, ordering, and the parts people get wrong.</p>
-  </div>
+<a class="post" href="/blog/how-much-gravel-for-driveway/">
+  <span class="t">How Much Gravel Do I Need for a Driveway?</span>
+  <span class="d">Depth, layers, cubic yards to tons, and what a real driveway order looks like.</span>
+  <span class="when">3 August 2026</span>
+</a>
+</main>
 
-  <div class="card postlist">
-    <h2>Published</h2>
-    <a href="/blog/how-much-gravel-for-driveway/">How Much Gravel Do I Need for a Driveway?</a>
-    <p class="d">Depth, layers, cubic yards to tons, and what a real driveway order looks like.</p>
-    <p class="when">3 August 2026</p>
-  </div>
+<footer><div class="wrap">&copy; 2026 figgn <a href="/privacy/">Privacy</a> <a href="/blog/">Blog</a> <a href="/">All calculators</a></div></footer>
+
+<script>
+var tb=document.getElementById('themeBtn');
+tb.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'Light':'Dark';
+tb.onclick=function(){
+  var t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('theme',t);
+  tb.textContent=t==='dark'?'Light':'Dark';
+};
+</script>
+
+</body>
+</html>
