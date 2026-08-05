@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="200" height="50">
+  <text x="0" y="38" font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif"
+        font-size="36" font-weight="700" fill="#e65c00" letter-spacing="-0.5">figgn</text>
+  <rect x="0" y="44" width="200" height="3" rx="1.5" fill="#e65c00" opacity="0.3"/>
+</svg>
