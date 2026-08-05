@@ -2,44 +2,25 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Free Online Calculators — Instant Answers | figgn</title>
-<meta name="description" content="Free calculators for construction, home improvement, landscaping, fitness, school and everyday math. Concrete, rebar, roofing, drywall, fencing, decking, gravel, mulch, paint, flooring, GPA, grade, tip, percentage, weighted average. No sign-up required.">
+<meta name="description" content="Free calculators for construction, home improvement, landscaping, fitness, school and everyday math. 24 tools. Instant results.">
 <link rel="canonical" href="https://figgn.xyz/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#e65c00">
-<meta property="og:site_name" content="figgn">
-<meta property="og:image" content="https://figgn.xyz/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Free Online Calculators — Instant Answers | figgn">
-<meta name="twitter:image" content="https://figgn.xyz/og-image.png">
 <meta property="og:title" content="Free Online Calculators — Instant Answers | figgn">
-<meta property="og:description" content="Free online calculators for school, home, construction and landscaping. Instant results, no sign-up required.">
+<meta property="og:description" content="Free calculators for construction, fitness, school, and everyday math.">
 <meta property="og:url" content="https://figgn.xyz/">
 <meta property="og:type" content="website">
-<script>(function(){
-  var theme=localStorage.getItem('theme');
-  if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
-  document.documentElement.setAttribute('data-theme',theme);
-  var tb=document.getElementById('themeBtn');
-  if(tb){
-    tb.textContent=theme==='dark'?'Light':'Dark';
-    tb.onclick=function(){
-      theme=theme==='dark'?'light':'dark';
-      document.documentElement.setAttribute('data-theme',theme);
-      localStorage.setItem('theme',theme);
-      tb.textContent=theme==='dark'?'Light':'Dark';
-    };
-  }
-})();</script>
-
+<meta name="twitter:card" content="summary_large_image">
 <style>
-:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
-[data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#0a3020;--res-text:#4ade80;--border:#3a3a48;--line:#2a2a34;--ad-bg:#22222b;--ad-text:#777}
+:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--border:#ccc;--line:#e4e4ea}
+[data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--border:#3a3a48;--line:#2a2a34}
 *,*:before,*:after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
 .wrap{max-width:760px;margin:0 auto;padding:0 12px}
-a{color:var(--accent3)}a:hover{color:var(--accent2)}
+a{color:var(--accent3);text-decoration:none}
+a:hover{color:var(--accent2);text-decoration:underline}
 header{background:var(--accent);color:#fff}
 .hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
 .wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700}
@@ -49,230 +30,92 @@ header{background:var(--accent);color:#fff}
 footer{background:#1c1c24;padding:14px 0;margin-top:40px}
 footer .wrap{display:flex;gap:16px;flex-wrap:wrap;color:#aaa;font-size:13px}
 footer a{color:#aaa}
-h1{font-size:22px;margin:0 0 4px}
-.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-label,.flabel{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px;font-weight:600}
-input[type=number]{width:100%;min-height:56px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text)}
-input:focus{outline:2px solid var(--accent);outline-offset:1px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
-.btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.btnrow button{padding:8px 14px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);cursor:pointer;min-height:40px}
-.btnrow button.on{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:700}
-.stepper{display:flex;align-items:center;gap:0}
-.stepper button{min-height:56px;min-width:44px;font-size:20px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-family:inherit}
-.stepper button:first-child{border-radius:4px 0 0 4px}
-.stepper button:last-child{border-radius:0 4px 4px 0}
-.stepper input{border-radius:0;text-align:center;min-width:60px;width:60px;border-left:0;border-right:0}
-.result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
-.result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
-.result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
-.result .sub{font-size:13px;color:var(--res-text);margin-top:2px;opacity:.8}
-.detail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
-.detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
-.detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
-.detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
-.note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
-.adwrap{background:var(--ad-bg);border-radius:4px;padding:10px;text-align:center;margin-bottom:14px}
-.adlabel{font-size:10px;text-transform:uppercase;color:var(--ad-text);display:block;margin-bottom:4px}
-.hidden{display:none}
-footer{margin-bottom:0}
-@media(max-width:480px){.row{grid-template-columns:1fr}}
+h1{font-size:24px;margin:20px 0 4px}
+.sub{color:var(--text2);font-size:15px;margin:0 0 20px}
+h2{font-size:18px;margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--accent);color:var(--text)}
+.cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:4px}
+.cat a{display:block;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.cat a:hover{border-color:var(--accent);text-decoration:none}
+.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent-text);margin-bottom:2px}
+.cat a .d{display:block;font-size:12px;color:var(--text2);line-height:1.4}
+.count{font-size:14px;color:var(--text2);margin-bottom:20px}
 </style>
+<script>
+var theme=localStorage.getItem('theme');
+if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+document.documentElement.setAttribute('data-theme',theme);
+</script>
 </head>
 <body>
 
 <header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
 
 <main class="wrap">
+<h1>Free Online Calculators</h1>
+<p class="sub">Instant answers. No sign-up. Every tool updates as you type.</p>
+<p class="count" id="count">24 calculators</p>
 
-  <div class="intro">
-    <h1>Free Online Calculators</h1>
-    <p class="lede">Instant answers. No sign-up. Every tool updates as you type.</p>
-    <p class="count" id="count"></p>
-  </div>
+<h2>Construction</h2>
+<div class="cat">
+<a href="/concrete-calculator/"><span class="t">Concrete Calculator</span><span class="d">Slabs, footings, circular pads and curb</span></a>
+<a href="/rebar-calculator/"><span class="t">Rebar Calculator</span><span class="d">Bar counts, spacing, laps and tie intersections</span></a>
+<a href="/roofing-calculator/"><span class="t">Roofing Calculator</span><span class="d">Squares, bundles and underlayment by roof type</span></a>
+<a href="/drywall-calculator/"><span class="t">Drywall Calculator</span><span class="d">Sheets, screws, compound and tape</span></a>
+<a href="/fence-calculator/"><span class="t">Fence Calculator</span><span class="d">Posts, rails, pickets and concrete</span></a>
+<a href="/deck-calculator/"><span class="t">Deck Calculator</span><span class="d">Boards, joists and fasteners</span></a>
+</div>
 
-  <section class="card" id="construction">
-    <h2>Construction</h2>
-    <div class="tools">
-      <a class="tool" href="/concrete-calculator/">
-        <span class="n">Concrete Calculator</span>
-        <span class="d">Slabs, footings, circular pads and curb</span>
-      </a>
-      <a class="tool" href="/rebar-calculator/">
-        <span class="n">Rebar Calculator</span>
-        <span class="d">Bar counts, spacing, laps and tie intersections</span>
-      </a>
-      <a class="tool" href="/roofing-calculator/">
-        <span class="n">Roofing Calculator</span>
-        <span class="d">Squares, bundles and underlayment by roof type</span>
-      </a>
-      <a class="tool" href="/drywall-calculator/">
-        <span class="n">Drywall Calculator</span>
-        <span class="d">Sheets, screws, compound and tape</span>
-      </a>
-      <a class="tool" href="/fence-calculator/">
-        <span class="n">Fence Calculator</span>
-        <span class="d">Posts, rails, pickets and concrete</span>
-      </a>
-      <a class="tool" href="/deck-calculator/">
-        <span class="n">Deck Calculator</span>
-        <span class="d">Boards, joists and fasteners</span>
-      </a>
-    </div>
-  </section>
+<h2>Landscape</h2>
+<div class="cat">
+<a href="/gravel-calculator/"><span class="t">Gravel Calculator</span><span class="d">Cubic yards and tons for any shape</span></a>
+<a href="/mulch-calculator/"><span class="t">Mulch Calculator</span><span class="d">Bags and cubic yards for any bed</span></a>
+</div>
 
-  <section class="card" id="landscape">
-    <h2>Landscape</h2>
-    <div class="tools">
-      <a class="tool" href="/gravel-calculator/">
-        <span class="n">Gravel Calculator</span>
-        <span class="d">Cubic yards and tons for any shape</span>
-      </a>
-      <a class="tool" href="/mulch-calculator/">
-        <span class="n">Mulch Calculator</span>
-        <span class="d">Bags and cubic yards for any bed</span>
-      </a>
-    </div>
-  </section>
+<h2>Home &amp; DIY</h2>
+<div class="cat">
+<a href="/paint-calculator/"><span class="t">Paint Calculator</span><span class="d">Walls, ceiling and trim in gallons</span></a>
+<a href="/flooring-calculator/"><span class="t">Flooring Calculator</span><span class="d">Square footage, waste and boxes</span></a>
+</div>
 
-  <section class="card" id="home">
-    <h2>Home &amp; DIY</h2>
-    <div class="tools">
-      <a class="tool" href="/paint-calculator/">
-        <span class="n">Paint Calculator</span>
-        <span class="d">Walls, ceiling and trim in gallons</span>
-      </a>
-      <a class="tool" href="/flooring-calculator/">
-        <span class="n">Flooring Calculator</span>
-        <span class="d">Square footage, waste and boxes</span>
-      </a>
-    </div>
-  </section>
+<h2>School &amp; Grades</h2>
+<div class="cat">
+<a href="/gpa-calculator/"><span class="t">GPA Calculator</span><span class="d">Weighted, unweighted and cumulative</span></a>
+<a href="/grade-calculator/"><span class="t">Grade Calculator</span><span class="d">Percentage, letter grade and final exam score</span></a>
+<a href="/weighted-average-calculator/"><span class="t">Weighted Average Calculator</span><span class="d">Weighted mean from any values and weights</span></a>
+</div>
 
-  <section class="card" id="school">
-    <h2>School &amp; Grades</h2>
-    <div class="tools">
-      <a class="tool" href="/gpa-calculator/">
-        <span class="n">GPA Calculator</span>
-        <span class="d">Weighted, unweighted and cumulative</span>
-      </a>
-      <a class="tool" href="/grade-calculator/">
-        <span class="n">Grade Calculator</span>
-        <span class="d">Percentage, letter grade and final exam score</span>
-      </a>
-      <a class="tool" href="/weighted-average-calculator/">
-        <span class="n">Weighted Average Calculator</span>
-        <span class="d">Weighted mean from any values and weights</span>
-      </a>
-    </div>
-  </section>
+<h2>Fitness &amp; Health</h2>
+<div class="cat">
+<a href="/bmi-calculator/"><span class="t">BMI Calculator</span><span class="d">Body mass index, category and healthy range</span></a>
+<a href="/bmr-calculator/"><span class="t">BMR Calculator</span><span class="d">Calories burned at complete rest</span></a>
+<a href="/tdee-calculator/"><span class="t">TDEE Calculator</span><span class="d">Total daily calorie needs by activity level</span></a>
+<a href="/body-fat-calculator/"><span class="t">Body Fat Calculator</span><span class="d">Navy tape method, lean and fat mass</span></a>
+<a href="/ideal-weight-calculator/"><span class="t">Ideal Weight Calculator</span><span class="d">Four classic formulas compared</span></a>
+<a href="/macro-calculator/"><span class="t">Macro Calculator</span><span class="d">Protein, carbs and fat from a calorie target</span></a>
+<a href="/one-rep-max-calculator/"><span class="t">One-Rep Max Calculator</span><span class="d">1RM estimate and training percentages</span></a>
+<a href="/pace-calculator/"><span class="t">Pace Calculator</span><span class="d">Running pace, time and distance</span></a>
+<a href="/calorie-calculator/"><span class="t">Calorie Burn Calculator</span><span class="d">Calories burned by activity and duration</span></a>
+</div>
 
-  <section class="card" id="fitness">
-    <h2>Fitness &amp; Health</h2>
-    <div class="tools">
-      <a class="tool" href="/bmi-calculator/">
-        <span class="n">BMI Calculator</span>
-        <span class="d">Body mass index, category and healthy range</span>
-      </a>
-      <a class="tool" href="/bmr-calculator/">
-        <span class="n">BMR Calculator</span>
-        <span class="d">Calories burned at complete rest</span>
-      </a>
-      <a class="tool" href="/tdee-calculator/">
-        <span class="n">TDEE Calculator</span>
-        <span class="d">Total daily calorie needs by activity level</span>
-      </a>
-      <a class="tool" href="/body-fat-calculator/">
-        <span class="n">Body Fat Calculator</span>
-        <span class="d">Navy tape method, lean and fat mass</span>
-      </a>
-      <a class="tool" href="/ideal-weight-calculator/">
-        <span class="n">Ideal Weight Calculator</span>
-        <span class="d">Four classic formulas compared</span>
-      </a>
-      <a class="tool" href="/macro-calculator/">
-        <span class="n">Macro Calculator</span>
-        <span class="d">Protein, carbs and fat from a calorie target</span>
-      </a>
-      <a class="tool" href="/one-rep-max-calculator/">
-        <span class="n">One-Rep Max Calculator</span>
-        <span class="d">1RM estimate and training percentages</span>
-      </a>
-      <a class="tool" href="/pace-calculator/">
-        <span class="n">Pace Calculator</span>
-        <span class="d">Running pace, time and distance</span>
-      </a>
-      <a class="tool" href="/calorie-calculator/">
-        <span class="n">Calorie Burn Calculator</span>
-        <span class="d">Calories burned by activity and duration</span>
-      </a>
-    </div>
-  </section>
-
-  <section class="card" id="everyday">
-    <h2>Everyday</h2>
-    <div class="tools">
-      <a class="tool" href="/tip-calculator/">
-        <span class="n">Tip Calculator</span>
-        <span class="d">Bill split, tip and per-person rounding</span>
-      </a>
-      <a class="tool" href="/percentage-calculator/">
-        <span class="n">Percentage Calculator</span>
-        <span class="d">Percent of, percent change, percent of total</span>
-      </a>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>Guides</h2>
-    <a class="readmore" href="/blog/how-much-gravel-for-driveway/">How Much Gravel Do I Need for a Driveway?</a>
-    <p>Depth, layers, cubic yards to tons, and what a real driveway order looks like.</p>
-    <a class="readmore" href="/blog/">More guides &rarr;</a>
-    <p>New guides published weekly.</p>
-  </section>
-
-  <aside class="adwrap" data-ad="secondary">
-    <span class="adlabel">Advertisement</span>
-    <!-- AdSense: replace the .adslot contents with your <ins class="adsbygoogle"> unit -->
-    <div class="adslot" data-size="300x250 / 336x280"></div>
-  </aside>
-
+<h2>Everyday</h2>
+<div class="cat">
+<a href="/tip-calculator/"><span class="t">Tip Calculator</span><span class="d">Bill split, tip and per-person rounding</span></a>
+<a href="/percentage-calculator/"><span class="t">Percentage Calculator</span><span class="d">Percent of, percent change, percent of total</span></a>
+</div>
 </main>
 
-<footer>
-  <div class="wrap">
-    <span>&copy; <span id="yr">2026</span> figgn</span>
-    <a href="/privacy/">Privacy</a>
-    <a href="/blog/">Blog</a>
-    <a href="/">All calculators</a>
-  </div>
-</footer>
+<footer><div class="wrap">&copy; 2026 figgn <a href="/privacy/">Privacy</a> <a href="/blog/">Blog</a> <a href="/">All calculators</a></div></footer>
 
 <script>
-(function(){
-  var c = document.getElementById('count');
-  if(c) c.textContent = document.querySelectorAll('.tool').length + ' calculators';
-
-  var toggle = document.getElementById('themeBtn');
-  function syncToggle(){
-    var t = document.documentElement.getAttribute('data-theme');
-    toggle.textContent = (t === 'dark' ? 'Light' : 'Dark');
-    toggle.setAttribute('aria-label','Switch to ' + (t === 'dark' ? 'light' : 'dark') + ' mode');
-  }
-  syncToggle();
-  toggle.addEventListener('click', function(){
-    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', t);
-    try{ localStorage.setItem('theme', t); }catch(e){}
-    syncToggle();
-  });
-})();
+var tb=document.getElementById('themeBtn');
+tb.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'Light':'Dark';
+tb.onclick=function(){
+  var t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('theme',t);
+  tb.textContent=t==='dark'?'Light':'Dark';
+};
 </script>
-
-<script>
 
 </body>
 </html>
