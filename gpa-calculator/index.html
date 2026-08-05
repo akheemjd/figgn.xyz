@@ -50,6 +50,13 @@ select:focus{outline:2px solid var(--accent);outline-offset:1px}
 .detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
 .note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
 .hidden{display:none}
+.cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:4px}
+.cat a{display:block;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.06);text-decoration:none}
+.cat a:hover{border-color:var(--accent)}
+.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent-text);margin-bottom:2px}
+.post{display:block;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:4px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.post:hover{border-color:var(--accent)}
+.post .t{font-size:17px;font-weight:700;color:var(--text)}
 .row-remove{background:none;border:none;color:var(--accent3);cursor:pointer;font-size:20px;padding:0 0 0 8px;line-height:1;align-self:end;margin-bottom:4px}
 #addRow{width:100%;margin-top:6px}
 summary{list-style:none;cursor:pointer;font-weight:700;font-size:15px;padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}

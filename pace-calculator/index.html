@@ -69,6 +69,13 @@ details p{padding-top:8px;font-size:14px;color:var(--text2);line-height:1.6}
 .related{display:flex;flex-wrap:wrap;gap:8px}
 .related a{border:1px solid var(--border);padding:8px 14px;border-radius:4px;font-size:14px;color:var(--text);text-decoration:none}
 .related a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:4px}
+.cat a{display:block;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.06);text-decoration:none}
+.cat a:hover{border-color:var(--accent)}
+.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent-text);margin-bottom:2px}
+.post{display:block;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:4px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.post:hover{border-color:var(--accent)}
+.post .t{font-size:17px;font-weight:700;color:var(--text)}
 @media(max-width:600px){
   .row{grid-template-columns:1fr}
   .time-row{grid-template-columns:1fr 1fr 1fr}
