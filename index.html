@@ -34,6 +34,55 @@
     };
   }
 })();</script>
+
+<style>
+:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
+[data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#0a3020;--res-text:#4ade80;--border:#3a3a48;--line:#2a2a34;--ad-bg:#22222b;--ad-text:#777}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:var(--accent3)}a:hover{color:var(--accent2)}
+header{background:var(--accent);color:#fff}
+.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700}
+.hnav{display:flex;align-items:center;gap:12px;font-size:14px}
+.hnav a{color:#fff;text-decoration:none;font-weight:600}
+#themeBtn{background:var(--accent2);color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit}
+footer{background:#1c1c24;padding:14px 0;margin-top:40px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;color:#aaa;font-size:13px}
+footer a{color:#aaa}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
+.crumb a{color:var(--text2)}
+label,.flabel{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px;font-weight:600}
+input[type=number]{width:100%;min-height:56px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text)}
+input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.btnrow button{padding:8px 14px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);cursor:pointer;min-height:40px}
+.btnrow button.on{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:700}
+.stepper{display:flex;align-items:center;gap:0}
+.stepper button{min-height:56px;min-width:44px;font-size:20px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-family:inherit}
+.stepper button:first-child{border-radius:4px 0 0 4px}
+.stepper button:last-child{border-radius:0 4px 4px 0}
+.stepper input{border-radius:0;text-align:center;min-width:60px;width:60px;border-left:0;border-right:0}
+.result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
+.result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
+.result .sub{font-size:13px;color:var(--res-text);margin-top:2px;opacity:.8}
+.detail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
+.detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
+.note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
+.adwrap{background:var(--ad-bg);border-radius:4px;padding:10px;text-align:center;margin-bottom:14px}
+.adlabel{font-size:10px;text-transform:uppercase;color:var(--ad-text);display:block;margin-bottom:4px}
+.hidden{display:none}
+footer{margin-bottom:0}
+@media(max-width:480px){.row{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
@@ -209,7 +258,7 @@
   var c = document.getElementById('count');
   if(c) c.textContent = document.querySelectorAll('.tool').length + ' calculators';
 
-  var toggle = document.getElementById('themeToggle');
+  var toggle = document.getElementById('themeBtn');
   function syncToggle(){
     var t = document.documentElement.getAttribute('data-theme');
     toggle.textContent = (t === 'dark' ? 'Light' : 'Dark');
@@ -227,121 +276,6 @@
 
 <script>
 
-/* Ad controller: lazy fill, engagement-gated sticky, session dismissal. */
-(function(){
-  function fill(el){
-    if(el.dataset.filled) return;
-    el.dataset.filled = '1';
-    el.textContent = 'Advertisement \u00b7 ' + (el.dataset.size || '');
-    /* AdSense: (adsbygoogle = window.adsbygoogle || []).push({}); */
-  }
-  var slots = document.querySelectorAll('.adslot');
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){ fill(en.target); io.unobserve(en.target); }
-      });
-    }, {rootMargin: '600px 0px'});
-    slots.forEach(function(s){ io.observe(s); });
-  }else{ slots.forEach(fill); }
 
-  var sticky = document.getElementById('stickyAd');
-  if(!sticky) return;
-  var dismissed = false;
-  try{ dismissed = sessionStorage.getItem('adDismissed') === '1'; }catch(e){}
-  var armed = false;
-  function reveal(){
-    if(dismissed || sticky.classList.contains('show')) return;
-    sticky.classList.add('show');
-    document.body.classList.add('stickyad');
-  }
-  function arm(){ if(armed || dismissed) return; armed = true; setTimeout(reveal, 400); }
-  document.addEventListener('input', arm, {once:true, passive:true});
-  window.addEventListener('scroll', function(){
-    if(window.scrollY > window.innerHeight * 0.5) arm();
-  }, {passive:true});
-  document.getElementById('closeAd').addEventListener('click', function(){
-    sticky.classList.remove('show');
-    document.body.classList.remove('stickyad');
-    dismissed = true;
-    try{ sessionStorage.setItem('adDismissed','1'); }catch(e){}
-  });
-})();
-
-/* AdSense loader: script is fetched only after the visitor engages, so it never
-   competes with first paint. Replace ca-pub-XXXXXXXXXXXXXXXX with your ID. */
-(function(){
-  var PUB = 'ca-pub-XXXXXXXXXXXXXXXX';
-  var loaded = false;
-  function load(){
-    if(loaded || PUB.indexOf('XXXX') > -1) return;
-    loaded = true;
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + PUB;
-    s.crossOrigin = 'anonymous';
-    document.head.appendChild(s);
-  }
-  ['scroll','pointerdown','keydown'].forEach(function(e){
-    window.addEventListener(e, load, {once:true, passive:true});
-  });
-  setTimeout(load, 3500);
-})();
-
-/* Shareable state: numeric inputs with an id round-trip through the query
-   string, so a result can be linked, bookmarked and reopened. */
-(function(){
-  var fields = [].slice.call(document.querySelectorAll('input[type=number][id]'));
-  if(!fields.length) return;
-
-  var params = new URLSearchParams(location.search);
-  var applied = false;
-  fields.forEach(function(f){
-    var v = params.get(f.id);
-    if(v !== null && v !== '' && isFinite(parseFloat(v))){
-      f.value = parseFloat(v);
-      applied = true;
-    }
-  });
-  if(applied){
-    fields[0].dispatchEvent(new Event('input', {bubbles:true}));
-    document.dispatchEvent(new Event('change', {bubbles:true}));
-  }
-
-  var t;
-  function sync(){
-    clearTimeout(t);
-    t = setTimeout(function(){
-      var q = new URLSearchParams();
-      fields.forEach(function(f){ if(f.value !== '') q.set(f.id, f.value); });
-      var qs = q.toString();
-      history.replaceState(null, '', qs ? location.pathname + '?' + qs : location.pathname);
-    }, 500);
-  }
-  fields.forEach(function(f){ f.addEventListener('input', sync); });
-})();
-
-/* Shared fixes: announce on commit, block scroll-wheel edits, current year. */
-(function(){
-  document.addEventListener('wheel', function(e){
-    var a = document.activeElement;
-    if(a && a.type === 'number' && a === e.target) a.blur();
-  }, {passive:true});
-  var yr = document.getElementById('yr');
-  if(yr) yr.textContent = new Date().getFullYear();
-  var v = document.getElementById('sVal'), d = document.getElementById('sDet');
-  if(!v) return;
-  var live = document.createElement('p');
-  live.className = 'visually-hidden';
-  live.setAttribute('aria-live','polite');
-  document.body.appendChild(live);
-  function announce(){ live.textContent = v.textContent + '. ' + d.textContent; }
-  document.addEventListener('change', announce, true);
-  document.addEventListener('click', function(e){
-    if(e.target.closest && e.target.closest('.preset')) setTimeout(announce, 0);
-  }, true);
-})();
-
-</script>
 </body>
 </html>
