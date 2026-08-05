@@ -99,10 +99,7 @@ footer a{color:var(--accent);text-decoration:none}
 </style>
 </head>
 <body>
-<header class="header">
-  <span class="logo">Flooring Calculator</span>
-  <button id="themeToggle" aria-label="Toggle dark mode">Dark</button>
-</header>
+<header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
 
 <div class="ad-leaderboard">Advertisement</div>
 
@@ -285,7 +282,7 @@ footer a{color:var(--accent);text-decoration:none}
   });
 
   // theme toggle
-  var tt=document.getElementById('themeToggle');
+  var tt=document.getElementById('themeBtn');
   function setThemeUI(t){
     tt.textContent=t==='dark'?'Light':'Dark';
     document.documentElement.setAttribute('data-theme',t);

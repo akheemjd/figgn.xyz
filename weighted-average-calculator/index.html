@@ -67,7 +67,7 @@ footer a{color:var(--accent);text-decoration:none}
 </style>
 </head>
 <body>
-<header class="header"><span class="logo">Weighted Average</span><button id="themeToggle">Dark</button></header>
+<header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
 <div class="ad-leaderboard">Advertisement</div>
 <main class="wrap">
 <p class="crumb"><a href="/">figgn</a> / <a href="/#school">School &amp; Grades</a> / Weighted Average Calculator</p>
@@ -178,7 +178,7 @@ document.getElementById('copyBtn').addEventListener('click',function(){
   });
 });
 
-var tt=document.getElementById('themeToggle');
+var tt=document.getElementById('themeBtn');
 function setUI(t){tt.textContent=t==='dark'?'Light':'Dark';document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('theme',t);}catch(e){}}
 var ct=document.documentElement.getAttribute('data-theme')||'light';setUI(ct);
 tt.addEventListener('click',function(){setUI(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');});
