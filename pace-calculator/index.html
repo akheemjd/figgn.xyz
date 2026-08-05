@@ -145,39 +145,21 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
   font-size:14px;font-family:inherit;cursor:pointer;min-height:36px}
 .copybtn:hover{filter:brightness(1.1)}
 
-.adwrap{margin:20px auto;text-align:center}
-.adwrap .adlabel{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--text2);margin-bottom:4px}
-.adwrap .adslot{background:var(--ad-bg);color:var(--ad-text);border-radius:4px;display:flex;
-  align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
-.adwrap[data-ad="leaderboard"]{display:none;max-width:728px}
-.adwrap[data-ad="leaderboard"] .adslot{min-height:90px}
-.adwrap[data-ad="primary"],.adwrap[data-ad="secondary"],.adwrap[data-ad="tertiary"]{max-width:300px}
-.adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot,
-.adwrap[data-ad="tertiary"] .adslot{min-height:250px}
 .crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
 .crumb a{color:var(--text2)}
 @media (min-width:768px){
-  .adwrap[data-ad="leaderboard"]{display:block}
-  .adwrap[data-ad="primary"],.adwrap[data-ad="secondary"],.adwrap[data-ad="tertiary"]{max-width:336px}
-  .adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot,
-  .adwrap[data-ad="tertiary"] .adslot{min-height:280px}
+  
+  
+  
 }
-#stickyAd{position:fixed;left:0;right:0;bottom:0;z-index:55;height:50px;background:var(--ad-bg);
-  color:var(--ad-text);border-top:1px solid var(--border);display:flex;align-items:center;
-  justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
-  transform:translateY(100%);visibility:hidden}
-#stickyAd.show{transform:translateY(0);visibility:visible}
+
 .crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
 .crumb a{color:var(--text2)}
-@media (prefers-reduced-motion:no-preference){#stickyAd{transition:transform .2s ease-out}}
-#stickyAd button{position:absolute;right:4px;top:4px;width:26px;height:26px;line-height:1;
-  background:var(--card);border:1px solid var(--border);border-radius:4px;color:var(--text2);
-  font-size:13px;cursor:pointer;font-family:inherit;padding:0}
-body.stickyad{padding-bottom:58px}
+@media (prefers-reduced-motion:no-preference){}
+
 .crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
 .crumb a{color:var(--text2)}
-@media (min-width:641px){#stickyAd{display:none}body.stickyad{padding-bottom:0}}
+@media (min-width:641px){}
 
 #results{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:18px}
 .res
@@ -321,10 +303,7 @@ select{width:100%;min-height:56px;padding:0 10px;background:var(--input-bg);colo
     <p class="tip">Pre-filled with a 5K in 25 minutes (3.107 miles). To find pace per mile for a known race time, leave mode on Pace, enter your distance and finish time.</p>
   </div>
 
-  <aside class="adwrap" data-ad="primary">
-    <span class="adlabel">Advertisement</span>
-    <div class="adslot" data-size="300x250 / 336x280"></div>
-  </aside>
+  
 
   <div class="card rel">
     <h2>More Free Calculators</h2>
@@ -345,11 +324,6 @@ select{width:100%;min-height:56px;padding:0 10px;background:var(--input-bg);colo
     <a href="/">All calculators</a>
   </div>
 </footer>
-
-<div id="stickyAd" aria-label="Advertisement">
-  <span data-size="320x50">Advertisement</span>
-  <button type="button" id="closeAd" aria-label="Close ad">&#10005;</button>
-</div>
 
 <script>
 
@@ -554,15 +528,7 @@ function compute(V, G){
   var slots=document.querySelectorAll('.adslot');
   if('IntersectionObserver' in window){ var io=new IntersectionObserver(function(e){ e.forEach(function(en){ if(en.isIntersecting){ fill(en.target); io.unobserve(en.target); } }); },{rootMargin:'600px 0px'}); slots.forEach(function(s){ io.observe(s); }); }
   else slots.forEach(fill);
-  var sticky=document.getElementById('stickyAd'); if(!sticky) return;
-  var dismissed=false; try{ dismissed=sessionStorage.getItem('adDismissed')==='1'; }catch(e){}
-  var armed=false;
-  function reveal(){ if(dismissed||sticky.classList.contains('show')) return; sticky.classList.add('show'); document.body.classList.add('stickyad'); }
-  function arm(){ if(armed||dismissed) return; armed=true; setTimeout(reveal,400); }
-  document.addEventListener('input',arm,{once:true,passive:true});
-  window.addEventListener('scroll',function(){ if(window.scrollY>window.innerHeight*0.5) arm(); },{passive:true});
-  document.getElementById('closeAd').addEventListener('click',function(){ sticky.classList.remove('show'); document.body.classList.remove('stickyad'); dismissed=true; try{ sessionStorage.setItem('adDismissed','1'); }catch(e){} });
-})();
+  
 (function(){ var PUB='ca-pub-XXXXXXXXXXXXXXXX',loaded=false; function load(){ if(loaded||PUB.indexOf('XXXX')>-1) return; loaded=true; var s=document.createElement('script'); s.async=true; s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+PUB; s.crossOrigin='anonymous'; document.head.appendChild(s); } ['scroll','pointerdown','keydown'].forEach(function(e){ window.addEventListener(e,load,{once:true,passive:true}); }); setTimeout(load,3500); })();
 (function(){ var fields=[].slice.call(document.querySelectorAll('input[type=number][id]')); if(!fields.length) return; var params=new URLSearchParams(location.search),applied=false; fields.forEach(function(f){ var v=params.get(f.id); if(v!==null&&v!==''&&isFinite(parseFloat(v))){ f.value=parseFloat(v); applied=true; } }); if(applied){ fields[0].dispatchEvent(new Event('input',{bubbles:true})); document.dispatchEvent(new Event('change',{bubbles:true})); } var t; function sync(){ clearTimeout(t); t=setTimeout(function(){ var q=new URLSearchParams(); fields.forEach(function(f){ if(f.value!=='') q.set(f.id,f.value); }); var qs=q.toString(); history.replaceState(null,'',qs?location.pathname+'?'+qs:location.pathname); },500); } fields.forEach(function(f){ f.addEventListener('input',sync); }); })();
 (function(){ document.addEventListener('wheel',function(e){ var a=document.activeElement; if(a&&a.type==='number'&&a===e.target) a.blur(); },{passive:true}); var yr=document.getElementById('yr'); if(yr) yr.textContent=new Date().getFullYear(); var v=document.getElementById('sVal'),d=document.getElementById('sDet'); if(!v) return; var live=document.createElement('p'); live.className='visually-hidden'; live.setAttribute('aria-live','polite'); document.body.appendChild(live); function announce(){ live.textContent=v.textContent+'. '+d.textContent; } document.addEventListener('change',announce,true); document.addEventListener('click',function(e){ if(e.target.closest&&e.target.closest('.preset')) setTimeout(announce,0); },true); })();

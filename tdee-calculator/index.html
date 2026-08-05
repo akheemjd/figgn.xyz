@@ -147,39 +147,21 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline
   font-size:14px;font-family:inherit;cursor:pointer;min-height:36px}
 .copybtn:hover{filter:brightness(1.1)}
 
-.adwrap{margin:20px auto;text-align:center}
-.adwrap .adlabel{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--text2);margin-bottom:4px}
-.adwrap .adslot{background:var(--ad-bg);color:var(--ad-text);border-radius:4px;display:flex;
-  align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
-.adwrap[data-ad="leaderboard"]{display:none;max-width:728px}
-.adwrap[data-ad="leaderboard"] .adslot{min-height:90px}
-.adwrap[data-ad="primary"],.adwrap[data-ad="secondary"],.adwrap[data-ad="tertiary"]{max-width:300px}
-.adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot,
-.adwrap[data-ad="tertiary"] .adslot{min-height:250px}
 .crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
 .crumb a{color:var(--text2)}
 @media (min-width:768px){
-  .adwrap[data-ad="leaderboard"]{display:block}
-  .adwrap[data-ad="primary"],.adwrap[data-ad="secondary"],.adwrap[data-ad="tertiary"]{max-width:336px}
-  .adwrap[data-ad="primary"] .adslot,.adwrap[data-ad="secondary"] .adslot,
-  .adwrap[data-ad="tertiary"] .adslot{min-height:280px}
+  
+  
+  
 }
-#stickyAd{position:fixed;left:0;right:0;bottom:0;z-index:55;height:50px;background:var(--ad-bg);
-  color:var(--ad-text);border-top:1px solid var(--border);display:flex;align-items:center;
-  justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
-  transform:translateY(100%);visibility:hidden}
-#stickyAd.show{transform:translateY(0);visibility:visible}
+
 .crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
 .crumb a{color:var(--text2)}
-@media (prefers-reduced-motion:no-preference){#stickyAd{transition:transform .2s ease-out}}
-#stickyAd button{position:absolute;right:4px;top:4px;width:26px;height:26px;line-height:1;
-  background:var(--card);border:1px solid var(--border);border-radius:4px;color:var(--text2);
-  font-size:13px;cursor:pointer;font-family:inherit;padding:0}
-body.stickyad{padding-bottom:58px}
+@media (prefers-reduced-motion:no-preference){}
+
 .crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
 .crumb a{color:var(--text2)}
-@media (min-width:641px){#stickyAd{display:none}body.stickyad{padding-bottom:0}}
+@media (min-width:641px){}
 
 #results{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:18px}
 .crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
@@ -404,10 +386,7 @@ footer a{color:#bbb}
     <p class="disclaimer">These are population-average estimates, not medical advice. Individual metabolism, body composition and health conditions vary widely &mdash; talk to a doctor or dietitian before making significant changes.</p>
   </div>
 
-  <aside class="adwrap" data-ad="primary">
-    <span class="adlabel">Advertisement</span>
-    <div class="adslot" data-size="300x250 / 336x280"></div>
-  </aside>
+  
 
   <div class="card">
     <h2>How to Use the TDEE Calculator</h2>
@@ -427,10 +406,7 @@ footer a{color:#bbb}
     <p><strong>The deficit floors at BMR.</strong> If subtracting 500 would take you below your resting burn, the calculator gives you BMR instead. Treat any figure here as a starting hypothesis and correct using two or three weeks of weight trend data.</p>
   </div>
 
-  <aside class="adwrap" data-ad="secondary">
-    <span class="adlabel">Advertisement</span>
-    <div class="adslot" data-size="300x250 / 336x280"></div>
-  </aside>
+  
 
   <div class="card">
     <h2>Deficit &amp; Rate of Change</h2>
@@ -456,10 +432,7 @@ footer a{color:#bbb}
     </table>
   </div>
 
-  <aside class="adwrap" data-ad="tertiary">
-    <span class="adlabel">Advertisement</span>
-    <div class="adslot" data-size="300x250 / 336x280"></div>
-  </aside>
+  
 
   <div class="card rel">
     <h2>More Free Calculators</h2>
@@ -480,11 +453,6 @@ footer a{color:#bbb}
     <a href="/">All calculators</a>
   </div>
 </footer>
-
-<div id="stickyAd" aria-label="Advertisement">
-  <span data-size="320x50">Advertisement</span>
-  <button type="button" id="closeAd" aria-label="Close ad">&#10005;</button>
-</div>
 
 <script>
 
