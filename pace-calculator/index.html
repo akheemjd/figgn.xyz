@@ -3,208 +3,171 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Pace Calculator — Free Running Pace, Time & Distance Calculator | figgn</title>
-<meta name="description" content="Calculate running pace, finish time, or distance. Three modes: find pace from time & distance, find time from pace & distance, or find distance from time & pace. Free online tool.">
-<link rel="canonical" href="https://figgn.xyz/pace/">
-<meta property="og:title" content="Pace Calculator — Free Running Pace, Time & Distance Calculator | figgn">
-<meta property="og:description" content="Calculate running pace, finish time, or distance. Three modes with metric/imperial toggle. Free online running calculator.">
-<meta property="og:url" content="https://figgn.xyz/pace/">
+<title>Pace Calculator — Running Pace, Time &amp; Distance | figgn</title>
+<meta name="description" content="Calculate your running pace, finish time, or distance. Supports miles and kilometers.">
+<link rel="canonical" href="https://figgn.xyz/pace-calculator/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#e65c00">
+<meta property="og:title" content="Pace Calculator — Running Pace, Time &amp; Distance | figgn">
+<meta property="og:description" content="Calculate your running pace, finish time, or distance.">
+<meta property="og:url" content="https://figgn.xyz/pace-calculator/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <style>
-:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--accent-text:#ff8a3d;--accent-text:#c24d00;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
-[data-theme="dark"]{
-  --bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999999;--border:#3a3a48;
-  --input-bg:#252530;--result-bg:#0a3020;--result-text:#4ade80;
-  --shadow:0 1px 3px rgba(0,0,0,.3);--line:#2a2a34;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px}
-header{background:var(--accent);height:48px;display:flex;align-items:center}
-.hbar{max-width:760px;margin:0 auto;padding:0 16px;width:100%;display:flex;justify-content:space-between;align-items:center}
-.wordmark{color:#fff;font-weight:700;font-size:18px;text-decoration:none;letter-spacing:-.2px}
-.hnav{display:flex;align-items:center;gap:16px}
-.hnav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px}
-#themeBtn{background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:4px;padding:4px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
-.wrap{max-width:760px;margin:0 auto;padding:16px}
-.crumb{font-size:13px;color:var(--text2);margin-bottom:16px}
-.crumb a{color:var(--accent);text-decoration:none}
-.card{background:var(--card);border-radius:4px;padding:24px;box-shadow:var(--shadow);margin-bottom:20px}
-h1{font-size:24px;letter-spacing:-.3px;margin-bottom:4px}
-.sub{font-size:15px;color:var(--text2);margin-bottom:20px}
-label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:6px}
-input,select{width:100%;min-height:56px;padding:0 14px;border:1px solid var(--border);border-radius:4px;font-size:16px;font-family:inherit;background:var(--input-bg);color:var(--text);outline:none}
-input:focus,select:focus{border-color:var(--accent)}
-.btnrow{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.btnrow button{border:1px solid var(--border);background:var(--input-bg);color:var(--text);font-size:14px;border-radius:4px;padding:8px 16px;cursor:pointer;font-family:inherit;min-height:40px;min-width:48px}
-.btnrow button.on,.btnrow button:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
-.row .full{grid-column:1/-1}
-.time-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-.time-row input{text-align:center;min-height:48px;font-size:18px;font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-.result{background:var(--result-bg);border-radius:4px;padding:20px;text-align:center;margin:20px 0}
-.result .label{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--result-text);opacity:.8;margin-bottom:4px}
-.result .big{font-size:40px;font-weight:700;color:var(--result-text);font-family:"SF Mono","Cascadia Code","Consolas",monospace;line-height:1.2}
-.result .sub{font-size:15px;color:var(--result-text);opacity:.8;margin-top:4px;margin-bottom:0}
-.detail{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px}
-.stat{background:var(--bg);border-radius:4px;padding:14px;text-align:center}
-.stat .v{font-size:20px;font-weight:700;font-family:"SF Mono","Cascadia Code","Consolas",monospace;color:var(--text)}
-.stat .k{font-size:12px;color:var(--text2);margin-top:2px;text-transform:uppercase;letter-spacing:.03em}
-.note{font-size:13px;color:var(--text2);background:var(--bg);padding:12px 16px;border-radius:4px;margin-top:16px}
-.hidden{display:none!important}
-h2{font-size:18px;letter-spacing:-.2px;margin-bottom:12px}
-.content p,.content li{font-size:15px;color:var(--text2);margin-bottom:8px;line-height:1.6}
-.content ol,.content ul{padding-left:20px;margin-bottom:12px}
-.preset-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
-.preset-row button{border:1px solid var(--border);background:var(--input-bg);color:var(--text);font-size:12px;border-radius:4px;padding:6px 12px;cursor:pointer;font-family:inherit;min-height:34px}
-.preset-row button:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-details{border-top:1px solid var(--line);padding:14px 0}
-details:last-child{border-bottom:1px solid var(--line)}
-summary{font-weight:600;cursor:pointer;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center}
-summary::after{content:"+";font-size:18px;color:var(--accent);font-weight:400;margin-left:12px;flex-shrink:0}
-details[open] summary::after{content:"\2212"}
-details p{padding-top:8px;font-size:14px;color:var(--text2);line-height:1.6}
-.related{display:flex;flex-wrap:wrap;gap:8px}
-.related a{border:1px solid var(--border);padding:8px 14px;border-radius:4px;font-size:14px;color:var(--text);text-decoration:none}
-.related a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-.cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:4px}
+:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
+[data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#0a3020;--res-text:#4ade80;--border:#3a3a48;--line:#2a2a34;--ad-bg:#22222b;--ad-text:#777}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:var(--accent3)}a:hover{color:var(--accent2)}
+header{background:var(--accent);color:#fff}
+.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700}
+.hnav{display:flex;align-items:center;gap:12px;font-size:14px}
+.hnav a{color:#fff;text-decoration:none;font-weight:600}
+#themeBtn{background:var(--accent2);color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit}
+footer{background:#1c1c24;padding:14px 0;margin-top:40px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;color:#aaa;font-size:13px}
+footer a{color:#aaa}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
+.crumb a{color:var(--text2)}
+label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px;font-weight:600}
+input[type=number]{width:100%;min-height:56px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text);text-align:center}
+input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.btnrow button{padding:8px 14px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);cursor:pointer;min-height:40px}
+.btnrow button.on{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:700}
+.result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
+.result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
+.row-time{display:flex;gap:6px;align-items:center;margin-bottom:10px}
+.row-time span{font-size:18px;color:var(--text2)}
+.note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
+.cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
 .cat a{display:block;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.06);text-decoration:none}
 .cat a:hover{border-color:var(--accent)}
-.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent-text);margin-bottom:2px}
-.post{display:block;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:4px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.post:hover{border-color:var(--accent)}
-.post .t{font-size:17px;font-weight:700;color:var(--text)}
-@media(max-width:600px){
-  .row{grid-template-columns:1fr}
-  .time-row{grid-template-columns:1fr 1fr 1fr}
-  .detail{grid-template-columns:1fr}
-  .card{padding:16px}
-  .result .big{font-size:28px}
-}
+.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent3)}
 </style>
+<script>var theme=localStorage.getItem('theme');if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',theme);</script>
 </head>
 <body>
-<script>
-(function(){
-  try{
-    var t=localStorage.getItem('theme');
-    if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
-    document.documentElement.setAttribute('data-theme',t);
-  }catch(e){document.documentElement.setAttribute('data-theme','light')}
-})();
-</script>
 <header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
 <main class="wrap">
-<p class="crumb"><a href="/">figgn</a> / <a href="/#fitness">Fitness</a> / Pace Calculator</p>
-
+<p class="crumb"><a href="/">figgn</a> / <a href="/#fitness">Fitness &amp; Health</a> / Pace Calculator</p>
 <div class="card">
 <h1>Pace Calculator</h1>
-<p class="sub">Calculate running pace, finish time, or distance. Switch between modes and toggle miles or kilometers. Pre-filled with a 5K at 25:00 (8:03/mile).</p>
+<p class="sub">Find your pace, finish time, or distance.</p>
 
-<div class="btnrow">
-  <button class="on" data-mode="pace">Find Pace</button>
-  <button data-mode="time">Find Time</button>
-  <button data-mode="dist">Find Distance</button>
+<div class="btnrow"><span class="flabel">Mode</span>
+<button class="on" data-mode="pace">Time + Distance → Pace</button>
+<button data-mode="time">Distance + Pace → Time</button>
+<button data-mode="dist">Time + Pace → Distance</button>
 </div>
 
-<div class="btnrow" style="margin-bottom:12px">
-  <button class="on" data-unit="miles">Miles</button>
-  <button data-unit="km">Kilometers</button>
+<div class="btnrow"><span class="flabel">Units</span>
+<button class="on" data-unit="mile">Miles</button>
+<button data-unit="km">Kilometers</button>
 </div>
 
-<!-- Mode: Find Pace -->
-<div id="modePace">
-  <div class="row">
-    <div class="full"><label>Distance</label><input type="number" id="paceDist" value="3.107" min="0.01" step="0.001" inputmode="decimal"></div>
-  </div>
-  <label style="margin-top:8px">Time (HH:MM:SS)</label>
-  <div class="time-row">
-    <div><input type="number" id="paceH" value="0" min="0" max="99" placeholder="HH" inputmode="numeric"></div>
-    <div><input type="number" id="paceM" value="25" min="0" max="59" placeholder="MM" inputmode="numeric"></div>
-    <div><input type="number" id="paceS" value="0" min="0" max="59" placeholder="SS" inputmode="numeric"></div>
-  </div>
-  <div class="preset-row">
-    <button data-dist="3.107" data-h="0" data-m="25" data-s="0">5K</button>
-    <button data-dist="6.214" data-h="0" data-m="50" data-s="0">10K</button>
-    <button data-dist="13.109" data-h="1" data-m="45" data-s="0">Half Marathon</button>
-    <button data-dist="26.219" data-h="3" data-m="45" data-s="0">Marathon</button>
-  </div>
+<div id="inputs">
+<div class="row-time"><span>Time</span>
+<input type="number" id="hrs" value="0" min="0" max="99" style="width:70px" oninput="calc()"><span>h</span>
+<input type="number" id="mins" value="25" min="0" max="59" style="width:70px" oninput="calc()"><span>m</span>
+<input type="number" id="secs" value="0" min="0" max="59" style="width:70px" oninput="calc()"><span>s</span>
+</div>
+<div class="row-time"><span>Distance</span>
+<input type="number" id="distance" value="3.1" min="0" step="0.1" oninput="calc()"><span id="distLabel">mi</span></div>
+<div class="row-time" id="paceRow" style="display:none"><span>Pace</span>
+<input type="number" id="paceMin" value="0" min="0" max="59" style="width:70px"><span>m</span>
+<input type="number" id="paceSec" value="0" min="0" max="59" style="width:70px"><span>s /<span id="paceLabel">mi</span></span></div>
 </div>
 
-<!-- Mode: Find Time -->
-<div id="modeTime" class="hidden">
-  <div class="row">
-    <div class="full"><label>Distance</label><input type="number" id="timeDist" value="6.214" min="0.01" step="0.001" inputmode="decimal"></div>
-  </div>
-  <label style="margin-top:8px">Pace (per mile/km)</label>
-  <div class="time-row">
-    <div><input type="number" id="timePH" value="0" min="0" max="59" placeholder="MM" inputmode="numeric"></div>
-    <div><input type="number" id="timePM" value="8" min="0" max="59" placeholder="SS" inputmode="numeric"></div>
-    <div><input type="number" id="timePS" value="0" min="0" max="59" placeholder="SS" inputmode="numeric"></div>
-  </div>
+<div class="result" id="resultBox">
+<div class="label" id="resultLabel">Pace</div>
+<div class="big" id="rPace">—</div>
+<div class="sub" id="rNote"></div>
+</div>
+<p class="note">Common distances: 5K = 3.1 mi, 10K = 6.2 mi, Half Marathon = 13.1 mi, Marathon = 26.2 mi.</p>
 </div>
 
-<!-- Mode: Find Distance -->
-<div id="modeDist" class="hidden">
-  <label>Time (HH:MM:SS)</label>
-  <div class="time-row">
-    <div><input type="number" id="distH" value="0" min="0" max="99" placeholder="HH" inputmode="numeric"></div>
-    <div><input type="number" id="distM" value="30" min="0" max="59" placeholder="MM" inputmode="numeric"></div>
-    <div><input type="number" id="distS" value="0" min="0" max="59" placeholder="SS" inputmode="numeric"></div>
-  </div>
-  <label style="margin-top:12px">Pace (per mile/km)</label>
-  <div class="time-row">
-    <div><input type="number" id="distPH" value="0" min="0" max="59" placeholder="MM" inputmode="numeric"></div>
-    <div><input type="number" id="distPM" value="8" min="0" max="59" placeholder="SS" inputmode="numeric"></div>
-    <div><input type="number" id="distPS" value="0" min="0" max="59" placeholder="SS" inputmode="numeric"></div>
-  </div>
-</div>
-
-<div class="result">
-  <div class="label" id="rLabel">PACE</div>
-  <div class="big" id="rMain">—</div>
-  <div class="sub" id="rSub"></div>
-</div>
-
-<div class="detail">
-  <div class="stat"><div class="v" id="dSpeed">—</div><div class="k">Speed</div></div>
-  <div class="stat"><div class="v" id="dPaceKm">—</div><div class="k">Pace (per km)</div></div>
-</div>
-</div>
-
-<div class="card content">
-<h2>How to Use This Calculator</h2>
-<ol>
-  <li><strong>Choose mode:</strong> Find Pace (distance + time → pace), Find Time (distance + pace → time), or Find Distance (time + pace → distance).</li>
-  <li><strong>Toggle units:</strong> Miles or kilometers.</li>
-  <li><strong>Enter your values:</strong> Complete the visible fields for your selected mode.</li>
-  <li>Results update instantly — see your pace, speed, and the equivalent per-km pace.</li>
-</ol>
-</div>
-
-<div class="card content">
-<h2>How It's Calculated</h2>
-<p><strong>Pace = Time ÷ Distance</strong></p>
-<p style="font-size:14px;color:var(--text2)">Example: 25:00 (1,500 sec) ÷ 3.107 mi = 482.8 sec/mi = 8:03/mi</p>
-<p><strong>Speed = Distance ÷ Time (in hours)</strong></p>
-<p style="font-size:14px;color:var(--text2);margin-bottom:8px">Example: 3.107 mi ÷ (1,500/3,600) hr = 7.46 mph</p>
-<p>When miles is selected, the per-km equivalent is shown for reference. When km is selected, the per-mile equivalent is shown.</p>
-</div>
-
-<div class="card">
-<h2>FAQ</h2>
-<details><summary>What's a good running pace?</summary><p>It depends on your fitness level and distance. A 10:00/mile (6:13/km) is comfortable for many beginners. 8:00/mile (4:58/km) is solid intermediate. Under 6:00/mile (3:44/km) for distance running is competitive. Focus on your own improvement rather than comparing.</p></details>
-<details><summary>How do I use this for race planning?</summary><p>Use Find Time mode: enter your race distance and your goal pace. The calculator tells you your predicted finish time. Or use Find Pace mode after a training run to find your current pace, then project to longer distances.</p></details>
-<details><summary>Why does my pace differ on a treadmill?</summary><p>Treadmills are calibrated differently and often read slightly fast or slow. Wind resistance, incline, and belt calibration all affect the actual effort. Use outdoor GPS-tracked runs for the most accurate pace data.</p></details>
-</div>
-
-<div class="card">
 <h2>Related Calculators</h2>
 <div class="cat">
-<a href="/calorie-calculator/"><span class="t">Calorie Burned</span></a>
-<a href="/one-rep-max-calculator/"><span class="t">One Rep Max</span></a>
-<a href="/macro-calculator/"><span class="t">Macro Calculator</span></a>
-<a href="/privacy/"><span class="t">Privacy</span></a>
-<a href="/blog/"><span class="t">Blog</span></a>
-<a href="/"><span class="t">All calculators</span></a>
+<a href="/calorie-calculator/"><span class="t">Calorie Burn Calculator</span></a>
+<a href="/bmi-calculator/"><span class="t">BMI Calculator</span></a>
 </div>
+</main>
+<footer><div class="wrap">&copy; 2026 figgn <a href="/privacy/">Privacy</a> <a href="/blog/">Blog</a> <a href="/">All calculators</a></div></footer>
+<script>
+var tb=document.getElementById('themeBtn');
+tb.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'Light':'Dark';
+tb.onclick=function(){var t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t);tb.textContent=t==='dark'?'Light':'Dark'};
 
+var mode='pace', unit='mile';
 
+document.querySelectorAll('[data-mode]').forEach(function(b){
+  b.onclick=function(){
+    mode=b.dataset.mode;
+    b.parentElement.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    document.getElementById('paceRow').style.display=(mode==='time'||mode==='dist')?'flex':'none';
+    document.getElementById('resultLabel').textContent=mode==='pace'?'Pace':mode==='time'?'Finish Time':'Distance';
+    if(mode==='dist'){document.getElementById('distance').parentElement.style.display='none'}
+    else{document.getElementById('distance').parentElement.style.display='flex'}
+    if(mode==='time'||mode==='dist'){document.getElementById('paceMin').oninput=calc;document.getElementById('paceSec').oninput=calc;}
+    calc();
+  };
+});
+
+document.querySelectorAll('[data-unit]').forEach(function(b){
+  b.onclick=function(){
+    unit=b.dataset.unit;
+    b.parentElement.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    document.getElementById('distLabel').textContent=unit==='mile'?'mi':'km';
+    document.getElementById('paceLabel').textContent=unit==='mile'?'mi':'km';
+    calc();
+  };
+});
+
+function calc(){
+  var h=parseInt(document.getElementById('hrs').value)||0;
+  var m=parseInt(document.getElementById('mins').value)||0;
+  var s=parseInt(document.getElementById('secs').value)||0;
+  var totalMin=h*60+m+s/60;
+  var dist=parseFloat(document.getElementById('distance').value)||0;
+  
+  if(mode==='pace'){
+    if(totalMin<=0||dist<=0){document.getElementById('rPace').textContent='\u2014';document.getElementById('rNote').textContent='';return;}
+    var paceMin=totalMin/dist;
+    var pm=Math.floor(paceMin);
+    var ps=Math.round((paceMin-pm)*60);
+    document.getElementById('rPace').textContent=pm+':'+(ps<10?'0':'')+ps+' /'+unit;
+    document.getElementById('rNote').textContent='at '+dist.toFixed(1)+' '+unit;
+  }else if(mode==='time'){
+    var pmin=parseInt(document.getElementById('paceMin').value)||0;
+    var psec=parseInt(document.getElementById('paceSec').value)||0;
+    var pace=pmin+psec/60;
+    if(pace<=0||dist<=0){document.getElementById('rPace').textContent='\u2014';document.getElementById('rNote').textContent='';return;}
+    var timeMin=pace*dist;
+    var th=Math.floor(timeMin/60);
+    var tm=Math.floor(timeMin%60);
+    var ts=Math.round((timeMin%1)*60);
+    document.getElementById('rPace').textContent=th+':'+(tm<10?'0':'')+tm+':'+(ts<10?'0':'')+ts;
+    document.getElementById('rNote').textContent='for '+dist.toFixed(1)+' '+unit;
+  }else{
+    var pmin2=parseInt(document.getElementById('paceMin').value)||0;
+    var psec2=parseInt(document.getElementById('paceSec').value)||0;
+    var pace2=pmin2+psec2/60;
+    if(totalMin<=0||pace2<=0){document.getElementById('rPace').textContent='\u2014';document.getElementById('rNote').textContent='';return;}
+    var d=totalMin/pace2;
+    document.getElementById('rPace').textContent=d.toFixed(1)+' '+unit;
+    document.getElementById('rNote').textContent='at '+pmin2+':'+(psec2<10?'0':'')+psec2+' /'+unit+' pace';
+  }
+}
+calc();
+</script>
+</body>
+</html>

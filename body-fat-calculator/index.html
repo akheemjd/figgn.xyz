@@ -1,200 +1,305 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Body Fat Calculator — Free Body Fat Percentage Estimator | figgn</title>
-<meta name="description" content="Calculate your body fat percentage using the U.S. Navy Method or BMI method. Includes lean body mass, fat mass, and body fat category. Free online tool with live results.">
-<link rel="canonical" href="https://figgn.xyz/body-fat/">
-<meta property="og:title" content="Body Fat Calculator — Free Body Fat Percentage Estimator | figgn">
-<meta property="og:description" content="Calculate your body fat percentage using the U.S. Navy Method or BMI method. Free online tool with live results.">
-<meta property="og:url" content="https://figgn.xyz/body-fat/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Body Fat Calculator - figgn</title>
+<meta name="description" content="Calculate your body fat percentage using the US Navy method or BMI-based estimation. Get lean mass, fat mass, and fitness category instantly.">
 <style>
-:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--accent-text:#ff8a3d;--accent-text:#c24d00;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
-[data-theme="dark"]{
-  --bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999999;--border:#3a3a48;
-  --input-bg:#252530;--result-bg:#0a3020;--result-text:#4ade80;
-  --shadow:0 1px 3px rgba(0,0,0,.3);--line:#2a2a34;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px}
-header{background:var(--accent);height:48px;display:flex;align-items:center}
-.hbar{max-width:760px;margin:0 auto;padding:0 16px;width:100%;display:flex;justify-content:space-between;align-items:center}
-.wordmark{color:#fff;font-weight:700;font-size:18px;text-decoration:none;letter-spacing:-.2px}
-.hnav{display:flex;align-items:center;gap:16px}
-.hnav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px}
-#themeBtn{background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:4px;padding:4px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
-.wrap{max-width:760px;margin:0 auto;padding:16px}
-.crumb{font-size:13px;color:var(--text2);margin-bottom:16px}
-.crumb a{color:var(--accent);text-decoration:none}
-.card{background:var(--card);border-radius:4px;padding:24px;box-shadow:var(--shadow);margin-bottom:20px}
-h1{font-size:24px;letter-spacing:-.3px;margin-bottom:4px}
-.sub{font-size:15px;color:var(--text2);margin-bottom:20px}
-label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:6px}
-input,select{width:100%;min-height:56px;padding:0 14px;border:1px solid var(--border);border-radius:4px;font-size:16px;font-family:inherit;background:var(--input-bg);color:var(--text);outline:none}
-input:focus,select:focus{border-color:var(--accent)}
-.btnrow{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.btnrow button{border:1px solid var(--border);background:var(--input-bg);color:var(--text);font-size:14px;border-radius:4px;padding:8px 16px;cursor:pointer;font-family:inherit;min-height:40px;min-width:48px}
-.btnrow button.on,.btnrow button:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.row .full{grid-column:1/-1}
-.result{background:var(--result-bg);border-radius:4px;padding:20px;text-align:center;margin:20px 0}
-.result .label{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--result-text);opacity:.8;margin-bottom:4px}
-.result .big{font-size:40px;font-weight:700;color:var(--result-text);font-family:"SF Mono","Cascadia Code","Consolas",monospace;line-height:1.2}
-.result .unit{font-size:18px;font-weight:400}
-.detail{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
-.stat{background:var(--bg);border-radius:4px;padding:14px;text-align:center}
-.stat .v{font-size:20px;font-weight:700;font-family:"SF Mono","Cascadia Code","Consolas",monospace;color:var(--text)}
-.stat .k{font-size:12px;color:var(--text2);margin-top:2px;text-transform:uppercase;letter-spacing:.03em}
-.note{font-size:13px;color:var(--text2);background:var(--bg);padding:12px 16px;border-radius:4px;margin-top:16px}
-.hidden{display:none!important}
-h2{font-size:18px;letter-spacing:-.2px;margin-bottom:12px}
-.content p,.content li{font-size:15px;color:var(--text2);margin-bottom:8px;line-height:1.6}
-.content ol,.content ul{padding-left:20px;margin-bottom:12px}
-details{border-top:1px solid var(--line);padding:14px 0}
-details:last-child{border-bottom:1px solid var(--line)}
-summary{font-weight:600;cursor:pointer;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center}
-summary::after{content:"+";font-size:18px;color:var(--accent);font-weight:400;margin-left:12px;flex-shrink:0}
-details[open] summary::after{content:"\2212"}
-details p{padding-top:8px;font-size:14px;color:var(--text2);line-height:1.6}
-.related{display:flex;flex-wrap:wrap;gap:8px}
-.related a{border:1px solid var(--border);padding:8px 14px;border-radius:4px;font-size:14px;color:var(--text);text-decoration:none}
-.related a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
-th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
-th{font-weight:600;color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:.03em}
-td{color:var(--text)}
+:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
+[data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#0a3020;--res-text:#4ade80;--border:#3a3a48;--line:#2a2a34;--ad-bg:#22222b;--ad-text:#777}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:var(--accent3)}a:hover{color:var(--accent2)}
+header{background:var(--accent);color:#fff}
+.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700}
+.hnav{display:flex;align-items:center;gap:12px;font-size:14px}
+.hnav a{color:#fff;text-decoration:none;font-weight:600}
+#themeBtn{background:var(--accent2);color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit}
+footer{background:#1c1c24;padding:14px 0;margin-top:40px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;color:#aaa;font-size:13px}
+footer a{color:#aaa}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
+.crumb a{color:var(--text2)}
+label,.flabel{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px;font-weight:600}
+input[type=number]{width:100%;min-height:56px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text)}
+input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.btnrow button{padding:8px 14px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);cursor:pointer;min-height:40px}
+.btnrow button.on{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:700}
+.result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
+.result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
+.detail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
+.detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
+.note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
+.hidden{display:none}
 .cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:4px}
 .cat a{display:block;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.06);text-decoration:none}
 .cat a:hover{border-color:var(--accent)}
-.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent-text);margin-bottom:2px}
-.post{display:block;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:4px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.post:hover{border-color:var(--accent)}
-.post .t{font-size:17px;font-weight:700;color:var(--text)}
-@media(max-width:600px){
-  .row{grid-template-columns:1fr}
-  .detail{grid-template-columns:1fr}
-  .card{padding:16px}
-  .result .big{font-size:32px}
-}
+.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent3);margin-bottom:2px}
+@media(max-width:480px){.row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+
+<header>
+  <div class="hbar">
+    <a href="/" class="wordmark">figgn</a>
+    <div class="hnav">
+      <a href="/blog/">Blog</a>
+      <button id="themeBtn">Dark</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="crumb"><a href="/">figgn</a> / <a href="/fitness/">Fitness &amp; Health</a> / Body Fat Calculator</div>
+  <h1>Body Fat Calculator</h1>
+  <p class="sub">Estimate your body fat percentage using the US Navy circumference method or BMI-based formula.</p>
+
+  <div class="card">
+    <div class="btnrow">
+      <button class="on" data-method="navy">US Navy</button>
+      <button data-method="bmi">BMI</button>
+    </div>
+
+    <!-- NAVY METHOD FIELDS -->
+    <div id="navyFields">
+      <div class="row">
+        <div>
+          <label>Height (in)</label>
+          <input type="number" id="navyHeight" value="72" min="0" oninput="calc()">
+        </div>
+        <div>
+          <label>Weight (lbs)</label>
+          <input type="number" id="navyWeight" value="190" min="0" oninput="calc()">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Neck (in)</label>
+          <input type="number" id="navyNeck" value="16" min="0" oninput="calc()">
+        </div>
+        <div>
+          <label>Waist (in)</label>
+          <input type="number" id="navyWaist" value="34" min="0" oninput="calc()">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Sex</label>
+          <div class="btnrow" id="sexToggle">
+            <button class="on" data-sex="male">Male</button>
+            <button data-sex="female">Female</button>
+          </div>
+        </div>
+        <div id="navyHipWrap">
+          <label>Hip (in) — female only</label>
+          <input type="number" id="navyHip" value="38" min="0" oninput="calc()">
+        </div>
+      </div>
+    </div>
+
+    <!-- BMI METHOD FIELDS -->
+    <div id="bmiFields" class="hidden">
+      <div class="row">
+        <div>
+          <label>Weight (lbs)</label>
+          <input type="number" id="bmiWeight" value="190" min="0" oninput="calc()">
+        </div>
+        <div>
+          <label>Height (in)</label>
+          <input type="number" id="bmiHeight" value="72" min="0" oninput="calc()">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Age</label>
+          <input type="number" id="bmiAge" value="30" min="1" max="120" oninput="calc()">
+        </div>
+        <div>
+          <label>Sex</label>
+          <div class="btnrow" id="bmiSexToggle">
+            <button class="on" data-sex="male">Male</button>
+            <button data-sex="female">Female</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result">
+      <div class="label">Body Fat Percentage</div>
+      <div class="big" id="bfResult">--</div>
+      <div style="font-size:14px;margin-top:4px" id="bfCategory"></div>
+    </div>
+
+    <div class="detail">
+      <div class="stat">
+        <div class="k">Lean Mass</div>
+        <div class="v" id="leanMass">--</div>
+        <div style="font-size:11px;color:var(--text2)">lb</div>
+      </div>
+      <div class="stat">
+        <div class="k">Fat Mass</div>
+        <div class="v" id="fatMass">--</div>
+        <div style="font-size:11px;color:var(--text2)">lb</div>
+      </div>
+      <div class="stat">
+        <div class="k">Category</div>
+        <div class="v" id="bfCatLabel">--</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">&copy; 2026 figgn <a href="/privacy/">Privacy</a> <a href="/blog/">Blog</a> <a href="/">All calculators</a></div>
+</footer>
+
 <script>
+// Dark mode
 (function(){
-  try{
-    var t=localStorage.getItem('theme');
-    if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
-    document.documentElement.setAttribute('data-theme',t);
-  }catch(e){document.documentElement.setAttribute('data-theme','light')}
+  var theme=localStorage.getItem('theme');
+  if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  document.documentElement.setAttribute('data-theme',theme);
+  var tb=document.getElementById('themeBtn');
+  if(tb){
+    tb.textContent=theme==='dark'?'Light':'Dark';
+    tb.onclick=function(){
+      theme=theme==='dark'?'light':'dark';
+      document.documentElement.setAttribute('data-theme',theme);
+      localStorage.setItem('theme',theme);
+      tb.textContent=theme==='dark'?'Light':'Dark';
+    };
+  }
 })();
+
+var method = 'navy';
+var sex = 'male';
+var bmiSex = 'male';
+
+// Method toggle
+document.querySelectorAll('[data-method]').forEach(function(b){
+  b.onclick=function(){
+    method=b.dataset.method;
+    document.querySelectorAll('[data-method]').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    if(method==='navy'){
+      document.getElementById('navyFields').classList.remove('hidden');
+      document.getElementById('bmiFields').classList.add('hidden');
+    } else {
+      document.getElementById('navyFields').classList.add('hidden');
+      document.getElementById('bmiFields').classList.remove('hidden');
+    }
+    calc();
+  };
+});
+
+// Navy sex toggle
+document.querySelectorAll('#sexToggle button').forEach(function(b){
+  b.onclick=function(){
+    sex=b.dataset.sex;
+    document.querySelectorAll('#sexToggle button').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    document.getElementById('navyHipWrap').classList.toggle('hidden', sex==='male');
+    calc();
+  };
+});
+
+// BMI sex toggle
+document.querySelectorAll('#bmiSexToggle button').forEach(function(b){
+  b.onclick=function(){
+    bmiSex=b.dataset.sex;
+    document.querySelectorAll('#bmiSexToggle button').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    calc();
+  };
+});
+
+function getCategory(bf){
+  if(bf<2) return 'Below Essential';
+  if(bf<=5) return 'Essential Fat';
+  if(bf<=13) return 'Athlete';
+  if(bf<=17) return 'Fitness';
+  if(bf<=24) return 'Acceptable';
+  return 'Obese';
+}
+
+function resetDisplay(){
+  document.getElementById('bfResult').textContent='--';
+  document.getElementById('bfCategory').textContent='';
+  document.getElementById('leanMass').textContent='--';
+  document.getElementById('fatMass').textContent='--';
+  document.getElementById('bfCatLabel').textContent='--';
+}
+
+function calc(){
+  var bf, weight;
+
+  if(method==='navy'){
+    var height = parseFloat(document.getElementById('navyHeight').value)||0;
+    var neck = parseFloat(document.getElementById('navyNeck').value)||0;
+    var waist = parseFloat(document.getElementById('navyWaist').value)||0;
+    weight = parseFloat(document.getElementById('navyWeight').value)||0;
+
+    if(height<=0||neck<=0||waist<=0||weight<=0){
+      resetDisplay();
+      return;
+    }
+
+    if(sex==='male'){
+      bf = 86.010*Math.log10(waist-neck) - 70.041*Math.log10(height) + 36.76;
+    } else {
+      var hip = parseFloat(document.getElementById('navyHip').value)||0;
+      if(hip<=0){
+        resetDisplay();
+        return;
+      }
+      bf = 163.205*Math.log10(waist+hip-neck) - 97.684*Math.log10(height) - 78.387;
+    }
+  } else {
+    var bmiW = parseFloat(document.getElementById('bmiWeight').value)||0;
+    var bmiH = parseFloat(document.getElementById('bmiHeight').value)||0;
+    var bmiAge = parseFloat(document.getElementById('bmiAge').value)||0;
+
+    if(bmiW<=0||bmiH<=0||bmiAge<=0){
+      resetDisplay();
+      return;
+    }
+
+    weight = bmiW;
+    var bmi = (bmiW*703)/(bmiH*bmiH);
+    // Deurenberg body fat formula from BMI
+    bf = (1.20 * bmi) + (0.23 * bmiAge) - (bmiSex==='male'?16.2:5.4);
+  }
+
+  bf = Math.max(2, bf);
+  var fatMassVal = (bf/100)*weight;
+  var leanMassVal = weight - fatMassVal;
+  var cat = getCategory(bf);
+
+  document.getElementById('bfResult').textContent = bf.toFixed(1) + '%';
+  document.getElementById('bfCategory').textContent = cat;
+  document.getElementById('leanMass').textContent = leanMassVal.toFixed(1);
+  document.getElementById('fatMass').textContent = fatMassVal.toFixed(1);
+  document.getElementById('bfCatLabel').textContent = cat;
+}
+
+// Hide hip field initially (male default)
+document.getElementById('navyHipWrap').classList.add('hidden');
+
+// Initial calc
+calc();
 </script>
-<header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
-<main class="wrap">
-<p class="crumb"><a href="/">figgn</a> / <a href="/#health">Health</a> / Body Fat Calculator</p>
 
-<div class="card">
-<h1>Body Fat Calculator</h1>
-<p class="sub">Estimate your body fat percentage using the U.S. Navy Method or BMI-based formula. Includes lean body mass, fat mass, and fitness category.</p>
-
-<div class="btnrow">
-  <button class="on" data-method="navy">Navy Method</button>
-  <button data-method="bmi">BMI Method</button>
-</div>
-
-<div id="navyInputs">
-  <div class="btnrow">
-    <button class="on" data-sex="male">Male</button>
-    <button data-sex="female">Female</button>
-  </div>
-  <div class="row">
-    <div><label>Height (in)</label><input type="number" id="height" value="70" min="40" max="96" step="0.1" inputmode="decimal"></div>
-    <div><label>Weight (lbs)</label><input type="number" id="weight" value="180" min="50" max="600" step="0.1" inputmode="decimal"></div>
-  </div>
-  <div class="row">
-    <div><label>Neck (in)</label><input type="number" id="neck" value="15" min="8" max="24" step="0.1" inputmode="decimal"></div>
-    <div><label>Waist (in)</label><input type="number" id="waist" value="34" min="18" max="60" step="0.1" inputmode="decimal"></div>
-  </div>
-  <div class="row">
-    <div class="full" id="hipWrap"><label>Hip (in) — Female Only</label><input type="number" id="hip" value="38" min="20" max="70" step="0.1" inputmode="decimal"></div>
-  </div>
-</div>
-
-<div id="bmiInputs" class="hidden">
-  <div class="row">
-    <div><label>Height (in)</label><input type="number" id="bmiHeight" value="70" min="40" max="96" step="0.1" inputmode="decimal"></div>
-    <div><label>Weight (lbs)</label><input type="number" id="bmiWeight" value="180" min="50" max="600" step="0.1" inputmode="decimal"></div>
-  </div>
-  <div class="row">
-    <div><label>Age</label><input type="number" id="bmiAge" value="30" min="18" max="100" inputmode="decimal"></div>
-    <div id="bmiSexWrap"><label>Sex</label><select id="bmiSex"><option value="male">Male</option><option value="female">Female</option></select></div>
-  </div>
-</div>
-
-<div class="result">
-  <div class="label">BODY FAT PERCENTAGE</div>
-  <div class="big" id="rBf">—<span class="unit">%</span></div>
-</div>
-
-<div class="detail">
-  <div class="stat"><div class="v" id="dBfCat">—</div><div class="k">Category</div></div>
-  <div class="stat"><div class="v" id="dLean">—</div><div class="k">Lean Mass</div></div>
-  <div class="stat"><div class="v" id="dFat">—</div><div class="k">Fat Mass</div></div>
-</div>
-
-<p class="note">The Navy Method uses circumference measurements and is considered one of the most accurate at-home estimation methods. Results are estimates — DEXA scan is the gold standard.</p>
-</div>
-
-<div class="card content">
-<h2>How to Use This Calculator</h2>
-<ol>
-  <li><strong>Choose a method:</strong> Navy (tape measure) or BMI-based estimate.</li>
-  <li><strong>Navy Method:</strong> Measure neck at Adam's apple, waist at navel, and (for females) hips at widest point. Use inches.</li>
-  <li><strong>BMI Method:</strong> Enter height, weight, age, and sex for a quick estimate.</li>
-  <li>Results update instantly — your body fat %, lean mass, fat mass, and fitness category appear automatically.</li>
-</ol>
-</div>
-
-<div class="card content">
-<h2>How It's Calculated</h2>
-<p><strong>Navy Method (Male):</strong></p>
-<p>BF% = 86.010 × log₁₀(waist − neck) − 70.041 × log₁₀(height) + 36.76</p>
-<p><strong>Navy Method (Female):</strong></p>
-<p>BF% = 163.205 × log₁₀(waist + hip − neck) − 97.684 × log₁₀(height) − 78.387</p>
-<p><strong>BMI Method:</strong></p>
-<p>BF% = (1.20 × BMI) + (0.23 × age) − (10.8 × sex) − 5.4<br><em>sex = 1 for male, 0 for female</em></p>
-</div>
-
-<div class="card content">
-<h2>Body Fat Categories</h2>
-<table>
-  <tr><th>Category</th><th>Male</th><th>Female</th></tr>
-  <tr><td>Essential Fat</td><td>2–5%</td><td>10–13%</td></tr>
-  <tr><td>Athletes</td><td>6–13%</td><td>14–20%</td></tr>
-  <tr><td>Fitness</td><td>14–17%</td><td>21–24%</td></tr>
-  <tr><td>Acceptable</td><td>18–25%</td><td>25–31%</td></tr>
-  <tr><td>Obese</td><td>26%+</td><td>32%+</td></tr>
-</table>
-<p class="note" style="margin-top:12px">Source: American Council on Exercise (ACE)</p>
-</div>
-
-<div class="card">
-<h2>FAQ</h2>
-<details><summary>How accurate is the Navy Method?</summary><p>The Navy Method is typically within 3–4% of DEXA scan results when measurements are taken correctly. Accuracy depends on consistent measuring technique — use a flexible tape measure and measure at the correct anatomical landmarks.</p></details>
-<details><summary>What's the difference between Navy and BMI methods?</summary><p>The Navy Method uses body circumference measurements (neck, waist, hips) and is more accurate for athletic individuals. The BMI-based method is a rough estimate using height, weight, and age — it's less accurate for muscular people but provides a quick ballpark.</p></details>
-<details><summary>What is lean body mass?</summary><p>Lean body mass is everything in your body except fat: muscle, bone, organs, water, and connective tissue. It's calculated as your total weight minus your fat mass.</p></details>
-<details><summary>What's a healthy body fat percentage?</summary><p>For men, 14–17% is considered fit; for women, 21–24%. Athletes typically carry 6–13% (men) or 14–20% (women). Essential fat — the minimum for basic health — is 2–5% in men and 10–13% in women.</p></details>
-</div>
-
-<div class="card">
-<h2>Related Calculators</h2>
-<div class="cat">
-<a href="/ideal-weight-calculator/"><span class="t">Ideal Weight</span></a>
-<a href="/macro-calculator/"><span class="t">Macro Calculator</span></a>
-<a href="/calorie-calculator/"><span class="t">Calorie Burned</span></a>
-<a href="/privacy/"><span class="t">Privacy</span></a>
-<a href="/blog/"><span class="t">Blog</span></a>
-<a href="/"><span class="t">All calculators</span></a>
-</div>
-
-
+</body>
+</html>

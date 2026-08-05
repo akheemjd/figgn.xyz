@@ -1,58 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ideal Weight Calculator — Free Ideal Body Weight Estimator | figgn</title>
 <meta name="description" content="Calculate your ideal body weight using four medical formulas: Robinson, Miller, Devine, and Hamwi. Get a healthy weight range based on your height and sex. Free online tool.">
-<link rel="canonical" href="https://figgn.xyz/ideal-weight/">
+<link rel="canonical" href="https://figgn.xyz/ideal-weight-calculator/">
 <meta property="og:title" content="Ideal Weight Calculator — Free Ideal Body Weight Estimator | figgn">
 <meta property="og:description" content="Calculate your ideal body weight using four medical formulas. Get a healthy weight range based on your height and sex.">
-<meta property="og:url" content="https://figgn.xyz/ideal-weight/">
+<meta property="og:url" content="https://figgn.xyz/ideal-weight-calculator/">
 <style>
-:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--accent-text:#ff8a3d;--accent-text:#c24d00;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
-[data-theme="dark"]{
-  --bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999999;--border:#3a3a48;
-  --input-bg:#252530;--result-bg:#0a3020;--result-text:#4ade80;
-  --shadow:0 1px 3px rgba(0,0,0,.3);--line:#2a2a34;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px}
-header{background:var(--accent);height:48px;display:flex;align-items:center}
-.hbar{max-width:760px;margin:0 auto;padding:0 16px;width:100%;display:flex;justify-content:space-between;align-items:center}
-.wordmark{color:#fff;font-weight:700;font-size:18px;text-decoration:none;letter-spacing:-.2px}
-.hnav{display:flex;align-items:center;gap:16px}
-.hnav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px}
-#themeBtn{background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:4px;padding:4px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
-.wrap{max-width:760px;margin:0 auto;padding:16px}
-.crumb{font-size:13px;color:var(--text2);margin-bottom:16px}
-.crumb a{color:var(--accent);text-decoration:none}
-.card{background:var(--card);border-radius:4px;padding:24px;box-shadow:var(--shadow);margin-bottom:20px}
-h1{font-size:24px;letter-spacing:-.3px;margin-bottom:4px}
-.sub{font-size:15px;color:var(--text2);margin-bottom:20px}
-label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:6px}
-input,select{width:100%;min-height:56px;padding:0 14px;border:1px solid var(--border);border-radius:4px;font-size:16px;font-family:inherit;background:var(--input-bg);color:var(--text);outline:none}
-input:focus,select:focus{border-color:var(--accent)}
-.btnrow{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.btnrow button{border:1px solid var(--border);background:var(--input-bg);color:var(--text);font-size:14px;border-radius:4px;padding:8px 16px;cursor:pointer;font-family:inherit;min-height:40px;min-width:48px}
-.btnrow button.on,.btnrow button:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.row .full{grid-column:1/-1}
-.result{background:var(--result-bg);border-radius:4px;padding:20px;text-align:center;margin:20px 0}
-.result .label{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--result-text);opacity:.8;margin-bottom:4px}
-.result .big{font-size:40px;font-weight:700;color:var(--result-text);font-family:"SF Mono","Cascadia Code","Consolas",monospace;line-height:1.2}
-.result .sub{font-size:15px;color:var(--result-text);opacity:.8;margin-top:4px;margin-bottom:0}
-.detail{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px}
-.stat{background:var(--bg);border-radius:4px;padding:14px;text-align:center}
-.stat .v{font-size:20px;font-weight:700;font-family:"SF Mono","Cascadia Code","Consolas",monospace;color:var(--text)}
-.stat .k{font-size:12px;color:var(--text2);margin-top:2px;text-transform:uppercase;letter-spacing:.03em}
-.formula-table{width:100%;margin-top:12px}
-.formula-table td{padding:8px 0;border-bottom:1px solid var(--line)}
-.formula-table .fn{font-weight:600;color:var(--accent);width:90px;vertical-align:top}
-.formula-table .fv{font-family:"SF Mono","Cascadia Code","Consolas",monospace;font-size:16px}
-.note{font-size:13px;color:var(--text2);background:var(--bg);padding:12px 16px;border-radius:4px;margin-top:16px}
-.hidden{display:none!important}
-h2{font-size:18px;letter-spacing:-.2px;margin-bottom:12px}
+:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
+[data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#0a3020;--res-text:#4ade80;--border:#3a3a48;--line:#2a2a34;--ad-bg:#22222b;--ad-text:#777}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:var(--accent3)}a:hover{color:var(--accent2)}
+header{background:var(--accent);color:#fff}
+.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700}
+.hnav{display:flex;align-items:center;gap:12px;font-size:14px}
+.hnav a{color:#fff;text-decoration:none;font-weight:600}
+#themeBtn{background:var(--accent2);color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit}
+footer{background:#1c1c24;padding:14px 0;margin-top:40px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;color:#aaa;font-size:13px}
+footer a{color:#aaa}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
+.crumb a{color:var(--text2)}
+label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px;font-weight:600}
+input[type=number]{width:100%;min-height:56px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text)}
+input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.btnrow button{padding:8px 14px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);cursor:pointer;min-height:40px}
+.btnrow button.on{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:700}
+.result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
+.result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
+.result .sub{font-size:13px;color:var(--res-text);margin-top:2px;opacity:.8}
+.detail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
+.detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
+.formula-table{width:100%;margin-top:10px;border-collapse:collapse}
+.formula-table td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:center}
+.formula-table .fn{font-weight:600;font-size:14px;color:var(--text);width:25%}
+.formula-table .fv{font-family:"SF Mono","Cascadia Code",Consolas,monospace;font-size:17px;font-weight:700;width:25%}
+.note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
+.hidden{display:none}
+h2{font-size:18px;margin:0 0 10px}
 .content p,.content li{font-size:15px;color:var(--text2);margin-bottom:8px;line-height:1.6}
 .content ol,.content ul{padding-left:20px;margin-bottom:12px}
 details{border-top:1px solid var(--line);padding:14px 0}
@@ -61,99 +60,102 @@ summary{font-weight:600;cursor:pointer;font-size:15px;list-style:none;display:fl
 summary::after{content:"+";font-size:18px;color:var(--accent);font-weight:400;margin-left:12px;flex-shrink:0}
 details[open] summary::after{content:"\2212"}
 details p{padding-top:8px;font-size:14px;color:var(--text2);line-height:1.6}
-.related{display:flex;flex-wrap:wrap;gap:8px}
-.related a{border:1px solid var(--border);padding:8px 14px;border-radius:4px;font-size:14px;color:var(--text);text-decoration:none}
-.related a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 .cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:4px}
 .cat a{display:block;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.06);text-decoration:none}
 .cat a:hover{border-color:var(--accent)}
-.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent-text);margin-bottom:2px}
-.post{display:block;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:4px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.post:hover{border-color:var(--accent)}
-.post .t{font-size:17px;font-weight:700;color:var(--text)}
-@media(max-width:600px){
-  .row{grid-template-columns:1fr}
-  .detail{grid-template-columns:1fr}
-  .card{padding:16px}
-  .result .big{font-size:32px}
-}
+.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent3);margin-bottom:2px}
+@media(max-width:480px){.row{grid-template-columns:1fr}.detail{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
-<script>
-(function(){
-  try{
-    var t=localStorage.getItem('theme');
-    if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
-    document.documentElement.setAttribute('data-theme',t);
-  }catch(e){document.documentElement.setAttribute('data-theme','light')}
-})();
-</script>
-<header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
+<header>
+  <div class="hbar">
+    <a href="/" class="wordmark">figgn</a>
+    <div class="hnav">
+      <a href="/blog/">Blog</a>
+      <button id="themeBtn">Dark</button>
+    </div>
+  </div>
+</header>
 <main class="wrap">
-<p class="crumb"><a href="/">figgn</a> / <a href="/#health">Health</a> / Ideal Weight Calculator</p>
 
-<div class="card">
+<div class="crumb"><a href="/">figgn</a> &rsaquo; <a href="/#health">Fitness &amp; Health</a> &rsaquo; Ideal Weight Calculator</div>
 <h1>Ideal Weight Calculator</h1>
 <p class="sub">Estimate your ideal body weight using four established medical formulas. Results show a healthy range based on your height and sex.</p>
 
-<div class="btnrow">
-  <button class="on" data-unit="imperial">Imperial (ft/in, lbs)</button>
-  <button data-unit="metric">Metric (cm, kg)</button>
-</div>
+<div class="card">
+  <!-- Unit toggle -->
+  <label>Units</label>
+  <div class="btnrow" id="unitToggle">
+    <button class="on" data-unit="imperial">Imperial (ft/in, lbs)</button>
+    <button data-unit="metric">Metric (cm, kg)</button>
+  </div>
 
-<div class="btnrow">
-  <button class="on" data-sex="male">Male</button>
-  <button data-sex="female">Female</button>
-</div>
+  <!-- Sex toggle -->
+  <label>Sex</label>
+  <div class="btnrow" id="sexToggle">
+    <button class="on" data-sex="male">Male</button>
+    <button data-sex="female">Female</button>
+  </div>
 
-<div id="impInputs">
-  <div class="row">
-    <div><label>Feet</label><input type="number" id="feet" value="5" min="4" max="7" inputmode="decimal"></div>
-    <div><label>Inches</label><input type="number" id="inches" value="10" min="0" max="11" inputmode="decimal"></div>
+  <!-- Imperial inputs -->
+  <div id="imperialInputs">
+    <div class="row">
+      <div>
+        <label>Height (ft)</label>
+        <input type="number" id="impFt" value="5" min="3" max="8" oninput="calc()">
+      </div>
+      <div>
+        <label>Height (in)</label>
+        <input type="number" id="impIn" value="10" min="0" max="11" oninput="calc()">
+      </div>
+    </div>
+  </div>
+
+  <!-- Metric inputs (hidden by default) -->
+  <div id="metricInputs" class="hidden">
+    <label>Height (cm)</label>
+    <input type="number" id="metHeight" value="178" min="90" max="250" oninput="calc()">
   </div>
 </div>
 
-<div id="metInputs" class="hidden">
-  <div class="row">
-    <div class="full"><label>Height (cm)</label><input type="number" id="cmHeight" value="178" min="120" max="230" inputmode="decimal"></div>
+<!-- Results -->
+<div class="card">
+  <div class="result" id="resultBox">
+    <div class="label">Ideal Weight Range</div>
+    <div class="big" id="iwRange">155 &ndash; 166 lb</div>
+    <div class="sub" id="iwRangeKg">(70.3 &ndash; 75.3 kg)</div>
   </div>
-</div>
 
-<div class="result">
-  <div class="label">IDEAL WEIGHT RANGE</div>
-  <div class="big" id="rRange">—</div>
-  <div class="sub" id="rUnit">pounds</div>
-</div>
+  <div class="detail">
+    <div class="stat"><div class="v" id="dLow">155</div><div class="k">Lower Bound (lb)</div></div>
+    <div class="stat"><div class="v" id="dHigh">166</div><div class="k">Upper Bound (lb)</div></div>
+    <div class="stat"><div class="v" id="dHeight">5'10"</div><div class="k">Height</div></div>
+  </div>
 
-<div class="detail">
-  <div class="stat"><div class="v" id="dLow">—</div><div class="k">Lower Bound</div></div>
-  <div class="stat"><div class="v" id="dHigh">—</div><div class="k">Upper Bound</div></div>
-</div>
+  <table class="formula-table">
+    <tr><td class="fn">Robinson (1983)</td><td class="fv" id="fRobinson">156 lb</td></tr>
+    <tr><td class="fn">Miller (1983)</td><td class="fv" id="fMiller">155 lb</td></tr>
+    <tr><td class="fn">Devine (1974)</td><td class="fv" id="fDevine">161 lb</td></tr>
+    <tr><td class="fn">Hamwi (1964)</td><td class="fv" id="fHamwi">165 lb</td></tr>
+  </table>
 
-<p class="note">These formulas were originally developed for medical drug dosing calculations, not general health recommendations. Your ideal weight depends on many factors including muscle mass, bone structure, and body composition.</p>
-
-<table class="formula-table">
-  <tr><td class="fn">Robinson</td><td class="fv" id="fRobinson">—</td></tr>
-  <tr><td class="fn">Miller</td><td class="fv" id="fMiller">—</td></tr>
-  <tr><td class="fn">Devine</td><td class="fv" id="fDevine">—</td></tr>
-  <tr><td class="fn">Hamwi</td><td class="fv" id="fHamwi">—</td></tr>
-</table>
+  <p class="note">These formulas were originally developed for medical drug dosing calculations, not general health recommendations. Your ideal weight depends on many factors including muscle mass, bone structure, and body composition.</p>
 </div>
 
 <div class="card content">
 <h2>How to Use This Calculator</h2>
 <ol>
   <li><strong>Choose units:</strong> Imperial (feet/inches, pounds) or Metric (centimeters, kilograms).</li>
-  <li><strong>Select sex:</strong> Male or female — each formula has different constants for each.</li>
-  <li><strong>Enter your height:</strong> Use feet + inches or centimeters.</li>
-  <li>Results update instantly — the range from all four formulas and individual formula results appear.</li>
+  <li><strong>Select sex:</strong> Male or female &mdash; each formula has different constants for each.</li>
+  <li><strong>Enter your height:</strong> Use feet + inches or centimeters. Results update instantly.</li>
+  <li>The range from all four formulas and individual formula results appear automatically.</li>
 </ol>
 </div>
 
 <div class="card content">
 <h2>How It's Calculated</h2>
-<p>All four formulas calculate ideal weight based on height above 5 feet (60 inches):</p>
+<p>All four formulas calculate ideal weight based on height above 5 feet (60 inches) using a base weight plus an increment per inch:</p>
 <p style="font-size:14px;color:var(--text2);margin-bottom:8px"><strong>Robinson (1983):</strong> Male: 52 kg + 1.9 kg/in over 5ft | Female: 49 kg + 1.7 kg/in</p>
 <p style="font-size:14px;color:var(--text2);margin-bottom:8px"><strong>Miller (1983):</strong> Male: 56.2 kg + 1.41 kg/in | Female: 53.1 kg + 1.36 kg/in</p>
 <p style="font-size:14px;color:var(--text2);margin-bottom:8px"><strong>Devine (1974):</strong> Male: 50 kg + 2.3 kg/in | Female: 45.5 kg + 2.3 kg/in</p>
@@ -162,21 +164,139 @@ details p{padding-top:8px;font-size:14px;color:var(--text2);line-height:1.6}
 
 <div class="card">
 <h2>FAQ</h2>
-<details><summary>Which formula is most accurate?</summary><p>None of these formulas predicts your personal ideal weight perfectly — they're population-level estimates originally developed for drug dosing. Devine is the most widely used clinically. For a truly personalized assessment, consider body composition (body fat %, muscle mass) rather than weight alone.</p></details>
+<details><summary>Which formula is most accurate?</summary><p>None of these formulas predicts your personal ideal weight perfectly &mdash; they're population-level estimates originally developed for drug dosing. Devine is the most widely used clinically. For a truly personalized assessment, consider body composition (body fat %, muscle mass) rather than weight alone.</p></details>
 <details><summary>Why does the calculator show a range?</summary><p>Different formulas produce different results because they were developed using different population data. The range (lowest to highest across all four formulas) gives you a reasonable target window rather than a single number.</p></details>
 <details><summary>Are these formulas for athletes?</summary><p>No. These formulas assume average body composition and don't account for higher muscle mass in athletes. If you're muscular, these formulas may underestimate your ideal weight. Combine with a body fat calculator for a better picture.</p></details>
 <details><summary>What are these formulas actually used for?</summary><p>They were developed for calculating drug dosages in clinical settings, particularly for medications where body weight affects the correct dose. Devine's formula is still commonly used in hospitals today.</p></details>
 </div>
 
-<div class="card">
 <h2>Related Calculators</h2>
 <div class="cat">
-<a href="/body-fat-calculator/"><span class="t">Body Fat</span></a>
+<a href="/bmr-calculator/"><span class="t">BMR Calculator</span></a>
+<a href="/body-fat-calculator/"><span class="t">Body Fat Calculator</span></a>
 <a href="/macro-calculator/"><span class="t">Macro Calculator</span></a>
-<a href="/calorie-calculator/"><span class="t">Calorie Burned</span></a>
-<a href="/privacy/"><span class="t">Privacy</span></a>
-<a href="/blog/"><span class="t">Blog</span></a>
-<a href="/"><span class="t">All calculators</span></a>
 </div>
 
+</main>
+<footer>
+  <div class="wrap">
+    &copy; 2026 figgn
+    <a href="/privacy/">Privacy</a>
+    <a href="/blog/">Blog</a>
+    <a href="/">All calculators</a>
+  </div>
+</footer>
 
+<script>
+// Dark mode
+(function(){
+  var theme=localStorage.getItem('theme');
+  if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  document.documentElement.setAttribute('data-theme',theme);
+  var tb=document.getElementById('themeBtn');
+  if(tb){tb.textContent=theme==='dark'?'Light':'Dark';tb.onclick=function(){theme=theme==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',theme);localStorage.setItem('theme',theme);tb.textContent=theme==='dark'?'Light':'Dark';}};
+})();
+
+var currentUnit = 'imperial';
+var currentSex = 'male';
+
+// Unit toggle
+document.getElementById('unitToggle').addEventListener('click', function(e) {
+  if (e.target.tagName !== 'BUTTON') return;
+  currentUnit = e.target.dataset.unit;
+  var btns = this.querySelectorAll('button');
+  btns.forEach(function(b) { b.classList.toggle('on', b.dataset.unit === currentUnit); });
+  document.getElementById('imperialInputs').classList.toggle('hidden', currentUnit !== 'imperial');
+  document.getElementById('metricInputs').classList.toggle('hidden', currentUnit !== 'metric');
+  calc();
+});
+
+// Sex toggle
+document.getElementById('sexToggle').addEventListener('click', function(e) {
+  if (e.target.tagName !== 'BUTTON') return;
+  currentSex = e.target.dataset.sex;
+  var btns = this.querySelectorAll('button');
+  btns.forEach(function(b) { b.classList.toggle('on', b.dataset.sex === currentSex); });
+  calc();
+});
+
+function fmt(n, d) {
+  if (isNaN(n) || !isFinite(n)) return '&mdash;';
+  return n.toFixed(d);
+}
+
+function calc() {
+  var heightIn, heightCm;
+
+  if (currentUnit === 'imperial') {
+    var ft = parseInt(document.getElementById('impFt').value) || 5;
+    var inch = parseInt(document.getElementById('impIn').value) || 10;
+    heightIn = ft * 12 + inch;
+    heightCm = heightIn * 2.54;
+  } else {
+    heightCm = parseFloat(document.getElementById('metHeight').value) || 178;
+    heightIn = heightCm / 2.54;
+  }
+
+  if (heightIn < 36 || heightIn > 96) {
+    document.getElementById('iwRange').innerHTML = '&mdash;';
+    document.getElementById('iwRangeKg').textContent = '';
+    document.getElementById('dLow').textContent = '—';
+    document.getElementById('dHigh').textContent = '—';
+    document.getElementById('dHeight').textContent = '—';
+    document.getElementById('fRobinson').textContent = '—';
+    document.getElementById('fMiller').textContent = '—';
+    document.getElementById('fDevine').textContent = '—';
+    document.getElementById('fHamwi').textContent = '—';
+    return;
+  }
+
+  var extraIn = heightIn - 60;
+
+  // Compute in kg using clinical formulas
+  var robinson = currentSex === 'male' ? 52 + 1.9 * extraIn : 49 + 1.7 * extraIn;
+  var miller   = currentSex === 'male' ? 56.2 + 1.41 * extraIn : 53.1 + 1.36 * extraIn;
+  var devine   = currentSex === 'male' ? 50 + 2.3 * extraIn : 45.5 + 2.3 * extraIn;
+  var hamwi    = currentSex === 'male' ? 48 + 2.7 * extraIn : 45.5 + 2.2 * extraIn;
+
+  // Convert to lb for imperial display
+  var toLb = function(kg) { return Math.round(kg * 2.20462); };
+
+  var low = Math.min(robinson, miller, devine, hamwi);
+  var high = Math.max(robinson, miller, devine, hamwi);
+
+  if (currentUnit === 'imperial') {
+    document.getElementById('iwRange').innerHTML = toLb(low) + ' &ndash; ' + toLb(high) + ' lb';
+    document.getElementById('iwRangeKg').textContent = '(' + fmt(low,1) + ' \u2013 ' + fmt(high,1) + ' kg)';
+    document.getElementById('dLow').textContent = toLb(low);
+    document.getElementById('dHigh').textContent = toLb(high);
+    document.getElementById('fRobinson').textContent = toLb(robinson) + ' lb';
+    document.getElementById('fMiller').textContent = toLb(miller) + ' lb';
+    document.getElementById('fDevine').textContent = toLb(devine) + ' lb';
+    document.getElementById('fHamwi').textContent = toLb(hamwi) + ' lb';
+  } else {
+    document.getElementById('iwRange').innerHTML = fmt(low,1) + ' &ndash; ' + fmt(high,1) + ' kg';
+    document.getElementById('iwRangeKg').textContent = '(' + toLb(low) + ' \u2013 ' + toLb(high) + ' lb)';
+    document.getElementById('dLow').textContent = fmt(low,1);
+    document.getElementById('dHigh').textContent = fmt(high,1);
+    document.getElementById('fRobinson').textContent = fmt(robinson,1) + ' kg';
+    document.getElementById('fMiller').textContent = fmt(miller,1) + ' kg';
+    document.getElementById('fDevine').textContent = fmt(devine,1) + ' kg';
+    document.getElementById('fHamwi').textContent = fmt(hamwi,1) + ' kg';
+  }
+
+  // Height display
+  if (currentUnit === 'imperial') {
+    var ftDisplay = Math.floor(heightIn / 12);
+    var inDisplay = Math.round(heightIn - ftDisplay * 12);
+    if (inDisplay === 12) { ftDisplay++; inDisplay = 0; }
+    document.getElementById('dHeight').textContent = ftDisplay + "'" + inDisplay + '"';
+  } else {
+    document.getElementById('dHeight').textContent = Math.round(heightCm) + ' cm';
+  }
+}
+
+calc();
+</script>
+</body>
+</html>

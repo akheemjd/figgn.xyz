@@ -3,173 +3,121 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Calorie Burned Calculator — Free Exercise Calorie Estimator | figgn</title>
-<meta name="description" content="Calculate calories burned during exercise. Choose from running, walking, cycling, swimming, weightlifting, yoga, and HIIT. Based on MET values and your body weight. Free online tool.">
-<link rel="canonical" href="https://figgn.xyz/calorie/">
-<meta property="og:title" content="Calorie Burned Calculator — Free Exercise Calorie Estimator | figgn">
-<meta property="og:description" content="Calculate calories burned during exercise. Choose from 7 activities with MET-based calculations. Free online tool with per-minute breakdown.">
-<meta property="og:url" content="https://figgn.xyz/calorie/">
+<title>Calorie Burn Calculator — Calories Burned by Activity | figgn</title>
+<meta name="description" content="Estimate calories burned during exercise based on activity type, duration, and body weight.">
+<link rel="canonical" href="https://figgn.xyz/calorie-calculator/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#e65c00">
+<meta property="og:title" content="Calorie Burn Calculator — Calories Burned by Activity | figgn">
+<meta property="og:description" content="Estimate calories burned during exercise.">
+<meta property="og:url" content="https://figgn.xyz/calorie-calculator/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <style>
-:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--accent-text:#ff8a3d;--accent-text:#c24d00;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
-[data-theme="dark"]{
-  --bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999999;--border:#3a3a48;
-  --input-bg:#252530;--result-bg:#0a3020;--result-text:#4ade80;
-  --shadow:0 1px 3px rgba(0,0,0,.3);--line:#2a2a34;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px}
-header{background:var(--accent);height:48px;display:flex;align-items:center}
-.hbar{max-width:760px;margin:0 auto;padding:0 16px;width:100%;display:flex;justify-content:space-between;align-items:center}
-.wordmark{color:#fff;font-weight:700;font-size:18px;text-decoration:none;letter-spacing:-.2px}
-.hnav{display:flex;align-items:center;gap:16px}
-.hnav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px}
-#themeBtn{background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:4px;padding:4px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
-.wrap{max-width:760px;margin:0 auto;padding:16px}
-.crumb{font-size:13px;color:var(--text2);margin-bottom:16px}
-.crumb a{color:var(--accent);text-decoration:none}
-.card{background:var(--card);border-radius:4px;padding:24px;box-shadow:var(--shadow);margin-bottom:20px}
-h1{font-size:24px;letter-spacing:-.3px;margin-bottom:4px}
-.sub{font-size:15px;color:var(--text2);margin-bottom:20px}
-label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:6px}
-input,select{width:100%;min-height:56px;padding:0 14px;border:1px solid var(--border);border-radius:4px;font-size:16px;font-family:inherit;background:var(--input-bg);color:var(--text);outline:none}
-input:focus,select:focus{border-color:var(--accent)}
-.btnrow{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.btnrow button{border:1px solid var(--border);background:var(--input-bg);color:var(--text);font-size:14px;border-radius:4px;padding:8px 16px;cursor:pointer;font-family:inherit;min-height:40px;min-width:48px}
-.btnrow button.on,.btnrow button:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.row .full{grid-column:1/-1}
-.result{background:var(--result-bg);border-radius:4px;padding:20px;text-align:center;margin:20px 0}
-.result .label{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--result-text);opacity:.8;margin-bottom:4px}
-.result .big{font-size:40px;font-weight:700;color:var(--result-text);font-family:"SF Mono","Cascadia Code","Consolas",monospace;line-height:1.2}
-.detail{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
-.stat{background:var(--bg);border-radius:4px;padding:14px;text-align:center}
-.stat .v{font-size:20px;font-weight:700;font-family:"SF Mono","Cascadia Code","Consolas",monospace;color:var(--text)}
-.stat .k{font-size:12px;color:var(--text2);margin-top:2px;text-transform:uppercase;letter-spacing:.03em}
-.note{font-size:13px;color:var(--text2);background:var(--bg);padding:12px 16px;border-radius:4px;margin-top:16px}
-.hidden{display:none!important}
-h2{font-size:18px;letter-spacing:-.2px;margin-bottom:12px}
-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
-th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
-th{font-weight:600;color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:.03em}
-td{color:var(--text);font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-td:first-child{font-family:inherit;font-weight:500}
-.content p,.content li{font-size:15px;color:var(--text2);margin-bottom:8px;line-height:1.6}
-.content ol,.content ul{padding-left:20px;margin-bottom:12px}
-details{border-top:1px solid var(--line);padding:14px 0}
-details:last-child{border-bottom:1px solid var(--line)}
-summary{font-weight:600;cursor:pointer;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center}
-summary::after{content:"+";font-size:18px;color:var(--accent);font-weight:400;margin-left:12px;flex-shrink:0}
-details[open] summary::after{content:"\2212"}
-details p{padding-top:8px;font-size:14px;color:var(--text2);line-height:1.6}
-.related{display:flex;flex-wrap:wrap;gap:8px}
-.related a{border:1px solid var(--border);padding:8px 14px;border-radius:4px;font-size:14px;color:var(--text);text-decoration:none}
-.related a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-.cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:4px}
+:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
+[data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#0a3020;--res-text:#4ade80;--border:#3a3a48;--line:#2a2a34;--ad-bg:#22222b;--ad-text:#777}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:var(--accent3)}a:hover{color:var(--accent2)}
+header{background:var(--accent);color:#fff}
+.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700}
+.hnav{display:flex;align-items:center;gap:12px;font-size:14px}
+.hnav a{color:#fff;text-decoration:none;font-weight:600}
+#themeBtn{background:var(--accent2);color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit}
+footer{background:#1c1c24;padding:14px 0;margin-top:40px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;color:#aaa;font-size:13px}
+footer a{color:#aaa}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
+.crumb a{color:var(--text2)}
+label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px;font-weight:600}
+input[type=number],select{width:100%;min-height:56px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text)}
+input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
+.result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
+.detail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
+.detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
+.note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
+.cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
 .cat a{display:block;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.06);text-decoration:none}
 .cat a:hover{border-color:var(--accent)}
-.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent-text);margin-bottom:2px}
-.post{display:block;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:4px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.post:hover{border-color:var(--accent)}
-.post .t{font-size:17px;font-weight:700;color:var(--text)}
-@media(max-width:600px){
-  .row{grid-template-columns:1fr}
-  .detail{grid-template-columns:1fr}
-  .card{padding:16px}
-  .result .big{font-size:32px}
-}
+.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent3)}
+@media(max-width:480px){.row{grid-template-columns:1fr}}
 </style>
+<script>var theme=localStorage.getItem('theme');if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',theme);</script>
 </head>
 <body>
-<script>
-(function(){
-  try{
-    var t=localStorage.getItem('theme');
-    if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
-    document.documentElement.setAttribute('data-theme',t);
-  }catch(e){document.documentElement.setAttribute('data-theme','light')}
-})();
-</script>
 <header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
 <main class="wrap">
-<p class="crumb"><a href="/">figgn</a> / <a href="/#fitness">Fitness</a> / Calorie Burned Calculator</p>
-
+<p class="crumb"><a href="/">figgn</a> / <a href="/#fitness">Fitness &amp; Health</a> / Calorie Burn Calculator</p>
 <div class="card">
-<h1>Calorie Burned Calculator</h1>
-<p class="sub">Estimate calories burned during exercise based on activity type, duration, and your body weight. Uses MET (Metabolic Equivalent of Task) values for accurate estimates.</p>
+<h1>Calorie Burn Calculator</h1>
+<p class="sub">Estimate calories burned during exercise based on activity, duration, and body weight.</p>
+
+<label>Activity</label>
+<select id="activity" onchange="calc()" style="margin-bottom:12px">
+<option value="9.8">Running (6 mph)</option>
+<option value="3.8">Walking (3 mph)</option>
+<option value="7.5">Cycling (moderate)</option>
+<option value="8.0">Swimming (moderate)</option>
+<option value="5.0">Weight Training</option>
+<option value="3.0">Yoga</option>
+<option value="8.0">HIIT</option>
+</select>
 
 <div class="row">
-  <div class="full"><label>Activity</label><select id="activity"><option value="running">Running (6 mph / 9.7 km/h)</option><option value="walking">Walking (3.5 mph / 5.6 km/h)</option><option value="cycling">Cycling (12-14 mph / 19-22 km/h)</option><option value="swimming">Swimming (moderate laps)</option><option value="weights">Weightlifting (vigorous)</option><option value="yoga">Yoga (Hatha)</option><option value="hiit">HIIT / Circuit Training</option></select></div>
-</div>
-
-<div class="row">
-  <div><label>Duration (minutes)</label><input type="number" id="duration" value="30" min="1" max="600" inputmode="decimal"></div>
-  <div><label>Weight (lbs)</label><input type="number" id="weight" value="180" min="30" max="600" step="0.1" inputmode="decimal"></div>
+<div><label>Duration (min)</label><input type="number" id="duration" value="30" min="0" oninput="calc()"></div>
+<div><label>Weight (lbs)</label><input type="number" id="weight" value="180" min="0" oninput="calc()"></div>
 </div>
 
 <div class="result">
-  <div class="label">CALORIES BURNED</div>
-  <div class="big" id="rCals">—<span style="font-size:18px;font-weight:400"> cal</span></div>
+<div class="label">Calories Burned</div>
+<div class="big" id="rCal">—</div>
+<div class="sub">calories</div>
 </div>
-
 <div class="detail">
-  <div class="stat"><div class="v" id="dPerMin">—</div><div class="k">Per Minute</div></div>
-  <div class="stat"><div class="v" id="dMet">—</div><div class="k">MET Value</div></div>
-  <div class="stat"><div class="v" id="dActivity">—</div><div class="k">Activity</div></div>
+<div class="stat"><div class="v" id="dMet">—</div><div class="k">MET Value</div></div>
+<div class="stat"><div class="v" id="dMin">—</div><div class="k">Per Minute</div></div>
+<div class="stat"><div class="v" id="dHour">—</div><div class="k">Per Hour</div></div>
+</div>
+<p class="note">MET values from the Compendium of Physical Activities. Actual burn varies with intensity and fitness level.</p>
 </div>
 
-<p class="note">Calorie burn is estimated and varies with intensity, fitness level, and individual metabolism. Use these numbers as a guide, not an exact science. For weight loss, combine with a macro calculator.</p>
-</div>
-
-<div class="card content">
-<h2>How to Use This Calculator</h2>
-<ol>
-  <li><strong>Select an activity:</strong> Choose from running, walking, cycling, swimming, weightlifting, yoga, or HIIT.</li>
-  <li><strong>Enter duration:</strong> How many minutes you exercised.</li>
-  <li><strong>Enter your weight:</strong> Heavier bodies burn more calories per minute.</li>
-  <li>Results update instantly — see total calories, per-minute burn rate, and the MET value used.</li>
-</ol>
-</div>
-
-<div class="card content">
-<h2>How It's Calculated</h2>
-<p><strong>Calories = MET × Weight(kg) × Duration(hours)</strong></p>
-<p style="font-size:14px;color:var(--text2)">Example: Running (MET 9.8) × 81.6 kg × 0.5 hours = 400 calories</p>
-<p>MET (Metabolic Equivalent of Task) represents the energy cost of an activity relative to resting. 1 MET = energy burned at rest (~1 kcal/kg/hour).</p>
-</div>
-
-<div class="card">
-<h2>MET Values Reference</h2>
-<table>
-  <tr><th>Activity</th><th>MET</th><th>Intensity</th></tr>
-  <tr><td>Running (6 mph)</td><td>9.8</td><td>Vigorous</td></tr>
-  <tr><td>Walking (3.5 mph)</td><td>4.3</td><td>Moderate</td></tr>
-  <tr><td>Cycling (12-14 mph)</td><td>8.0</td><td>Vigorous</td></tr>
-  <tr><td>Swimming (moderate laps)</td><td>7.0</td><td>Vigorous</td></tr>
-  <tr><td>Weightlifting (vigorous)</td><td>6.0</td><td>Moderate-Vigorous</td></tr>
-  <tr><td>Yoga (Hatha)</td><td>3.0</td><td>Light</td></tr>
-  <tr><td>HIIT / Circuit Training</td><td>8.0</td><td>Vigorous</td></tr>
-</table>
-<p class="note" style="margin-top:12px">Source: Compendium of Physical Activities (2011). Actual MET values vary by individual effort and technique.</p>
-</div>
-
-<div class="card">
-<h2>FAQ</h2>
-<details><summary>How accurate are MET-based calorie estimates?</summary><p>MET values provide a reasonable estimate for the average person. Individual factors like fitness level, body composition, exercise economy, and true intensity can shift actual calorie burn by 10-20% in either direction. Use as a guideline, not a precision measurement.</p></details>
-<details><summary>Does weight affect calorie burn?</summary><p>Yes — significantly. A 200 lb person burns roughly 25% more calories than a 150 lb person doing the same activity at the same intensity. The formula multiplies by body weight directly, so heavier individuals get higher calorie estimates.</p></details>
-<details><summary>Do I burn calories after exercise?</summary><p>Yes — this is called EPOC (Excess Post-Exercise Oxygen Consumption). High-intensity exercise like HIIT and heavy weightlifting create a larger afterburn effect than steady-state cardio. This calculator only estimates calories during the activity, not the afterburn.</p></details>
-<details><summary>How many calories should I burn to lose weight?</summary><p>One pound of fat equals approximately 3,500 calories. A 500-calorie daily deficit (through diet and exercise combined) leads to about 1 lb of weight loss per week. Use this calculator with a macro calculator to plan your deficit.</p></details>
-</div>
-
-<div class="card">
 <h2>Related Calculators</h2>
 <div class="cat">
-<a href="/macro-calculator/"><span class="t">Macro Calculator</span></a>
-<a href="/body-fat-calculator/"><span class="t">Body Fat</span></a>
+<a href="/tdee-calculator/"><span class="t">TDEE Calculator</span></a>
 <a href="/pace-calculator/"><span class="t">Pace Calculator</span></a>
-<a href="/ideal-weight-calculator/"><span class="t">Ideal Weight</span></a>
-<a href="/privacy/"><span class="t">Privacy</span></a>
-<a href="/blog/"><span class="t">Blog</span></a>
-<a href="/"><span class="t">All calculators</span></a>
+<a href="/macro-calculator/"><span class="t">Macro Calculator</span></a>
 </div>
+</main>
+<footer><div class="wrap">&copy; 2026 figgn <a href="/privacy/">Privacy</a> <a href="/blog/">Blog</a> <a href="/">All calculators</a></div></footer>
+<script>
+var tb=document.getElementById('themeBtn');
+tb.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'Light':'Dark';
+tb.onclick=function(){var t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t);tb.textContent=t==='dark'?'Light':'Dark'};
 
-
+function calc(){
+  var met=parseFloat(document.getElementById('activity').value)||0;
+  var min=parseInt(document.getElementById('duration').value)||0;
+  var lbs=parseFloat(document.getElementById('weight').value)||0;
+  if(met<=0||min<=0||lbs<=0){['rCal','dMet','dMin','dHour'].forEach(function(id){document.getElementById(id).textContent='\u2014';});return;}
+  var kg=lbs*0.453592;
+  var hours=min/60;
+  var cal=met*kg*hours;
+  document.getElementById('rCal').textContent=Math.round(cal).toLocaleString();
+  document.getElementById('dMet').textContent=met.toFixed(1);
+  document.getElementById('dMin').textContent=Math.round(cal/min).toLocaleString()+' cal';
+  document.getElementById('dHour').textContent=Math.round(cal/hours).toLocaleString()+' cal';
+}
+calc();
+</script>
+</body>
+</html>

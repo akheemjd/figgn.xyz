@@ -1,208 +1,335 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Macro Calculator — Free Macronutrient & TDEE Calculator | figgn</title>
-<meta name="description" content="Calculate your daily macros for weight loss, maintenance, or muscle gain. Get personalized protein, carb, and fat targets based on your TDEE. Free online macro calculator.">
-<link rel="canonical" href="https://figgn.xyz/macro/">
-<meta property="og:title" content="Macro Calculator — Free Macronutrient & TDEE Calculator | figgn">
-<meta property="og:description" content="Calculate your daily macros for weight loss, maintenance, or muscle gain. Get personalized protein, carb, and fat targets based on your TDEE.">
-<meta property="og:url" content="https://figgn.xyz/macro/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macro Calculator - figgn</title>
+<meta name="description" content="Calculate your daily calories and macronutrient targets based on your body stats, activity level, and fitness goal.">
 <style>
-:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--accent-text:#ff8a3d;--accent-text:#c24d00;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
-[data-theme="dark"]{
-  --bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999999;--border:#3a3a48;
-  --input-bg:#252530;--result-bg:#0a3020;--result-text:#4ade80;
-  --shadow:0 1px 3px rgba(0,0,0,.3);--line:#2a2a34;
-  --cal-bg:#2a2015;--pro-bg:#151d2a;--carb-bg:#2a2515;--fat-bg:#2a1515;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px}
-header{background:var(--accent);height:48px;display:flex;align-items:center}
-.hbar{max-width:760px;margin:0 auto;padding:0 16px;width:100%;display:flex;justify-content:space-between;align-items:center}
-.wordmark{color:#fff;font-weight:700;font-size:18px;text-decoration:none;letter-spacing:-.2px}
-.hnav{display:flex;align-items:center;gap:16px}
-.hnav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px}
-#themeBtn{background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:4px;padding:4px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
-.wrap{max-width:760px;margin:0 auto;padding:16px}
-.crumb{font-size:13px;color:var(--text2);margin-bottom:16px}
-.crumb a{color:var(--accent);text-decoration:none}
-.card{background:var(--card);border-radius:4px;padding:24px;box-shadow:var(--shadow);margin-bottom:20px}
-h1{font-size:24px;letter-spacing:-.3px;margin-bottom:4px}
-.sub{font-size:15px;color:var(--text2);margin-bottom:20px}
-label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:6px}
-input,select{width:100%;min-height:56px;padding:0 14px;border:1px solid var(--border);border-radius:4px;font-size:16px;font-family:inherit;background:var(--input-bg);color:var(--text);outline:none}
-input:focus,select:focus{border-color:var(--accent)}
-.btnrow{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.btnrow button{border:1px solid var(--border);background:var(--input-bg);color:var(--text);font-size:14px;border-radius:4px;padding:8px 16px;cursor:pointer;font-family:inherit;min-height:40px;min-width:48px}
-.btnrow button.on,.btnrow button:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.row .full{grid-column:1/-1}
-.result{background:var(--result-bg);border-radius:4px;padding:20px;text-align:center;margin:20px 0}
-.result .label{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--result-text);opacity:.8;margin-bottom:4px}
-.result .big{font-size:40px;font-weight:700;color:var(--result-text);font-family:"SF Mono","Cascadia Code","Consolas",monospace;line-height:1.2}
-.macro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
-.macro-card{border-radius:4px;padding:16px;text-align:center}
-.macro-card .ma{font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;font-weight:600}
-.macro-card .mb{font-size:28px;font-weight:700;font-family:"SF Mono","Cascadia Code","Consolas",monospace;line-height:1.2}
-.macro-card .mc{font-size:12px;color:var(--text2);margin-top:2px}
-.macro-card.cal{background:var(--cal-bg)}
-.macro-card.pro{background:var(--pro-bg)}
-.macro-card.carb{background:var(--carb-bg)}
-.macro-card.fat{background:var(--fat-bg)}
-.macro-card.cal .ma{color:#e65c00}
-.macro-card.pro .ma{color:#2b6cb0}
-.macro-card.carb .ma{color:#b7791f}
-.macro-card.fat .ma{color:#c53030}
-[data-theme="dark"] .macro-card.cal .ma{color:#ff9d4d}
-[data-theme="dark"] .macro-card.pro .ma{color:#63b3ed}
-[data-theme="dark"] .macro-card.carb .ma{color:#f6ad55}
-[data-theme="dark"] .macro-card.fat .ma{color:#fc8181}
-.detail{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
-.stat{background:var(--bg);border-radius:4px;padding:14px;text-align:center}
-.stat .v{font-size:20px;font-weight:700;font-family:"SF Mono","Cascadia Code","Consolas",monospace;color:var(--text)}
-.stat .k{font-size:12px;color:var(--text2);margin-top:2px;text-transform:uppercase;letter-spacing:.03em}
-.note{font-size:13px;color:var(--text2);background:var(--bg);padding:12px 16px;border-radius:4px;margin-top:16px}
-.hidden{display:none!important}
-h2{font-size:18px;letter-spacing:-.2px;margin-bottom:12px}
-.content p,.content li{font-size:15px;color:var(--text2);margin-bottom:8px;line-height:1.6}
-.content ol,.content ul{padding-left:20px;margin-bottom:12px}
-details{border-top:1px solid var(--line);padding:14px 0}
-details:last-child{border-bottom:1px solid var(--line)}
-summary{font-weight:600;cursor:pointer;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center}
-summary::after{content:"+";font-size:18px;color:var(--accent);font-weight:400;margin-left:12px;flex-shrink:0}
-details[open] summary::after{content:"\2212"}
-details p{padding-top:8px;font-size:14px;color:var(--text2);line-height:1.6}
-.related{display:flex;flex-wrap:wrap;gap:8px}
-.related a{border:1px solid var(--border);padding:8px 14px;border-radius:4px;font-size:14px;color:var(--text);text-decoration:none}
-.related a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
+[data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#0a3020;--res-text:#4ade80;--border:#3a3a48;--line:#2a2a34;--ad-bg:#22222b;--ad-text:#777}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:var(--accent3)}a:hover{color:var(--accent2)}
+header{background:var(--accent);color:#fff}
+.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700}
+.hnav{display:flex;align-items:center;gap:12px;font-size:14px}
+.hnav a{color:#fff;text-decoration:none;font-weight:600}
+#themeBtn{background:var(--accent2);color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit}
+footer{background:#1c1c24;padding:14px 0;margin-top:40px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;color:#aaa;font-size:13px}
+footer a{color:#aaa}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
+.crumb a{color:var(--text2)}
+label,.flabel{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px;font-weight:600}
+input[type=number]{width:100%;min-height:56px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text)}
+input:focus{outline:2px solid var(--accent);outline-offset:1px}
+select{width:100%;min-height:56px;font-size:18px;font-family:system-ui,-apple-system,sans-serif;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text);cursor:pointer}
+select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}
+.btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.btnrow button{padding:8px 14px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);cursor:pointer;min-height:40px}
+.btnrow button.on{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:700}
+.result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
+.result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
+.detail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
+.detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
+.macro-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-top:10px}
+.macro-card{background:var(--res-bg);border-radius:4px;padding:16px 10px;text-align:center}
+.macro-card .mc-val{font-size:28px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.macro-card .mc-label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-top:4px}
+.note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
+.hidden{display:none}
 .cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:4px}
 .cat a{display:block;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.06);text-decoration:none}
 .cat a:hover{border-color:var(--accent)}
-.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent-text);margin-bottom:2px}
-.post{display:block;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:4px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.post:hover{border-color:var(--accent)}
-.post .t{font-size:17px;font-weight:700;color:var(--text)}
-@media(max-width:600px){
+.cat a .t{display:block;font-size:15px;font-weight:600;color:var(--accent3);margin-bottom:2px}
+@media(max-width:480px){
   .row{grid-template-columns:1fr}
-  .macro-grid{grid-template-columns:repeat(2,1fr)}
-  .detail{grid-template-columns:1fr}
-  .card{padding:16px}
-  .result .big{font-size:32px}
+  .row3{grid-template-columns:1fr}
+  .macro-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 <body>
+
+<header>
+  <div class="hbar">
+    <a href="/" class="wordmark">figgn</a>
+    <div class="hnav">
+      <a href="/blog/">Blog</a>
+      <button id="themeBtn">Dark</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="crumb"><a href="/">figgn</a> / <a href="/fitness/">Fitness &amp; Health</a> / Macro Calculator</div>
+  <h1>Macro Calculator</h1>
+  <p class="sub">Calculate your daily calorie and macronutrient targets based on your goals, body stats, and activity level.</p>
+
+  <div class="card">
+    <!-- Unit toggle -->
+    <div class="btnrow" id="unitToggle">
+      <button class="on" data-unit="imperial">Imperial (lb / ft&nbsp;in)</button>
+      <button data-unit="metric">Metric (kg / cm)</button>
+    </div>
+
+    <!-- IMPERIAL FIELDS -->
+    <div id="imperialFields">
+      <div class="row">
+        <div>
+          <label>Weight (lbs)</label>
+          <input type="number" id="impWeight" value="180" min="1" oninput="calc()">
+        </div>
+        <div>
+          <label>Height</label>
+          <input type="number" id="impHeightFt" placeholder="ft" min="0" oninput="calc()" style="width:48%;display:inline-block;margin-right:4%">
+          <input type="number" id="impHeightIn" placeholder="in" min="0" max="11" oninput="calc()" style="width:48%;display:inline-block">
+        </div>
+      </div>
+    </div>
+
+    <!-- METRIC FIELDS -->
+    <div id="metricFields" class="hidden">
+      <div class="row">
+        <div>
+          <label>Weight (kg)</label>
+          <input type="number" id="metWeight" value="82" min="1" oninput="calc()">
+        </div>
+        <div>
+          <label>Height (cm)</label>
+          <input type="number" id="metHeight" value="178" min="1" oninput="calc()">
+        </div>
+      </div>
+    </div>
+
+    <div class="row3">
+      <div>
+        <label>Age</label>
+        <input type="number" id="age" value="30" min="1" max="120" oninput="calc()">
+      </div>
+      <div>
+        <label>Sex</label>
+        <div class="btnrow" id="sexToggle">
+          <button class="on" data-sex="male">Male</button>
+          <button data-sex="female">Female</button>
+        </div>
+      </div>
+      <div>
+        <label>Goal</label>
+        <div class="btnrow" id="goalToggle">
+          <button data-goal="lose">Lose</button>
+          <button class="on" data-goal="maintain">Maintain</button>
+          <button data-goal="gain">Gain</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <label>Activity Level</label>
+      <select id="activity" onchange="calc()">
+        <option value="1.2">Sedentary — little or no exercise</option>
+        <option value="1.375">Light — exercise 1–3 days/week</option>
+        <option value="1.55" selected>Moderate — exercise 3–5 days/week</option>
+        <option value="1.725">Active — exercise 6–7 days/week</option>
+        <option value="1.9">Very Active — intense exercise daily</option>
+      </select>
+    </div>
+
+    <!-- Macro Results -->
+    <div class="macro-grid" style="margin-top:16px">
+      <div class="macro-card">
+        <div class="mc-label">Calories</div>
+        <div class="mc-val" id="caloriesRes">--</div>
+        <div style="font-size:11px;color:var(--res-text)">kcal/day</div>
+      </div>
+      <div class="macro-card">
+        <div class="mc-label">Protein</div>
+        <div class="mc-val" id="proteinRes">--</div>
+        <div style="font-size:11px;color:var(--res-text)">g/day</div>
+      </div>
+      <div class="macro-card">
+        <div class="mc-label">Carbs</div>
+        <div class="mc-val" id="carbsRes">--</div>
+        <div style="font-size:11px;color:var(--res-text)">g/day</div>
+      </div>
+      <div class="macro-card">
+        <div class="mc-label">Fat</div>
+        <div class="mc-val" id="fatRes">--</div>
+        <div style="font-size:11px;color:var(--res-text)">g/day</div>
+      </div>
+    </div>
+
+    <div class="detail">
+      <div class="stat">
+        <div class="k">BMR</div>
+        <div class="v" id="bmrVal">--</div>
+        <div style="font-size:11px;color:var(--text2)">cal/day</div>
+      </div>
+      <div class="stat">
+        <div class="k">TDEE</div>
+        <div class="v" id="tdeeVal">--</div>
+        <div style="font-size:11px;color:var(--text2)">cal/day</div>
+      </div>
+      <div class="stat">
+        <div class="k">Goal Adj</div>
+        <div class="v" id="goalAdjVal">--</div>
+        <div style="font-size:11px;color:var(--text2)">cal/day</div>
+      </div>
+    </div>
+
+    <p class="note">BMR calculated using the Mifflin-St Jeor equation. Protein target is also approximately <span id="gPerKg">--</span> g per kg of bodyweight.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">&copy; 2026 figgn <a href="/privacy/">Privacy</a> <a href="/blog/">Blog</a> <a href="/">All calculators</a></div>
+</footer>
+
 <script>
+// Dark mode
 (function(){
-  try{
-    var t=localStorage.getItem('theme');
-    if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
-    document.documentElement.setAttribute('data-theme',t);
-  }catch(e){document.documentElement.setAttribute('data-theme','light')}
+  var theme=localStorage.getItem('theme');
+  if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  document.documentElement.setAttribute('data-theme',theme);
+  var tb=document.getElementById('themeBtn');
+  if(tb){
+    tb.textContent=theme==='dark'?'Light':'Dark';
+    tb.onclick=function(){
+      theme=theme==='dark'?'light':'dark';
+      document.documentElement.setAttribute('data-theme',theme);
+      localStorage.setItem('theme',theme);
+      tb.textContent=theme==='dark'?'Light':'Dark';
+    };
+  }
 })();
+
+var unit = 'imperial';
+var sex = 'male';
+var goal = 'maintain';
+
+// Unit toggle
+document.getElementById('unitToggle').addEventListener('click', function(e){
+  if(e.target.tagName==='BUTTON'){
+    unit = e.target.dataset.unit;
+    document.querySelectorAll('#unitToggle button').forEach(function(b){b.classList.remove('on')});
+    e.target.classList.add('on');
+    if(unit==='imperial'){
+      document.getElementById('imperialFields').classList.remove('hidden');
+      document.getElementById('metricFields').classList.add('hidden');
+    } else {
+      document.getElementById('imperialFields').classList.add('hidden');
+      document.getElementById('metricFields').classList.remove('hidden');
+    }
+    calc();
+  }
+});
+
+// Sex toggle
+document.getElementById('sexToggle').addEventListener('click', function(e){
+  if(e.target.tagName==='BUTTON'){
+    sex = e.target.dataset.sex;
+    document.querySelectorAll('#sexToggle button').forEach(function(b){b.classList.remove('on')});
+    e.target.classList.add('on');
+    calc();
+  }
+});
+
+// Goal toggle
+document.getElementById('goalToggle').addEventListener('click', function(e){
+  if(e.target.tagName==='BUTTON'){
+    goal = e.target.dataset.goal;
+    document.querySelectorAll('#goalToggle button').forEach(function(b){b.classList.remove('on')});
+    e.target.classList.add('on');
+    calc();
+  }
+});
+
+function calc(){
+  var weightKg, heightCm;
+
+  if(unit==='imperial'){
+    var lbs = parseFloat(document.getElementById('impWeight').value)||0;
+    var ft = parseFloat(document.getElementById('impHeightFt').value)||0;
+    var inch = parseFloat(document.getElementById('impHeightIn').value)||0;
+    weightKg = lbs * 0.453592;
+    heightCm = (ft*12 + inch) * 2.54;
+  } else {
+    weightKg = parseFloat(document.getElementById('metWeight').value)||0;
+    heightCm = parseFloat(document.getElementById('metHeight').value)||0;
+  }
+
+  var age = parseFloat(document.getElementById('age').value)||0;
+  var activityFactor = parseFloat(document.getElementById('activity').value)||1.55;
+
+  if(weightKg<=0||heightCm<=0||age<=0){
+    document.getElementById('caloriesRes').textContent='--';
+    document.getElementById('proteinRes').textContent='--';
+    document.getElementById('carbsRes').textContent='--';
+    document.getElementById('fatRes').textContent='--';
+    document.getElementById('bmrVal').textContent='--';
+    document.getElementById('tdeeVal').textContent='--';
+    document.getElementById('goalAdjVal').textContent='--';
+    document.getElementById('gPerKg').textContent='--';
+    return;
+  }
+
+  // Mifflin-St Jeor BMR
+  var bmr;
+  if(sex==='male'){
+    bmr = (10 * weightKg) + (6.25 * heightCm) - (5 * age) + 5;
+  } else {
+    bmr = (10 * weightKg) + (6.25 * heightCm) - (5 * age) - 161;
+  }
+
+  var tdee = bmr * activityFactor;
+
+  // Goal adjustment
+  var targetCalories = tdee;
+  var goalAdj = 0;
+  if(goal==='lose'){
+    goalAdj = -500;
+    targetCalories = tdee - 500;
+  } else if(goal==='gain'){
+    goalAdj = 500;
+    targetCalories = tdee + 500;
+  }
+
+  // Macro split: Protein 30%, Carbs 40%, Fat 30%
+  var proteinCals = targetCalories * 0.30;
+  var carbsCals = targetCalories * 0.40;
+  var fatCals = targetCalories * 0.30;
+
+  var proteinG = proteinCals / 4;  // 4 cal per gram
+  var carbsG = carbsCals / 4;     // 4 cal per gram
+  var fatG = fatCals / 9;         // 9 cal per gram
+
+  document.getElementById('caloriesRes').textContent = Math.round(targetCalories);
+  document.getElementById('proteinRes').textContent = Math.round(proteinG);
+  document.getElementById('carbsRes').textContent = Math.round(carbsG);
+  document.getElementById('fatRes').textContent = Math.round(fatG);
+
+  document.getElementById('bmrVal').textContent = Math.round(bmr);
+  document.getElementById('tdeeVal').textContent = Math.round(tdee);
+  document.getElementById('goalAdjVal').textContent = (goalAdj>=0?'+':'') + goalAdj + ' cal';
+
+  var gPerKg = proteinG / weightKg;
+  document.getElementById('gPerKg').textContent = gPerKg.toFixed(1);
+}
+
+// Initial calc
+calc();
 </script>
-<header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
-<main class="wrap">
-<p class="crumb"><a href="/">figgn</a> / <a href="/#health">Health</a> / Macro Calculator</p>
 
-<div class="card">
-<h1>Macro Calculator</h1>
-<p class="sub">Calculate your daily calorie and macronutrient targets based on your body stats, activity level, and goal. Uses the Mifflin-St Jeor equation with a 30/40/30 protein/carb/fat split.</p>
-
-<div class="btnrow">
-  <button class="on" data-unit="imperial">Imperial (lbs, in)</button>
-  <button data-unit="metric">Metric (kg, cm)</button>
-</div>
-
-<div class="row">
-  <div>
-    <label id="wtLabel">Weight (lbs)</label>
-    <input type="number" id="weight" value="180" min="30" max="500" step="0.1" inputmode="decimal">
-  </div>
-  <div>
-    <label id="htLabel">Height (in)</label>
-    <input type="number" id="height" value="70" min="36" max="96" step="0.1" inputmode="decimal">
-  </div>
-</div>
-<div class="row">
-  <div><label>Age</label><input type="number" id="age" value="30" min="15" max="100" inputmode="decimal"></div>
-  <div><label>Sex</label><select id="sex"><option value="male">Male</option><option value="female">Female</option></select></div>
-</div>
-
-<div class="btnrow">
-  <button data-act="1.2">Sedentary</button>
-  <button data-act="1.375">Light</button>
-  <button class="on" data-act="1.55">Moderate</button>
-  <button data-act="1.725">Active</button>
-  <button data-act="1.9">Very Active</button>
-</div>
-
-<div class="btnrow">
-  <button data-goal="lose">Lose</button>
-  <button class="on" data-goal="maintain">Maintain</button>
-  <button data-goal="gain">Gain</button>
-</div>
-
-<div class="result">
-  <div class="label">DAILY CALORIE TARGET</div>
-  <div class="big" id="rCals">—<span style="font-size:18px;font-weight:400"> cal</span></div>
-</div>
-
-<div class="macro-grid">
-  <div class="macro-card cal"><div class="ma">Calories</div><div class="mb" id="mCals">—</div><div class="mc">per day</div></div>
-  <div class="macro-card pro"><div class="ma">Protein</div><div class="mb" id="mProt">—<span style="font-size:14px">g</span></div><div class="mc" id="mProtDetail">30% of calories</div></div>
-  <div class="macro-card carb"><div class="ma">Carbs</div><div class="mb" id="mCarb">—<span style="font-size:14px">g</span></div><div class="mc" id="mCarbDetail">40% of calories</div></div>
-  <div class="macro-card fat"><div class="ma">Fat</div><div class="mb" id="mFat">—<span style="font-size:14px">g</span></div><div class="mc" id="mFatDetail">30% of calories</div></div>
-</div>
-
-<div class="detail">
-  <div class="stat"><div class="v" id="dBmr">—</div><div class="k">BMR</div></div>
-  <div class="stat"><div class="v" id="dTdee">—</div><div class="k">TDEE</div></div>
-  <div class="stat"><div class="v" id="dGoalAdj">—</div><div class="k">Goal Adjustment</div></div>
-</div>
-
-<p class="note">Protein target also shown in grams per kilogram of body weight below. A 30/40/30 split is a balanced starting point — adjust based on your preferences and training needs.</p>
-</div>
-
-<div class="card content">
-<h2>How to Use This Calculator</h2>
-<ol>
-  <li><strong>Enter your stats:</strong> Weight, height, age, and sex.</li>
-  <li><strong>Choose activity level:</strong> Sedentary (desk job), Light (1-2 days/week), Moderate (3-5 days), Active (6-7 days), Very Active (physical job + training).</li>
-  <li><strong>Select your goal:</strong> Lose (500 cal deficit), Maintain, or Gain (500 cal surplus).</li>
-  <li>Your daily calorie target and macro breakdown appear instantly.</li>
-</ol>
-</div>
-
-<div class="card content">
-<h2>How It's Calculated</h2>
-<p><strong>BMR (Mifflin-St Jeor):</strong></p>
-<p style="font-size:14px;color:var(--text2)">Male: 10 × weight(kg) + 6.25 × height(cm) − 5 × age + 5<br>Female: 10 × weight(kg) + 6.25 × height(cm) − 5 × age − 161</p>
-<p><strong>TDEE = BMR × Activity Multiplier</strong></p>
-<p><strong>Goal:</strong> Lose = TDEE − 500 cal | Maintain = TDEE | Gain = TDEE + 500 cal</p>
-<p><strong>Macros (30/40/30):</strong> Protein 4 cal/g, Carbs 4 cal/g, Fat 9 cal/g</p>
-</div>
-
-<div class="card">
-<h2>FAQ</h2>
-<details><summary>Is 30/40/30 the right macro split for me?</summary><p>It's a solid starting point. Protein at 30% (about 1.6–2.2 g/kg for most people) supports muscle maintenance. Adjust up if you're strength training heavily, or down if you prefer higher carbs for endurance sports. Listen to your body and tweak over time.</p></details>
-<details><summary>How big should my calorie deficit be?</summary><p>This calculator uses a 500-calorie deficit for weight loss, which yields about 1 lb/week. This is a safe, sustainable rate. Larger deficits can cause muscle loss and metabolic adaptation — stick with moderate deficits for long-term success.</p></details>
-<details><summary>Should I eat back exercise calories?</summary><p>Your activity multiplier already accounts for exercise. If you selected "Active" or "Very Active," those calories are baked into your TDEE. Only add extra calories for unusually long or intense sessions beyond your normal routine.</p></details>
-<details><summary>What if my goal calories are below BMR?</summary><p>This shouldn't happen with moderate activity levels. If it does, your activity level may be set too low or your goal deficit too aggressive. Eating below BMR for extended periods can slow metabolism — consider increasing activity instead of cutting calories further.</p></details>
-</div>
-
-<div class="card">
-<h2>Related Calculators</h2>
-<div class="cat">
-<a href="/body-fat-calculator/"><span class="t">Body Fat</span></a>
-<a href="/ideal-weight-calculator/"><span class="t">Ideal Weight</span></a>
-<a href="/calorie-calculator/"><span class="t">Calorie Burned</span></a>
-<a href="/one-rep-max-calculator/"><span class="t">One Rep Max</span></a>
-<a href="/privacy/"><span class="t">Privacy</span></a>
-<a href="/blog/"><span class="t">Blog</span></a>
-<a href="/"><span class="t">All calculators</span></a>
-</div>
-
-
+</body>
+</html>
