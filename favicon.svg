@@ -1,8 +1,35 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <rect width="32" height="32" rx="6" fill="#e65c00"/>
-  <rect x="8" y="5" width="16" height="22" rx="2" fill="#fff" opacity="0.95"/>
-  <line x1="12" y1="10" x2="20" y2="10" stroke="#e65c00" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="12" y1="14" x2="20" y2="14" stroke="#e65c00" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-  <line x1="12" y1="18" x2="18" y2="18" stroke="#e65c00" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
-  <line x1="12" y1="22" x2="16" y2="22" stroke="#e65c00" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e65c00"/>
+      <stop offset="100%" stop-color="#c24d00"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="7" fill="url(#bg)"/>
+  <g transform="translate(6,4)">
+    <!-- Calculator body -->
+    <rect x="0" y="0" width="20" height="24" rx="2.5" fill="#fff" opacity="0.95"/>
+    <!-- Display -->
+    <rect x="2" y="2" width="16" height="4" rx="1" fill="#e65c00" opacity="0.15"/>
+    <!-- Button rows -->
+    <circle cx="3.5" cy="9" r="1.5" fill="#e65c00" opacity="0.7"/>
+    <circle cx="7" cy="9" r="1.5" fill="#e65c00" opacity="0.7"/>
+    <circle cx="10.5" cy="9" r="1.5" fill="#e65c00" opacity="0.5"/>
+    <circle cx="14" cy="9" r="1.5" fill="#e65c00" opacity="0.5"/>
+    <circle cx="3.5" cy="12.5" r="1.5" fill="#e65c00" opacity="0.5"/>
+    <circle cx="7" cy="12.5" r="1.5" fill="#e65c00" opacity="0.5"/>
+    <circle cx="10.5" cy="12.5" r="1.5" fill="#e65c00" opacity="0.5"/>
+    <circle cx="14" cy="12.5" r="1.5" fill="#e65c00" opacity="0.7"/>
+    <circle cx="3.5" cy="16" r="1.5" fill="#e65c00" opacity="0.3"/>
+    <circle cx="7" cy="16" r="1.5" fill="#e65c00" opacity="0.3"/>
+    <circle cx="10.5" cy="16" r="1.5" fill="#e65c00" opacity="0.3"/>
+    <!-- Equals button -->
+    <rect x="14" y="15" width="4" height="4.5" rx="1" fill="#e65c00"/>
+    <line x1="15" y1="17" x2="17" y2="17" stroke="#fff" stroke-width="0.8" stroke-linecap="round"/>
+    <line x1="15" y1="18.5" x2="17" y2="18.5" stroke="#fff" stroke-width="0.8" stroke-linecap="round"/>
+    <!-- Zero button -->
+    <rect x="3.5" y="19" width="7" height="3" rx="1" fill="#e65c00" opacity="0.3"/>
+    <!-- Decimal -->
+    <circle cx="14" cy="20.5" r="1.5" fill="#e65c00" opacity="0.3"/>
+  </g>
 </svg>
