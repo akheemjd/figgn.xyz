@@ -2,485 +2,242 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>One Rep Max Calculator — Free 1RM Estimator | figgn</title>
-<meta name="description" content="Free one rep max calculator using four formulas (Epley, Brzycki, Lombardi, O'Conner). Get your estimated 1RM and percentage breakdown table.">
-<link rel="canonical" href="https://figgn.xyz/one-rep-max-calculator/">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#e65c00">
-<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
-<link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
-<link rel="dns-prefetch" href="https://tpc.googlesyndication.com">
-<meta property="og:site_name" content="figgn">
-<meta property="og:image" content="https://figgn.xyz/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="One Rep Max Calculator — Free 1RM Estimator | figgn">
-<meta name="twitter:description" content="Free one rep max calculator. Estimate your 1RM from a submaximal set using Epley, Brzycki, Lombardi or O'Conner formulas, with a percentage breakdown table.">
-<meta name="twitter:image" content="https://figgn.xyz/og-image.png">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>One Rep Max Calculator — Free 1RM Estimator (Epley & Brzycki) | figgn</title>
+<meta name="description" content="Calculate your one rep max (1RM) using Epley or Brzycki formulas. Includes percentage breakdown table for programming. Free online 1RM calculator for weightlifting.">
+<link rel="canonical" href="https://figgn.xyz/one-rep-max/">
 <meta property="og:title" content="One Rep Max Calculator — Free 1RM Estimator | figgn">
-<meta property="og:description" content="Free one rep max calculator. Estimate your 1RM from a submaximal set using Epley, Brzycki, Lombardi or O'Conner formulas, with a percentage breakdown table.">
-<meta property="og:url" content="https://figgn.xyz/one-rep-max-calculator/">
-<meta property="og:type" content="website">
-<script>
-(function(){
-  try{
-    var t = localStorage.getItem('theme');
-    if(t !== 'light' && t !== 'dark'){
-      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    document.documentElement.setAttribute('data-theme', t);
-  }catch(e){ document.documentElement.setAttribute('data-theme','light'); }
-})();
-</script>
+<meta property="og:description" content="Calculate your one rep max (1RM) using Epley or Brzycki formulas. Includes percentage breakdown table for programming.">
+<meta property="og:url" content="https://figgn.xyz/one-rep-max/">
 <style>
 :root{
   --bg:#f8f9fb;--card:#ffffff;--text:#111111;--text2:#555555;--border:#cccccc;
-  --input-bg:#ffffff;--accent:#e65c00;--accent-btn:#c24d00;--accent-text:#c24d00;
-  --result-bg:#e7f5ec;--result-text:#0d5c2e;--ad-bg:#f0f0f0;--ad-text:#888888;
+  --input-bg:#ffffff;--accent:#e65c00;--result-bg:#e7f5ec;--result-text:#0d5c2e;
   --shadow:0 1px 3px rgba(0,0,0,.08);--line:#e4e4ea;
 }
 [data-theme="dark"]{
   --bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999999;--border:#3a3a48;
-  --input-bg:#252530;--accent:#e65c00;--accent-btn:#c24d00;--accent-text:#ff8a3d;
-  --result-bg:#0a3020;--result-text:#4ade80;--ad-bg:#22222b;--ad-text:#777777;
+  --input-bg:#252530;--result-bg:#0a3020;--result-text:#4ade80;
   --shadow:0 1px 3px rgba(0,0,0,.3);--line:#2a2a34;
 }
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  font-size:16px;line-height:1.5}
-.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-.wrap{max-width:760px;margin:0 auto;padding:0 12px}
-a{color:var(--accent-text)}
-.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
-  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-header{background:var(--accent);color:#fff}
-.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;
-  align-items:center;justify-content:space-between}
-.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700;letter-spacing:-.5px}
-.hnav{display:flex;align-items:center;gap:12px}
-.hnav a{color:#fff;text-decoration:none;font-size:14px;font-weight:600}
-.hnav a:hover{text-decoration:underline}
-#themeToggle{background:var(--accent-btn);color:#fff;border:1px solid rgba(255,255,255,.65);
-  border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
-#themeToggle:hover{filter:brightness(1.1)}
-
-.disclaimer{font-size:13px;color:var(--text2);border-left:3px solid var(--border);
-  padding-left:10px;margin-top:14px}
-
-.formwrap{display:grid;grid-template-columns:1fr;gap:16px}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-.btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.btnrow button{padding:8px 14px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);cursor:pointer;min-height:40px}
-.btnrow button.on{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:700}
-.stepper{display:flex;align-items:center;gap:0;margin-bottom:14px}
-.stepper button{min-height:56px;min-width:44px;font-size:20px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-family:inherit}
-.stepper button:first-child{border-radius:4px 0 0 4px}
-.stepper button:last-child{border-radius:0 4px 4px 0}
-.stepper input{border-radius:0;text-align:center;min-width:60px;width:60px;border-left:0;border-right:0}
-.result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
-.result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
-.detail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
-.detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
-.detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
-.detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
-.note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
-.hidden{display:none}
-@media(max-width:480px){.row{grid-template-columns:1fr}}
-@media (min-width:641px){.formwrap{grid-template-columns:1fr 210px;align-items:start}}
-
-.card{background:var(--card);border:1px solid var(--line);border-radius:4px;
-  box-shadow:var(--shadow);padding:16px;margin:16px 0}
-h1{font-size:24px;margin:0 0 4px;letter-spacing:-.3px}
-h2{font-size:18px;margin:0 0 10px;letter-spacing:-.2px}
-h3{font-size:14px;margin:18px 0 8px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em}
-.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
-
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (max-width:560px){.two{grid-template-columns:1fr}}
-.field{margin-top:16px}
-label,.flabel{display:block;font-size:13px;color:var(--text2);text-transform:uppercase;
-  letter-spacing:.06em;margin-bottom:6px}
-input[type=number]{width:100%;min-height:56px;padding:0 10px;background:var(--input-bg);
-  color:var(--text);border:1px solid var(--border);border-radius:4px;font-size:18px;
-  font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
-.suffix{display:flex;align-items:stretch}
-.suffix input{border-radius:4px 0 0 4px;border-right:0}
-.suffix span{min-height:56px;display:flex;align-items:center;padding:0 10px;background:var(--bg);
-  border:1px solid var(--border);border-radius:0 4px 4px 0;color:var(--text2);font-size:15px;
-  font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-.presets{display:grid;gap:8px;grid-template-columns:repeat(3,1fr)}
-.presets[data-cols="2"]{grid-template-columns:repeat(2,1fr)}
-.presets[data-cols="4"]{grid-template-columns:repeat(4,1fr)}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (max-width:560px){.presets[data-cols="4"]{grid-template-columns:repeat(2,1fr)}}
-.preset{min-height:56px;padding:6px 4px;background:var(--input-bg);color:var(--text);
-  border:1px solid var(--border);border-radius:4px;font-size:13px;font-family:inherit;
-  cursor:pointer;line-height:1.25}
-.preset b{display:block;font-family:"SF Mono","Cascadia Code","Consolas",monospace;font-size:15px}
-.preset.on{background:var(--accent-btn);border-color:var(--accent-btn);color:#fff;font-weight:600}
-
-#stickyBar{position:fixed;top:0;left:0;right:0;z-index:60;background:var(--result-bg);
-  color:var(--result-text);border-bottom:1px solid var(--border);
-  transform:translateY(-100%);visibility:hidden}
-#stickyBar.show{transform:translateY(0);visibility:visible}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (prefers-reduced-motion:no-preference){#stickyBar{transition:transform .15s ease-out}}
-.sbar{max-width:760px;margin:0 auto;padding:8px 12px;display:flex;align-items:center;gap:12px}
-.sbar .val{font-size:26px;font-weight:700;line-height:1.1}
-.sbar .det{font-size:12px;color:var(--result-text);opacity:.85;flex:1}
-.copybtn{background:var(--accent-btn);color:#fff;border:0;border-radius:4px;padding:8px 14px;
-  font-size:14px;font-family:inherit;cursor:pointer;min-height:36px}
-.copybtn:hover{filter:brightness(1.1)}
-
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (min-width:768px){
-  
-  
-  
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px}
+header{background:var(--accent);height:48px;display:flex;align-items:center}
+.hbar{max-width:760px;margin:0 auto;padding:0 16px;width:100%;display:flex;justify-content:space-between;align-items:center}
+.wordmark{color:#fff;font-weight:700;font-size:18px;text-decoration:none;letter-spacing:-.2px}
+.hnav{display:flex;align-items:center;gap:16px}
+.hnav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px}
+#themeBtn{background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:4px;padding:4px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+.crumb{font-size:13px;color:var(--text2);margin-bottom:16px}
+.crumb a{color:var(--accent);text-decoration:none}
+.card{background:var(--card);border-radius:4px;padding:24px;box-shadow:var(--shadow);margin-bottom:20px}
+h1{font-size:24px;letter-spacing:-.3px;margin-bottom:4px}
+.sub{font-size:15px;color:var(--text2);margin-bottom:20px}
+label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:6px}
+input,select{width:100%;min-height:56px;padding:0 14px;border:1px solid var(--border);border-radius:4px;font-size:16px;font-family:inherit;background:var(--input-bg);color:var(--text);outline:none}
+input:focus,select:focus{border-color:var(--accent)}
+.btnrow{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.btnrow button{border:1px solid var(--border);background:var(--input-bg);color:var(--text);font-size:14px;border-radius:4px;padding:8px 16px;cursor:pointer;font-family:inherit;min-height:40px;min-width:48px}
+.btnrow button.on,.btnrow button:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.row .full{grid-column:1/-1}
+.result{background:var(--result-bg);border-radius:4px;padding:20px;text-align:center;margin:20px 0}
+.result .label{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--result-text);opacity:.8;margin-bottom:4px}
+.result .big{font-size:40px;font-weight:700;color:var(--result-text);font-family:"SF Mono","Cascadia Code","Consolas",monospace;line-height:1.2}
+.detail{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.stat{background:var(--bg);border-radius:4px;padding:14px;text-align:center}
+.stat .v{font-size:20px;font-weight:700;font-family:"SF Mono","Cascadia Code","Consolas",monospace;color:var(--text)}
+.stat .k{font-size:12px;color:var(--text2);margin-top:2px;text-transform:uppercase;letter-spacing:.03em}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+th,td{padding:10px 12px;text-align:center;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+td{color:var(--text);font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+td:first-child{font-weight:600;color:var(--accent)}
+.note{font-size:13px;color:var(--text2);background:var(--bg);padding:12px 16px;border-radius:4px;margin-top:16px}
+.hidden{display:none!important}
+h2{font-size:18px;letter-spacing:-.2px;margin-bottom:12px}
+.content p,.content li{font-size:15px;color:var(--text2);margin-bottom:8px;line-height:1.6}
+.content ol,.content ul{padding-left:20px;margin-bottom:12px}
+details{border-top:1px solid var(--line);padding:14px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{font-weight:600;cursor:pointer;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"+";font-size:18px;color:var(--accent);font-weight:400;margin-left:12px;flex-shrink:0}
+details[open] summary::after{content:"\2212"}
+details p{padding-top:8px;font-size:14px;color:var(--text2);line-height:1.6}
+.related{display:flex;flex-wrap:wrap;gap:8px}
+.related a{border:1px solid var(--border);padding:8px 14px;border-radius:4px;font-size:14px;color:var(--text);text-decoration:none}
+.related a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+@media(max-width:600px){
+  .row{grid-template-columns:1fr}
+  .detail{grid-template-columns:1fr}
+  .card{padding:16px}
+  .result .big{font-size:32px}
 }
-
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (prefers-reduced-motion:no-preference){}
-
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (min-width:641px){}
-
-#results{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:18px}
-.res
-.res{background:var(--result-bg);color:var(--result-text);border-radius:4px;padding:14px}
-.res .k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;opacity:.9}
-.res .v{font-size:28px;font-weight:700;line-height:1.1;margin-top:2px}
-.res.main .v{font-size:34px}
-.res .u{font-size:13px;font-weight:600;margin-left:4px}
-.res .fine{font-size:12px;opacity:.8;margin-top:2px}
-.tip{font-size:14px;color:var(--text2);margin-top:12px;border-left:3px solid var(--accent);padding-left:10px}
-
-ol,ul{padding-left:20px;margin:0}
-ol li,ul li{margin-bottom:8px}
-p{margin:0 0 12px}
-.formula{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:12px;
-  margin:12px 0;font-size:15px;overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:12px}
-th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2)}
-td.n{font-family:"SF Mono","Cascadia Code","Consolas",monospace;white-space:nowrap}
-details{border-bottom:1px solid var(--line);padding:10px 0}
-details:last-of-type{border-bottom:0;padding-bottom:0}
-summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
-summary::-webkit-details-marker{display:none}
-summary::before{content:"+ ";color:var(--accent-text);font-weight:700}
-details[open] summary::before{content:"– "}
-details p{margin:8px 0 0;color:var(--text2);font-size:14px}
-.rel a{display:block;font-weight:600;margin-top:12px}
-.rel p{font-size:13px;color:var(--text2);margin:2px 0 0}
-footer{background:#1c1c24;color:#999;font-size:13px;margin-top:24px}
-footer .wrap{padding:14px 12px;display:flex;gap:14px;flex-wrap:wrap}
-footer a{color:#bbb}
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "One Rep Max Calculator",
-      "url": "https://figgn.xyz/one-rep-max-calculator/",
-      "applicationCategory": "HealthApplication",
-      "operatingSystem": "Any",
-      "browserRequirements": "Requires JavaScript",
-      "description": "Free one rep max calculator using four formulas: Epley, Brzycki, Lombardi and O'Conner. Estimate your 1RM from a submaximal set with a percentage breakdown table.",
-      "dateModified": "2026-08-04",
-      "inLanguage": "en",
-      "isAccessibleForFree": true,
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "figgn", "item": "https://figgn.xyz/" },
-        { "@type": "ListItem", "position": 2, "name": "Fitness & Health", "item": "https://figgn.xyz/#fitness" },
-        { "@type": "ListItem", "position": 3, "name": "1RM Calculator", "item": "https://figgn.xyz/one-rep-max-calculator/" }
-      ]
-    }
-  ]
-}
-</script>
 </head>
 <body>
-
-<div id="stickyBar">
-  <div class="sbar">
-    <span class="val mono" id="sVal">&mdash;</span>
-    <span class="det" id="sDet">1RM</span>
-    <button type="button" class="copybtn" id="copyBtn">Copy</button>
-  </div>
-</div>
-
+<script>
+(function(){
+  try{
+    var t=localStorage.getItem('theme');
+    if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+    document.documentElement.setAttribute('data-theme',t);
+  }catch(e){document.documentElement.setAttribute('data-theme','light')}
+})();
+</script>
 <header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
+<main class="wrap">
+<p class="crumb"><a href="/">figgn</a> / <a href="/#fitness">Fitness</a> / One Rep Max Calculator</p>
 
-<div class="wrap">
-  
+<div class="card">
+<h1>One Rep Max Calculator</h1>
+<p class="sub">Estimate your one-rep max (1RM) from a submaximal set. Choose between the Epley and Brzycki formulas, then see your training percentages at every level.</p>
+
+<div class="btnrow">
+  <button class="on" data-formula="epley">Epley Formula</button>
+  <button data-formula="brzycki">Brzycki Formula</button>
 </div>
 
-<main class="wrap">
+<div class="row">
+  <div><label>Weight Lifted (lbs)</label><input type="number" id="weight" value="185" min="1" max="2000" step="0.5" inputmode="decimal"></div>
+  <div><label>Reps Performed</label><input type="number" id="reps" value="5" min="1" max="30" inputmode="decimal"></div>
+</div>
 
-  <p class="crumb"><a href="/">figgn</a> / <a href="/#fitness">Fitness &amp; Health</a> / 1RM Calculator</p>
+<div class="result">
+  <div class="label">ESTIMATED ONE REP MAX</div>
+  <div class="big" id="r1rm">—<span style="font-size:18px;font-weight:400"> lbs</span></div>
+</div>
 
-  <div class="card">
-    <h1>One Rep Max Calculator </h1>
-    <p class="sub">Estimate your one-rep max from a submaximal set, then see every warm-up and working weight.</p>
+<div class="detail">
+  <div class="stat"><div class="v" id="dWeight">—</div><div class="k">Weight Lifted</div></div>
+  <div class="stat"><div class="v" id="dReps">—</div><div class="k">Reps</div></div>
+  <div class="stat"><div class="v" id="dFormula">—</div><div class="k">Formula</div></div>
+</div>
 
-    <div class="formwrap">
-      <div class="formcol">
-        <div class="two">
-          <div>
-            <label for="weight">Weight lifted</label>
-            <div class="suffix">
-              <input type="number" id="weight" data-var="weight" inputmode="decimal" min="0" step="1" value="225">
-              <span aria-hidden="true">lb</span>
-            </div>
-          </div>
-          <div>
-            <label for="reps">Reps performed</label>
-            <div class="suffix">
-              <input type="number" id="reps" data-var="reps" inputmode="decimal" min="1" step="1" value="5">
-              <span aria-hidden="true">reps</span>
-            </div>
-          </div>
-        </div>
-        <div class="field">
-          <span class="flabel" id="formulaLabel">Formula</span>
-          <div class="presets" data-cols="4" data-group="formula" role="group" aria-labelledby="formulaLabel">
-            <button type="button" class="preset on" data-val="0">Epley<b>w(1+r/30)</b></button>
-            <button type="button" class="preset" data-val="1">Brzycki<b>w(36/(37−r))</b></button>
-            <button type="button" class="preset" data-val="2">Lombardi<b>w·r^0.10</b></button>
-            <button type="button" class="preset" data-val="3">O'Conner<b>w(1+r/40)</b></button>
-          </div>
-        </div>
-      </div>
-    </div>
+<table id="pctTable">
+  <tr><th>% of 1RM</th><th>Weight</th><th>Reps (Est.)</th></tr>
+</table>
 
-    <div id="results">
-      <div class="res main">
-        <div class="k">Estimated 1RM</div>
-        <div class="v mono"><span id="r1rm" data-out>—</span><span class="u">lb</span></div>
-      </div>
-    </div>
+<p class="note">These are estimates — actual 1RM depends on technique, fatigue, and individual variation. Always use a spotter when attempting heavy singles. For best accuracy, use a weight you can lift for 10 or fewer reps.</p>
+</div>
 
-    <h3>Percentage breakdown</h3>
-    <table id="pctTable">
-      <thead><tr><th>% of 1RM</th><th>Weight</th><th>Typical use</th></tr></thead>
-      <tbody id="pctBody">
-      </tbody>
-    </table>
+<div class="card content">
+<h2>How to Use This Calculator</h2>
+<ol>
+  <li><strong>Enter the weight</strong> you can lift for multiple reps (e.g., 185 lbs).</li>
+  <li><strong>Enter the number of reps</strong> you can complete with that weight (best if ≤10 reps).</li>
+  <li><strong>Choose a formula:</strong> Epley (most common) or Brzycki (more conservative at higher reps).</li>
+  <li>Your estimated 1RM and a full percentage breakdown table appear instantly.</li>
+</ol>
+</div>
 
-    <p class="tip">For accuracy, use a set of 2–10 reps taken close to failure. The formulas get less reliable beyond 10 reps. Epley is the most commonly used and works well in the 2–10 rep range.</p>
-    <p class="disclaimer">1RM estimates are approximations. Never attempt a true max without proper warm-up, spotting and technique. These formulas become less accurate above 10 reps.</p>
-  </div>
+<div class="card content">
+<h2>How It's Calculated</h2>
+<p><strong>Epley Formula:</strong> 1RM = Weight × (1 + Reps ÷ 30)</p>
+<p style="font-size:14px;color:var(--text2)">Example: 185 lbs × (1 + 5/30) = 215.8 lbs</p>
+<p><strong>Brzycki Formula:</strong> 1RM = Weight × 36 ÷ (37 − Reps)</p>
+<p style="font-size:14px;color:var(--text2)">Example: 185 × 36 ÷ (37 − 5) = 208.1 lbs</p>
+<p style="margin-top:8px">Epley tends to estimate slightly higher. Brzycki is more conservative, especially at higher rep counts. For best accuracy, test with ≤10 reps.</p>
+</div>
 
-  
+<div class="card">
+<h2>FAQ</h2>
+<details><summary>Which formula is more accurate?</summary><p>Both are well-validated. Epley is the most widely used and tends to be slightly more accurate for lower rep ranges (≤5). Brzycki is more conservative at higher reps and may be better if you're testing with 8-10 reps. For the most accurate estimate, use a 3-5 rep set with either formula.</p></details>
+<details><summary>How should I use the percentage table?</summary><p>The percentage table is your programming cheat sheet. 85-95% for strength/power, 75-85% for hypertrophy, 65-75% for endurance. Most strength programs periodize across these ranges. Use the table to quickly find your working weights without recalculating.</p></details>
+<details><summary>Can I use this for any lift?</summary><p>Yes — bench press, squat, deadlift, overhead press, rows, and any barbell or dumbbell exercise. The formula works the same way. Just enter the weight and reps for that specific lift. Each lift will have its own 1RM.</p></details>
+<details><summary>Why shouldn't I use more than 10 reps?</summary><p>Above 10 reps, fatigue and muscular endurance become bigger factors than pure strength, and the formulas become less accurate. For the best estimate, test with a weight you can lift 10 or fewer times.</p></details>
+</div>
 
-  <div class="card">
-    <h2>How It's Calculated</h2>
-    <p>Each formula estimates what you could lift for a single rep from what you lifted for multiple reps:</p>
-    <div class="formula mono">
-      Epley:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1RM = w &times; (1 + r/30)<br>
-      Brzycki:&nbsp;&nbsp;&nbsp; 1RM = w &times; 36 / (37 &minus; r)<br>
-      Lombardi:&nbsp; 1RM = w &times; r<sup>0.10</sup><br>
-      O'Conner: 1RM = w &times; (1 + r/40)<br>
-      <span style="opacity:.7">w = weight lifted, r = reps performed</span>
-    </div>
-    <p><strong>Worked example (Epley):</strong> 225 lb for 5 reps → 225 &times; (1 + 5/30) = 225 &times; 1.167 = <span class="mono">263 lb</span> estimated 1RM.</p>
-  </div>
-
-  
-
-  <div class="card rel">
-    <h2>More Free Calculators</h2>
-    <a href="/bmi-calculator/">BMI Calculator</a>
-    <p>Body mass index and healthy weight range.</p>
-    <a href="/body-fat-calculator/">Body Fat Calculator</a>
-    <p>Navy tape-measure method.</p>
-    <a href="/macro-calculator/">Macro Calculator</a>
-    <p>Protein, carbs and fat targets.</p>
-  </div>
-
+<div class="card">
+<h2>Related Calculators</h2>
+<div class="related">
+  <a href="/macro/">Macro Calculator</a>
+  <a href="/body-fat/">Body Fat</a>
+  <a href="/pace/">Pace Calculator</a>
+</div>
+</div>
 </main>
-
-<footer>
-  <div class="wrap">
-    <span>&copy; <span id="yr">2026</span> figgn</span>
-    <a href="/privacy/">Privacy</a>
-    <a href="/">All calculators</a>
-  </div>
+<footer style="text-align:center;padding:24px 16px;color:var(--text2);font-size:13px;border-top:1px solid var(--line)">
+  &copy; 2026 figgn <a href="/privacy/" style="color:var(--accent);text-decoration:none">Privacy</a> <a href="/blog/" style="color:var(--accent);text-decoration:none;margin-left:12px">Blog</a> <a href="/" style="color:var(--accent);text-decoration:none;margin-left:12px">All calculators</a>
 </footer>
 
 <script>
-
-function compute(V, G){
-  if(V.weight <= 0 || V.reps < 1) return {invalid:'Enter weight and reps above 0'};
-
-  var w = V.weight, r = V.reps;
-  var oneRM;
-
-  switch(G.formula){
-    case 0: oneRM = w * (1 + r / 30); break;   /* Epley */
-    case 1: oneRM = r >= 37 ? w : w * 36 / (37 - r); break; /* Brzycki */
-    case 2: oneRM = w * Math.pow(r, 0.10); break; /* Lombardi */
-    case 3: oneRM = w * (1 + r / 40); break;   /* O'Conner */
-    default: oneRM = w * (1 + r / 30);
-  }
-
-  var formulaNames = ['Epley', 'Brzycki', 'Lombardi', "O'Conner"];
-  var fname = formulaNames[G.formula] || 'Epley';
-
-  /* Build percentage table rows 50-95% step 5 */
-  var pcts = [50, 55, 60, 65, 70, 75, 80, 85, 90, 95];
-  var labels = ['Warm-up', 'Warm-up', 'Warm-up / speed', 'Speed / technique', 'Technique work', 'Moderate', 'Working sets', 'Heavy', 'Near-max', 'Max attempt'];
-  var rows = '';
-  for(var i = 0; i < pcts.length; i++){
-    var pct = pcts[i];
-    var wt = Math.round(oneRM * pct / 100 / 5) * 5;
-    rows += '<tr><td class="n">' + pct + '%</td><td class="n">' + fmt(wt, 0) + ' lb</td><td>' + labels[i] + '</td></tr>';
-  }
-
-  return {
-    out:{
-      r1rm: fmt(Math.round(oneRM), 0)
-    },
-    html:{ pctBody: rows },
-    sticky:{ val: fmt(Math.round(oneRM), 0) + ' lb', det: '1RM \u00b7 ' + fname + ' \u00b7 ' + fmt(w, 0) + ' lb \u00d7 ' + r + ' reps' }
-  };
-}
-
 (function(){
-  var G = {}, P = {};
+  var tb=document.getElementById('themeBtn');
+  var theme=document.documentElement.getAttribute('data-theme');
+  tb.textContent=theme==='dark'?'Light':'Dark';
+  tb.onclick=function(){
+    theme=theme==='dark'?'light':'dark';
+    document.documentElement.setAttribute('data-theme',theme);
+    localStorage.setItem('theme',theme);
+    tb.textContent=theme==='dark'?'Light':'Dark';
+  };
 
-  function fmt(x, dp){
-    var d = (dp === undefined) ? 2 : dp;
-    var s = (Math.round(x * Math.pow(10, d)) / Math.pow(10, d)).toString();
-    var p = s.split('.');
-    p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    return p.join('.');
-  }
-  window.fmt = fmt;
+  var formula='epley';
 
-  var groups = [].slice.call(document.querySelectorAll('.presets[data-group]'));
-  groups.forEach(function(g){
-    var name = g.dataset.group;
-    var btns = [].slice.call(g.querySelectorAll('.preset'));
-    var on = btns.filter(function(b){ return b.classList.contains('on'); })[0] || btns[0];
-    G[name] = parseFloat(on.dataset.val);
-    P[name] = G[name];
-    btns.forEach(function(b){
-      b.setAttribute('aria-pressed', b.classList.contains('on') ? 'true' : 'false');
-      b.addEventListener('click', function(){
-        G[name] = parseFloat(b.dataset.val);
-        P[name] = G[name];
-        btns.forEach(function(x){
-          var sel = (x === b);
-          x.classList.toggle('on', sel);
-          x.setAttribute('aria-pressed', sel ? 'true' : 'false');
-        });
-        run();
-      });
-    });
+  document.querySelectorAll('button[data-formula]').forEach(function(b){
+    b.onclick=function(){
+      formula=b.dataset.formula;
+      document.querySelectorAll('button[data-formula]').forEach(function(x){x.classList.toggle('on',x.dataset.formula===formula);});
+      calc();
+    };
   });
 
-  var inputs = [].slice.call(document.querySelectorAll('[data-var]'));
-  var last = null;
-  inputs.forEach(function(i){
-    i.addEventListener('input', function(){ last = i.dataset.var; run(); });
-    i.addEventListener('focus', function(){ last = i.dataset.var; run(); });
+  ['weight','reps'].forEach(function(id){
+    var el=document.getElementById(id);if(el)el.oninput=calc;
   });
 
-  function run(){
-    var V = {};
-    inputs.forEach(function(i){
-      var n = parseFloat(i.value);
-      n = (isNaN(n) || n < 0) ? 0 : n;
-      V[i.dataset.var] = n;
-    });
+  function calc(){
+    var w=parseFloat(document.getElementById('weight').value)||0;
+    var r=parseInt(document.getElementById('reps').value)||0;
+    var fname='Epley';
 
-    var r = compute(V, G, last, []) || {};
-    var sVal = document.getElementById('sVal');
-    var sDet = document.getElementById('sDet');
-
-    if(r.invalid){
-      document.querySelectorAll('[data-out]').forEach(function(el){ el.textContent = '\u2014'; });
-      sVal.textContent = '\u2014';
-      sDet.textContent = r.invalid;
-      var pt = document.getElementById('pctBody');
-      if(pt) pt.innerHTML = '';
+    if(w<=0||r<=0||r>=37){
+      document.getElementById('r1rm').innerHTML=r>=37?'<span style="font-size:16px">Reps must be &lt;37</span>':'—<span style="font-size:18px;font-weight:400"> lbs</span>';
+      document.getElementById('dWeight').textContent='—';
+      document.getElementById('dReps').textContent='—';
+      document.getElementById('dFormula').textContent='—';
+      document.getElementById('pctTable').innerHTML='<tr><th>% of 1RM</th><th>Weight</th><th>Reps (Est.)</th></tr>';
       return;
     }
-    Object.keys(r.out || {}).forEach(function(k){
-      var el = document.getElementById(k);
-      if(el) el.textContent = r.out[k];
+
+    var rm;
+    if(formula==='epley'){
+      rm=w*(1+r/30);
+      fname='Epley';
+    }else{
+      rm=w*36/(37-r);
+      fname='Brzycki';
+    }
+
+    document.getElementById('r1rm').innerHTML=rm.toFixed(1)+'<span style="font-size:18px;font-weight:400"> lbs</span>';
+    document.getElementById('dWeight').textContent=w+' lbs';
+    document.getElementById('dReps').textContent=r;
+    document.getElementById('dFormula').textContent=fname;
+
+    var pcts=[95,90,85,80,75,70,65,60,55,50];
+    var rows='<tr><th>% of 1RM</th><th>Weight</th><th>Reps (Est.)</th></tr>';
+    pcts.forEach(function(p){
+      var pctWeight=(rm*p/100).toFixed(0);
+      var estReps;
+      if(p>=95)estReps='1–2';
+      else if(p>=90)estReps='2–3';
+      else if(p>=85)estReps='3–5';
+      else if(p>=80)estReps='5–7';
+      else if(p>=75)estReps='6–8';
+      else if(p>=70)estReps='8–10';
+      else if(p>=65)estReps='10–12';
+      else if(p>=60)estReps='12–15';
+      else if(p>=55)estReps='15–18';
+      else estReps='18–20';
+      rows+='<tr><td>'+p+'%</td><td>'+pctWeight+' lbs</td><td>'+estReps+'</td></tr>';
     });
-    Object.keys(r.html || {}).forEach(function(k){
-      var el = document.getElementById(k);
-      if(el) el.innerHTML = r.html[k];
-    });
-    sVal.textContent = r.sticky.val;
-    sDet.textContent = r.sticky.det;
+    document.getElementById('pctTable').innerHTML=rows;
   }
 
-  var copyBtn = document.getElementById('copyBtn');
-  copyBtn.addEventListener('click', function(){
-    var v = document.getElementById('sVal').textContent;
-    var done = function(){ copyBtn.textContent = 'Copied!'; setTimeout(function(){ copyBtn.textContent = 'Copy'; }, 2000); };
-    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(v).then(done, done); }
-    else{ var t = document.createElement('textarea'); t.value = v; t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(t); done(); }
-  });
-
-  var barEl = document.getElementById('stickyBar');
-  var resultsEl = document.getElementById('results');
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(entries){
-      entries.forEach(function(en){ barEl.classList.toggle('show', !en.isIntersecting && en.boundingClientRect.top < 0); });
-    }, {threshold: 0}).observe(resultsEl);
-  }
-
-  var toggle = document.getElementById('themeToggle');
-  function syncToggle(){
-    var t = document.documentElement.getAttribute('data-theme');
-    toggle.textContent = (t === 'dark' ? 'Light' : 'Dark');
-    toggle.setAttribute('aria-label','Switch to ' + (t === 'dark' ? 'light' : 'dark') + ' mode');
-  }
-  syncToggle();
-  toggle.addEventListener('click', function(){
-    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', t);
-    try{ localStorage.setItem('theme', t); }catch(e){} syncToggle();
-  });
-
-  run();
+  calc();
 })();
-</script>
-
-<script>
-(function(){
-  function fill(el){ if(el.dataset.filled) return; el.dataset.filled='1'; el.textContent='Advertisement \u00b7 '+(el.dataset.size||''); }
-  var slots=document.querySelectorAll('.adslot');
-  if('IntersectionObserver' in window){ var io=new IntersectionObserver(function(e){ e.forEach(function(en){ if(en.isIntersecting){ fill(en.target); io.unobserve(en.target); } }); },{rootMargin:'600px 0px'}); slots.forEach(function(s){ io.observe(s); }); }
-  else slots.forEach(fill);
-  
-(function(){ var PUB='ca-pub-XXXXXXXXXXXXXXXX',loaded=false; function load(){ if(loaded||PUB.indexOf('XXXX')>-1) return; loaded=true; var s=document.createElement('script'); s.async=true; s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+PUB; s.crossOrigin='anonymous'; document.head.appendChild(s); } ['scroll','pointerdown','keydown'].forEach(function(e){ window.addEventListener(e,load,{once:true,passive:true}); }); setTimeout(load,3500); })();
-(function(){ var fields=[].slice.call(document.querySelectorAll('input[type=number][id]')); if(!fields.length) return; var params=new URLSearchParams(location.search),applied=false; fields.forEach(function(f){ var v=params.get(f.id); if(v!==null&&v!==''&&isFinite(parseFloat(v))){ f.value=parseFloat(v); applied=true; } }); if(applied){ fields[0].dispatchEvent(new Event('input',{bubbles:true})); document.dispatchEvent(new Event('change',{bubbles:true})); } var t; function sync(){ clearTimeout(t); t=setTimeout(function(){ var q=new URLSearchParams(); fields.forEach(function(f){ if(f.value!=='') q.set(f.id,f.value); }); var qs=q.toString(); history.replaceState(null,'',qs?location.pathname+'?'+qs:location.pathname); },500); } fields.forEach(function(f){ f.addEventListener('input',sync); }); })();
-(function(){ document.addEventListener('wheel',function(e){ var a=document.activeElement; if(a&&a.type==='number'&&a===e.target) a.blur(); },{passive:true}); var yr=document.getElementById('yr'); if(yr) yr.textContent=new Date().getFullYear(); var v=document.getElementById('sVal'),d=document.getElementById('sDet'); if(!v) return; var live=document.createElement('p'); live.className='visually-hidden'; live.setAttribute('aria-live','polite'); document.body.appendChild(live); function announce(){ live.textContent=v.textContent+'. '+d.textContent; } document.addEventListener('change',announce,true); document.addEventListener('click',function(e){ if(e.target.closest&&e.target.closest('.preset')) setTimeout(announce,0); },true); })();
 </script>
 </body>
 </html>

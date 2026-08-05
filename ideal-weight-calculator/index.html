@@ -2,486 +2,272 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ideal Weight Calculator — Four Classic Formulas | figgn</title>
-<meta name="description" content="Free ideal weight calculator using four classic formulas: Robinson, Miller, Devine and Hamwi. See the range from clinical drug-dosing equations.">
-<link rel="canonical" href="https://figgn.xyz/ideal-weight-calculator/">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#e65c00">
-<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
-<link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
-<link rel="dns-prefetch" href="https://tpc.googlesyndication.com">
-<meta property="og:site_name" content="figgn">
-<meta property="og:image" content="https://figgn.xyz/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ideal Weight Calculator — Four Classic Formulas | figgn">
-<meta name="twitter:description" content="Free ideal weight calculator. See the range from four clinical formulas: Robinson, Miller, Devine and Hamwi. Developed for drug dosing, not aesthetics.">
-<meta name="twitter:image" content="https://figgn.xyz/og-image.png">
-<meta property="og:title" content="Ideal Weight Calculator — Four Classic Formulas | figgn">
-<meta property="og:description" content="Free ideal weight calculator. See the range from four clinical formulas: Robinson, Miller, Devine and Hamwi. Developed for drug dosing, not aesthetics.">
-<meta property="og:url" content="https://figgn.xyz/ideal-weight-calculator/">
-<meta property="og:type" content="website">
-<script>
-(function(){
-  try{
-    var t = localStorage.getItem('theme');
-    if(t !== 'light' && t !== 'dark'){
-      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    document.documentElement.setAttribute('data-theme', t);
-  }catch(e){ document.documentElement.setAttribute('data-theme','light'); }
-})();
-</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ideal Weight Calculator — Free Ideal Body Weight Estimator | figgn</title>
+<meta name="description" content="Calculate your ideal body weight using four medical formulas: Robinson, Miller, Devine, and Hamwi. Get a healthy weight range based on your height and sex. Free online tool.">
+<link rel="canonical" href="https://figgn.xyz/ideal-weight/">
+<meta property="og:title" content="Ideal Weight Calculator — Free Ideal Body Weight Estimator | figgn">
+<meta property="og:description" content="Calculate your ideal body weight using four medical formulas. Get a healthy weight range based on your height and sex.">
+<meta property="og:url" content="https://figgn.xyz/ideal-weight/">
 <style>
 :root{
   --bg:#f8f9fb;--card:#ffffff;--text:#111111;--text2:#555555;--border:#cccccc;
-  --input-bg:#ffffff;--accent:#e65c00;--accent-btn:#c24d00;--accent-text:#c24d00;
-  --result-bg:#e7f5ec;--result-text:#0d5c2e;--ad-bg:#f0f0f0;--ad-text:#888888;
+  --input-bg:#ffffff;--accent:#e65c00;--result-bg:#e7f5ec;--result-text:#0d5c2e;
   --shadow:0 1px 3px rgba(0,0,0,.08);--line:#e4e4ea;
 }
 [data-theme="dark"]{
   --bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999999;--border:#3a3a48;
-  --input-bg:#252530;--accent:#e65c00;--accent-btn:#c24d00;--accent-text:#ff8a3d;
-  --result-bg:#0a3020;--result-text:#4ade80;--ad-bg:#22222b;--ad-text:#777777;
+  --input-bg:#252530;--result-bg:#0a3020;--result-text:#4ade80;
   --shadow:0 1px 3px rgba(0,0,0,.3);--line:#2a2a34;
 }
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  font-size:16px;line-height:1.5}
-.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-.wrap{max-width:760px;margin:0 auto;padding:0 12px}
-a{color:var(--accent-text)}
-.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
-  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-header{background:var(--accent);color:#fff}
-.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;
-  align-items:center;justify-content:space-between}
-.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700;letter-spacing:-.5px}
-.hnav{display:flex;align-items:center;gap:12px}
-.hnav a{color:#fff;text-decoration:none;font-size:14px;font-weight:600}
-.hnav a:hover{text-decoration:underline}
-#themeToggle{background:var(--accent-btn);color:#fff;border:1px solid rgba(255,255,255,.65);
-  border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
-#themeToggle:hover{filter:brightness(1.1)}
-
-.disclaimer{font-size:13px;color:var(--text2);border-left:3px solid var(--border);
-  padding-left:10px;margin-top:14px}
-
-.formwrap{display:grid;grid-template-columns:1fr;gap:16px}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-.btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.btnrow button{padding:8px 14px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);cursor:pointer;min-height:40px}
-.btnrow button.on{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:700}
-.stepper{display:flex;align-items:center;gap:0;margin-bottom:14px}
-.stepper button{min-height:56px;min-width:44px;font-size:20px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-family:inherit}
-.stepper button:first-child{border-radius:4px 0 0 4px}
-.stepper button:last-child{border-radius:0 4px 4px 0}
-.stepper input{border-radius:0;text-align:center;min-width:60px;width:60px;border-left:0;border-right:0}
-.result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
-.result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
-.detail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
-.detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
-.detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
-.detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
-.note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
-.hidden{display:none}
-@media(max-width:480px){.row{grid-template-columns:1fr}}
-@media (min-width:641px){.formwrap{grid-template-columns:1fr 210px;align-items:start}}
-
-.card{background:var(--card);border:1px solid var(--line);border-radius:4px;
-  box-shadow:var(--shadow);padding:16px;margin:16px 0}
-h1{font-size:24px;margin:0 0 4px;letter-spacing:-.3px}
-h2{font-size:18px;margin:0 0 10px;letter-spacing:-.2px}
-h3{font-size:14px;margin:18px 0 8px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em}
-.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
-
-.field{margin-top:16px}
-label,.flabel{display:block;font-size:13px;color:var(--text2);text-transform:uppercase;
-  letter-spacing:.06em;margin-bottom:6px}
-input[type=number]{width:100%;min-height:56px;padding:0 10px;background:var(--input-bg);
-  color:var(--text);border:1px solid var(--border);border-radius:4px;font-size:18px;
-  font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
-.suffix{display:flex;align-items:stretch}
-.suffix input{border-radius:4px 0 0 4px;border-right:0}
-.suffix span{min-height:56px;display:flex;align-items:center;padding:0 10px;background:var(--bg);
-  border:1px solid var(--border);border-radius:0 4px 4px 0;color:var(--text2);font-size:15px;
-  font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-.presets{display:grid;gap:8px;grid-template-columns:repeat(3,1fr)}
-.presets[data-cols="2"]{grid-template-columns:repeat(2,1fr)}
-.preset{min-height:56px;padding:6px 4px;background:var(--input-bg);color:var(--text);
-  border:1px solid var(--border);border-radius:4px;font-size:14px;font-family:inherit;
-  cursor:pointer;line-height:1.25}
-.preset b{display:block;font-family:"SF Mono","Cascadia Code","Consolas",monospace;font-size:16px}
-.preset.on{background:var(--accent-btn);border-color:var(--accent-btn);color:#fff;font-weight:600}
-
-#stickyBar{position:fixed;top:0;left:0;right:0;z-index:60;background:var(--result-bg);
-  color:var(--result-text);border-bottom:1px solid var(--border);
-  transform:translateY(-100%);visibility:hidden}
-#stickyBar.show{transform:translateY(0);visibility:visible}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (prefers-reduced-motion:no-preference){#stickyBar{transition:transform .15s ease-out}}
-.sbar{max-width:760px;margin:0 auto;padding:8px 12px;display:flex;align-items:center;gap:12px}
-.sbar .val{font-size:26px;font-weight:700;line-height:1.1}
-.sbar .det{font-size:12px;color:var(--result-text);opacity:.85;flex:1}
-.copybtn{background:var(--accent-btn);color:#fff;border:0;border-radius:4px;padding:8px 14px;
-  font-size:14px;font-family:inherit;cursor:pointer;min-height:36px}
-.copybtn:hover{filter:brightness(1.1)}
-
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (min-width:768px){
-  
-  
-  
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px}
+header{background:var(--accent);height:48px;display:flex;align-items:center}
+.hbar{max-width:760px;margin:0 auto;padding:0 16px;width:100%;display:flex;justify-content:space-between;align-items:center}
+.wordmark{color:#fff;font-weight:700;font-size:18px;text-decoration:none;letter-spacing:-.2px}
+.hnav{display:flex;align-items:center;gap:16px}
+.hnav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px}
+#themeBtn{background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:4px;padding:4px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+.crumb{font-size:13px;color:var(--text2);margin-bottom:16px}
+.crumb a{color:var(--accent);text-decoration:none}
+.card{background:var(--card);border-radius:4px;padding:24px;box-shadow:var(--shadow);margin-bottom:20px}
+h1{font-size:24px;letter-spacing:-.3px;margin-bottom:4px}
+.sub{font-size:15px;color:var(--text2);margin-bottom:20px}
+label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:6px}
+input,select{width:100%;min-height:56px;padding:0 14px;border:1px solid var(--border);border-radius:4px;font-size:16px;font-family:inherit;background:var(--input-bg);color:var(--text);outline:none}
+input:focus,select:focus{border-color:var(--accent)}
+.btnrow{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.btnrow button{border:1px solid var(--border);background:var(--input-bg);color:var(--text);font-size:14px;border-radius:4px;padding:8px 16px;cursor:pointer;font-family:inherit;min-height:40px;min-width:48px}
+.btnrow button.on,.btnrow button:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.row .full{grid-column:1/-1}
+.result{background:var(--result-bg);border-radius:4px;padding:20px;text-align:center;margin:20px 0}
+.result .label{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--result-text);opacity:.8;margin-bottom:4px}
+.result .big{font-size:40px;font-weight:700;color:var(--result-text);font-family:"SF Mono","Cascadia Code","Consolas",monospace;line-height:1.2}
+.result .sub{font-size:15px;color:var(--result-text);opacity:.8;margin-top:4px;margin-bottom:0}
+.detail{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px}
+.stat{background:var(--bg);border-radius:4px;padding:14px;text-align:center}
+.stat .v{font-size:20px;font-weight:700;font-family:"SF Mono","Cascadia Code","Consolas",monospace;color:var(--text)}
+.stat .k{font-size:12px;color:var(--text2);margin-top:2px;text-transform:uppercase;letter-spacing:.03em}
+.formula-table{width:100%;margin-top:12px}
+.formula-table td{padding:8px 0;border-bottom:1px solid var(--line)}
+.formula-table .fn{font-weight:600;color:var(--accent);width:90px;vertical-align:top}
+.formula-table .fv{font-family:"SF Mono","Cascadia Code","Consolas",monospace;font-size:16px}
+.note{font-size:13px;color:var(--text2);background:var(--bg);padding:12px 16px;border-radius:4px;margin-top:16px}
+.hidden{display:none!important}
+h2{font-size:18px;letter-spacing:-.2px;margin-bottom:12px}
+.content p,.content li{font-size:15px;color:var(--text2);margin-bottom:8px;line-height:1.6}
+.content ol,.content ul{padding-left:20px;margin-bottom:12px}
+details{border-top:1px solid var(--line);padding:14px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{font-weight:600;cursor:pointer;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"+";font-size:18px;color:var(--accent);font-weight:400;margin-left:12px;flex-shrink:0}
+details[open] summary::after{content:"\2212"}
+details p{padding-top:8px;font-size:14px;color:var(--text2);line-height:1.6}
+.related{display:flex;flex-wrap:wrap;gap:8px}
+.related a{border:1px solid var(--border);padding:8px 14px;border-radius:4px;font-size:14px;color:var(--text);text-decoration:none}
+.related a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+@media(max-width:600px){
+  .row{grid-template-columns:1fr}
+  .detail{grid-template-columns:1fr}
+  .card{padding:16px}
+  .result .big{font-size:32px}
 }
-
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (prefers-reduced-motion:no-preference){}
-
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (min-width:641px){}
-
-#results{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:18px}
-.res
-.res{background:var(--result-bg);color:var(--result-text);border-radius:4px;padding:14px}
-.res .k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;opacity:.9}
-.res .v{font-size:28px;font-weight:700;line-height:1.1;margin-top:2px}
-.res.main .v{font-size:34px}
-.res .u{font-size:13px;font-weight:600;margin-left:4px}
-.res .fine{font-size:12px;opacity:.8;margin-top:2px}
-.breakdown{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;
-  background:var(--line);border:1px solid var(--line);border-radius:4px;margin-top:12px;overflow:hidden}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (max-width:560px){.breakdown{grid-template-columns:1fr 1fr}}
-.breakdown div{background:var(--card);padding:10px}
-.breakdown .k{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em}
-.breakdown .v{font-size:22px;font-weight:700;font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-.breakdown .u{font-size:12px;font-weight:600;margin-left:2px;color:var(--text2)}
-.tip{font-size:14px;color:var(--text2);margin-top:12px;border-left:3px solid var(--accent);padding-left:10px}
-
-ol,ul{padding-left:20px;margin:0}
-ol li,ul li{margin-bottom:8px}
-p{margin:0 0 12px}
-.formula{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:12px;
-  margin:12px 0;font-size:15px;overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2)}
-td.n{font-family:"SF Mono","Cascadia Code","Consolas",monospace;white-space:nowrap}
-.rel a{display:block;font-weight:600;margin-top:12px}
-.rel p{font-size:13px;color:var(--text2);margin:2px 0 0}
-footer{background:#1c1c24;color:#999;font-size:13px;margin-top:24px}
-footer .wrap{padding:14px 12px;display:flex;gap:14px;flex-wrap:wrap}
-footer a{color:#bbb}
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "Ideal Weight Calculator",
-      "url": "https://figgn.xyz/ideal-weight-calculator/",
-      "applicationCategory": "HealthApplication",
-      "operatingSystem": "Any",
-      "browserRequirements": "Requires JavaScript",
-      "description": "Free ideal weight calculator using four classic clinical formulas: Robinson, Miller, Devine and Hamwi. Developed for drug dosing, not aesthetics.",
-      "dateModified": "2026-08-04",
-      "inLanguage": "en",
-      "isAccessibleForFree": true,
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "figgn", "item": "https://figgn.xyz/" },
-        { "@type": "ListItem", "position": 2, "name": "Fitness & Health", "item": "https://figgn.xyz/#fitness" },
-        { "@type": "ListItem", "position": 3, "name": "Ideal Weight Calculator", "item": "https://figgn.xyz/ideal-weight-calculator/" }
-      ]
-    }
-  ]
-}
-</script>
 </head>
 <body>
-
-<div id="stickyBar">
-  <div class="sbar">
-    <span class="val mono" id="sVal">&mdash;</span>
-    <span class="det" id="sDet">Ideal Weight</span>
-    <button type="button" class="copybtn" id="copyBtn">Copy</button>
-  </div>
-</div>
-
+<script>
+(function(){
+  try{
+    var t=localStorage.getItem('theme');
+    if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+    document.documentElement.setAttribute('data-theme',t);
+  }catch(e){document.documentElement.setAttribute('data-theme','light')}
+})();
+</script>
 <header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
+<main class="wrap">
+<p class="crumb"><a href="/">figgn</a> / <a href="/#health">Health</a> / Ideal Weight Calculator</p>
 
-<div class="wrap">
-  
+<div class="card">
+<h1>Ideal Weight Calculator</h1>
+<p class="sub">Estimate your ideal body weight using four established medical formulas. Results show a healthy range based on your height and sex.</p>
+
+<div class="btnrow">
+  <button class="on" data-unit="imperial">Imperial (ft/in, lbs)</button>
+  <button data-unit="metric">Metric (cm, kg)</button>
 </div>
 
-<main class="wrap">
+<div class="btnrow">
+  <button class="on" data-sex="male">Male</button>
+  <button data-sex="female">Female</button>
+</div>
 
-  <p class="crumb"><a href="/">figgn</a> / <a href="/#fitness">Fitness &amp; Health</a> / Ideal Weight Calculator</p>
-
-  <div class="card">
-    <h1>Ideal Weight Calculator </h1>
-    <p class="sub">Four classic clinical formulas, side by side. Developed for drug dosing, not aesthetics &mdash; the range is more honest than any single number.</p>
-
-    <div class="formwrap">
-      <div class="formcol">
-        <div class="two">
-          <div>
-            <label for="hft">Height (feet)</label>
-            <div class="suffix">
-              <input type="number" id="hft" data-var="hft" inputmode="decimal" min="0" step="1" value="5">
-              <span aria-hidden="true">ft</span>
-            </div>
-          </div>
-          <div>
-            <label for="hin">Height (inches)</label>
-            <div class="suffix">
-              <input type="number" id="hin" data-var="hin" inputmode="decimal" min="0" step="1" value="10">
-              <span aria-hidden="true">in</span>
-            </div>
-          </div>
-        </div>
-        <div class="field">
-          <span class="flabel" id="sexLabel">Sex at birth</span>
-          <div class="presets" data-cols="2" data-group="sex" role="group" aria-labelledby="sexLabel">
-            <button type="button" class="preset on" data-val="0">Male</button>
-            <button type="button" class="preset" data-val="1">Female</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="results">
-      <div class="res main">
-        <div class="k">Ideal weight range</div>
-        <div class="v mono"><span id="rRange" data-out>—</span><span class="u">lb</span></div>
-        <div class="fine">Lowest to highest of the four formulas</div>
-      </div>
-    </div>
-
-    <h3>Formula breakdown</h3>
-    <div class="breakdown">
-      <div>
-        <div class="k">Robinson (1983)</div>
-        <div class="v"><span id="rRob" data-out>—</span><span class="u">lb</span></div>
-      </div>
-      <div>
-        <div class="k">Miller (1983)</div>
-        <div class="v"><span id="rMil" data-out>—</span><span class="u">lb</span></div>
-      </div>
-      <div>
-        <div class="k">Devine (1974)</div>
-        <div class="v"><span id="rDev" data-out>—</span><span class="u">lb</span></div>
-      </div>
-      <div>
-        <div class="k">Hamwi (1964)</div>
-        <div class="v"><span id="rHam" data-out>—</span><span class="u">lb</span></div>
-      </div>
-      <div>
-        <div class="k">Height</div>
-        <div class="v"><span id="rHeight" data-out>—</span></div>
-      </div>
-      <div>
-        <div class="k">Sex</div>
-        <div class="v" style="font-size:18px"><span id="rSex" data-out>—</span></div>
-      </div>
-    </div>
-
-    <p class="tip">These formulas were developed by clinicians to estimate drug dosing — not to tell you what you should weigh. No formula knows your frame size, muscle mass or body composition, and the range across the four formulas is more informative than any single number.</p>
-    <p class="disclaimer">Ideal body weight formulas are clinical estimates, not medical advice. They cannot account for individual differences in frame size, muscle mass or body composition.</p>
+<div id="impInputs">
+  <div class="row">
+    <div><label>Feet</label><input type="number" id="feet" value="5" min="4" max="7" inputmode="decimal"></div>
+    <div><label>Inches</label><input type="number" id="inches" value="10" min="0" max="11" inputmode="decimal"></div>
   </div>
+</div>
 
-  
-
-  <div class="card">
-    <h2>How It's Calculated</h2>
-    <p>These formulas all start from a base weight at 5 feet and add an increment for every inch above that. The formulas differ in the base weight (for a 5-foot person) and the per-inch increment.</p>
-    <p><strong>All four formulas:</strong></p>
-    <table>
-      <thead><tr><th>Formula</th><th>Male base (5&prime;)</th><th>Female base (5&prime;)</th><th>Per inch</th></tr></thead>
-      <tbody>
-        <tr><td>Robinson</td><td class="n">115 lb</td><td class="n">108 lb</td><td class="n">4.1 lb</td></tr>
-        <tr><td>Miller</td><td class="n">124 lb</td><td class="n">117 lb</td><td class="n">3.1 lb</td></tr>
-        <tr><td>Devine</td><td class="n">110 lb</td><td class="n">100 lb</td><td class="n">5.0 lb</td></tr>
-        <tr><td>Hamwi</td><td class="n">106 lb</td><td class="n">100 lb</td><td class="n">6.0 lb</td></tr>
-      </tbody>
-    </table>
-    <p><strong>Worked example:</strong> a 5&prime;10&Prime; man. Robinson gives 115 + 10 &times; 4.1 = 156 lb. Hamwi gives 106 + 10 &times; 6.0 = 166 lb. The range is <span class="mono">156–166 lb</span>, and that 10-pound spread matters more than any one formula's output.</p>
+<div id="metInputs" class="hidden">
+  <div class="row">
+    <div class="full"><label>Height (cm)</label><input type="number" id="cmHeight" value="178" min="120" max="230" inputmode="decimal"></div>
   </div>
+</div>
 
-  
+<div class="result">
+  <div class="label">IDEAL WEIGHT RANGE</div>
+  <div class="big" id="rRange">—</div>
+  <div class="sub" id="rUnit">pounds</div>
+</div>
 
-  <div class="card rel">
-    <h2>More Free Calculators</h2>
-    <a href="/bmi-calculator/">BMI Calculator</a>
-    <p>Body mass index and healthy weight range.</p>
-    <a href="/body-fat-calculator/">Body Fat Calculator</a>
-    <p>Navy tape-measure method and BMI method.</p>
-    <a href="/bmr-calculator/">BMR Calculator</a>
-    <p>Calories burned at complete rest.</p>
-  </div>
+<div class="detail">
+  <div class="stat"><div class="v" id="dLow">—</div><div class="k">Lower Bound</div></div>
+  <div class="stat"><div class="v" id="dHigh">—</div><div class="k">Upper Bound</div></div>
+</div>
 
+<p class="note">These formulas were originally developed for medical drug dosing calculations, not general health recommendations. Your ideal weight depends on many factors including muscle mass, bone structure, and body composition.</p>
+
+<table class="formula-table">
+  <tr><td class="fn">Robinson</td><td class="fv" id="fRobinson">—</td></tr>
+  <tr><td class="fn">Miller</td><td class="fv" id="fMiller">—</td></tr>
+  <tr><td class="fn">Devine</td><td class="fv" id="fDevine">—</td></tr>
+  <tr><td class="fn">Hamwi</td><td class="fv" id="fHamwi">—</td></tr>
+</table>
+</div>
+
+<div class="card content">
+<h2>How to Use This Calculator</h2>
+<ol>
+  <li><strong>Choose units:</strong> Imperial (feet/inches, pounds) or Metric (centimeters, kilograms).</li>
+  <li><strong>Select sex:</strong> Male or female — each formula has different constants for each.</li>
+  <li><strong>Enter your height:</strong> Use feet + inches or centimeters.</li>
+  <li>Results update instantly — the range from all four formulas and individual formula results appear.</li>
+</ol>
+</div>
+
+<div class="card content">
+<h2>How It's Calculated</h2>
+<p>All four formulas calculate ideal weight based on height above 5 feet (60 inches):</p>
+<p style="font-size:14px;color:var(--text2);margin-bottom:8px"><strong>Robinson (1983):</strong> Male: 52 kg + 1.9 kg/in over 5ft | Female: 49 kg + 1.7 kg/in</p>
+<p style="font-size:14px;color:var(--text2);margin-bottom:8px"><strong>Miller (1983):</strong> Male: 56.2 kg + 1.41 kg/in | Female: 53.1 kg + 1.36 kg/in</p>
+<p style="font-size:14px;color:var(--text2);margin-bottom:8px"><strong>Devine (1974):</strong> Male: 50 kg + 2.3 kg/in | Female: 45.5 kg + 2.3 kg/in</p>
+<p style="font-size:14px;color:var(--text2)"><strong>Hamwi (1964):</strong> Male: 48 kg + 2.7 kg/in | Female: 45.5 kg + 2.2 kg/in</p>
+</div>
+
+<div class="card">
+<h2>FAQ</h2>
+<details><summary>Which formula is most accurate?</summary><p>None of these formulas predicts your personal ideal weight perfectly — they're population-level estimates originally developed for drug dosing. Devine is the most widely used clinically. For a truly personalized assessment, consider body composition (body fat %, muscle mass) rather than weight alone.</p></details>
+<details><summary>Why does the calculator show a range?</summary><p>Different formulas produce different results because they were developed using different population data. The range (lowest to highest across all four formulas) gives you a reasonable target window rather than a single number.</p></details>
+<details><summary>Are these formulas for athletes?</summary><p>No. These formulas assume average body composition and don't account for higher muscle mass in athletes. If you're muscular, these formulas may underestimate your ideal weight. Combine with a body fat calculator for a better picture.</p></details>
+<details><summary>What are these formulas actually used for?</summary><p>They were developed for calculating drug dosages in clinical settings, particularly for medications where body weight affects the correct dose. Devine's formula is still commonly used in hospitals today.</p></details>
+</div>
+
+<div class="card">
+<h2>Related Calculators</h2>
+<div class="related">
+  <a href="/body-fat/">Body Fat</a>
+  <a href="/macro/">Macro Calculator</a>
+  <a href="/calorie/">Calorie Burned</a>
+</div>
+</div>
 </main>
-
-<footer>
-  <div class="wrap">
-    <span>&copy; <span id="yr">2026</span> figgn</span>
-    <a href="/privacy/">Privacy</a>
-    <a href="/">All calculators</a>
-  </div>
+<footer style="text-align:center;padding:24px 16px;color:var(--text2);font-size:13px;border-top:1px solid var(--line)">
+  &copy; 2026 figgn <a href="/privacy/" style="color:var(--accent);text-decoration:none">Privacy</a> <a href="/blog/" style="color:var(--accent);text-decoration:none;margin-left:12px">Blog</a> <a href="/" style="color:var(--accent);text-decoration:none;margin-left:12px">All calculators</a>
 </footer>
 
 <script>
-
-function compute(V, G){
-  var inches = V.hft * 12 + V.hin;
-  if(inches <= 0) return {invalid:'Enter height above 0'};
-  var over60 = Math.max(0, inches - 60);
-  var female = (G.sex === 1);
-
-  var rob = female ? 108 + over60 * 4.1 : 115 + over60 * 4.1;
-  var mil = female ? 117 + over60 * 3.1 : 124 + over60 * 3.1;
-  var dev = female ? 100 + over60 * 5.0 : 110 + over60 * 5.0;
-  var ham = female ? 100 + over60 * 6.0 : 106 + over60 * 6.0;
-
-  var lo = Math.min(rob, mil, dev, ham);
-  var hi = Math.max(rob, mil, dev, ham);
-
-  return {
-    out:{
-      rRange: fmt(lo, 0) + '–' + fmt(hi, 0),
-      rRob: fmt(rob, 0), rMil: fmt(mil, 0),
-      rDev: fmt(dev, 0), rHam: fmt(ham, 0),
-      rHeight: V.hft + '\u2032 ' + V.hin + '\u2033',
-      rSex: female ? 'Female' : 'Male'
-    },
-    sticky:{ val: fmt(lo, 0) + '–' + fmt(hi, 0) + ' lb', det: 'Ideal weight range \u00b7 ' + (female ? 'Female' : 'Male') + ' \u00b7 ' + V.hft + '\u2032' + V.hin + '\u2033' }
+(function(){
+  var tb=document.getElementById('themeBtn');
+  var theme=document.documentElement.getAttribute('data-theme');
+  tb.textContent=theme==='dark'?'Light':'Dark';
+  tb.onclick=function(){
+    theme=theme==='dark'?'light':'dark';
+    document.documentElement.setAttribute('data-theme',theme);
+    localStorage.setItem('theme',theme);
+    tb.textContent=theme==='dark'?'Light':'Dark';
   };
-}
 
-(function(){
-  var G = {}, P = {};
+  var unit='imperial';
+  var sex='male';
 
-  function fmt(x, dp){
-    var d = (dp === undefined) ? 2 : dp;
-    var s = (Math.round(x * Math.pow(10, d)) / Math.pow(10, d)).toString();
-    var p = s.split('.');
-    p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    return p.join('.');
-  }
-  window.fmt = fmt;
-
-  var groups = [].slice.call(document.querySelectorAll('.presets[data-group]'));
-  groups.forEach(function(g){
-    var name = g.dataset.group;
-    var btns = [].slice.call(g.querySelectorAll('.preset'));
-    var on = btns.filter(function(b){ return b.classList.contains('on'); })[0] || btns[0];
-    G[name] = parseFloat(on.dataset.val);
-    P[name] = G[name];
-    btns.forEach(function(b){
-      b.setAttribute('aria-pressed', b.classList.contains('on') ? 'true' : 'false');
-      b.addEventListener('click', function(){
-        G[name] = parseFloat(b.dataset.val);
-        P[name] = G[name];
-        btns.forEach(function(x){
-          var sel = (x === b);
-          x.classList.toggle('on', sel);
-          x.setAttribute('aria-pressed', sel ? 'true' : 'false');
-        });
-        run();
-      });
-    });
+  document.querySelectorAll('button[data-unit]').forEach(function(b){
+    b.onclick=function(){
+      unit=b.dataset.unit;
+      document.querySelectorAll('button[data-unit]').forEach(function(x){x.classList.toggle('on',x.dataset.unit===unit);});
+      document.getElementById('impInputs').classList.toggle('hidden',unit!=='imperial');
+      document.getElementById('metInputs').classList.toggle('hidden',unit!=='metric');
+      calc();
+    };
   });
 
-  var inputs = [].slice.call(document.querySelectorAll('[data-var]'));
-  var last = null;
-  inputs.forEach(function(i){
-    i.addEventListener('input', function(){ last = i.dataset.var; run(); });
-    i.addEventListener('focus', function(){ last = i.dataset.var; run(); });
+  document.querySelectorAll('button[data-sex]').forEach(function(b){
+    b.onclick=function(){
+      sex=b.dataset.sex;
+      document.querySelectorAll('button[data-sex]').forEach(function(x){x.classList.toggle('on',x.dataset.sex===sex);});
+      calc();
+    };
   });
 
-  function run(){
-    var V = {};
-    inputs.forEach(function(i){
-      var n = parseFloat(i.value);
-      n = (isNaN(n) || n < 0) ? 0 : n;
-      V[i.dataset.var] = n;
-    });
+  ['feet','inches','cmHeight'].forEach(function(id){
+    var el=document.getElementById(id);if(el)el.oninput=calc;
+  });
 
-    var r = compute(V, G, last, []) || {};
-    var sVal = document.getElementById('sVal');
-    var sDet = document.getElementById('sDet');
-
-    if(r.invalid){
-      document.querySelectorAll('[data-out]').forEach(function(el){ el.textContent = '\u2014'; });
-      sVal.textContent = '\u2014';
-      sDet.textContent = r.invalid;
-      return;
+  function calc(){
+    var totalInches;
+    if(unit==='imperial'){
+      var ft=parseFloat(document.getElementById('feet').value)||0;
+      var inc=parseFloat(document.getElementById('inches').value)||0;
+      totalInches=ft*12+inc;
+    }else{
+      var cm=parseFloat(document.getElementById('cmHeight').value)||0;
+      totalInches=cm/2.54;
     }
-    Object.keys(r.out || {}).forEach(function(k){
-      var el = document.getElementById(k);
-      if(el) el.textContent = r.out[k];
-    });
-    sVal.textContent = r.sticky.val;
-    sDet.textContent = r.sticky.det;
+
+    var inchesOver=totalInches-60;
+    var robinson,miller,devine,hamwi;
+
+    if(sex==='male'){
+      robinson=52+1.9*inchesOver;
+      miller=56.2+1.41*inchesOver;
+      devine=50+2.3*inchesOver;
+      hamwi=48+2.7*inchesOver;
+    }else{
+      robinson=49+1.7*inchesOver;
+      miller=53.1+1.36*inchesOver;
+      devine=45.5+2.3*inchesOver;
+      hamwi=45.5+2.2*inchesOver;
+    }
+
+    var results=[robinson,miller,devine,hamwi];
+    var low=Math.min.apply(null,results);
+    var high=Math.max.apply(null,results);
+
+    var label='kg';
+    var factor=1;
+    if(unit==='imperial'){factor=2.20462;label='lbs';}
+
+    var lDisp=(low*factor).toFixed(0);
+    var hDisp=(high*factor).toFixed(0);
+    var rDisp=(robinson*factor).toFixed(0);
+    var mDisp=(miller*factor).toFixed(0);
+    var dDisp=(devine*factor).toFixed(0);
+    var haDisp=(hamwi*factor).toFixed(0);
+
+    document.getElementById('rRange').textContent=lDisp+' – '+hDisp+' '+label;
+    document.getElementById('rUnit').textContent=label;
+    document.getElementById('dLow').textContent=lDisp+' '+label;
+    document.getElementById('dHigh').textContent=hDisp+' '+label;
+    document.getElementById('fRobinson').textContent=rDisp+' '+label;
+    document.getElementById('fMiller').textContent=mDisp+' '+label;
+    document.getElementById('fDevine').textContent=dDisp+' '+label;
+    document.getElementById('fHamwi').textContent=haDisp+' '+label;
   }
 
-  var copyBtn = document.getElementById('copyBtn');
-  copyBtn.addEventListener('click', function(){
-    var v = document.getElementById('sVal').textContent;
-    var done = function(){ copyBtn.textContent = 'Copied!'; setTimeout(function(){ copyBtn.textContent = 'Copy'; }, 2000); };
-    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(v).then(done, done); }
-    else{ var t = document.createElement('textarea'); t.value = v; t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(t); done(); }
-  });
-
-  var barEl = document.getElementById('stickyBar');
-  var resultsEl = document.getElementById('results');
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(entries){
-      entries.forEach(function(en){ barEl.classList.toggle('show', !en.isIntersecting && en.boundingClientRect.top < 0); });
-    }, {threshold: 0}).observe(resultsEl);
-  }
-
-  var toggle = document.getElementById('themeToggle');
-  function syncToggle(){
-    var t = document.documentElement.getAttribute('data-theme');
-    toggle.textContent = (t === 'dark' ? 'Light' : 'Dark');
-    toggle.setAttribute('aria-label','Switch to ' + (t === 'dark' ? 'light' : 'dark') + ' mode');
-  }
-  syncToggle();
-  toggle.addEventListener('click', function(){
-    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', t);
-    try{ localStorage.setItem('theme', t); }catch(e){} syncToggle();
-  });
-
-  run();
+  calc();
 })();
-</script>
-
-<script>
-(function(){
-  function fill(el){ if(el.dataset.filled) return; el.dataset.filled='1'; el.textContent='Advertisement \u00b7 '+(el.dataset.size||''); }
-  var slots=document.querySelectorAll('.adslot');
-  if('IntersectionObserver' in window){ var io=new IntersectionObserver(function(e){ e.forEach(function(en){ if(en.isIntersecting){ fill(en.target); io.unobserve(en.target); } }); },{rootMargin:'600px 0px'}); slots.forEach(function(s){ io.observe(s); }); }
-  else slots.forEach(fill);
-  
-(function(){ var PUB='ca-pub-XXXXXXXXXXXXXXXX',loaded=false; function load(){ if(loaded||PUB.indexOf('XXXX')>-1) return; loaded=true; var s=document.createElement('script'); s.async=true; s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+PUB; s.crossOrigin='anonymous'; document.head.appendChild(s); } ['scroll','pointerdown','keydown'].forEach(function(e){ window.addEventListener(e,load,{once:true,passive:true}); }); setTimeout(load,3500); })();
-(function(){ var fields=[].slice.call(document.querySelectorAll('input[type=number][id]')); if(!fields.length) return; var params=new URLSearchParams(location.search),applied=false; fields.forEach(function(f){ var v=params.get(f.id); if(v!==null&&v!==''&&isFinite(parseFloat(v))){ f.value=parseFloat(v); applied=true; } }); if(applied){ fields[0].dispatchEvent(new Event('input',{bubbles:true})); document.dispatchEvent(new Event('change',{bubbles:true})); } var t; function sync(){ clearTimeout(t); t=setTimeout(function(){ var q=new URLSearchParams(); fields.forEach(function(f){ if(f.value!=='') q.set(f.id,f.value); }); var qs=q.toString(); history.replaceState(null,'',qs?location.pathname+'?'+qs:location.pathname); },500); } fields.forEach(function(f){ f.addEventListener('input',sync); }); })();
-(function(){ document.addEventListener('wheel',function(e){ var a=document.activeElement; if(a&&a.type==='number'&&a===e.target) a.blur(); },{passive:true}); var yr=document.getElementById('yr'); if(yr) yr.textContent=new Date().getFullYear(); var v=document.getElementById('sVal'),d=document.getElementById('sDet'); if(!v) return; var live=document.createElement('p'); live.className='visually-hidden'; live.setAttribute('aria-live','polite'); document.body.appendChild(live); function announce(){ live.textContent=v.textContent+'. '+d.textContent; } document.addEventListener('change',announce,true); document.addEventListener('click',function(e){ if(e.target.closest&&e.target.closest('.preset')) setTimeout(announce,0); },true); })();
 </script>
 </body>
 </html>

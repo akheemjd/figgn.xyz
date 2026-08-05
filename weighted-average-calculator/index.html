@@ -1,210 +1,148 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Weighted Average Calculator — Free Online Grade & Data Weighting Tool | Tool Site</title>
-<meta name="description" content="Calculate weighted averages instantly. Add values and weights — works for grades, investments, surveys, and more. Compare weighted vs simple average with this free online tool.">
-<link rel="canonical" href="https://figgn.xyz/weighted-average/">
-<meta property="og:title" content="Weighted Average Calculator — Free Online Grade & Data Weighting Tool | Tool Site">
-<meta property="og:description" content="Calculate weighted averages instantly. Add values and weights — works for grades, investments, surveys, and more. Compare weighted vs simple average.">
-<meta property="og:url" content="https://figgn.xyz/weighted-average/">
-<script>(function(){var t;try{t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';}catch(e){t='light';}document.documentElement.setAttribute('data-theme',t);})();</script>
+<title>Weighted Average Calculator — Grade & Score Weighting | figgn</title>
+<meta name="description" content="Calculate weighted averages with dynamic rows. Includes simple average comparison and row details. Free and instant results.">
+<link rel="canonical" href="https://figgn.xyz/weighted-average-calculator/">
+<meta property="og:title" content="Weighted Average Calculator — Grade & Score Weighting | figgn">
+<meta property="og:description" content="Calculate weighted averages with dynamic rows. Includes simple average comparison and row details. Free and instant results.">
+<meta property="og:url" content="https://figgn.xyz/weighted-average-calculator/">
+</head>
 <style>
-:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--border:#ccc;--input-bg:#fff;--accent:#e65c00;--result-bg:#e7f5ec;--result-text:#0d5c2e;--ad-bg:#f0f0f0;--ad-text:#888;--shadow:0 1px 3px rgba(0,0,0,.08);--line:#e4e4ea}
-[data-theme="dark"]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--border:#3a3a48;--input-bg:#252530;--accent:#e65c00;--result-bg:#0a3020;--result-text:#4ade80;--ad-bg:#22222b;--ad-text:#777;--shadow:0 1px 3px rgba(0,0,0,.3);--line:#2a2a34}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-text-size-adjust:100%}
-.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
+[data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#0a3020;--res-text:#4ade80;--border:#3a3a48;--line:#2a2a34;--ad-bg:#22222b;--ad-text:#777}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:var(--accent3)}a:hover{color:var(--accent2)}
 header{background:var(--accent);color:#fff}
 .hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
 .wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700}
 .hnav{display:flex;align-items:center;gap:12px;font-size:14px}
 .hnav a{color:#fff;text-decoration:none;font-weight:600}
 #themeBtn{background:var(--accent2);color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit}
-
-.wrap{max-width:760px;margin:0 auto;padding:20px 16px 40px}
-
+footer{background:#1c1c24;padding:14px 0;margin-top:40px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;color:#aaa;font-size:13px}
+footer a{color:#aaa}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
 .crumb a{color:var(--text2)}
+label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px;font-weight:600}
+input[type=number]{width:100%;min-height:56px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text)}
+input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.wt-row{display:grid;grid-template-columns:1fr 1fr 32px;gap:8px;margin-bottom:8px;align-items:end}
 .btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 .btnrow button{padding:8px 14px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);cursor:pointer;min-height:40px}
 .btnrow button.on{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:700}
-.stepper{display:flex;align-items:center;gap:0;margin-bottom:14px}
-.stepper button{min-height:56px;min-width:44px;font-size:20px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-family:inherit}
-.stepper button:first-child{border-radius:4px 0 0 4px}
-.stepper button:last-child{border-radius:0 4px 4px 0}
-.stepper input{border-radius:0;text-align:center;min-width:60px;width:60px;border-left:0;border-right:0}
+.result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
+.result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
 .detail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
 .detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
 .detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
 .detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
 .note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
 .hidden{display:none}
-.adwrap{background:var(--ad-bg);border-radius:4px;padding:10px;text-align:center;margin-bottom:14px}
-.adlabel{font-size:10px;text-transform:uppercase;color:var(--ad-text);display:block;margin-bottom:4px}
-.adwrap[data-ad="leaderboard"]{display:none}
-
-@media(max-width:480px){.row{grid-template-columns:1fr}}
-@media(max-width:767px){.ad-leaderboard{display:none}}
-.card{background:var(--card);border-radius:4px;box-shadow:var(--shadow);padding:24px;margin-bottom:16px}
-.card h1{font-size:24px;letter-spacing:-.3px;margin-bottom:4px}
-.card .sub{color:var(--text2);font-size:14px;margin-bottom:20px}
-label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:6px}
-input[type=number]{width:100%;height:56px;padding:0 12px;border:1px solid var(--border);border-radius:4px;font-size:16px;color:var(--text);background:var(--input-bg);font-family:"SF Mono","Cascadia Code","Consolas",monospace;-webkit-appearance:none}
-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px rgba(230,92,0,.15)}
-.data-row{display:flex;gap:8px;align-items:flex-end;margin-bottom:8px}
-.data-row>div{flex:1}
-.data-row button{height:56px;width:44px;border:1px solid var(--border);border-radius:4px;background:var(--input-bg);color:var(--accent);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.data-row button:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-#addRow{width:100%;height:48px;border:2px dashed var(--border);border-radius:4px;background:transparent;color:var(--text2);font-size:14px;cursor:pointer;margin:8px 0 16px;font-family:inherit}
-#addRow:hover{border-color:var(--accent);color:var(--accent)}
-.result{background:var(--result-bg);border-radius:4px;padding:24px;text-align:center}
-.result .big{font-size:40px;font-weight:700;color:var(--result-text);font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-.result .label{font-size:14px;color:var(--text2);margin-top:4px}
-.result-grid{display:flex;gap:16px;margin-top:16px}
-.result-grid>div{flex:1;background:var(--bg);border-radius:4px;padding:12px;text-align:center}
-.result-grid .val{font-size:18px;font-weight:700;color:var(--text);font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-.result-grid .lbl{font-size:12px;color:var(--text2);margin-top:2px}
-#stickyBar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);padding:12px 16px;z-index:99;transform:translateY(100%);transition:transform .2s;display:flex;align-items:center;justify-content:space-between;gap:12px}
-#stickyBar.show{transform:translateY(0)}
-#stickyBar .s-val{font-size:22px;font-weight:700;color:var(--result-text)}
-#stickyBar .s-label{font-size:13px;color:var(--text2)}
-#stickyBar .copy-btn{background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:13px;font-family:inherit;white-space:nowrap}
-h2{font-size:18px;letter-spacing:-.2px;margin-bottom:12px}
-.card p,.card li{color:var(--text2);font-size:14px}
-.card ol{padding-left:20px;margin-bottom:12px}
-.card li{margin-bottom:4px}
-details{border-bottom:1px solid var(--line);padding:12px 0}
-details:first-of-type{border-top:1px solid var(--line)}
-summary{font-size:15px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.wt-remove{background:none;border:none;color:var(--accent3);cursor:pointer;font-size:20px;padding:0;line-height:1;align-self:end;margin-bottom:12px}
+#addWtRow{width:100%;margin-top:6px}
+summary{list-style:none;cursor:pointer;font-weight:700;font-size:15px;padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
 summary::-webkit-details-marker{display:none}
-summary::after{content:'+';font-size:20px;color:var(--accent)}
-details[open] summary::after{content:'\2212'}
-details p{font-size:14px;color:var(--text2);padding:8px 0 0}
-.ad-rect{width:300px;height:250px;background:var(--ad-bg);color:var(--ad-text);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:13px;border-radius:4px}
-footer{padding:24px 16px;text-align:center;font-size:13px;color:var(--text2);background:var(--card);border-top:1px solid var(--line)}
-footer a{color:var(--accent);text-decoration:none}
+summary::after{content:"+";font-size:18px;color:var(--accent3);margin-left:8px}
+details[open] summary::after{content:"\2212"}
+.faq-body{font-size:14px;color:var(--text2);padding:8px 0;line-height:1.6}
+@media(max-width:480px){.wt-row{grid-template-columns:1fr 1fr 32px}}
 </style>
-</head>
 <body>
 <header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
-
 <main class="wrap">
-<p class="crumb"><a href="/">figgn</a> / <a href="/#school">School &amp; Grades</a> / Weighted Average Calculator</p>
+<p class="crumb"><a href="/">figgn</a> / <a href="/#student">Student</a> / Weighted Average Calculator</p>
+<div class="card">
+<h1>Weighted Average Calculator</h1>
+<p class="sub">Compute a weighted average with dynamic rows. Each row has a value and a weight. Results update on every keystroke.</p>
 
-<div class="card" id="toolCard">
-  <h1>Weighted Average Calculator </h1>
-  <p class="sub">Calculate the weighted average of any dataset. Add values and their corresponding weights — see the weighted average, simple average, and total weight instantly.</p>
+<div id="wtRows"></div>
 
-  <div id="dataRows"></div>
-  <button id="addRow">+ Add Row</button>
+<button id="addWtRow" class="btnrow" style="justify-content:center">+ Add Row</button>
 
-  <div class="result" id="result">
-    <div class="big" id="waVal">86.5</div>
-    <div class="label">Weighted Average</div>
-    <div class="result-grid">
-      <div><div class="val" id="saVal">84.3</div><div class="lbl">Simple Average</div></div>
-      <div><div class="val" id="twVal">100</div><div class="lbl">Total Weight</div></div>
-    </div>
-  </div>
+<div class="result">
+  <div class="label">Weighted Average</div>
+  <div class="big" id="wtAvg">85.60</div>
+</div>
+<div class="detail">
+  <div class="stat"><div class="v" id="simpleAvg">84.33</div><div class="k">Simple Average</div></div>
+  <div class="stat"><div class="v" id="totalWt">100</div><div class="k">Total Weight</div></div>
+  <div class="stat"><div class="v" id="numRows">3</div><div class="k">Row Count</div></div>
+</div>
+<div class="detail">
+  <div class="stat"><div class="v" id="diff">1.27</div><div class="k">Difference</div></div>
+  <div class="stat"><div class="v" id="heaviest">85 × 50</div><div class="k">Heaviest Row</div></div>
+  <div class="stat"><div class="v" id="weightPct">50%</div><div class="k">Max Weight %</div></div>
 </div>
 
-<div id="stickyBar"><div><span class="s-val mono" id="sVal">86.5</span> <span class="s-label" id="sDet">Weighted Average</span></div><button class="copy-btn" id="copyBtn">Copy</button></div>
-<div class="ad-rect">Advertisement</div>
-
-<div class="card">
-  <h2>How to Use</h2>
-  <ol>
-    <li><strong>Add rows</strong> with a value and its weight. For example: assignment score 90 with weight 30 (meaning 30% of final grade).</li>
-    <li><strong>Add or remove rows</strong> as needed using the + and × buttons.</li>
-    <li><strong>Weighted average</strong> updates instantly — it's the sum of (value × weight) divided by sum of weights.</li>
-    <li><strong>Simple average</strong> is shown for comparison — the unweighted mean of all values.</li>
-  </ol>
-</div>
-
-<div class="card">
-  <h2>How It's Calculated</h2>
-  <p><strong>Formula:</strong> Weighted Average = Σ(Value<sub>i</sub> × Weight<sub>i</sub>) ÷ Σ(Weight<sub>i</sub>)</p>
-  <p style="margin-top:8px"><strong>Example with defaults:</strong></p>
-  <div style="font-family:&quot;SF Mono&quot;,&quot;Cascadia Code&quot;,&quot;Consolas&quot;,monospace;font-size:14px;padding:12px;background:var(--bg);border-radius:4px;margin:8px 0;overflow-x:auto">
-    (90×30) + (85×50) + (78×20) = 2,700 + 4,250 + 1,560 = 8,510<br>
-    8,510 ÷ (30+50+20) = 8,510 ÷ 100 = <strong>85.1</strong><br>
-    Simple average: (90+85+78) ÷ 3 ≈ 84.3
-  </div>
-</div>
-
-<div class="card">
-  <h2>FAQ</h2>
-  <details><summary>When is weighted average used?</summary><p>Weighted averages are used whenever some values matter more than others. Common examples: course grades (exams weigh more than homework), stock portfolio returns (weighted by investment amount), survey results (weighted by demographics), and GPA calculations.</p></details>
-  <details><summary>Do weights have to add to 100?</summary><p>No! The calculator works with any weight values. The formula divides by the total weight, so you can use 30/50/20 (sum = 100), 3/5/2 (sum = 10), or any other values. The proportion is what matters.</p></details>
-  <details><summary>What's the difference between weighted and simple average?</summary><p>Simple average treats all values equally: sum of values ÷ count. Weighted average gives more importance to values with larger weights. For example, if an exam counts for 60% and homework counts for 40%, the exam score affects your grade 1.5× more than homework.</p></details>
+<details><summary>How is weighted average calculated?</summary><p class="faq-body">Weighted Average = &sum;(Value &times; Weight) &divide; &sum;(Weight). Each value matters in proportion to its weight. A value of 90 with weight 50 contributes 4,500 to the numerator, while 78 with weight 20 contributes 1,560.</p></details>
+<details><summary>Weighted vs. simple average</summary><p class="faq-body">A simple average treats all values equally. A weighted average gives more importance to values with higher weights. For example, if you score 90 on a test worth 50% of your grade and 80 on one worth 10%, your weighted average is 88.3, but your simple average is 85.</p></details>
 </div>
 </main>
-<footer><p>&copy; 2025 Tool Site. <a href="/">All Calculators</a></p></footer>
-
+<footer><div class="wrap">&copy; 2026 figgn <a href="/privacy/">Privacy</a> <a href="/blog/">Blog</a> <a href="/">All calculators</a></div></footer>
 <script>
 (function(){
-function createRow(val,w){
-  var div=document.createElement('div');
-  div.className='data-row';
-  div.innerHTML='<div><label style="text-transform:none;letter-spacing:0">Value</label><input type="number" class="dv" value="'+val+'" step="0.01" inputmode="decimal" style="font-size:14px"></div>'+
-    '<div><label style="text-transform:none;letter-spacing:0">Weight</label><input type="number" class="dw" value="'+w+'" step="0.01" inputmode="decimal" style="font-size:14px"></div>'+
-    '<button class="delRow" title="Remove">×</button>';
-  div.querySelector('.delRow').addEventListener('click',function(){
-    div.remove();
-    calc();
-  });
-  div.querySelectorAll('input').forEach(function(inp){inp.addEventListener('input',calc);});
-  return div;
+var theme=localStorage.getItem('theme');if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',theme);var tb=document.getElementById('themeBtn');if(tb){tb.textContent=theme==='dark'?'Light':'Dark';tb.onclick=function(){theme=theme==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',theme);localStorage.setItem('theme',theme);tb.textContent=theme==='dark'?'Light':'Dark';}}
+
+var defaults=[[90,30],[85,50],[78,20]];
+
+function makeWtRow(val,w){
+  var d=document.createElement('div');d.className='wt-row';
+  d.innerHTML='<div><label>Value</label><input type="number" class="wtVal" value="'+val+'" step="0.1" inputmode="decimal" oninput="calc()"></div><div><label>Weight</label><input type="number" class="wtW" value="'+w+'" step="0.1" min="0" inputmode="decimal" oninput="calc()"></div>';
+  var rm=document.createElement('button');rm.className='wt-remove';rm.textContent='\u00d7';rm.title='Remove row';
+  rm.onclick=function(){d.remove();calc()};
+  d.appendChild(rm);
+  return d;
 }
 
-var container=document.getElementById('dataRows');
-var defaults=[[90,30],[85,50],[78,20]];
-defaults.forEach(function(d){container.appendChild(createRow(d[0],d[1]));});
+function renderRows(){
+  var ct=document.getElementById('wtRows');
+  var rows=ct.querySelectorAll('.wt-row');
+  var data=[];
+  rows.forEach(function(r){
+    var v=r.querySelector('.wtVal');var w=r.querySelector('.wtW');
+    data.push([parseFloat(v?v.value:0)||0,parseFloat(w?w.value:0)||0]);
+  });
+  if(data.length===0)data=defaults.slice();
+  ct.innerHTML='';
+  data.forEach(function(p){ct.appendChild(makeWtRow(p[0],p[1]))});
+}
 
-document.getElementById('addRow').addEventListener('click',function(){
-  container.appendChild(createRow('',''));
-});
+document.getElementById('addWtRow').onclick=function(){
+  var ct=document.getElementById('wtRows');
+  ct.appendChild(makeWtRow(0,10));
+  calc();
+};
 
 function calc(){
-  var sumVW=0,sumW=0,sumV=0,count=0;
-  container.querySelectorAll('.data-row').forEach(function(row){
-    var v=parseFloat(row.querySelector('.dv').value)||0;
-    var w=parseFloat(row.querySelector('.dw').value)||0;
-    sumVW+=v*w;
-    sumW+=w;
-    sumV+=v;
-    count++;
+  var ct=document.getElementById('wtRows');var rows=ct.querySelectorAll('.wt-row');
+  var sumVW=0,sumW=0,sumV=0,count=0,heaviestW=0,heaviestV=0;
+  rows.forEach(function(r){
+    var v=parseFloat(r.querySelector('.wtVal').value)||0;
+    var w=parseFloat(r.querySelector('.wtW').value)||0;
+    sumVW+=v*w;sumW+=w;sumV+=v;count++;
+    if(w>heaviestW){heaviestW=w;heaviestV=v}
   });
-  var wa=sumW>0?sumVW/sumW:0;
-  var sa=count>0?sumV/count:0;
-
-  document.getElementById('waVal').textContent=wa.toFixed(2);
-  document.getElementById('saVal').textContent=sa.toFixed(2);
-  document.getElementById('twVal').textContent=sumW.toFixed(1);
-
-  document.getElementById('sVal').textContent=wa.toFixed(2);
-  document.getElementById('sDet').textContent='Weighted Avg | Simple: '+sa.toFixed(1);
+  var wtAvg=sumW>0?sumVW/sumW:0;
+  var simple=count>0?sumV/count:0;
+  document.getElementById('wtAvg').textContent=wtAvg.toFixed(2);
+  document.getElementById('simpleAvg').textContent=simple.toFixed(2);
+  document.getElementById('totalWt').textContent=sumW.toFixed(1).replace(/\.0$/,'');
+  document.getElementById('numRows').textContent=count;
+  document.getElementById('diff').textContent=(wtAvg-simple).toFixed(2);
+  document.getElementById('heaviest').textContent=heaviestV+' \u00d7 '+heaviestW;
+  document.getElementById('weightPct').textContent=sumW>0?((heaviestW/sumW)*100).toFixed(0)+'%':'0%';
 }
 
-var stickyBar=document.getElementById('stickyBar');
-new IntersectionObserver(function(e){stickyBar.classList.toggle('show',!e[0].isIntersecting);},{threshold:0}).observe(document.getElementById('result'));
-
-document.getElementById('copyBtn').addEventListener('click',function(){
-  var t='Weighted Average: '+document.getElementById('waVal').textContent;
-  navigator.clipboard.writeText(t).then(function(){
-    var b=document.getElementById('copyBtn');b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);
-  });
-});
-
-var tt=document.getElementById('themeBtn');
-function setUI(t){tt.textContent=t==='dark'?'Light':'Dark';document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('theme',t);}catch(e){}}
-var ct=document.documentElement.getAttribute('data-theme')||'light';setUI(ct);
-tt.addEventListener('click',function(){setUI(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');});
-
-calc();
+renderRows();calc();
 })();
 </script>
-</body>
-</html>
+</body></html>

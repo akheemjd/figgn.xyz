@@ -1,326 +1,189 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Flooring Calculator — Free Online Flooring Estimator | Tool Site</title>
-<meta name="description" content="Calculate flooring needed for any room. Rectangle, L-shape, and circle. Includes waste factor and box count. Free online flooring calculator.">
-<link rel="canonical" href="https://figgn.xyz/flooring/">
-<meta property="og:title" content="Flooring Calculator — Free Online Flooring Estimator | Tool Site">
-<meta property="og:description" content="Calculate flooring needed for any room. Rectangle, L-shape, and circle. Includes waste factor and box count.">
-<meta property="og:url" content="https://figgn.xyz/flooring/">
-<script>
-(function(){
-  try{
-    var t=localStorage.getItem('theme');
-    if(t!=='light'&&t!=='dark'){
-      t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
-    }
-    document.documentElement.setAttribute('data-theme',t);
-  }catch(e){
-    document.documentElement.setAttribute('data-theme','light');
-  }
-})();
-</script>
+<title>Flooring Calculator — Estimate Tile, Hardwood & Carpet | figgn</title>
+<meta name="description" content="Estimate flooring materials for any room shape. Rectangle, L-shape, and circle modes. Includes waste factor and unit conversion. Free instant calculator.">
+<link rel="canonical" href="https://figgn.xyz/flooring-calculator/">
+<meta property="og:title" content="Flooring Calculator — Estimate Tile, Hardwood & Carpet | figgn">
+<meta property="og:description" content="Estimate flooring materials for any room shape. Rectangle, L-shape, and circle modes. Includes waste factor and unit conversion. Free instant calculator.">
+<meta property="og:url" content="https://figgn.xyz/flooring-calculator/">
+</head>
 <style>
-:root{
-  --bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--border:#ccc;
-  --input-bg:#fff;--accent:#e65c00;--result-bg:#e7f5ec;--result-text:#0d5c2e;
-  --ad-bg:#f0f0f0;--ad-text:#888;--shadow:0 1px 3px rgba(0,0,0,.08);--line:#e4e4ea;
-}
-[data-theme="dark"]{
-  --bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--border:#3a3a48;
-  --input-bg:#252530;--accent:#e65c00;--result-bg:#0a3020;--result-text:#4ade80;
-  --ad-bg:#22222b;--ad-text:#777;--shadow:0 1px 3px rgba(0,0,0,.3);--line:#2a2a34;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;
-  -webkit-text-size-adjust:100%;
-}
-.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
+[data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#0a3020;--res-text:#4ade80;--border:#3a3a48;--line:#2a2a34;--ad-bg:#22222b;--ad-text:#777}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:var(--accent3)}a:hover{color:var(--accent2)}
 header{background:var(--accent);color:#fff}
 .hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
 .wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700}
 .hnav{display:flex;align-items:center;gap:12px;font-size:14px}
 .hnav a{color:#fff;text-decoration:none;font-weight:600}
 #themeBtn{background:var(--accent2);color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit}
-
-.wrap{max-width:760px;margin:0 auto;padding:20px 16px 40px}
-
+footer{background:#1c1c24;padding:14px 0;margin-top:40px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;color:#aaa;font-size:13px}
+footer a{color:#aaa}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
 .crumb a{color:var(--text2)}
+label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px;font-weight:600}
+input[type=number]{width:100%;min-height:56px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text)}
+input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
 .btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 .btnrow button{padding:8px 14px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);cursor:pointer;min-height:40px}
 .btnrow button.on{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:700}
-.stepper{display:flex;align-items:center;gap:0;margin-bottom:14px}
-.stepper button{min-height:56px;min-width:44px;font-size:20px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-family:inherit}
-.stepper button:first-child{border-radius:4px 0 0 4px}
-.stepper button:last-child{border-radius:0 4px 4px 0}
-.stepper input{border-radius:0;text-align:center;min-width:60px;width:60px;border-left:0;border-right:0}
+.result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
+.result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
 .detail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
 .detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
 .detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
 .detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
 .note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
 .hidden{display:none}
-.adwrap{background:var(--ad-bg);border-radius:4px;padding:10px;text-align:center;margin-bottom:14px}
-.adlabel{font-size:10px;text-transform:uppercase;color:var(--ad-text);display:block;margin-bottom:4px}
-.adwrap[data-ad="leaderboard"]{display:none}
-
-@media(max-width:480px){.row{grid-template-columns:1fr}}
-@media(max-width:767px){.ad-leaderboard{display:none}}
-.card{background:var(--card);border-radius:4px;box-shadow:var(--shadow);padding:24px;margin-bottom:16px}
-.card h1{font-size:24px;letter-spacing:-.3px;margin-bottom:4px;color:var(--text)}
-.card .sub{color:var(--text2);font-size:14px;margin-bottom:20px}
-label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:6px}
-input[type=number],select{width:100%;height:56px;padding:0 12px;border:1px solid var(--border);border-radius:4px;font-size:16px;color:var(--text);background:var(--input-bg);font-family:inherit;-webkit-appearance:none}
-input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px rgba(230,92,0,.15)}
-.row{display:flex;gap:12px;margin-bottom:16px}
-.row>*{flex:1}
-.mode-btns{display:flex;gap:0;margin-bottom:16px;border:1px solid var(--border);border-radius:4px;overflow:hidden}
-.mode-btns button{flex:1;height:44px;border:none;background:var(--input-bg);color:var(--text);font-size:14px;cursor:pointer;font-family:inherit;border-right:1px solid var(--border);white-space:nowrap}
-.mode-btns button:last-child{border-right:none}
-.mode-btns button.on{background:var(--accent);color:#fff}
-.mode-hide{display:none!important}
-.result{background:var(--result-bg);border-radius:4px;padding:24px;text-align:center;margin-bottom:16px}
-.result .big{font-size:40px;font-weight:700;color:var(--result-text);font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-.result .label{font-size:14px;color:var(--text2);margin-top:4px}
-.result-grid{display:flex;gap:16px;margin-top:16px}
-.result-grid>div{flex:1;background:var(--bg);border-radius:4px;padding:16px;text-align:center}
-.result-grid .val{font-size:20px;font-weight:700;color:var(--text);font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-.result-grid .lbl{font-size:12px;color:var(--text2);margin-top:2px}
-input[type=range]{width:100%;margin:0;-webkit-appearance:none;appearance:none;height:6px;background:var(--border);border-radius:3px;outline:none}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;background:var(--accent);border-radius:50%;cursor:pointer}
-input[type=range]::-moz-range-thumb{width:20px;height:20px;background:var(--accent);border-radius:50%;cursor:pointer;border:none}
-.range-labels{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:6px}
-#stickyBar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);padding:12px 16px;z-index:99;transform:translateY(100%);transition:transform .2s;display:flex;align-items:center;justify-content:space-between;gap:12px}
-#stickyBar.show{transform:translateY(0)}
-#stickyBar .s-val{font-size:22px;font-weight:700;color:var(--result-text)}
-#stickyBar .s-label{font-size:13px;color:var(--text2)}
-#stickyBar .copy-btn{background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:13px;font-family:inherit;white-space:nowrap}
-h2{font-size:18px;letter-spacing:-.2px;margin-bottom:12px;color:var(--text)}
-.card p,.card li{color:var(--text2);font-size:14px}
-.card ol,.card ul{padding-left:20px;margin-bottom:12px}
-.card li{margin-bottom:4px}
-details{border-bottom:1px solid var(--line);padding:12px 0}
-details:first-of-type{border-top:1px solid var(--line)}
-summary{font-size:15px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary{list-style:none;cursor:pointer;font-weight:700;font-size:15px;padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
 summary::-webkit-details-marker{display:none}
-summary::after{content:'+';font-size:20px;color:var(--accent)}
-details[open] summary::after{content:'\2212'}
-details p{font-size:14px;color:var(--text2);padding:8px 0 0}
-.ad-rect{width:300px;height:250px;background:var(--ad-bg);color:var(--ad-text);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:13px;border-radius:4px}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media(max-width:639px){.ad-rect{width:100%;max-width:300px}}
-formula{display:block;font-family:"SF Mono","Cascadia Code","Consolas",monospace;font-size:14px;padding:12px;background:var(--bg);border-radius:4px;margin:8px 0;overflow-x:auto;white-space:pre-wrap;word-break:break-all}
-footer{padding:24px 16px;text-align:center;font-size:13px;color:var(--text2);background:var(--card);border-top:1px solid var(--line)}
-footer a{color:var(--accent);text-decoration:none}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media(max-width:600px){.result-grid{flex-direction:column;gap:8px}}
+summary::after{content:"+";font-size:18px;color:var(--accent3);margin-left:8px}
+details[open] summary::after{content:"\2212"}
+.faq-body{font-size:14px;color:var(--text2);padding:8px 0;line-height:1.6}
+@media(max-width:480px){.row{grid-template-columns:1fr}}
 </style>
-</head>
 <body>
 <header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
-
-
-
 <main class="wrap">
-<p class="crumb"><a href="/">figgn</a> / <a href="/#home">Home &amp; DIY</a> / Flooring Calculator</p>
+<p class="crumb"><a href="/">figgn</a> / <a href="/#home">Home Improvement</a> / Flooring Calculator</p>
+<div class="card">
+<h1>Flooring Calculator</h1>
+<p class="sub">Estimate flooring material for any room shape. Includes waste factor and unit conversion.</p>
 
-<div class="card" id="toolCard">
-  <h1>Flooring Calculator </h1>
-  <p class="sub">Estimate flooring material for any room shape. Includes waste factor and box count.</p>
-
-  <div class="mode-btns" role="group" aria-label="Room shape">
-    <button class="on" data-shape="rect">Rectangle</button>
-    <button data-shape="lshape">L-Shape</button>
-    <button data-shape="circle">Circle</button>
-  </div>
-
-  <div id="rectInputs">
-    <div class="row">
-      <div><label for="length">Length (ft)</label><input type="number" id="length" value="14" min="1" step=".1" inputmode="decimal"></div>
-      <div><label for="width">Width (ft)</label><input type="number" id="width" value="12" min="1" step=".1" inputmode="decimal"></div>
-    </div>
-  </div>
-  <div id="lshapeInputs" class="mode-hide">
-    <div class="row">
-      <div><label for="lLen1">Overall Length A (ft)</label><input type="number" id="lLen1" value="20" min="1" step=".1" inputmode="decimal"></div>
-      <div><label for="lWid1">Overall Width B (ft)</label><input type="number" id="lWid1" value="16" min="1" step=".1" inputmode="decimal"></div>
-    </div>
-    <div class="row">
-      <div><label for="lLen2">Cutout Length a (ft)</label><input type="number" id="lLen2" value="8" min="1" step=".1" inputmode="decimal"></div>
-      <div><label for="lWid2">Cutout Width b (ft)</label><input type="number" id="lWid2" value="6" min="1" step=".1" inputmode="decimal"></div>
-    </div>
-  </div>
-  <div id="circleInputs" class="mode-hide">
-    <div class="row">
-      <div><label for="diameter">Diameter (ft)</label><input type="number" id="diameter" value="15" min="1" step=".1" inputmode="decimal"></div>
-    </div>
-  </div>
-
-  <div style="margin-bottom:16px">
-    <label for="waste">Waste Factor</label>
-    <div class="range-labels"><span>5%</span><span>10%</span><span>15%</span><span>20%</span></div>
-    <input type="range" id="waste" min="5" max="20" step="1" value="10">
-  </div>
-
-  <div class="row" style="margin-bottom:0">
-    <div><label for="boxSize">Box Coverage (sq ft)</label><input type="number" id="boxSize" value="20" min="1" step=".1" inputmode="decimal"></div>
-  </div>
-
-  <div class="result" id="result">
-    <div class="big" id="totalSqft">168</div>
-    <div class="label">Total Square Feet (with waste)</div>
-    <div class="result-grid">
-      <div><div class="val" id="rawSqft">168</div><div class="lbl">Raw Area (sq ft)</div></div>
-      <div><div class="val" id="wasteSqft">16.8</div><div class="lbl">Waste (sq ft)</div></div>
-      <div><div class="val" id="boxes">9</div><div class="lbl">Boxes Needed</div></div>
-    </div>
-  </div>
+<label>Room Shape</label>
+<div class="btnrow">
+  <button class="on" data-shape="0">Rectangle</button>
+  <button data-shape="1">L-Shape</button>
+  <button data-shape="2">Circle</button>
 </div>
 
-<div id="stickyBar"><div><span class="s-val mono" id="sVal">168 sq ft</span> <span class="s-label" id="sDet">with waste</span></div><button class="copy-btn" id="copyBtn">Copy</button></div>
-
-<div class="ad-rect">Advertisement</div>
-
-<div class="card">
-  <h2>How to Use</h2>
-  <ol>
-    <li><strong>Select your room shape</strong> — rectangle, L-shaped, or circular.</li>
-    <li><strong>Enter dimensions</strong> in feet. For rectangles: length × width. For L-shapes: overall dimensions and cutout. For circles: diameter.</li>
-    <li><strong>Adjust waste factor</strong> (5-20%). Industry standard is 10% for straight-lay planks, 15% for diagonal/herringbone patterns.</li>
-    <li><strong>Set box coverage</strong> — check your flooring packaging for sq ft per box (commonly 15-30 sq ft).</li>
-  </ol>
+<label style="margin-top:8px">Units</label>
+<div class="btnrow">
+  <button class="on" id="btnFt">Feet</button>
+  <button id="btnM">Meters</button>
 </div>
 
-<div class="card">
-  <h2>How It's Calculated</h2>
-  <p><strong>Rectangle:</strong> Area = Length × Width</p>
-  <formula>Area = 14 ft × 12 ft = 168 sq ft</formula>
-  <p><strong>L-Shape:</strong> Area = (Overall L × Overall W) − (Cutout L × Cutout W)</p>
-  <formula>Area = (20 × 16) − (8 × 6) = 320 − 48 = 272 sq ft</formula>
-  <p><strong>Circle:</strong> Area = π × (Diameter ÷ 2)²</p>
-  <formula>Area = π × (15 ÷ 2)² = 176.7 sq ft</formula>
-  <p>Then: <strong>Total = Raw Area × (1 + Waste%/100)</strong></p>
-  <p><strong>Boxes = RoundUp(Total ÷ Box Coverage)</strong></p>
+<div id="shapeRect">
+  <div class="row">
+    <div><label for="rectL">Length</label><input type="number" id="rectL" value="12" step="0.25" min="0.25" inputmode="decimal"></div>
+    <div><label for="rectW">Width</label><input type="number" id="rectW" value="14" step="0.25" min="0.25" inputmode="decimal"></div>
+  </div>
+</div>
+<div id="shapeL" class="hidden">
+  <div class="row">
+    <div><label for="lshapeL1">Length 1</label><input type="number" id="lshapeL1" value="12" step="0.25" min="0.25" inputmode="decimal"></div>
+    <div><label for="lshapeW1">Width 1</label><input type="number" id="lshapeW1" value="10" step="0.25" min="0.25" inputmode="decimal"></div>
+  </div>
+  <div class="row">
+    <div><label for="lshapeL2">Length 2</label><input type="number" id="lshapeL2" value="8" step="0.25" min="0.25" inputmode="decimal"></div>
+    <div><label for="lshapeW2">Width 2</label><input type="number" id="lshapeW2" value="6" step="0.25" min="0.25" inputmode="decimal"></div>
+  </div>
+</div>
+<div id="shapeCircle" class="hidden">
+  <label for="circleD">Diameter</label>
+  <input type="number" id="circleD" value="14" step="0.25" min="0.25" inputmode="decimal">
 </div>
 
-<div class="card">
-  <h2>FAQ</h2>
-  <details><summary>How much waste should I add?</summary><p>Standard recommendation: 10% for straight-lay planks, 15% for diagonal patterns, and 20% for herringbone or rooms with many corners. Always round up to full boxes.</p></details>
-  <details><summary>How many sq ft in a box of flooring?</summary><p>Most laminate and vinyl plank boxes cover 15-30 sq ft. Hardwood typically 20-24 sq ft per box. Check your specific product — it varies by manufacturer.</p></details>
-  <details><summary>What if my room isn't a perfect shape?</summary><p>Break the room into smaller rectangles, calculate each separately, and sum them. For irregular shapes, always add extra waste (15-20%).</p></details>
-  <details><summary>Should I measure in inches or feet?</summary><p>Feet with decimal. For example, 12'6" = 12.5 ft. Divide inches by 12 to convert: 6 inches = 0.5 ft.</p></details>
+<label style="margin-top:12px">Waste Factor</label>
+<div class="btnrow">
+  <button data-waste="5">5%</button>
+  <button class="on" data-waste="10">10%</button>
+  <button data-waste="15">15%</button>
+  <button data-waste="20">20%</button>
+</div>
+
+<div class="row">
+  <div><label for="boxCoverage">Box Coverage (sq ft)</label><input type="number" id="boxCoverage" value="20" step="0.1" min="0.1" inputmode="decimal"></div>
+  <div><label for="boxCost">Cost per Box ($)</label><input type="number" id="boxCost" value="45" step="0.01" min="0" inputmode="decimal"></div>
+</div>
+
+<div class="result">
+  <div class="label">Total Area (with waste)</div>
+  <div class="big" id="totalArea">184.80 ft&sup2;</div>
+</div>
+<div class="detail">
+  <div class="stat"><div class="v" id="rawArea">168.00 ft&sup2;</div><div class="k">Raw Area</div></div>
+  <div class="stat"><div class="v" id="boxesNeeded">10</div><div class="k">Boxes Needed</div></div>
+  <div class="stat"><div class="v" id="totalCost">$450.00</div><div class="k">Est. Cost</div></div>
+</div>
+<div class="detail">
+  <div class="stat"><div class="v" id="wasteArea">16.80 ft&sup2;</div><div class="k">Waste Added</div></div>
+  <div class="stat"><div class="v" id="sqftPerBox">20.0 ft&sup2;</div><div class="k">Per Box</div></div>
+  <div class="stat"><div class="v" id="wastePct">10%</div><div class="k">Waste %</div></div>
+</div>
+
+<p class="note">Always order 5–20% extra for cuts, pattern matching, and future repairs.</p>
+
+<details><summary>Why add a waste factor?</summary><p class="faq-body">Flooring installation requires cuts around corners, doorways, and irregular walls. Even a simple rectangular room wastes 5-10% of material. Complex layouts with angles or patterns may need 15-20% extra.</p></details>
+<details><summary>How many boxes do I need?</summary><p class="faq-body">Divide the total area (including waste) by the coverage per box, then round up to the nearest whole box. You can't buy a fraction of a box, and running short mid-project means delays and potential dye-lot mismatches.</p></details>
+<details><summary>Rectangle vs. L-Shape vs. Circle</summary><p class="faq-body">Rectangle: Length &times; Width. L-Shape: Treat as two rectangles (L1&times;W1 + L2&times;W2). Circle: &pi;&times;(Diameter/2)&sup2;.</p></details>
 </div>
 </main>
-
-<footer>
-  <p>&copy; 2025 Tool Site. <a href="/">All Calculators</a></p>
-</footer>
-
+<footer><div class="wrap">&copy; 2026 figgn <a href="/privacy/">Privacy</a> <a href="/blog/">Blog</a> <a href="/">All calculators</a></div></footer>
 <script>
 (function(){
-  var shape='rect';
-  var mb=document.querySelectorAll('.mode-btns button');
-  var ri=document.getElementById('rectInputs');
-  var li=document.getElementById('lshapeInputs');
-  var ci=document.getElementById('circleInputs');
-  var stickyBar=document.getElementById('stickyBar');
-  var sVal=document.getElementById('sVal');
-  var sDet=document.getElementById('sDet');
+var theme=localStorage.getItem('theme');if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',theme);var tb=document.getElementById('themeBtn');if(tb){tb.textContent=theme==='dark'?'Light':'Dark';tb.onclick=function(){theme=theme==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',theme);localStorage.setItem('theme',theme);tb.textContent=theme==='dark'?'Light':'Dark';}}
 
-  mb.forEach(function(b){
-    b.addEventListener('click',function(){
-      mb.forEach(function(x){x.classList.remove('on');});
-      b.classList.add('on');
-      shape=b.dataset.shape;
-      ri.classList.toggle('mode-hide',shape!=='rect');
-      li.classList.toggle('mode-hide',shape!=='lshape');
-      ci.classList.toggle('mode-hide',shape!=='circle');
-      calc();
-    });
-  });
+var shape=0,metric=false,waste=10;
 
-  var els={
-    length:document.getElementById('length'),
-    width:document.getElementById('width'),
-    lLen1:document.getElementById('lLen1'),
-    lWid1:document.getElementById('lWid1'),
-    lLen2:document.getElementById('lLen2'),
-    lWid2:document.getElementById('lWid2'),
-    diameter:document.getElementById('diameter'),
-    waste:document.getElementById('waste'),
-    boxSize:document.getElementById('boxSize')
-  };
-
-  function val(id){return parseFloat(els[id].value)||0;}
-
-  function calc(){
-    var raw=0;
-    if(shape==='rect') raw=val('length')*val('width');
-    else if(shape==='lshape') raw=(val('lLen1')*val('lWid1'))-(val('lLen2')*val('lWid2'));
-    else raw=Math.PI*Math.pow(val('diameter')/2,2);
-
-    if(raw<0) raw=0;
-    var wastePct=parseInt(els.waste.value)||10;
-    var wasteAmt=raw*(wastePct/100);
-    var total=raw+wasteAmt;
-    var boxSz=val('boxSize')||20;
-    var boxCnt=Math.ceil(total/boxSz);
-    if(boxCnt<0) boxCnt=0;
-
-    document.getElementById('totalSqft').textContent=fmt(total,1);
-    document.getElementById('rawSqft').textContent=fmt(raw,1);
-    document.getElementById('wasteSqft').textContent=fmt(wasteAmt,1);
-    document.getElementById('boxes').textContent=boxCnt;
-
-    sVal.textContent=fmt(total,1)+' sq ft';
-    sDet.textContent='Boxes: '+boxCnt;
+document.querySelectorAll('[data-shape]').forEach(function(b){
+  b.onclick=function(){
+    shape=parseInt(b.dataset.shape);
+    b.parentElement.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
+    document.getElementById('shapeRect').classList.toggle('hidden',shape!==0);
+    document.getElementById('shapeL').classList.toggle('hidden',shape!==1);
+    document.getElementById('shapeCircle').classList.toggle('hidden',shape!==2);
+    calc();
   }
+});
 
-  function fmt(n,d){return n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
+document.getElementById('btnFt').onclick=function(){metric=false;this.classList.add('on');document.getElementById('btnM').classList.remove('on');calc()};
+document.getElementById('btnM').onclick=function(){metric=true;this.classList.add('on');document.getElementById('btnFt').classList.remove('on');calc()};
 
-  var obs=new IntersectionObserver(function(entries){
-    if(entries[0].isIntersecting) stickyBar.classList.remove('show');
-    else stickyBar.classList.add('show');
-  },{threshold:0});
-  obs.observe(document.getElementById('result'));
-
-  document.getElementById('copyBtn').addEventListener('click',function(){
-    var t=sVal.textContent+' total area';
-    navigator.clipboard.writeText(t).then(function(){
-      var b=document.getElementById('copyBtn');
-      b.textContent='Copied!';
-      setTimeout(function(){b.textContent='Copy';},2000);
-    });
-  });
-
-  Object.values(els).forEach(function(el){
-    if(el.tagName==='INPUT'&&el.type==='range') el.addEventListener('input',calc);
-    else el.addEventListener('input',calc);
-  });
-
-  // theme toggle
-  var tt=document.getElementById('themeBtn');
-  function setThemeUI(t){
-    tt.textContent=t==='dark'?'Light':'Dark';
-    document.documentElement.setAttribute('data-theme',t);
-    try{localStorage.setItem('theme',t);}catch(e){}
+document.querySelectorAll('[data-waste]').forEach(function(b){
+  b.onclick=function(){
+    waste=parseFloat(b.dataset.waste);
+    b.parentElement.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
+    calc();
   }
-  var ct=document.documentElement.getAttribute('data-theme')||'light';
-  setThemeUI(ct);
-  tt.addEventListener('click',function(){
-    var nt=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
-    setThemeUI(nt);
-  });
+});
 
-  calc();
+function readVal(id,dflt){return parseFloat(document.getElementById(id).value)||dflt}
+
+function calc(){
+  var raw=0;
+  if(shape===0){raw=readVal('rectL',12)*readVal('rectW',14)}
+  else if(shape===1){raw=readVal('lshapeL1',12)*readVal('lshapeW1',10)+readVal('lshapeL2',8)*readVal('lshapeW2',6)}
+  else{var d=readVal('circleD',14);raw=Math.PI*(d/2)*(d/2)}
+
+  var total=raw*(1+waste/100);
+  var boxCov=readVal('boxCoverage',20);var boxCost=readVal('boxCost',45);
+  var boxes=boxCov>0?Math.ceil(total/boxCov):0;
+  var cost=boxes*boxCost;
+
+  var areaLabel=metric?'m\u00b2':'ft\u00b2';
+  document.getElementById('rawArea').textContent=raw.toFixed(2)+' '+areaLabel;
+  document.getElementById('totalArea').textContent=total.toFixed(2)+' '+areaLabel;
+  document.getElementById('wasteArea').textContent=(total-raw).toFixed(2)+' '+areaLabel;
+  document.getElementById('boxesNeeded').textContent=boxes;
+  document.getElementById('sqftPerBox').textContent=boxCov.toFixed(1)+' '+areaLabel;
+  document.getElementById('totalCost').textContent='$'+cost.toFixed(2);
+  document.getElementById('wastePct').textContent=waste+'%';
+}
+
+document.querySelectorAll('input[type=number]').forEach(function(i){i.oninput=calc});
+calc();
 })();
 </script>
-</body>
-</html>
+</body></html>

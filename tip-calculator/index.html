@@ -1,267 +1,157 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tip Calculator — Free Online Tip and Bill Split Calculator | Tool Site</title>
-<meta name="description" content="Calculate tips and split bills instantly. Tip presets for 10%, 15%, 18%, 20%, 25% plus custom. Split by number of people. Round-up option. Free online tip calculator.">
-<link rel="canonical" href="https://figgn.xyz/tip/">
-<meta property="og:title" content="Tip Calculator — Free Online Tip and Bill Split Calculator | Tool Site">
-<meta property="og:description" content="Calculate tips and split bills instantly. Presets for 10%, 15%, 18%, 20%, 25% plus custom. Split by number of people. Round-up option.">
-<meta property="og:url" content="https://figgn.xyz/tip/">
-<script>(function(){var t;try{t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';}catch(e){t='light';}document.documentElement.setAttribute('data-theme',t);})();</script>
+<title>Tip Calculator — Split Bill & Tip Instantly | figgn</title>
+<meta name="description" content="Calculate restaurant tips, split bills, and round up totals. Free tip calculator with preset percentages and per-person breakdown.">
+<link rel="canonical" href="https://figgn.xyz/tip-calculator/">
+<meta property="og:title" content="Tip Calculator — Split Bill & Tip Instantly | figgn">
+<meta property="og:description" content="Calculate restaurant tips, split bills, and round up totals. Free tip calculator with preset percentages and per-person breakdown.">
+<meta property="og:url" content="https://figgn.xyz/tip-calculator/">
+</head>
 <style>
-:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--border:#ccc;--input-bg:#fff;--accent:#e65c00;--result-bg:#e7f5ec;--result-text:#0d5c2e;--ad-bg:#f0f0f0;--ad-text:#888;--shadow:0 1px 3px rgba(0,0,0,.08);--line:#e4e4ea}
-[data-theme="dark"]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--border:#3a3a48;--input-bg:#252530;--accent:#e65c00;--result-bg:#0a3020;--result-text:#4ade80;--ad-bg:#22222b;--ad-text:#777;--shadow:0 1px 3px rgba(0,0,0,.3);--line:#2a2a34}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-text-size-adjust:100%}
-.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
+[data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#0a3020;--res-text:#4ade80;--border:#3a3a48;--line:#2a2a34;--ad-bg:#22222b;--ad-text:#777}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:var(--accent3)}a:hover{color:var(--accent2)}
 header{background:var(--accent);color:#fff}
 .hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
 .wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700}
 .hnav{display:flex;align-items:center;gap:12px;font-size:14px}
 .hnav a{color:#fff;text-decoration:none;font-weight:600}
 #themeBtn{background:var(--accent2);color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit}
-
-.wrap{max-width:760px;margin:0 auto;padding:20px 16px 40px}
-
+footer{background:#1c1c24;padding:14px 0;margin-top:40px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;color:#aaa;font-size:13px}
+footer a{color:#aaa}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
 .crumb a{color:var(--text2)}
+label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px;font-weight:600}
+input[type=number]{width:100%;min-height:56px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text)}
+input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
 .btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 .btnrow button{padding:8px 14px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);cursor:pointer;min-height:40px}
 .btnrow button.on{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:700}
+.stepper{display:flex;align-items:center;gap:0;margin-bottom:14px}
+.stepper button{min-height:56px;min-width:44px;font-size:20px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-family:inherit}
 .stepper button:first-child{border-radius:4px 0 0 4px}
 .stepper button:last-child{border-radius:0 4px 4px 0}
+.stepper input{border-radius:0;text-align:center;min-width:60px;width:60px;border-left:0;border-right:0}
+.result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
+.result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
 .detail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
 .detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
 .detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
 .detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
 .note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
 .hidden{display:none}
-.adwrap{background:var(--ad-bg);border-radius:4px;padding:10px;text-align:center;margin-bottom:14px}
-.adlabel{font-size:10px;text-transform:uppercase;color:var(--ad-text);display:block;margin-bottom:4px}
-.adwrap[data-ad="leaderboard"]{display:none}
-
-@media(max-width:480px){.row{grid-template-columns:1fr}}
-@media(max-width:767px){.ad-leaderboard{display:none}}
-.card{background:var(--card);border-radius:4px;box-shadow:var(--shadow);padding:24px;margin-bottom:16px}
-.card h1{font-size:24px;letter-spacing:-.3px;margin-bottom:4px}
-.card .sub{color:var(--text2);font-size:14px;margin-bottom:20px}
-label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:6px}
-input[type=number]{width:100%;height:56px;padding:0 12px;border:1px solid var(--border);border-radius:4px;font-size:20px;color:var(--text);background:var(--input-bg);font-family:"SF Mono","Cascadia Code","Consolas",monospace;-webkit-appearance:none}
-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px rgba(230,92,0,.15)}
-.presets{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
-.presets button{flex:1;min-width:56px;height:44px;border:1px solid var(--border);border-radius:4px;background:var(--input-bg);color:var(--text);font-size:14px;cursor:pointer;font-family:inherit;white-space:nowrap}
-.presets button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
-.presets button:hover:not(.on){border-color:var(--accent)}
-.result{
-
-.result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
-.result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}background:var(--result-bg);border-radius:4px;padding:24px;margin-bottom:16px}
-.result-grid{display:flex;gap:16px}
-.result-grid>div{flex:1;text-align:center;padding:12px 8px;background:var(--bg);border-radius:4px}
-.result-grid .big{font-size:26px;font-weight:700;color:var(--result-text);font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-.result-grid .lbl{font-size:12px;color:var(--text2);margin-top:4px}
-.stepper{display:flex;align-items:center;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden;height:56px}
-.stepper button{width:56px;height:56px;border:none;background:var(--input-bg);color:var(--text);font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.stepper button:hover{background:var(--accent);color:#fff}
-.stepper input{flex:1;height:56px;border:none;border-left:1px solid var(--border);border-right:1px solid var(--border);text-align:center;font-size:16px;padding:0;background:var(--input-bg);color:var(--text);min-width:50px;border-radius:0;font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-.stepper input:focus{outline:none}
-.toggle-row{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.toggle-row label{font-size:14px;color:var(--text);text-transform:none;letter-spacing:0;margin:0;cursor:pointer}
-.toggle-sw{position:relative;width:44px;height:24px;flex-shrink:0}
-.toggle-sw input{display:none}
-.toggle-sw .slider{position:absolute;inset:0;background:var(--border);border-radius:12px;cursor:pointer;transition:.2s}
-.toggle-sw .slider::before{content:'';position:absolute;width:18px;height:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
-.toggle-sw input:checked+.slider{background:var(--accent)}
-.toggle-sw input:checked+.slider::before{transform:translateX(20px)}
-#stickyBar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);padding:12px 16px;z-index:99;transform:translateY(100%);transition:transform .2s;display:flex;align-items:center;justify-content:space-between;gap:12px}
-#stickyBar.show{transform:translateY(0)}
-#stickyBar .s-val{font-size:22px;font-weight:700;color:var(--result-text)}
-#stickyBar .s-label{font-size:13px;color:var(--text2)}
-#stickyBar .copy-btn{background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:13px;font-family:inherit;white-space:nowrap}
-h2{font-size:18px;letter-spacing:-.2px;margin-bottom:12px}
-.card p,.card li{color:var(--text2);font-size:14px}
-.card ol{padding-left:20px;margin-bottom:12px}
-.card li{margin-bottom:4px}
-details{border-bottom:1px solid var(--line);padding:12px 0}
-details:first-of-type{border-top:1px solid var(--line)}
-summary{font-size:15px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary{list-style:none;cursor:pointer;font-weight:700;font-size:15px;padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
 summary::-webkit-details-marker{display:none}
-summary::after{content:'+';font-size:20px;color:var(--accent)}
-details[open] summary::after{content:'\2212'}
-details p{font-size:14px;color:var(--text2);padding:8px 0 0}
-.ad-rect{width:300px;height:250px;background:var(--ad-bg);color:var(--ad-text);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:13px;border-radius:4px}
-footer{padding:24px 16px;text-align:center;font-size:13px;color:var(--text2);background:var(--card);border-top:1px solid var(--line)}
-footer a{color:var(--accent);text-decoration:none}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media(max-width:500px){.result-grid{flex-direction:column;gap:8px}.presets button{font-size:12px;padding:0 8px}}
+summary::after{content:"+";font-size:18px;color:var(--accent3);margin-left:8px}
+details[open] summary::after{content:"\2212"}
+.faq-body{font-size:14px;color:var(--text2);padding:8px 0;line-height:1.6}
+@media(max-width:480px){.row{grid-template-columns:1fr}}
 </style>
-</head>
 <body>
 <header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
-
 <main class="wrap">
 <p class="crumb"><a href="/">figgn</a> / <a href="/#everyday">Everyday</a> / Tip Calculator</p>
+<div class="card">
+<h1>Tip Calculator</h1>
+<p class="sub">Quickly calculate the right tip, split the bill, and see what each person owes.</p>
 
-<div class="card" id="toolCard">
-  <h1>Tip Calculator </h1>
-  <p class="sub">Calculate tip, total, and split per person. Quick presets and custom tip percentage.</p>
+<label for="billAmt">Bill Amount</label>
+<input type="number" id="billAmt" value="85" step="0.01" min="0" inputmode="decimal">
 
-  <label for="bill">Bill Amount</label>
-  <div style="position:relative;margin-bottom:16px">
-    <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--text2);z-index:1">$</span>
-    <input type="number" id="bill" value="85.00" min="0.01" step="0.01" inputmode="decimal" style="padding-left:28px">
-  </div>
+<label style="margin-top:12px">Tip Percentage</label>
+<div class="btnrow">
+  <button data-pct="10">10%</button>
+  <button class="on" data-pct="15">15%</button>
+  <button data-pct="18">18%</button>
+  <button data-pct="20">20%</button>
+  <button data-pct="25">25%</button>
+  <button data-pct="-1">Custom</button>
+</div>
+<div id="customWrap" class="hidden" style="margin-bottom:12px">
+  <input type="number" id="customPct" value="15" step="0.1" min="0" inputmode="decimal">
+</div>
 
-  <label>Tip Percentage</label>
-  <div class="presets" role="group" id="tipPresets">
-    <button class="on" data-tip="10">10%</button>
-    <button data-tip="15">15%</button>
-    <button data-tip="18">18%</button>
-    <button data-tip="20">20%</button>
-    <button data-tip="25">25%</button>
-    <button data-tip="custom" style="flex:1.5;font-family:&quot;SF Mono&quot;,&quot;Cascadia Code&quot;,&quot;Consolas&quot;,monospace">Custom</button>
-  </div>
-  <div style="margin-bottom:16px">
-    <label for="tipCustom" style="text-transform:none;letter-spacing:0">Custom Tip (%)</label>
-    <input type="number" id="tipCustom" value="18" min="0" max="100" step="0.1" inputmode="decimal" style="font-size:16px;display:none">
-  </div>
-
-  <div class="row" style="margin-bottom:16px">
-    <div>
-      <label>Number of People</label>
-      <div class="stepper">
-        <button id="peopleMinus">−</button>
-        <input type="number" id="people" value="1" min="1" max="99" inputmode="numeric" readonly>
-        <button id="peoplePlus">+</button>
-      </div>
+<div class="row" style="align-items:end">
+  <div>
+    <label for="people">Number of People</label>
+    <div class="stepper">
+      <button id="pDown">&minus;</button>
+      <input type="number" id="people" value="1" min="1" max="99" step="1" inputmode="numeric" readonly style="pointer-events:none">
+      <button id="pUp">+</button>
     </div>
   </div>
-
-  <div class="toggle-row">
-    <div class="toggle-sw"><input type="checkbox" id="roundUp"><span class="slider"></span></div>
-    <label for="roundUp">Round up total</label>
-  </div>
-
-  <div class="result" id="result">
-    <div class="result-grid">
-      <div><div class="big" id="tipAmt">$12.75</div><div class="lbl">Tip</div></div>
-      <div><div class="big" id="totalAmt">$97.75</div><div class="lbl">Total</div></div>
-      <div><div class="big" id="perPerson">$97.75</div><div class="lbl">Per Person</div></div>
-    </div>
+  <div>
+    <label style="visibility:hidden">Round</label>
+    <button id="roundToggle" style="min-height:56px;width:100%;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);font-size:14px;font-family:inherit;cursor:pointer">Round Up: Off</button>
   </div>
 </div>
 
-<div id="stickyBar"><div><span class="s-val mono" id="sVal">$97.75</span> <span class="s-label" id="sDet">Total</span></div><button class="copy-btn" id="copyBtn">Copy</button></div>
-<div class="ad-rect">Advertisement</div>
-
-<div class="card">
-  <h2>How to Use</h2>
-  <ol>
-    <li><strong>Enter the bill amount</strong> before tax (or after — your choice).</li>
-    <li><strong>Select a tip percentage</strong> from the presets or enter a custom amount. Standard rates: 15% for average service, 18-20% for good service.</li>
-    <li><strong>Split the bill</strong> by increasing the number of people. Each person's share updates instantly.</li>
-    <li><strong>Toggle round-up</strong> to round the total up to the nearest dollar.</li>
-  </ol>
+<div class="result">
+  <div class="label">Tip Amount</div>
+  <div class="big" id="tipAmt">$12.75</div>
+</div>
+<div class="detail">
+  <div class="stat"><div class="v" id="totalAmt">$97.75</div><div class="k">Total</div></div>
+  <div class="stat"><div class="v" id="perPerson">$97.75</div><div class="k">Per Person</div></div>
+  <div class="stat"><div class="v" id="tipPctDisplay">15%</div><div class="k">Tip %</div></div>
 </div>
 
-<div class="card">
-  <h2>FAQ</h2>
-  <details><summary>Should I tip on pre-tax or post-tax?</summary><p>Most guidelines recommend tipping on the pre-tax subtotal. However, many people tip on the total including tax — the difference on a typical bill is small. Either way, the calculator works for both.</p></details>
-  <details><summary>What's the standard restaurant tip?</summary><p>In the US and Canada, 15-20% is standard. 15% for adequate service, 18% for good service, 20%+ for excellent service. Some restaurants automatically add gratuity for large parties (usually 6+ people).</p></details>
-  <details><summary>Does this work for other services?</summary><p>Yes. Common tip rates: food delivery 15-20%, bartenders $1-2 per drink or 15-20%, hair stylists 15-20%, taxi/rideshare 15-20%, hotel housekeeping $2-5 per night.</p></details>
+<p class="note">Standard restaurant tipping in the US is 15–20% of the pre-tax bill.</p>
+
+<details><summary>Should I tip on pre-tax or post-tax?</summary><p class="faq-body">Convention is to tip on the pre-tax subtotal. Tipping on tax and service charges inflates the total. Most servers expect 15-20% on the food and drink total before tax.</p></details>
+<details><summary>How do I split a bill with different items?</summary><p class="faq-body">This calculator splits evenly by head count. For uneven splits (each person pays for their own items), calculate each person's subtotal separately and add their share of the tip and tax.</p></details>
 </div>
 </main>
-<footer><p>&copy; 2025 Tool Site. <a href="/">All Calculators</a></p></footer>
-
+<footer><div class="wrap">&copy; 2026 figgn <a href="/privacy/">Privacy</a> <a href="/blog/">Blog</a> <a href="/">All calculators</a></div></footer>
 <script>
 (function(){
-var tipPct=15;
-var useCustom=false;
+var theme=localStorage.getItem('theme');if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',theme);var tb=document.getElementById('themeBtn');if(tb){tb.textContent=theme==='dark'?'Light':'Dark';tb.onclick=function(){theme=theme==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',theme);localStorage.setItem('theme',theme);tb.textContent=theme==='dark'?'Light':'Dark';}}
 
-var presets=document.getElementById('tipPresets').querySelectorAll('button');
-var tipCustom=document.getElementById('tipCustom');
+var tipPct=15,roundUp=false,customMode=false;
 
-presets.forEach(function(b){
-  b.addEventListener('click',function(){
-    presets.forEach(function(x){x.classList.remove('on');});
-    b.classList.add('on');
-    if(b.dataset.tip==='custom'){
-      useCustom=true;
-      tipCustom.style.display='block';
-      tipPct=parseFloat(tipCustom.value)||15;
-    }else{
-      useCustom=false;
-      tipCustom.style.display='none';
-      tipPct=parseInt(b.dataset.tip);
-    }
-    calc();
-  });
-});
+function fmt(n){return'$'+n.toFixed(2)}
 
-tipCustom.addEventListener('input',function(){
-  tipPct=parseFloat(this.value)||0;
-  calc();
-});
+document.querySelectorAll('[data-pct]').forEach(function(b){b.onclick=function(){
+  var v=parseFloat(b.dataset.pct);
+  b.parentElement.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
+  if(v===-1){customMode=true;document.getElementById('customWrap').classList.remove('hidden');tipPct=parseFloat(document.getElementById('customPct').value)||15}
+  else{customMode=false;document.getElementById('customWrap').classList.add('hidden');tipPct=v}
+  document.getElementById('tipPctDisplay').textContent=tipPct+'%';calc()
+}});
 
-var bill=document.getElementById('bill');
-var people=document.getElementById('people');
-var roundUp=document.getElementById('roundUp');
+document.getElementById('customPct').oninput=function(){tipPct=parseFloat(this.value)||15;document.getElementById('tipPctDisplay').textContent=tipPct+'%';calc()};
 
-bill.addEventListener('input',calc);
-roundUp.addEventListener('change',calc);
+document.getElementById('roundToggle').onclick=function(){roundUp=!roundUp;this.textContent='Round Up: '+(roundUp?'On':'Off');calc()};
 
-var peopleMinus=document.getElementById('peopleMinus');
-var peoplePlus=document.getElementById('peoplePlus');
-function updatePeople(delta){
-  var v=parseInt(people.value)||1;
-  v=Math.max(1,Math.min(99,v+delta));
-  people.value=v;
-  calc();
-}
-peopleMinus.addEventListener('click',function(){updatePeople(-1);});
-peoplePlus.addEventListener('click',function(){updatePeople(1);});
-
-function fmt(n){return'$'+n.toFixed(2);}
+document.getElementById('pUp').onclick=function(){var p=document.getElementById('people');p.value=Math.min(99,(parseInt(p.value)||1)+1);calc()};
+document.getElementById('pDown').onclick=function(){var p=document.getElementById('people');p.value=Math.max(1,(parseInt(p.value)||1)-1);calc()};
 
 function calc(){
-  var b=parseFloat(bill.value)||0;
-  var pct=tipPct;
-  var tip=b*(pct/100);
-  var total=b+tip;
-  var n=parseInt(people.value)||1;
-
-  if(roundUp.checked){total=Math.ceil(total);tip=total-b;}
-
-  var pp=total/n;
-
+  var bill=parseFloat(document.getElementById('billAmt').value)||0;
+  var people=parseInt(document.getElementById('people').value)||1;
+  var tip=bill*(tipPct/100);
+  if(roundUp)tip=Math.ceil(tip*100)/100;
+  var total=bill+tip;
+  var perPerson=total/people;
   document.getElementById('tipAmt').textContent=fmt(tip);
   document.getElementById('totalAmt').textContent=fmt(total);
-  document.getElementById('perPerson').textContent=fmt(pp);
-
-  document.getElementById('sVal').textContent=fmt(total);
-  document.getElementById('sDet').textContent='Total | '+fmt(pp)+' per person';
+  document.getElementById('perPerson').textContent=fmt(perPerson);
+  document.getElementById('tipPctDisplay').textContent=tipPct+'%';
 }
 
-var stickyBar=document.getElementById('stickyBar');
-new IntersectionObserver(function(e){stickyBar.classList.toggle('show',!e[0].isIntersecting);},{threshold:0}).observe(document.getElementById('result'));
-
-document.getElementById('copyBtn').addEventListener('click',function(){
-  var t='Total: '+document.getElementById('totalAmt').textContent+' (Tip: '+document.getElementById('tipAmt').textContent+')';
-  navigator.clipboard.writeText(t).then(function(){
-    var b=document.getElementById('copyBtn');b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);
-  });
-});
-
-var tt=document.getElementById('themeBtn');
-function setUI(t){tt.textContent=t==='dark'?'Light':'Dark';document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('theme',t);}catch(e){}}
-var ct=document.documentElement.getAttribute('data-theme')||'light';setUI(ct);
-tt.addEventListener('click',function(){setUI(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');});
-
+document.getElementById('billAmt').oninput=calc;document.getElementById('people').oninput=calc;
 calc();
 })();
 </script>
-</body>
-</html>
+</body></html>

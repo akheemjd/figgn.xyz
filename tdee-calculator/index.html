@@ -1,85 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TDEE Calculator — Free Daily Calorie Needs Estimator | figgn</title>
-<meta name="description" content="Free TDEE calculator. Find your total daily energy expenditure from weight, height, age, sex and activity level, plus maintenance and deficit targets.">
-<link rel="canonical" href="https://figgn.xyz/tdee-calculator/">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#e65c00">
-<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
-<link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
-<link rel="dns-prefetch" href="https://tpc.googlesyndication.com">
-<meta property="og:site_name" content="figgn">
-<meta property="og:image" content="https://figgn.xyz/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="TDEE Calculator — Free Daily Calorie Needs Estimator | figgn">
-<meta name="twitter:description" content="Free TDEE calculator. Find your total daily energy expenditure from weight, height, age, sex and activity level, plus maintenance and deficit targets.">
-<meta name="twitter:image" content="https://figgn.xyz/og-image.png">
-<meta property="og:title" content="TDEE Calculator — Free Daily Calorie Needs Estimator | figgn">
-<meta property="og:description" content="Free TDEE calculator. Find your total daily energy expenditure from weight, height, age, sex and activity level, plus maintenance and deficit targets.">
-<meta property="og:url" content="https://figgn.xyz/tdee-calculator/">
-<meta property="og:type" content="website">
-<script>
-(function(){
-  try{
-    var t = localStorage.getItem('theme');
-    if(t !== 'light' && t !== 'dark'){
-      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    document.documentElement.setAttribute('data-theme', t);
-  }catch(e){ document.documentElement.setAttribute('data-theme','light'); }
-})();
-</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDEE Calculator — figgn</title>
 <style>
-:root{
-  --bg:#f8f9fb;--card:#ffffff;--text:#111111;--text2:#555555;--border:#cccccc;
-  --input-bg:#ffffff;--accent:#e65c00;--accent-btn:#c24d00;--accent-text:#c24d00;
-  --result-bg:#e7f5ec;--result-text:#0d5c2e;--ad-bg:#f0f0f0;--ad-text:#888888;
-  --shadow:0 1px 3px rgba(0,0,0,.08);--line:#e4e4ea;
-}
-[data-theme="dark"]{
-  --bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999999;--border:#3a3a48;
-  --input-bg:#252530;--accent:#e65c00;--accent-btn:#c24d00;--accent-text:#ff8a3d;
-  --result-bg:#0a3020;--result-text:#4ade80;--ad-bg:#22222b;--ad-text:#777777;
-  --shadow:0 1px 3px rgba(0,0,0,.3);--line:#2a2a34;
-}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  font-size:16px;line-height:1.5}
-.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
+[data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#0a3020;--res-text:#4ade80;--border:#3a3a48;--line:#2a2a34;--ad-bg:#22222b;--ad-text:#777}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
 .wrap{max-width:760px;margin:0 auto;padding:0 12px}
-a{color:var(--accent-text)}
-.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
-  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
+a{color:var(--accent3)}a:hover{color:var(--accent2)}
 header{background:var(--accent);color:#fff}
-.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;
-  align-items:center;justify-content:space-between}
-.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700;letter-spacing:-.5px}
-.hnav{display:flex;align-items:center;gap:12px}
-.hnav a{color:#fff;text-decoration:none;font-size:14px;font-weight:600}
-.hnav a:hover{text-decoration:underline}
-#themeToggle{background:var(--accent-btn);color:#fff;border:1px solid rgba(255,255,255,.65);
-  border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit;min-height:32px}
-#themeToggle:hover{filter:brightness(1.1)}
-
-.disclaimer{font-size:13px;color:var(--text2);border-left:3px solid var(--border);
-  padding-left:10px;margin-top:14px}
-
-.unitrow{display:flex;align-items:center;gap:8px;margin-bottom:14px}
-.unitrow .flabel{margin:0}
-.unitbtns{display:inline-flex;border:1px solid var(--border);border-radius:4px;overflow:hidden}
-.unitbtns button{min-height:36px;padding:0 14px;background:var(--input-bg);color:var(--text);
-  border:0;border-left:1px solid var(--border);font-size:13px;font-family:inherit;cursor:pointer}
-.unitbtns button:first-child{border-left:0}
-.unitbtns button.on{background:var(--accent-btn);color:#fff;font-weight:600}
-.formwrap{display:grid;grid-template-columns:1fr;gap:16px}
+.hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700}
+.hnav{display:flex;align-items:center;gap:12px;font-size:14px}
+.hnav a{color:#fff;text-decoration:none;font-weight:600}
+#themeBtn{background:var(--accent2);color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit}
+footer{background:#1c1c24;padding:14px 0;margin-top:40px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;color:#aaa;font-size:13px}
+footer a{color:#aaa}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
 .crumb a{color:var(--text2)}
+label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px;font-weight:600}
+input[type=number]{width:100%;min-height:56px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text)}
+input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
 .btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 .btnrow button{padding:8px 14px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);cursor:pointer;min-height:40px}
 .btnrow button.on{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:700}
@@ -90,780 +39,252 @@ header{background:var(--accent);color:#fff}
 .stepper input{border-radius:0;text-align:center;min-width:60px;width:60px;border-left:0;border-right:0}
 .result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
 .result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
+.result .sub{font-size:13px;color:var(--res-text);margin-top:2px;opacity:.8}
+.detail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
 .detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
 .detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
 .detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
 .note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
+.hidden{display:none}
 @media(max-width:480px){.row{grid-template-columns:1fr}}
-@media (min-width:641px){.formwrap{grid-template-columns:1fr 210px;align-items:start}}
-[data-mode][hidden]{display:none !important}
-
-.card{background:var(--card);border:1px solid var(--line);border-radius:4px;
-  box-shadow:var(--shadow);padding:16px;margin:16px 0}
-h1{font-size:24px;margin:0 0 4px;letter-spacing:-.3px}
-h2{font-size:18px;margin:0 0 10px;letter-spacing:-.2px}
-h3{font-size:14px;margin:18px 0 8px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em}
-.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
-
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (max-width:560px){.two{grid-template-columns:1fr}}
-.field{margin-top:16px}
-label,.flabel{display:block;font-size:13px;color:var(--text2);text-transform:uppercase;
-  letter-spacing:.06em;margin-bottom:6px}
-input[type=number]{width:100%;min-height:56px;padding:0 10px;background:var(--input-bg);
-  color:var(--text);border:1px solid var(--border);border-radius:4px;font-size:18px;
-  font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
-.suffix{display:flex;align-items:stretch}
-.suffix input{border-radius:4px 0 0 4px;border-right:0}
-.suffix span{min-height:56px;display:flex;align-items:center;padding:0 10px;background:var(--bg);
-  border:1px solid var(--border);border-radius:0 4px 4px 0;color:var(--text2);font-size:15px;
-  font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-.presets{display:grid;gap:8px;grid-template-columns:repeat(3,1fr)}
-.presets[data-cols="2"]{grid-template-columns:repeat(2,1fr)}
-.presets[data-cols="5"]{grid-template-columns:repeat(5,1fr)}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (max-width:560px){.presets[data-cols="5"]{grid-template-columns:repeat(2,1fr)}}
-.preset{min-height:56px;padding:6px 4px;background:var(--input-bg);color:var(--text);
-  border:1px solid var(--border);border-radius:4px;font-size:14px;font-family:inherit;
-  cursor:pointer;line-height:1.25}
-.preset b{display:block;font-family:"SF Mono","Cascadia Code","Consolas",monospace;font-size:16px}
-.preset.on{background:var(--accent-btn);border-color:var(--accent-btn);color:#fff;font-weight:600}
-
-#stickyBar{position:fixed;top:0;left:0;right:0;z-index:60;background:var(--result-bg);
-  color:var(--result-text);border-bottom:1px solid var(--border);
-  transform:translateY(-100%);visibility:hidden}
-#stickyBar.show{transform:translateY(0);visibility:visible}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (prefers-reduced-motion:no-preference){#stickyBar{transition:transform .15s ease-out}}
-.sbar{max-width:760px;margin:0 auto;padding:8px 12px;display:flex;align-items:center;gap:12px}
-.sbar .val{font-size:26px;font-weight:700;line-height:1.1}
-.sbar .det{font-size:12px;color:var(--result-text);opacity:.85;flex:1}
-.copybtn{background:var(--accent-btn);color:#fff;border:0;border-radius:4px;padding:8px 14px;
-  font-size:14px;font-family:inherit;cursor:pointer;min-height:36px}
-.copybtn:hover{filter:brightness(1.1)}
-
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (min-width:768px){
-  
-  
-  
-}
-
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (prefers-reduced-motion:no-preference){}
-
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (min-width:641px){}
-
-#results{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:18px}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (min-width:641px){#results[data-cards="3"]{grid-template-columns:repeat(3,1fr)}
-  #results[data-cards="4"]{grid-template-columns:repeat(4,1fr)}}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media (max-width:640px){.res}
-.res{background:var(--result-bg);color:var(--result-text);border-radius:4px;padding:14px}
-.res .k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;opacity:.9}
-.res .v{font-size:28px;font-weight:700;line-height:1.1;margin-top:2px}
-.res.main .v{font-size:34px}
-.res .u{font-size:13px;font-weight:600;margin-left:4px}
-.res .fine{font-size:12px;opacity:.8;margin-top:2px}
-.detail{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
-  background:var(--line);border:1px solid var(--line);border-radius:4px;margin-top:12px;overflow:hidden}
-.detail div{background:var(--card);padding:10px 12px}
-.detail .k{font-size:12px;color:var(--text2)}
-.detail .v{font-size:18px;font-weight:600}
-.tip{font-size:14px;color:var(--text2);margin-top:12px;border-left:3px solid var(--accent);padding-left:10px}
-
-ol,ul{padding-left:20px;margin:0}
-ol li,ul li{margin-bottom:8px}
-p{margin:0 0 12px}
-.formula{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:12px;
-  margin:12px 0;font-size:15px;overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2)}
-td.n{font-family:"SF Mono","Cascadia Code","Consolas",monospace;white-space:nowrap}
-details{border-bottom:1px solid var(--line);padding:10px 0}
-details:last-of-type{border-bottom:0;padding-bottom:0}
-summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
-summary::-webkit-details-marker{display:none}
-summary::before{content:"+ ";color:var(--accent-text);font-weight:700}
-details[open] summary::before{content:"– "}
-details p{margin:8px 0 0;color:var(--text2);font-size:14px}
-.rel a{display:block;font-weight:600;margin-top:12px}
-.rel p{font-size:13px;color:var(--text2);margin:2px 0 0}
-footer{background:#1c1c24;color:#999;font-size:13px;margin-top:24px}
-footer .wrap{padding:14px 12px;display:flex;gap:14px;flex-wrap:wrap}
-footer a{color:#bbb}
+/* TDEE result cards */
+.tdee-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px}
+.tdee-cards .tc{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px;text-align:center}
+.tdee-cards .tc .tcl{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px}
+.tdee-cards .tc .tcv{font-size:24px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace;color:var(--accent)}
+.tdee-cards .tc .tcs{font-size:12px;color:var(--text2);margin-top:2px}
+@media(max-width:520px){.tdee-cards{grid-template-columns:1fr}}
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "TDEE Calculator",
-      "url": "https://figgn.xyz/tdee-calculator/",
-      "applicationCategory": "HealthApplication",
-      "operatingSystem": "Any",
-      "browserRequirements": "Requires JavaScript",
-      "description": "Free total daily energy expenditure calculator combining the Mifflin-St Jeor equation with an activity multiplier to estimate daily calorie needs.",
-      "dateModified": "2026-08-04",
-      "inLanguage": "en",
-      "isAccessibleForFree": true,
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-    },
-    {
-      "@type": "HowTo",
-      "name": "How to Use the TDEE Calculator",
-      "description": "Estimate total daily calorie burn and a sustainable target.",
-      "step": [
-        { "@type": "HowToStep", "position": 1, "name": "Enter your details", "text": "Weight, height, age and sex in imperial or metric." },
-        { "@type": "HowToStep", "position": 2, "name": "Pick an activity level", "text": "Be honest — most people overestimate by one step. If in doubt, pick the lower one." },
-        { "@type": "HowToStep", "position": 3, "name": "Read maintenance calories", "text": "This is roughly what you burn per day at your current activity level." },
-        { "@type": "HowToStep", "position": 4, "name": "Adjust from there", "text": "Gradual loss subtracts 500 calories, gradual gain adds 500. The loss floor never drops below your BMR." }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question", "name": "How accurate is a TDEE estimate?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Within roughly 10–15% for most people — several hundred calories on a large daily total. The activity multiplier is the biggest source of error because it's self-assessed. Use the estimate as a starting point and let two or three weeks of weight trend data correct it." }
-        },
-        {
-          "@type": "Question", "name": "What if my weight stops changing?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Plateaus are normal and usually mean expenditure fell as body weight fell, or intake gradually crept up. Recalculate at your new weight first. If that doesn't explain it, tighten tracking accuracy for a week — measurement drift is a more common cause than metabolic change." }
-        },
-        {
-          "@type": "Question", "name": "Should I eat below my BMR?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Not as a routine approach. Sustained intake below resting requirements is associated with loss of lean mass, low energy, impaired training performance and high dropout rates. Adding activity is usually a better lever than removing more food." }
-        }
-      ]
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "figgn", "item": "https://figgn.xyz/" },
-        { "@type": "ListItem", "position": 2, "name": "Fitness & Health", "item": "https://figgn.xyz/#fitness" },
-        { "@type": "ListItem", "position": 3, "name": "TDEE Calculator", "item": "https://figgn.xyz/tdee-calculator/" }
-      ]
-    }
-  ]
-}
-</script>
 </head>
 <body>
-
-<div id="stickyBar">
-  <div class="sbar">
-    <span class="val mono" id="sVal">&mdash;</span>
-    <span class="det" id="sDet">TDEE</span>
-    <button type="button" class="copybtn" id="copyBtn">Copy</button>
+<header>
+  <div class="hbar">
+    <a href="/" class="wordmark">figgn</a>
+    <div class="hnav">
+      <a href="/blog/">Blog</a>
+      <button id="themeBtn">Dark</button>
+    </div>
   </div>
-</div>
-
-<header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
+</header>
 
 <div class="wrap">
-  
-</div>
-
-<main class="wrap">
-
-  <p class="crumb"><a href="/">figgn</a> / <a href="/#fitness">Fitness &amp; Health</a> / TDEE Calculator</p>
+  <div class="crumb"><a href="/">Home</a> &rsaquo; TDEE Calculator</div>
+  <h1>TDEE Calculator</h1>
+  <p class="sub">Calculate your Total Daily Energy Expenditure — calories burned per day including activity.</p>
 
   <div class="card">
-    <h1>TDEE Calculator </h1>
-    <p class="sub">Total daily calorie burn — the number that actually matters for eating.</p>
+    <!-- Unit toggle -->
+    <label>Units</label>
+    <div class="btnrow" id="unitToggle">
+      <button class="on" data-unit="imperial">Imperial (lb, ft/in)</button>
+      <button data-unit="metric">Metric (kg, cm)</button>
+    </div>
 
-    <div class="formwrap">
-      <div class="formcol">
-        <div class="two">
-      <div data-umode="0">
-        <label for="wlb">Weight</label>
-        <div class="suffix">
-          <input type="number" id="wlb" data-var="wlb" inputmode="decimal" min="0" step="1" value="180">
-          <span aria-hidden="true">lb</span>
-        </div>
-      </div>
-      <div data-umode="0">
-        <label for="hft">Height (feet)</label>
-        <div class="suffix">
-          <input type="number" id="hft" data-var="hft" inputmode="decimal" min="0" step="1" value="5">
-          <span aria-hidden="true">ft</span>
-        </div>
-      </div>
-      <div data-umode="0">
-        <label for="hin">Height (inches)</label>
-        <div class="suffix">
-          <input type="number" id="hin" data-var="hin" inputmode="decimal" min="0" step="1" value="10">
-          <span aria-hidden="true">in</span>
-        </div>
-      </div>
-      <div data-umode="1">
-        <label for="wkg">Weight</label>
-        <div class="suffix">
-          <input type="number" id="wkg" data-var="wkg" inputmode="decimal" min="0" step="1" value="82">
-          <span aria-hidden="true">kg</span>
-        </div>
-      </div>
-      <div data-umode="1">
-        <label for="hcm">Height</label>
-        <div class="suffix">
-          <input type="number" id="hcm" data-var="hcm" inputmode="decimal" min="0" step="1" value="178">
-          <span aria-hidden="true">cm</span>
-        </div>
-      </div>
-      <div>
-        <label for="age">Age</label>
-        <div class="suffix">
-          <input type="number" id="age" data-var="age" inputmode="decimal" min="0" step="1" value="30">
-          <span aria-hidden="true">yrs</span>
-        </div>
-      </div>
-        </div>
+    <!-- Sex toggle -->
+    <label>Sex</label>
+    <div class="btnrow" id="sexToggle">
+      <button class="on" data-sex="male">Male</button>
+      <button data-sex="female">Female</button>
+    </div>
 
-    <div class="field">
-      <span class="flabel" id="umodeLabel">Units</span>
-      <div class="presets" data-cols="2" data-group="umode" role="group" aria-labelledby="umodeLabel">
-        <button type="button" class="preset on" data-val="0">Imperial<b>lb / ft+in</b></button>
-        <button type="button" class="preset" data-val="1">Metric<b>kg / cm</b></button>
+    <!-- Imperial inputs -->
+    <div id="imperialInputs">
+      <label>Weight (lb)</label>
+      <div class="stepper">
+        <button onclick="step('impWeight',-1)">&minus;</button>
+        <input type="number" id="impWeight" value="180" min="20" max="800" oninput="calc()">
+        <button onclick="step('impWeight',1)">+</button>
       </div>
-    </div>
-    <div class="field">
-      <span class="flabel" id="sexLabel">Sex at birth</span>
-      <div class="presets" data-cols="2" data-group="sex" role="group" aria-labelledby="sexLabel">
-        <button type="button" class="preset on" data-val="0">Male</button>
-        <button type="button" class="preset" data-val="1">Female</button>
-      </div>
-    </div>
-    <div class="field">
-      <span class="flabel" id="actLabel">Activity level</span>
-      <div class="presets" data-cols="5" data-group="act" role="group" aria-labelledby="actLabel">
-        <button type="button" class="preset" data-val="1.2">Sedentary<b>1.2</b></button>
-        <button type="button" class="preset" data-val="1.375">Light<b>1.375</b></button>
-        <button type="button" class="preset on" data-val="1.55">Moderate<b>1.55</b></button>
-        <button type="button" class="preset" data-val="1.725">Active<b>1.725</b></button>
-        <button type="button" class="preset" data-val="1.9">Very Active<b>1.9</b></button>
-      </div>
-    </div>
+      <div class="row">
+        <div>
+          <label>Height (ft)</label>
+          <div class="stepper">
+            <button onclick="step('impFt',-1)">&minus;</button>
+            <input type="number" id="impFt" value="5" min="3" max="7" oninput="calc()">
+            <button onclick="step('impFt',1)">+</button>
+          </div>
+        </div>
+        <div>
+          <label>Height (in)</label>
+          <div class="stepper">
+            <button onclick="step('impIn',-1)">&minus;</button>
+            <input type="number" id="impIn" value="10" min="0" max="11" oninput="calc()">
+            <button onclick="step('impIn',1)">+</button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div id="results" data-cards="3">
-      <div class="res main">
-        <div class="k">Maintenance</div>
-        <div class="v mono"><span id="rTdee" data-out>—</span><span class="u">cal/day</span></div>
+    <!-- Metric inputs -->
+    <div id="metricInputs" class="hidden">
+      <label>Weight (kg)</label>
+      <div class="stepper">
+        <button onclick="step('metWeight',-1)">&minus;</button>
+        <input type="number" id="metWeight" value="82" min="10" max="400" oninput="calc()">
+        <button onclick="step('metWeight',1)">+</button>
       </div>
-      <div class="res">
-        <div class="k">Weight loss −500</div>
-        <div class="v mono"><span id="rLoss" data-out>—</span><span class="u">cal/day</span></div>
-      </div>
-      <div class="res">
-        <div class="k">Weight gain +500</div>
-        <div class="v mono"><span id="rGain" data-out>—</span><span class="u">cal/day</span></div>
+      <label>Height (cm)</label>
+      <div class="stepper">
+        <button onclick="step('metHeight',-1)">&minus;</button>
+        <input type="number" id="metHeight" value="178" min="50" max="280" oninput="calc()">
+        <button onclick="step('metHeight',1)">+</button>
       </div>
     </div>
 
+    <!-- Age -->
+    <label>Age</label>
+    <div class="stepper">
+      <button onclick="step('age',-1)">&minus;</button>
+      <input type="number" id="age" value="30" min="10" max="120" oninput="calc()">
+      <button onclick="step('age',1)">+</button>
+    </div>
+  </div>
+
+  <!-- Activity level -->
+  <div class="card">
+    <label>Activity Level</label>
+    <div class="btnrow" id="activityToggle">
+      <button data-mult="1.2">Sedentary</button>
+      <button data-mult="1.375">Light</button>
+      <button class="on" data-mult="1.55">Moderate</button>
+      <button data-mult="1.725">Active</button>
+      <button data-mult="1.9">Very Active</button>
+    </div>
+
+    <!-- TDEE result cards -->
+    <div class="tdee-cards">
+      <div class="tc">
+        <div class="tcl">Maintenance</div>
+        <div class="tcv" id="maintVal">—</div>
+        <div class="tcs">calories/day</div>
+      </div>
+      <div class="tc">
+        <div class="tcl">Weight Loss</div>
+        <div class="tcv" id="lossVal">—</div>
+        <div class="tcs">&minus;500 cal/day</div>
+      </div>
+      <div class="tc">
+        <div class="tcl">Weight Gain</div>
+        <div class="tcv" id="gainVal">—</div>
+        <div class="tcs">+500 cal/day</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Details -->
+  <div class="card">
     <div class="detail">
-      <div><div class="k">BMR (resting)</div><div class="v mono" id="dBmr" data-out>—</div></div>
-      <div><div class="k">Activity multiplier</div><div class="v mono" id="dMult" data-out>—</div></div>
-      <div><div class="k">From activity</div><div class="v mono" id="dFromAct" data-out>—</div></div>
+      <div class="stat"><div class="v" id="detailBMR">—</div><div class="k">BMR</div></div>
+      <div class="stat"><div class="v" id="detailMult">1.55</div><div class="k">Activity Multiplier</div></div>
+      <div class="stat"><div class="v" id="detailActivity">Moderate</div><div class="k">Activity Level</div></div>
     </div>
-
-    <p class="tip">A 500-calorie daily deficit works out to roughly a pound of fat a week. The loss target is floored at your BMR — eating below resting requirements for extended periods costs lean mass and rarely holds.</p>
-    <p class="disclaimer">These are population-average estimates, not medical advice. Individual metabolism, body composition and health conditions vary widely &mdash; talk to a doctor or dietitian before making significant changes.</p>
+    <p class="note" id="formulaNote">TDEE = BMR &times; activity multiplier. BMR calculated using the Mifflin-St Jeor equation.</p>
   </div>
-
-  
-
-  <div class="card">
-    <h2>How to Use the TDEE Calculator</h2>
-    <ol>
-      <li>Enter <strong>weight, height, age and sex</strong> in imperial or metric.</li>
-      <li>Pick an <strong>activity level</strong> — most people overestimate by one step, so choose the lower when unsure.</li>
-      <li><strong>Maintenance</strong> is roughly what you burn per day at that activity level.</li>
-      <li><strong>Gradual loss and gain</strong> are ±500 calories from maintenance, floored so the target never drops below your BMR.</li>
-    </ol>
-  </div>
-
-  <div class="card">
-    <h2>How It's Calculated</h2>
-    <p>TDEE is your resting burn (BMR) multiplied by how much you move.</p>
-    <div class="formula mono">BMR = Mifflin-St Jeor (weight, height, age, sex)<br>TDEE = BMR &times; activity multiplier</div>
-    <p><strong>Worked example:</strong> a 30-year-old man, 82 kg and 178 cm, has a BMR of 1,788. At a moderate activity multiplier of 1.55 that is <span class="mono">2,771 cal/day</span> at maintenance, and 2,271 for gradual loss.</p>
-    <p><strong>The deficit floors at BMR.</strong> If subtracting 500 would take you below your resting burn, the calculator gives you BMR instead. Treat any figure here as a starting hypothesis and correct using two or three weeks of weight trend data.</p>
-  </div>
-
-  
-
-  <div class="card">
-    <h2>Deficit &amp; Rate of Change</h2>
-    <p class="sub">A pound of body fat is roughly 3,500 calories, so a daily deficit maps to a weekly rate.</p>
-    <table>
-      <thead><tr><th>Daily deficit</th><th>Weekly change</th><th>Notes</th></tr></thead>
-      <tbody>
-        <tr><td class="n">250</td><td class="n">~0.5 lb</td><td>Slow, very easy to sustain, minimal muscle loss.</td></tr>
-        <tr><td class="n">500</td><td class="n">~1 lb</td><td>The standard recommendation for most people.</td></tr>
-        <tr><td class="n">750+</td><td class="n">~1.5 lb+</td><td>Harder to sustain, higher lean-mass cost. Best supervised.</td></tr>
-      </tbody>
-    </table>
-    <h3>Activity level reference</h3>
-    <table>
-      <thead><tr><th>Level</th><th>&times;</th><th>Looks like</th></tr></thead>
-      <tbody>
-        <tr><td>Sedentary</td><td class="n">1.2</td><td>Desk job, little deliberate exercise.</td></tr>
-        <tr><td>Light</td><td class="n">1.375</td><td>Light exercise 1&ndash;3 days a week.</td></tr>
-        <tr><td>Moderate</td><td class="n">1.55</td><td>Moderate exercise 3&ndash;5 days a week.</td></tr>
-        <tr><td>Active</td><td class="n">1.725</td><td>Hard exercise 6&ndash;7 days a week.</td></tr>
-        <tr><td>Very active</td><td class="n">1.9</td><td>Physical job plus regular training.</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  
-
-  <div class="card rel">
-    <h2>More Free Calculators</h2>
-    <a href="/bmr-calculator/">BMR Calculator</a>
-    <p>Resting burn, before any activity is added.</p>
-    <a href="/macro-calculator/">Macro Calculator</a>
-    <p>Split a calorie target into protein, carbs and fat.</p>
-    <a href="/calorie-calculator/">Calorie Burn Calculator</a>
-    <p>Calories burned by activity type and duration.</p>
-  </div>
-
-</main>
+</div>
 
 <footer>
   <div class="wrap">
-    <span>&copy; <span id="yr">2026</span> figgn</span>
+    &copy; 2026 figgn
     <a href="/privacy/">Privacy</a>
+    <a href="/blog/">Blog</a>
     <a href="/">All calculators</a>
   </div>
 </footer>
 
 <script>
+var theme=localStorage.getItem('theme');if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',theme);var tb=document.getElementById('themeBtn');if(tb){tb.textContent=theme==='dark'?'Light':'Dark';tb.onclick=function(){theme=theme==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',theme);localStorage.setItem('theme',theme);tb.textContent=theme==='dark'?'Light':'Dark';}};
 
-function body(V, G){
-  if(G.umode === 1) return {kg: V.wkg, cm: V.hcm};
-  var inches = V.hft * 12 + V.hin;
-  return {kg: V.wlb * 0.453592, cm: inches * 2.54};
+var currentUnit = 'imperial';
+var currentSex = 'male';
+var currentMult = 1.55;
+var currentActivity = 'Moderate';
+
+// Unit toggle
+document.getElementById('unitToggle').addEventListener('click', function(e) {
+  if (e.target.tagName !== 'BUTTON') return;
+  currentUnit = e.target.dataset.unit;
+  var btns = this.querySelectorAll('button');
+  btns.forEach(function(b) { b.classList.toggle('on', b.dataset.unit === currentUnit); });
+  document.getElementById('imperialInputs').classList.toggle('hidden', currentUnit !== 'imperial');
+  document.getElementById('metricInputs').classList.toggle('hidden', currentUnit !== 'metric');
+  calc();
+});
+
+// Sex toggle
+document.getElementById('sexToggle').addEventListener('click', function(e) {
+  if (e.target.tagName !== 'BUTTON') return;
+  currentSex = e.target.dataset.sex;
+  var btns = this.querySelectorAll('button');
+  btns.forEach(function(b) { b.classList.toggle('on', b.dataset.sex === currentSex); });
+  calc();
+});
+
+// Activity toggle
+document.getElementById('activityToggle').addEventListener('click', function(e) {
+  if (e.target.tagName !== 'BUTTON') return;
+  currentMult = parseFloat(e.target.dataset.mult);
+  currentActivity = e.target.textContent;
+  var btns = this.querySelectorAll('button');
+  btns.forEach(function(b) { b.classList.toggle('on', b.dataset.mult === e.target.dataset.mult); });
+  calc();
+});
+
+function step(id, delta) {
+  var el = document.getElementById(id);
+  var v = parseInt(el.value) || 0;
+  el.value = v + delta;
+  calc();
 }
-function mifflin(kg, cm, age, female){
-  return 10 * kg + 6.25 * cm - 5 * age + (female ? -161 : 5);
+
+function calc() {
+  var weightKg, heightCm, age, bmr;
+
+  if (currentUnit === 'imperial') {
+    var lbs = parseFloat(document.getElementById('impWeight').value) || 180;
+    var ft = parseInt(document.getElementById('impFt').value) || 5;
+    var inch = parseInt(document.getElementById('impIn').value) || 10;
+    heightCm = (ft * 12 + inch) * 2.54;
+    weightKg = lbs * 0.453592;
+  } else {
+    weightKg = parseFloat(document.getElementById('metWeight').value) || 82;
+    heightCm = parseFloat(document.getElementById('metHeight').value) || 178;
+  }
+
+  age = parseInt(document.getElementById('age').value) || 30;
+
+  // Mifflin-St Jeor BMR
+  if (currentSex === 'male') {
+    bmr = 10 * weightKg + 6.25 * heightCm - 5 * age + 5;
+  } else {
+    bmr = 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
+  }
+
+  if (isNaN(bmr) || !isFinite(bmr) || bmr <= 0) {
+    document.getElementById('maintVal').textContent = '—';
+    document.getElementById('lossVal').textContent = '—';
+    document.getElementById('gainVal').textContent = '—';
+    document.getElementById('detailBMR').textContent = '—';
+    return;
+  }
+
+  bmr = Math.round(bmr);
+  var tdee = Math.round(bmr * currentMult);
+  var loss = Math.max(0, tdee - 500);
+  var gain = tdee + 500;
+
+  document.getElementById('maintVal').textContent = tdee.toLocaleString();
+  document.getElementById('lossVal').textContent = loss.toLocaleString();
+  document.getElementById('gainVal').textContent = gain.toLocaleString();
+
+  document.getElementById('detailBMR').textContent = bmr.toLocaleString();
+  document.getElementById('detailMult').textContent = currentMult;
+  document.getElementById('detailActivity').textContent = currentActivity;
+
+  document.getElementById('formulaNote').innerHTML = 'TDEE = BMR &times; activity multiplier (' + bmr.toLocaleString() + ' &times; ' + currentMult + '). BMR calculated using the Mifflin-St Jeor equation.';
 }
 
-function compute(V, G){
-  var b = body(V, G);
-  if(b.kg <= 0 || b.cm <= 0 || V.age <= 0) return {invalid:'Enter weight, height and age above 0'};
-
-  var bmr = mifflin(b.kg, b.cm, V.age, G.sex === 1);
-  if(bmr <= 0) return {invalid:'Check the values entered'};
-
-  var tdee = bmr * G.act;
-  var loss = Math.max(tdee - 500, bmr);
-  var floored = (tdee - 500) < bmr;
-
-  return {
-    out:{
-      rTdee: fmt(tdee, 0), rLoss: fmt(loss, 0),
-      rGain: fmt(tdee + 500, 0),
-      dBmr: fmt(bmr, 0) + ' cal/day',
-      dMult: '\u00d7' + G.act,
-      dFromAct: fmt(tdee - bmr, 0) + ' cal'
-    },
-    sticky:{
-      val: fmt(tdee, 0) + ' cal/day',
-      det: 'Maintenance \u00b7 loss ' + fmt(loss, 0) + ' \u00b7 gain ' + fmt(tdee + 500, 0) +
-           (floored ? ' (loss floored at BMR)' : '') + ' \u00b7 BMR ' + fmt(bmr, 0)
-    }
-  };
-}
-
-/* === Shared runtime ===================================================== */
-(function(){
-  var G = {}, P = {};
-
-  function fmt(x, dp){
-    var d = (dp === undefined) ? 2 : dp;
-    var s = (Math.round(x * Math.pow(10, d)) / Math.pow(10, d)).toString();
-    var p = s.split('.');
-    p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    return p.join('.');
-  }
-  window.fmt = fmt;
-
-  var groups = [].slice.call(document.querySelectorAll('.presets[data-group]'));
-  groups.forEach(function(g){
-    var name = g.dataset.group;
-    var btns = [].slice.call(g.querySelectorAll('.preset'));
-    var on = btns.filter(function(b){ return b.classList.contains('on'); })[0] || btns[0];
-    G[name] = parseFloat(on.dataset.val);
-    P[name] = G[name];
-    btns.forEach(function(b){
-      b.setAttribute('aria-pressed', b.classList.contains('on') ? 'true' : 'false');
-      b.addEventListener('click', function(){
-        G[name] = parseFloat(b.dataset.val);
-        P[name] = G[name];
-        var custom = document.querySelector('[data-custom="' + name + '"]');
-        if(custom) custom.value = '';
-        btns.forEach(function(x){
-          var sel = (x === b);
-          x.classList.toggle('on', sel);
-          x.setAttribute('aria-pressed', sel ? 'true' : 'false');
-        });
-        run();
-      });
-    });
-
-    var custom = document.querySelector('[data-custom="' + name + '"]');
-    if(custom){
-      custom.addEventListener('input', function(){
-        var v = parseFloat(custom.value);
-        if(custom.value === '' || isNaN(v) || v <= 0){
-          G[name] = P[name];
-          btns.forEach(function(x){
-            var sel = (parseFloat(x.dataset.val) === P[name]);
-            x.classList.toggle('on', sel);
-            x.setAttribute('aria-pressed', sel ? 'true' : 'false');
-          });
-        }else{
-          G[name] = v;
-          btns.forEach(function(x){
-            x.classList.remove('on');
-            x.setAttribute('aria-pressed','false');
-          });
-        }
-        run();
-      });
-    }
-  });
-
-  var metric = false;
-  try{ metric = localStorage.getItem('units') === 'metric'; }catch(e){}
-
-  var unitBtns = [].slice.call(document.querySelectorAll('.unitbtns button'));
-  function paintUnits(){
-    unitBtns.forEach(function(b){
-      var on = (b.dataset.unit === (metric ? 'metric' : 'imperial'));
-      b.classList.toggle('on', on);
-      b.setAttribute('aria-pressed', on ? 'true' : 'false');
-    });
-  }
-  function setUnits(toMetric){
-    if(toMetric === metric) return;
-    document.querySelectorAll('[data-u]').forEach(function(i){
-      var v = parseFloat(i.value);
-      if(isNaN(v)) return;
-      var f = (i.dataset.u === 'small') ? 2.54 : 0.3048;
-      i.value = Math.round((toMetric ? v * f : v / f) * 100) / 100;
-    });
-    metric = toMetric;
-    paintUnits();
-    run();
-  }
-  unitBtns.forEach(function(b){
-    b.addEventListener('click', function(){ setUnits(b.dataset.unit === 'metric'); });
-  });
-  if(unitBtns.length){
-    metric = false;
-    try{ localStorage.setItem('units', 'imperial'); }catch(e){}
-    paintUnits();
-
-  var inputs = [].slice.call(document.querySelectorAll('[data-var]'));
-  var last = null;
-  inputs.forEach(function(i){
-    i.addEventListener('input', function(){ last = i.dataset.var; run(); });
-    i.addEventListener('focus', function(){ last = i.dataset.var; run(); });
-  });
-
-  var rowset = document.getElementById('rows');
-  function addRow(vals){
-    var cfg = window.ROWS;
-    var row = document.createElement('div');
-    row.className = 'row';
-    cfg.cols.forEach(function(c, i){
-      var el = document.createElement('input');
-      el.type = c.type || 'number';
-      if(el.type === 'number'){ el.setAttribute('inputmode','decimal'); el.min = '0'; el.step = 'any'; }
-      el.dataset.col = c.key;
-      el.placeholder = c.placeholder || '';
-      el.setAttribute('aria-label', c.label);
-      el.value = (vals && vals[i] !== undefined) ? vals[i] : '';
-      row.appendChild(el);
-    });
-    var rm = document.createElement('button');
-    rm.type = 'button'; rm.className = 'rm'; rm.textContent = '\u2715';
-    rm.setAttribute('aria-label','Remove row');
-    row.appendChild(rm);
-    rowset.appendChild(row);
-  }
-  if(rowset && window.ROWS){
-    window.ROWS.defaults.forEach(addRow);
-    rowset.addEventListener('input', run);
-    rowset.addEventListener('click', function(e){
-      var b = e.target.closest('button.rm');
-      if(!b) return;
-      if(rowset.querySelectorAll('.row').length > 1) b.closest('.row').remove();
-      else b.closest('.row').querySelectorAll('input').forEach(function(i){ i.value = ''; });
-      run();
-    });
-    var add = document.getElementById('addRow');
-    if(add) add.addEventListener('click', function(){
-      addRow(null); run();
-      var rows = rowset.querySelectorAll('.row');
-      rows[rows.length - 1].querySelector('input').focus();
-    });
-  }
-
-  function paintMode(){
-    if(G.mode !== undefined){
-      var m = String(G.mode);
-      document.querySelectorAll('[data-mode]').forEach(function(el){
-        el.hidden = (el.dataset.mode.split(' ').indexOf(m) === -1);
-      });
-    }
-    if(G.umode !== undefined){
-      var u = String(G.umode);
-      document.querySelectorAll('[data-umode]').forEach(function(el){
-        el.hidden = (el.dataset.umode.split(' ').indexOf(u) === -1);
-      });
-    }
-  }
-  paintMode();
-
-  var qtyEl = document.getElementById('qty');
-  if(qtyEl){
-    var minus = document.getElementById('qtyMinus'), plus = document.getElementById('qtyPlus');
-    function setQty(n){
-      if(n < 1) n = 1;
-      qtyEl.value = n;
-      minus.disabled = (n <= 1);
-      run();
-    }
-    minus.addEventListener('click', function(){ setQty((parseInt(qtyEl.value,10)||1) - 1); });
-    plus.addEventListener('click', function(){ setQty((parseInt(qtyEl.value,10)||1) + 1); });
-    qtyEl.addEventListener('blur', function(){
-      var n = parseInt(qtyEl.value,10);
-      if(isNaN(n) || n < 1) setQty(1);
-    });
-    minus.disabled = ((parseInt(qtyEl.value,10)||1) <= 1);
-  }
-
-  function run(){
-    paintMode();
-    var V = {};
-    inputs.forEach(function(i){
-      var n = parseFloat(i.value);
-      n = (isNaN(n) || n < 0) ? 0 : n;
-      if(metric && i.dataset.u) n = n * (i.dataset.u === 'small' ? 0.393701 : 3.28084);
-      V[i.dataset.var] = n;
-    });
-    V.qty = Math.max(1, Math.round(V.qty || 1));
-
-    var R = [];
-    if(rowset){
-      [].slice.call(rowset.querySelectorAll('.row')).forEach(function(row){
-        var o = {};
-        [].slice.call(row.querySelectorAll('input')).forEach(function(i){
-          o[i.dataset.col] = (i.type === 'number') ? parseFloat(i.value) : i.value;
-        });
-        R.push(o);
-      });
-    }
-
-    var r = compute(V, G, last, R) || {};
-    var sVal = document.getElementById('sVal');
-    var sDet = document.getElementById('sDet');
-
-    if(r.invalid){
-      document.querySelectorAll('[data-out]').forEach(function(el){ el.textContent = '\u2014'; });
-      sVal.textContent = '\u2014';
-      sDet.textContent = r.invalid;
-      return;
-    }
-    Object.keys(r.out || {}).forEach(function(k){
-      var el = document.getElementById(k);
-      if(el) el.textContent = r.out[k];
-    });
-    Object.keys(r.css || {}).forEach(function(k){
-      var el = document.getElementById(k);
-      if(!el) return;
-      Object.keys(r.css[k]).forEach(function(prop){ el.style[prop] = r.css[k][prop]; });
-    });
-    Object.keys(r.cls || {}).forEach(function(k){
-      var el = document.getElementById(k);
-      if(el) el.className = r.cls[k];
-    });
-    sVal.textContent = r.sticky.val;
-    sDet.textContent = r.sticky.det;
-  }
-
-  var copyBtn = document.getElementById('copyBtn');
-  copyBtn.addEventListener('click', function(){
-    var v = document.getElementById('sVal').textContent;
-    var done = function(){
-      copyBtn.textContent = 'Copied!';
-      setTimeout(function(){ copyBtn.textContent = 'Copy'; }, 2000);
-    };
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(v).then(done, done);
-    }else{
-      var t = document.createElement('textarea');
-      t.value = v; t.style.position = 'fixed'; t.style.opacity = '0';
-      document.body.appendChild(t); t.select();
-      try{ document.execCommand('copy'); }catch(e){}
-      document.body.removeChild(t); done();
-    }
-  });
-
-  var barEl = document.getElementById('stickyBar');
-  var resultsEl = document.getElementById('results');
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        barEl.classList.toggle('show', !en.isIntersecting && en.boundingClientRect.top < 0);
-      });
-    }, {threshold: 0}).observe(resultsEl);
-  }
-
-  var toggle = document.getElementById('themeToggle');
-  function syncToggle(){
-    var t = document.documentElement.getAttribute('data-theme');
-    toggle.textContent = (t === 'dark' ? 'Light' : 'Dark');
-    toggle.setAttribute('aria-label','Switch to ' + (t === 'dark' ? 'light' : 'dark') + ' mode');
-  }
-  syncToggle();
-  toggle.addEventListener('click', function(){
-    var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', t);
-    try{ localStorage.setItem('theme', t); }catch(e){}
-    syncToggle();
-  });
-
-  run();
-})();
-
-</script>
-
-<script>
-(function(){
-  function fill(el){
-    if(el.dataset.filled) return;
-    el.dataset.filled = '1';
-    el.textContent = 'Advertisement \u00b7 ' + (el.dataset.size || '');
-  }
-  var slots = document.querySelectorAll('.adslot');
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){ fill(en.target); io.unobserve(en.target); }
-      });
-    }, {rootMargin: '600px 0px'});
-    slots.forEach(function(s){ io.observe(s); });
-  }else{ slots.forEach(fill); }
-
-  var sticky = document.getElementById('stickyAd');
-  if(!sticky) return;
-  var dismissed = false;
-  try{ dismissed = sessionStorage.getItem('adDismissed') === '1'; }catch(e){}
-  var armed = false;
-  function reveal(){
-    if(dismissed || sticky.classList.contains('show')) return;
-    sticky.classList.add('show');
-    document.body.classList.add('stickyad');
-  }
-  function arm(){ if(armed || dismissed) return; armed = true; setTimeout(reveal, 400); }
-  document.addEventListener('input', arm, {once:true, passive:true});
-  window.addEventListener('scroll', function(){
-    if(window.scrollY > window.innerHeight * 0.5) arm();
-  }, {passive:true});
-  document.getElementById('closeAd').addEventListener('click', function(){
-    sticky.classList.remove('show');
-    document.body.classList.remove('stickyad');
-    dismissed = true;
-    try{ sessionStorage.setItem('adDismissed','1'); }catch(e){}
-  });
-})();
-
-(function(){
-  var PUB = 'ca-pub-XXXXXXXXXXXXXXXX';
-  var loaded = false;
-  function load(){
-    if(loaded || PUB.indexOf('XXXX') > -1) return;
-    loaded = true;
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + PUB;
-    s.crossOrigin = 'anonymous';
-    document.head.appendChild(s);
-  }
-  ['scroll','pointerdown','keydown'].forEach(function(e){
-    window.addEventListener(e, load, {once:true, passive:true});
-  });
-  setTimeout(load, 3500);
-})();
-
-(function(){
-  var fields = [].slice.call(document.querySelectorAll('input[type=number][id]'));
-  if(!fields.length) return;
-  var params = new URLSearchParams(location.search);
-  var applied = false;
-  fields.forEach(function(f){
-    var v = params.get(f.id);
-    if(v !== null && v !== '' && isFinite(parseFloat(v))){
-      f.value = parseFloat(v);
-      applied = true;
-    }
-  });
-  if(applied){
-    fields[0].dispatchEvent(new Event('input', {bubbles:true}));
-    document.dispatchEvent(new Event('change', {bubbles:true}));
-  }
-  var t;
-  function sync(){
-    clearTimeout(t);
-    t = setTimeout(function(){
-      var q = new URLSearchParams();
-      fields.forEach(function(f){ if(f.value !== '') q.set(f.id, f.value); });
-      var qs = q.toString();
-      history.replaceState(null, '', qs ? location.pathname + '?' + qs : location.pathname);
-    }, 500);
-  }
-  fields.forEach(function(f){ f.addEventListener('input', sync); });
-})();
-
-(function(){
-  document.addEventListener('wheel', function(e){
-    var a = document.activeElement;
-    if(a && a.type === 'number' && a === e.target) a.blur();
-  }, {passive:true});
-  var yr = document.getElementById('yr');
-  if(yr) yr.textContent = new Date().getFullYear();
-  var v = document.getElementById('sVal'), d = document.getElementById('sDet');
-  if(!v) return;
-  var live = document.createElement('p');
-  live.className = 'visually-hidden';
-  live.setAttribute('aria-live','polite');
-  document.body.appendChild(live);
-  function announce(){ live.textContent = v.textContent + '. ' + d.textContent; }
-  document.addEventListener('change', announce, true);
-  document.addEventListener('click', function(e){
-    if(e.target.closest && e.target.closest('.preset')) setTimeout(announce, 0);
-  }, true);
-})();
+calc();
 </script>
 </body>
 </html>

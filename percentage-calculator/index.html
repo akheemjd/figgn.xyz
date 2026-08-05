@@ -1,222 +1,118 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Percentage Calculator — Free Online Percentage Tools | Tool Site</title>
-<meta name="description" content="Calculate percentages three ways: find X% of Y, percentage change, and what percent X is of Y. Free online percentage calculator with instant results.">
-<link rel="canonical" href="https://figgn.xyz/percentage/">
-<meta property="og:title" content="Percentage Calculator — Free Online Percentage Tools | Tool Site">
-<meta property="og:description" content="Calculate percentages three ways: find X% of Y, percentage change, and what percent X is of Y. Instant results.">
-<meta property="og:url" content="https://figgn.xyz/percentage/">
-<script>(function(){var t;try{t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';}catch(e){t='light';}document.documentElement.setAttribute('data-theme',t);})();</script>
+<title>Percentage Calculator — % of, Change, & Ratio | figgn</title>
+<meta name="description" content="Three percentage calculators in one: find X% of Y, calculate percent change, and determine what percent one number is of another. Instant results.">
+<link rel="canonical" href="https://figgn.xyz/percentage-calculator/">
+<meta property="og:title" content="Percentage Calculator — % of, Change, & Ratio | figgn">
+<meta property="og:description" content="Three percentage calculators in one: find X% of Y, calculate percent change, and determine what percent one number is of another. Instant results.">
+<meta property="og:url" content="https://figgn.xyz/percentage-calculator/">
+</head>
 <style>
-:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--border:#ccc;--input-bg:#fff;--accent:#e65c00;--result-bg:#e7f5ec;--result-text:#0d5c2e;--ad-bg:#f0f0f0;--ad-text:#888;--shadow:0 1px 3px rgba(0,0,0,.08);--line:#e4e4ea}
-[data-theme="dark"]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--border:#3a3a48;--input-bg:#252530;--accent:#e65c00;--result-bg:#0a3020;--result-text:#4ade80;--ad-bg:#22222b;--ad-text:#777;--shadow:0 1px 3px rgba(0,0,0,.3);--line:#2a2a34}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-text-size-adjust:100%}
-.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
+[data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#0a3020;--res-text:#4ade80;--border:#3a3a48;--line:#2a2a34;--ad-bg:#22222b;--ad-text:#777}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:var(--accent3)}a:hover{color:var(--accent2)}
 header{background:var(--accent);color:#fff}
 .hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
 .wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700}
 .hnav{display:flex;align-items:center;gap:12px;font-size:14px}
 .hnav a{color:#fff;text-decoration:none;font-weight:600}
 #themeBtn{background:var(--accent2);color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit}
-
-.wrap{max-width:760px;margin:0 auto;padding:20px 16px 40px}
-
+footer{background:#1c1c24;padding:14px 0;margin-top:40px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;color:#aaa;font-size:13px}
+footer a{color:#aaa}
+h1{font-size:22px;margin:0 0 4px}
+h2{font-size:16px;margin:0 0 10px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
 .crumb a{color:var(--text2)}
-.btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.btnrow button{padding:8px 14px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);cursor:pointer;min-height:40px}
-.btnrow button.on{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:700}
-.stepper{display:flex;align-items:center;gap:0;margin-bottom:14px}
-.stepper button{min-height:56px;min-width:44px;font-size:20px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-family:inherit}
-.stepper button:first-child{border-radius:4px 0 0 4px}
-.stepper button:last-child{border-radius:0 4px 4px 0}
-.stepper input{border-radius:0;text-align:center;min-width:60px;width:60px;border-left:0;border-right:0}
+label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px;font-weight:600}
+input[type=number]{width:100%;min-height:56px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text)}
+input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
 .result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
 .detail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
 .detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
 .detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
 .detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
 .note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
 .hidden{display:none}
-.adwrap{background:var(--ad-bg);border-radius:4px;padding:10px;text-align:center;margin-bottom:14px}
-.adlabel{font-size:10px;text-transform:uppercase;color:var(--ad-text);display:block;margin-bottom:4px}
-.adwrap[data-ad="leaderboard"]{display:none}
-
-@media(max-width:480px){.row{grid-template-columns:1fr}}
-@media(max-width:767px){.ad-leaderboard{display:none}}
-.card{background:var(--card);border-radius:4px;box-shadow:var(--shadow);padding:24px;margin-bottom:16px}
-.card h1{font-size:24px;letter-spacing:-.3px;margin-bottom:4px}
-.card .sub{color:var(--text2);font-size:14px;margin-bottom:20px}
-label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:6px}
-input[type=number]{width:100%;height:56px;padding:0 12px;border:1px solid var(--border);border-radius:4px;font-size:16px;color:var(--text);background:var(--input-bg);font-family:"SF Mono","Cascadia Code","Consolas",monospace;-webkit-appearance:none}
-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px rgba(230,92,0,.15)}
-.section{border:1px solid var(--line);border-radius:4px;padding:20px;margin-bottom:16px}
-.section h3{font-size:16px;font-weight:600;margin-bottom:12px;color:var(--text)}
-.inline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.inline input{width:100px;height:44px;padding:0 10px;font-size:15px}
-.inline span{color:var(--text2);font-size:14px;white-space:nowrap}
-.inline .eq{color:var(--text);font-weight:700;font-size:16px}
-.result-inline{display:inline-flex;align-items:center;gap:8px;background:var(--result-bg);border-radius:4px;padding:8px 16px;margin-top:12px}
-.result-inline .big{font-size:22px;font-weight:700;color:var(--result-text);font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-.result-inline .lbl{font-size:13px;color:var(--text2)}
-#stickyBar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);padding:12px 16px;z-index:99;transform:translateY(100%);transition:transform .2s;display:flex;align-items:center;justify-content:space-between;gap:12px}
-#stickyBar.show{transform:translateY(0)}
-#stickyBar .s-val{font-size:22px;font-weight:700;color:var(--result-text)}
-#stickyBar .s-label{font-size:13px;color:var(--text2)}
-#stickyBar .copy-btn{background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:13px;font-family:inherit;white-space:nowrap}
-h2{font-size:18px;letter-spacing:-.2px;margin-bottom:12px}
-.card p,.card li{color:var(--text2);font-size:14px}
-.card ol{padding-left:20px;margin-bottom:12px}
-.card li{margin-bottom:4px}
-details{border-bottom:1px solid var(--line);padding:12px 0}
-details:first-of-type{border-top:1px solid var(--line)}
-summary{font-size:15px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.mini-eq{font-size:14px;color:var(--text2);text-align:center;margin-bottom:8px}
+.inline-result{font-size:18px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace;text-align:center;padding:8px;background:var(--res-bg);border-radius:4px;margin-top:8px}
+summary{list-style:none;cursor:pointer;font-weight:700;font-size:15px;padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
 summary::-webkit-details-marker{display:none}
-summary::after{content:'+';font-size:20px;color:var(--accent)}
-details[open] summary::after{content:'\2212'}
-details p{font-size:14px;color:var(--text2);padding:8px 0 0}
-.ad-rect{width:300px;height:250px;background:var(--ad-bg);color:var(--ad-text);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:13px;border-radius:4px}
-footer{padding:24px 16px;text-align:center;font-size:13px;color:var(--text2);background:var(--card);border-top:1px solid var(--line)}
-footer a{color:var(--accent);text-decoration:none}
-.crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
-.crumb a{color:var(--text2)}
-@media(max-width:500px){.inline{flex-direction:column;align-items:flex-start}.inline input{width:100%}}
+summary::after{content:"+";font-size:18px;color:var(--accent3);margin-left:8px}
+details[open] summary::after{content:"\2212"}
+.faq-body{font-size:14px;color:var(--text2);padding:8px 0;line-height:1.6}
+@media(max-width:480px){.row{grid-template-columns:1fr}}
 </style>
-</head>
 <body>
 <header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
-
 <main class="wrap">
 <p class="crumb"><a href="/">figgn</a> / <a href="/#everyday">Everyday</a> / Percentage Calculator</p>
-
-<div class="card" id="toolCard">
-  <h1>Percentage Calculator </h1>
-  <p class="sub">Three percentage tools in one: find percentage of a number, calculate percentage change, and find what percent one number is of another.</p>
-
-  <!-- A: X% of Y -->
-  <div class="section">
-    <h3>What is X% of Y?</h3>
-    <div class="inline">
-      <span>What is</span>
-      <input type="number" id="a1" value="20" min="0" step="0.1" inputmode="decimal" aria-label="Percentage">
-      <span>% of</span>
-      <input type="number" id="a2" value="150" min="0" step="0.01" inputmode="decimal" aria-label="Total">
-      <span class="eq">=</span>
-    </div>
-    <div class="result-inline">
-      <span class="big" id="rA">30</span>
-      <span class="lbl">result</span>
-    </div>
-  </div>
-
-  <!-- B: % change -->
-  <div class="section">
-    <h3>Percentage Change from X to Y</h3>
-    <div class="inline">
-      <span>From</span>
-      <input type="number" id="b1" value="50" min="0" step="0.01" inputmode="decimal" aria-label="Original value">
-      <span>to</span>
-      <input type="number" id="b2" value="75" min="0" step="0.01" inputmode="decimal" aria-label="New value">
-      <span class="eq">=</span>
-    </div>
-    <div class="result-inline">
-      <span class="big" id="rB">50%</span>
-      <span class="lbl" id="rBlbl">increase</span>
-    </div>
-  </div>
-
-  <!-- C: X is what % of Y -->
-  <div class="section">
-    <h3>X is What Percent of Y?</h3>
-    <div class="inline">
-      <input type="number" id="c1" value="45" min="0" step="0.01" inputmode="decimal" aria-label="Part">
-      <span>is what percent of</span>
-      <input type="number" id="c2" value="200" min="0" step="0.01" inputmode="decimal" aria-label="Whole">
-      <span class="eq">=</span>
-    </div>
-    <div class="result-inline">
-      <span class="big" id="rC">22.5%</span>
-      <span class="lbl">of the total</span>
-    </div>
-  </div>
-</div>
-
-<div id="stickyBar"><div><span class="s-val mono" id="sVal">30</span> <span class="s-label" id="sDet">20% of 150</span></div><button class="copy-btn" id="copyBtn">Copy</button></div>
-<div class="ad-rect">Advertisement</div>
-
 <div class="card">
-  <h2>How to Use</h2>
-  <ol>
-    <li><strong>What is X% of Y?</strong> Enter a percentage and a number. E.g., 20% of 150 = 30.</li>
-    <li><strong>Percentage Change:</strong> Enter a starting value and ending value to see the percent increase or decrease.</li>
-    <li><strong>X is What Percent of Y:</strong> Enter a part and a whole. E.g., 45 is 22.5% of 200.</li>
-    <li><strong>All three update instantly</strong> as you type — no button needed.</li>
-  </ol>
-</div>
+<h1>Percentage Calculator</h1>
+<p class="sub">Three percentage calculators in one. All results update as you type.</p>
 
-<div class="card">
-  <h2>FAQ</h2>
-  <details><summary>How do I calculate a percentage of a number?</summary><p>Multiply the number by the percentage divided by 100. Example: 20% of 150 = 150 × (20 ÷ 100) = 150 × 0.20 = 30.</p></details>
-  <details><summary>How do I calculate percentage change?</summary><p>Percentage change = (New − Old) ÷ Old × 100. If the result is positive, it's an increase. If negative, it's a decrease. Example: from 50 to 75 = (75−50)÷50×100 = 50% increase.</p></details>
-  <details><summary>What's the difference between percentage and percentage points?</summary><p>If a rate goes from 10% to 15%, the increase is 5 percentage points, but the percentage increase is 50% (because 5÷10×100 = 50%). Be careful not to confuse these — they mean very different things.</p></details>
+<h2>What is X% of Y?</h2>
+<p class="mini-eq"><em>X% &times; Y = Result</em></p>
+<div class="row">
+  <div><label for="a1">Percent</label><input type="number" id="a1" value="15" step="0.1" inputmode="decimal"></div>
+  <div><label for="a2">Of</label><input type="number" id="a2" value="200" step="0.01" inputmode="decimal"></div>
+</div>
+<div class="inline-result" id="ra">15% of 200 = 30.00</div>
+
+<h2>Percentage Change</h2>
+<p class="mini-eq"><em>(New &minus; Old) &divide; Old &times; 100</em></p>
+<div class="row">
+  <div><label for="b1">From</label><input type="number" id="b1" value="50" step="0.01" inputmode="decimal"></div>
+  <div><label for="b2">To</label><input type="number" id="b2" value="75" step="0.01" inputmode="decimal"></div>
+</div>
+<div class="inline-result" id="rb">From 50 to 75 = +50.00% increase</div>
+
+<h2>X is What % of Y?</h2>
+<p class="mini-eq"><em>X &divide; Y &times; 100</em></p>
+<div class="row">
+  <div><label for="c1">X</label><input type="number" id="c1" value="30" step="0.01" inputmode="decimal"></div>
+  <div><label for="c2">Y</label><input type="number" id="c2" value="120" step="0.01" inputmode="decimal"></div>
+</div>
+<div class="inline-result" id="rc">30 is 25.00% of 120</div>
+
+<details><summary>How do you calculate a percentage?</summary><p class="faq-body">The basic formula: (Part &divide; Whole) &times; 100 = Percentage. For example, 30 out of 120 is (30/120)&times;100 = 25%.</p></details>
+<details><summary>What&#39;s percentage increase vs. decrease?</summary><p class="faq-body">Percentage change = (New &minus; Old) &divide; Old &times; 100. A positive result means an increase, negative means a decrease. Going from 50 to 75 is a 50% increase; from 75 to 50 is a 33.3% decrease.</p></details>
 </div>
 </main>
-<footer><p>&copy; 2025 Tool Site. <a href="/">All Calculators</a></p></footer>
-
+<footer><div class="wrap">&copy; 2026 figgn <a href="/privacy/">Privacy</a> <a href="/blog/">Blog</a> <a href="/">All calculators</a></div></footer>
 <script>
 (function(){
-function fmt(n,d){return n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
+var theme=localStorage.getItem('theme');if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',theme);var tb=document.getElementById('themeBtn');if(tb){tb.textContent=theme==='dark'?'Light':'Dark';tb.onclick=function(){theme=theme==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',theme);localStorage.setItem('theme',theme);tb.textContent=theme==='dark'?'Light':'Dark';}}
 
-// A: X% of Y
-var a1=document.getElementById('a1'),a2=document.getElementById('a2'),rA=document.getElementById('rA');
-function calcA(){
-  var p=parseFloat(a1.value)||0,y=parseFloat(a2.value)||0;
-  var result=p*y/100;
-  rA.textContent=fmt(result,2);
+function calc(){
+  var a1=parseFloat(document.getElementById('a1').value)||0;
+  var a2=parseFloat(document.getElementById('a2').value)||0;
+  document.getElementById('ra').textContent=a1+'% of '+a2+' = '+(a1/100*a2).toFixed(2);
+
+  var b1=parseFloat(document.getElementById('b1').value)||0;
+  var b2=parseFloat(document.getElementById('b2').value)||0;
+  var change=b1!==0?((b2-b1)/Math.abs(b1))*100:0;
+  var dir=change>=0?'increase':'decrease';
+  document.getElementById('rb').textContent='From '+b1+' to '+b2+' = '+((change>=0?'+':''))+change.toFixed(2)+'% '+dir;
+
+  var c1=parseFloat(document.getElementById('c1').value)||0;
+  var c2=parseFloat(document.getElementById('c2').value)||0;
+  var pct=c2!==0?(c1/c2)*100:0;
+  document.getElementById('rc').textContent=c1+' is '+pct.toFixed(2)+'% of '+c2;
 }
-a1.addEventListener('input',calcA);a2.addEventListener('input',calcA);
 
-// B: % change
-var b1=document.getElementById('b1'),b2=document.getElementById('b2'),rB=document.getElementById('rB'),rBlbl=document.getElementById('rBlbl');
-function calcB(){
-  var x=parseFloat(b1.value)||0,y=parseFloat(b2.value)||0;
-  if(x===0){rB.textContent='—';rBlbl.textContent='';return;}
-  var pct=((y-x)/x)*100;
-  rB.textContent=fmt(Math.abs(pct),1)+'%';
-  rBlbl.textContent=pct>=0?'increase':'decrease';
-}
-b1.addEventListener('input',calcB);b2.addEventListener('input',calcB);
-
-// C: X is what % of Y
-var c1=document.getElementById('c1'),c2=document.getElementById('c2'),rC=document.getElementById('rC');
-function calcC(){
-  var x=parseFloat(c1.value)||0,y=parseFloat(c2.value)||0;
-  if(y===0){rC.textContent='—';return;}
-  rC.textContent=fmt((x/y)*100,1)+'%';
-}
-c1.addEventListener('input',calcC);c2.addEventListener('input',calcC);
-
-var stickyBar=document.getElementById('stickyBar');
-new IntersectionObserver(function(e){stickyBar.classList.toggle('show',!e[0].isIntersecting);},{threshold:0}).observe(document.getElementById('rA').closest('.result-inline'));
-
-document.getElementById('copyBtn').addEventListener('click',function(){
-  var t=rA.textContent;
-  navigator.clipboard.writeText(t).then(function(){
-    var b=document.getElementById('copyBtn');b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);
-  });
-});
-
-var tt=document.getElementById('themeBtn');
-function setUI(t){tt.textContent=t==='dark'?'Light':'Dark';document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('theme',t);}catch(e){}}
-var ct=document.documentElement.getAttribute('data-theme')||'light';setUI(ct);
-tt.addEventListener('click',function(){setUI(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');});
-
-calcA();calcB();calcC();
+document.querySelectorAll('input[type=number]').forEach(function(i){i.oninput=calc});
+calc();
 })();
 </script>
-</body>
-</html>
+</body></html>

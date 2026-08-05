@@ -1,291 +1,169 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GPA Calculator — Free Online Grade Point Average Calculator | Tool Site</title>
-<meta name="description" content="Calculate your GPA instantly. Add courses with letter grades and credits. Supports unweighted 4.0 and weighted 5.0 scales. Cumulative GPA option. Free online GPA calculator.">
-<link rel="canonical" href="https://figgn.xyz/gpa/">
-<meta property="og:title" content="GPA Calculator — Free Online Grade Point Average Calculator | Tool Site">
-<meta property="og:description" content="Calculate your GPA instantly. Add courses with letter grades and credits. Supports unweighted 4.0 and weighted 5.0 scales. Cumulative GPA option.">
-<meta property="og:url" content="https://figgn.xyz/gpa/">
-<script>(function(){var t;try{t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';}catch(e){t='light';}document.documentElement.setAttribute('data-theme',t);})();</script>
+<title>GPA Calculator — Free College GPA Tool | figgn</title>
+<meta name="description" content="Calculate your semester and cumulative GPA instantly. Supports weighted/unweighted, letter grades A+ through F, and dynamic course rows.">
+<link rel="canonical" href="https://figgn.xyz/gpa-calculator/">
+<meta property="og:title" content="GPA Calculator — Free College GPA Tool | figgn">
+<meta property="og:description" content="Calculate your semester and cumulative GPA instantly. Supports weighted/unweighted, letter grades A+ through F, and dynamic course rows.">
+<meta property="og:url" content="https://figgn.xyz/gpa-calculator/">
+</head>
 <style>
-:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--border:#ccc;--input-bg:#fff;--accent:#e65c00;--result-bg:#e7f5ec;--result-text:#0d5c2e;--ad-bg:#f0f0f0;--ad-text:#888;--shadow:0 1px 3px rgba(0,0,0,.08);--line:#e4e4ea}
-[data-theme="dark"]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--border:#3a3a48;--input-bg:#252530;--accent:#e65c00;--result-bg:#0a3020;--result-text:#4ade80;--ad-bg:#22222b;--ad-text:#777;--shadow:0 1px 3px rgba(0,0,0,.3);--line:#2a2a34}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-text-size-adjust:100%}
-.mono{font-family:"SF Mono","Cascadia Code","Consolas",monospace}
+:root{--bg:#f8f9fb;--card:#fff;--text:#111;--text2:#555;--accent:#e65c00;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#e7f5ec;--res-text:#0d5c2e;--border:#ccc;--line:#e4e4ea;--ad-bg:#f0f0f0;--ad-text:#888}
+[data-theme=dark]{--bg:#131318;--card:#1c1c24;--text:#e0e0e0;--text2:#999;--accent2:#c24d00;--accent3:#ff8a3d;--res-bg:#0a3020;--res-text:#4ade80;--border:#3a3a48;--line:#2a2a34;--ad-bg:#22222b;--ad-text:#777}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:0 12px}
+a{color:var(--accent3)}a:hover{color:var(--accent2)}
 header{background:var(--accent);color:#fff}
 .hbar{max-width:760px;margin:0 auto;padding:0 12px;height:48px;display:flex;align-items:center;justify-content:space-between}
 .wordmark{color:#fff;text-decoration:none;font-size:19px;font-weight:700}
 .hnav{display:flex;align-items:center;gap:12px;font-size:14px}
 .hnav a{color:#fff;text-decoration:none;font-weight:600}
 #themeBtn{background:var(--accent2);color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit}
-
-.wrap{max-width:760px;margin:0 auto;padding:20px 16px 40px}
-
+footer{background:#1c1c24;padding:14px 0;margin-top:40px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;color:#aaa;font-size:13px}
+footer a{color:#aaa}
+h1{font-size:22px;margin:0 0 4px}
+h2{font-size:17px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+.sub{color:var(--text2);font-size:14px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .crumb{font-size:13px;color:var(--text2);margin:12px 0 6px}
 .crumb a{color:var(--text2)}
+label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px;font-weight:600}
+input[type=number]{width:100%;min-height:56px;font-size:18px;font-family:"SF Mono","Cascadia Code",Consolas,monospace;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text)}
+input:focus{outline:2px solid var(--accent);outline-offset:1px}
+select{width:100%;min-height:56px;font-size:16px;font-family:system-ui,sans-serif;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text);cursor:pointer}
+select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.row3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px;margin-bottom:8px;align-items:end}
 .btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 .btnrow button{padding:8px 14px;font-size:13px;font-family:inherit;border:1px solid var(--border);border-radius:4px;background:var(--card);color:var(--text);cursor:pointer;min-height:40px}
 .btnrow button.on{background:var(--accent2);color:#fff;border-color:var(--accent2);font-weight:700}
-.stepper{display:flex;align-items:center;gap:0;margin-bottom:14px}
-.stepper button{min-height:56px;min-width:44px;font-size:20px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-family:inherit}
-.stepper button:first-child{border-radius:4px 0 0 4px}
-.stepper button:last-child{border-radius:0 4px 4px 0}
-.stepper input{border-radius:0;text-align:center;min-width:60px;width:60px;border-left:0;border-right:0}
+.result{margin-top:14px;padding:14px;background:var(--res-bg);border-radius:4px;text-align:center}
+.result .big{font-size:36px;font-weight:700;color:var(--res-text);font-family:"SF Mono","Cascadia Code",Consolas,monospace}
+.result .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--res-text);margin-bottom:2px}
 .detail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
 .detail .stat{background:var(--ad-bg);padding:10px;border-radius:4px;text-align:center}
 .detail .stat .v{font-size:17px;font-weight:700;font-family:"SF Mono","Cascadia Code",Consolas,monospace}
 .detail .stat .k{font-size:11px;text-transform:uppercase;color:var(--text2)}
 .note{font-size:13px;color:var(--text2);margin-top:10px;font-style:italic}
 .hidden{display:none}
-.adwrap{background:var(--ad-bg);border-radius:4px;padding:10px;text-align:center;margin-bottom:14px}
-.adlabel{font-size:10px;text-transform:uppercase;color:var(--ad-text);display:block;margin-bottom:4px}
-.adwrap[data-ad="leaderboard"]{display:none}
-
-@media(max-width:480px){.row{grid-template-columns:1fr}}
-@media(max-width:767px){.ad-leaderboard{display:none}}
-.card{background:var(--card);border-radius:4px;box-shadow:var(--shadow);padding:24px;margin-bottom:16px}
-.card h1{font-size:24px;letter-spacing:-.3px;margin-bottom:4px}
-.card .sub{color:var(--text2);font-size:14px;margin-bottom:20px}
-label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:6px}
-input[type=number],select{width:100%;height:56px;padding:0 12px;border:1px solid var(--border);border-radius:4px;font-size:16px;color:var(--text);background:var(--input-bg);font-family:inherit;-webkit-appearance:none}
-input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px rgba(230,92,0,.15)}
-.row{display:flex;gap:12px;margin-bottom:0}
-.row>*{flex:1}
-.scale-toggle{display:flex;gap:0;margin-bottom:16px;border:1px solid var(--border);border-radius:4px;overflow:hidden}
-.scale-toggle button{flex:1;height:44px;border:none;background:var(--input-bg);color:var(--text);font-size:14px;cursor:pointer;font-family:inherit;border-right:1px solid var(--border)}
-.scale-toggle button:last-child{border-right:none}
-.scale-toggle button.on{background:var(--accent);color:#fff}
-.result{background:var(--result-bg);border-radius:4px;padding:24px;text-align:center;margin-bottom:16px}
-.result .big{font-size:44px;font-weight:700;color:var(--result-text);font-family:"SF Mono","Cascadia Code","Consolas",monospace}
-.result .label{font-size:14px;color:var(--text2);margin-top:4px}
-.result-grid{display:flex;gap:16px;margin-top:16px}
-.result-grid>div{flex:1;background:var(--bg);border-radius:4px;padding:12px;text-align:center}
-.result-grid .val{font-size:18px;font-weight:700;color:var(--text)}
-.result-grid .lbl{font-size:12px;color:var(--text2);margin-top:2px}
-.course-row{display:flex;gap:8px;align-items:flex-end;margin-bottom:8px}
-.course-row .name{flex:2}
-.course-row .grade{flex:1.5}
-.course-row .cred{flex:1}
-.course-row button{height:56px;width:44px;border:1px solid var(--border);border-radius:4px;background:var(--input-bg);color:var(--accent);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.course-row button:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-#addRow{width:100%;height:48px;border:2px dashed var(--border);border-radius:4px;background:transparent;color:var(--text2);font-size:14px;cursor:pointer;margin:8px 0 16px;font-family:inherit}
-#addRow:hover{border-color:var(--accent);color:var(--accent)}
-.cum-section{border-top:1px solid var(--line);padding-top:16px;margin-top:16px}
-#stickyBar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);padding:12px 16px;z-index:99;transform:translateY(100%);transition:transform .2s;display:flex;align-items:center;justify-content:space-between;gap:12px}
-#stickyBar.show{transform:translateY(0)}
-#stickyBar .s-val{font-size:22px;font-weight:700;color:var(--result-text)}
-#stickyBar .s-label{font-size:13px;color:var(--text2)}
-#stickyBar .copy-btn{background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:13px;font-family:inherit;white-space:nowrap}
-h2{font-size:18px;letter-spacing:-.2px;margin-bottom:12px}
-.card p,.card li{color:var(--text2);font-size:14px}
-.card ol{padding-left:20px;margin-bottom:12px}
-.card li{margin-bottom:4px}
-details{border-bottom:1px solid var(--line);padding:12px 0}
-details:first-of-type{border-top:1px solid var(--line)}
-summary{font-size:15px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.row-remove{background:none;border:none;color:var(--accent3);cursor:pointer;font-size:20px;padding:0 0 0 8px;line-height:1;align-self:end;margin-bottom:4px}
+#addRow{width:100%;margin-top:6px}
+summary{list-style:none;cursor:pointer;font-weight:700;font-size:15px;padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
 summary::-webkit-details-marker{display:none}
-summary::after{content:'+';font-size:20px;color:var(--accent)}
-details[open] summary::after{content:'\2212'}
-details p{font-size:14px;color:var(--text2);padding:8px 0 0}
-.ad-rect{width:300px;height:250px;background:var(--ad-bg);color:var(--ad-text);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:13px;border-radius:4px}
-footer{padding:24px 16px;text-align:center;font-size:13px;color:var(--text2);background:var(--card);border-top:1px solid var(--line)}
-footer a{color:var(--accent);text-decoration:none}
-.table-wrap{overflow-x:auto}
+summary::after{content:"+";font-size:18px;color:var(--accent3);margin-left:8px}
+details[open] summary::after{content:"\2212"}
+.faq-body{font-size:14px;color:var(--text2);padding:8px 0;line-height:1.6}
+@media(max-width:480px){.row,.row3{grid-template-columns:1fr}}
 </style>
-</head>
 <body>
 <header><div class="hbar"><a href="/" class="wordmark">figgn</a><div class="hnav"><a href="/blog/">Blog</a><button id="themeBtn">Dark</button></div></div></header>
-
 <main class="wrap">
-<p class="crumb"><a href="/">figgn</a> / <a href="/#school">School &amp; Grades</a> / GPA Calculator</p>
+<p class="crumb"><a href="/">figgn</a> / <a href="/#student">Student</a> / GPA Calculator</p>
+<div class="card">
+<h1>GPA Calculator</h1>
+<p class="sub">Calculate your grade point average. Add courses, pick grades, and see your GPA update instantly.</p>
 
-<div class="card" id="toolCard">
-  <h1>GPA Calculator </h1>
-  <p class="sub">Calculate your semester and cumulative GPA. Supports unweighted (4.0) and weighted (5.0) scales.</p>
-
-  <label>Grading Scale</label>
-  <div class="scale-toggle" role="group"><button class="on" data-scale="4.0">Unweighted (4.0)</button><button data-scale="5.0">Weighted (5.0)</button></div>
-
-  <div id="courses"></div>
-  <button id="addRow">+ Add Course</button>
-
-  <div class="cum-section">
-    <label>Cumulative GPA (optional)</label>
-    <div class="row">
-      <div><label for="cumGpa" style="text-transform:none;letter-spacing:0">Prior GPA</label><input type="number" id="cumGpa" value="" min="0" max="5" step=".01" inputmode="decimal" placeholder="e.g. 3.50"></div>
-      <div><label for="cumCredits" style="text-transform:none;letter-spacing:0">Prior Credits</label><input type="number" id="cumCredits" value="" min="0" step="1" inputmode="numeric" placeholder="e.g. 60"></div>
-    </div>
-  </div>
-
-  <div class="result" id="result">
-    <div class="big" id="gpaVal">3.47</div>
-    <div class="label">GPA</div>
-    <div class="result-grid">
-      <div><div class="val" id="totCred">14</div><div class="lbl">Total Credits</div></div>
-      <div><div class="val" id="totQP">48.5</div><div class="lbl">Quality Points</div></div>
-      <div><div class="val" id="cumRes">—</div><div class="lbl">Cumulative GPA</div></div>
-    </div>
-  </div>
+<div class="btnrow">
+  <button class="on" data-gpatype="unweighted">Unweighted 4.0</button>
+  <button data-gpatype="weighted">Weighted 5.0</button>
 </div>
 
-<div id="stickyBar"><div><span class="s-val mono" id="sVal">3.47</span> <span class="s-label" id="sDet">GPA</span></div><button class="copy-btn" id="copyBtn">Copy</button></div>
-<div class="ad-rect">Advertisement</div>
+<div id="courseRows"></div>
 
-<div class="card">
-  <h2>How to Use</h2>
-  <ol>
-    <li><strong>Select your grading scale</strong> — Unweighted (4.0 max) or Weighted (5.0 max for AP/IB/Honors).</li>
-    <li><strong>Add your courses</strong> — enter course name, select letter grade, and enter credit hours.</li>
-    <li><strong>Optional: Enter cumulative data</strong> — prior GPA and credits to combine with current semester.</li>
-    <li><strong>See your GPA update instantly</strong> as you add or modify courses.</li>
-  </ol>
+<button id="addRow" class="btnrow" style="justify-content:center">+ Add Course</button>
+
+<div class="result">
+  <div class="label">Semester GPA</div>
+  <div class="big" id="gpaBig">3.23</div>
+</div>
+<div class="detail">
+  <div class="stat"><div class="v" id="totalCredits">14</div><div class="k">Credits</div></div>
+  <div class="stat"><div class="v" id="qualityPoints">45.2</div><div class="k">Quality Points</div></div>
+  <div class="stat"><div class="v" id="numCourses">4</div><div class="k">Courses</div></div>
 </div>
 
-<div class="card">
-  <h2>Grading Scale</h2>
-  <div class="table-wrap">
-  <table style="width:100%;border-collapse:collapse;font-size:14px">
-    <thead><tr style="border-bottom:1px solid var(--line)"><th style="text-align:left;padding:8px">Letter</th><th style="text-align:right;padding:8px">4.0 Scale</th><th style="text-align:right;padding:8px">5.0 Scale</th></tr></thead>
-    <tbody>
-      <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px">A+</td><td style="text-align:right;padding:8px">4.0</td><td style="text-align:right;padding:8px">5.0</td></tr>
-      <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px">A</td><td style="text-align:right;padding:8px">4.0</td><td style="text-align:right;padding:8px">5.0</td></tr>
-      <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px">A-</td><td style="text-align:right;padding:8px">3.7</td><td style="text-align:right;padding:8px">4.7</td></tr>
-      <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px">B+</td><td style="text-align:right;padding:8px">3.3</td><td style="text-align:right;padding:8px">4.3</td></tr>
-      <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px">B</td><td style="text-align:right;padding:8px">3.0</td><td style="text-align:right;padding:8px">4.0</td></tr>
-      <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px">B-</td><td style="text-align:right;padding:8px">2.7</td><td style="text-align:right;padding:8px">3.7</td></tr>
-      <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px">C+</td><td style="text-align:right;padding:8px">2.3</td><td style="text-align:right;padding:8px">3.3</td></tr>
-      <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px">C</td><td style="text-align:right;padding:8px">2.0</td><td style="text-align:right;padding:8px">3.0</td></tr>
-      <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px">C-</td><td style="text-align:right;padding:8px">1.7</td><td style="text-align:right;padding:8px">2.7</td></tr>
-      <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px">D+</td><td style="text-align:right;padding:8px">1.3</td><td style="text-align:right;padding:8px">2.3</td></tr>
-      <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px">D</td><td style="text-align:right;padding:8px">1.0</td><td style="text-align:right;padding:8px">2.0</td></tr>
-      <tr><td style="padding:8px">F</td><td style="text-align:right;padding:8px">0.0</td><td style="text-align:right;padding:8px">0.0</td></tr>
-    </tbody>
-  </table>
-  </div>
+<h2>Cumulative GPA</h2>
+<div class="row">
+  <div><label for="priorGPA">Prior GPA</label><input type="number" id="priorGPA" value="0.00" step="0.01" min="0" max="4.0" inputmode="decimal"></div>
+  <div><label for="priorCredits">Prior Credits</label><input type="number" id="priorCredits" value="0" step="1" min="0" inputmode="numeric"></div>
+</div>
+<div class="result">
+  <div class="label">Cumulative GPA</div>
+  <div class="big" id="cumGpaBig">3.23</div>
 </div>
 
-<div class="card">
-  <h2>FAQ</h2>
-  <details><summary>What's the difference between weighted and unweighted GPA?</summary><p>Unweighted GPA uses a 4.0 scale regardless of course difficulty. Weighted GPA (5.0 scale) gives extra points for honors, AP, or IB courses — an A in an AP class is worth 5.0 instead of 4.0.</p></details>
-  <details><summary>How is GPA calculated?</summary><p>GPA = Total Quality Points ÷ Total Credits. Quality points for each course = Grade Points × Credit Hours. Example: A- (3.7) in a 3-credit course = 11.1 quality points.</p></details>
-  <details><summary>How do I calculate cumulative GPA?</summary><p>Cumulative GPA combines all semesters: (Prior GPA × Prior Credits + New Quality Points) ÷ (Prior Credits + New Credits). Enter your prior totals in the cumulative section for automatic calculation.</p></details>
+<h2>How GPA Is Calculated</h2>
+<p class="faq-body">GPA = Total Quality Points ÷ Total Credits. Each letter grade is worth grade points (A = 4.0, B = 3.0, C = 2.0, D = 1.0, F = 0.0), multiplied by the course credits. Sum all quality points and divide by total credits attempted.</p>
+
+<details><summary>What is a good college GPA?</summary><p class="faq-body">A 3.0 (B average) is considered good. A 3.5+ is strong for graduate school applications. A 2.0 is typically the minimum to remain in good academic standing.</p></details>
+<details><summary>Weighted vs. unweighted GPA</summary><p class="faq-body">Unweighted GPA uses a 4.0 scale where A=4.0 regardless of course difficulty. Weighted GPA (often 5.0 scale) gives extra points for honors/AP/IB courses — an A in an AP course might count as 5.0 instead of 4.0.</p></details>
+<details><summary>How is cumulative GPA different?</summary><p class="faq-body">Semester GPA covers only the current term's courses. Cumulative GPA includes all courses taken across all semesters, weighted by credits.</p></details>
 </div>
 </main>
-<footer><p>&copy; 2025 Tool Site. <a href="/">All Calculators</a></p></footer>
-
+<footer><div class="wrap">&copy; 2026 figgn <a href="/privacy/">Privacy</a> <a href="/blog/">Blog</a> <a href="/">All calculators</a></div></footer>
 <script>
 (function(){
-var scale=4.0;
-var scaleBtns=document.querySelectorAll('.scale-toggle button');
-scaleBtns.forEach(function(b){
-  b.addEventListener('click',function(){
-    scaleBtns.forEach(function(x){x.classList.remove('on');});
-    b.classList.add('on');
-    scale=parseFloat(b.dataset.scale);
-    document.getElementById('courses').querySelectorAll('select').forEach(function(s){populateGrades(s);});
-    calc();
-  });
-});
+var theme=localStorage.getItem('theme');if(!theme||(theme!=='dark'&&theme!=='light'))theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',theme);var tb=document.getElementById('themeBtn');if(tb){tb.textContent=theme==='dark'?'Light':'Dark';tb.onclick=function(){theme=theme==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',theme);localStorage.setItem('theme',theme);tb.textContent=theme==='dark'?'Light':'Dark';}}
 
-var grades=[
-  {letter:'A+',p4:4.0,p5:5.0},{letter:'A',p4:4.0,p5:5.0},{letter:'A-',p4:3.7,p5:4.7},
-  {letter:'B+',p4:3.3,p5:4.3},{letter:'B',p4:3.0,p5:4.0},{letter:'B-',p4:2.7,p5:3.7},
-  {letter:'C+',p4:2.3,p5:3.3},{letter:'C',p4:2.0,p5:3.0},{letter:'C-',p4:1.7,p5:2.7},
-  {letter:'D+',p4:1.3,p5:2.3},{letter:'D',p4:1.0,p5:2.0},{letter:'F',p4:0.0,p5:0.0}
-];
+var gpaType='unweighted';
+var gradePoints={unweighted:{'A+':4.0,'A':4.0,'A-':3.7,'B+':3.3,'B':3.0,'B-':2.7,'C+':2.3,'C':2.0,'C-':1.7,'D+':1.3,'D':1.0,'D-':0.7,'F':0.0},weighted:{'A+':5.0,'A':5.0,'A-':4.7,'B+':4.3,'B':4.0,'B-':3.7,'C+':3.3,'C':3.0,'C-':2.7,'D+':2.3,'D':2.0,'D-':1.7,'F':0.0}};
+var gradeOptions=['A+','A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F'];
+var defaults=[{name:'English Comp',grade:'A-',credits:3},{name:'Calculus I',grade:'B+',credits:4},{name:'Chemistry',grade:'B',credits:4},{name:'History',grade:'A',credits:3}];
 
-function populateGrades(sel){
-  var v=sel.value;
-  sel.innerHTML='';
-  grades.forEach(function(g){
-    var o=document.createElement('option');
-    o.value=scale===5.0?g.p5:g.p4;
-    o.textContent=g.letter;
-    sel.appendChild(o);
-  });
-  sel.value=v||(scale===5.0?'5.0':'4.0');
+document.querySelectorAll('[data-gpatype]').forEach(function(b){b.onclick=function(){gpaType=b.dataset.gpatype;b.parentElement.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});renderRows();calc()}});
+
+function makeRow(data,index){
+  var d=document.createElement('div');d.className='row3';
+  var sel='<select class="gradeSel" onchange="calc()">';
+  gradeOptions.forEach(function(g){sel+='<option value="'+g+'"'+(g===data.grade?' selected':'')+'>'+g+'</option>'});
+  sel+='</select>';
+  d.innerHTML='<div><label>Course</label><input type="text" class="courseName" value="'+data.name+'" oninput="calc()" style="min-height:56px;font-size:16px;width:100%;border:1px solid var(--border);border-radius:4px;padding:0 12px;background:var(--card);color:var(--text);font-family:system-ui,sans-serif"></div><div><label>Grade</label>'+sel+'</div><div><label>Credits</label><input type="number" class="creditsIn" value="'+data.credits+'" min="0.5" max="20" step="0.5" inputmode="decimal" oninput="calc()"></div>';
+  var rm=document.createElement('button');rm.className='row-remove';rm.textContent='\u00d7';rm.title='Remove course';rm.onclick=function(){d.remove();calc()};
+  d.appendChild(rm);
+  return d;
 }
 
-function createRow(name,gradeVal,credits){
-  var div=document.createElement('div');
-  div.className='course-row';
-  div.innerHTML='<div class="name"><label style="text-transform:none;letter-spacing:0">Course</label><input type="text" value="'+name+'" placeholder="Course name" style="font-size:14px"></div>'+
-    '<div class="grade"><label style="text-transform:none;letter-spacing:0">Grade</label><select></select></div>'+
-    '<div class="cred"><label style="text-transform:none;letter-spacing:0">Credits</label><input type="number" value="'+credits+'" min="0.5" step="0.5" inputmode="decimal" style="font-size:14px"></div>'+
-    '<button class="delRow" title="Remove" style="margin-bottom:0">×</button>';
-  var sel=div.querySelector('select');
-  populateGrades(sel);
-  if(gradeVal) sel.value=String(gradeVal);
-  var delBtn=div.querySelector('.delRow');
-  delBtn.addEventListener('click',function(){
-    div.remove();
-    calc();
+function renderRows(){
+  var ct=document.getElementById('courseRows');
+  var rows=ct.querySelectorAll('.row3');
+  var data=[];
+  rows.forEach(function(r){
+    var cn=r.querySelector('.courseName');var gs=r.querySelector('.gradeSel');var ci=r.querySelector('.creditsIn');
+    data.push({name:cn?cn.value:'',grade:gs?gs.value:'A',credits:ci?parseFloat(ci.value)||3:3});
   });
-  div.querySelectorAll('input,select').forEach(function(el){
-    el.addEventListener('input',calc);
-  });
-  return div;
+  ct.innerHTML='';
+  if(data.length===0)data=defaults.slice();
+  data.forEach(function(d,i){ct.appendChild(makeRow(d,i))});
 }
 
-var container=document.getElementById('courses');
-var defaults=[{n:'English Comp',g:'3.7',c:'3'},{n:'Calculus I',g:'3.3',c:'4'},{n:'Chemistry',g:'3.0',c:'4'},{n:'History',g:'4.0',c:'3'}];
-defaults.forEach(function(d){container.appendChild(createRow(d.n,d.g,d.c));});
-
-document.getElementById('addRow').addEventListener('click',function(){
-  container.appendChild(createRow('','','3'));
-});
-
-document.getElementById('cumGpa').addEventListener('input',calc);
-document.getElementById('cumCredits').addEventListener('input',calc);
+document.getElementById('addRow').onclick=function(){var ct=document.getElementById('courseRows');ct.appendChild(makeRow({name:'',grade:'A',credits:3},ct.children.length));calc()};
 
 function calc(){
-  var totCreds=0,totQP=0;
-  container.querySelectorAll('.course-row').forEach(function(row){
-    var cred=parseFloat(row.querySelector('.cred input').value)||0;
-    var gp=parseFloat(row.querySelector('.grade select').value)||0;
-    if(cred>0){totCreds+=cred;totQP+=cred*gp;}
+  var ct=document.getElementById('courseRows');var rows=ct.querySelectorAll('.row3');
+  var totalQP=0,totalCr=0,count=0;
+  rows.forEach(function(r){
+    var gs=r.querySelector('.gradeSel');var ci=r.querySelector('.creditsIn');
+    var g=gs?gs.value:'A';var c=parseFloat(ci?ci.value:0)||0;
+    if(c>0){var gp=gradePoints[gpaType][g]||0;totalQP+=gp*c;totalCr+=c;count++}
   });
-  var gpa=totCreds>0?totQP/totCreds:0;
-
-  document.getElementById('gpaVal').textContent=gpa.toFixed(2);
-  document.getElementById('totCred').textContent=totCreds;
-  document.getElementById('totQP').textContent=totQP.toFixed(1);
-
-  var cumGpa=parseFloat(document.getElementById('cumGpa').value)||0;
-  var cumCred=parseFloat(document.getElementById('cumCredits').value)||0;
-  var cumRes='—';
-  if(cumCred>0&&totCreds>0){
-    cumRes=((cumGpa*cumCred+totQP)/(cumCred+totCreds)).toFixed(2);
-  }else if(cumCred>0){cumRes=cumGpa.toFixed(2);}
-  else if(totCreds>0){cumRes=gpa.toFixed(2);}
-  document.getElementById('cumRes').textContent=cumRes;
-
-  document.getElementById('sVal').textContent=gpa.toFixed(2);
-  document.getElementById('sDet').textContent='GPA | '+totCreds+' credits';
+  var gpa=totalCr>0?totalQP/totalCr:0;
+  document.getElementById('gpaBig').textContent=gpa.toFixed(2);
+  document.getElementById('totalCredits').textContent=totalCr.toFixed(1).replace(/\.0$/,'');
+  document.getElementById('qualityPoints').textContent=totalQP.toFixed(1);
+  document.getElementById('numCourses').textContent=count;
+  var pg=parseFloat(document.getElementById('priorGPA').value)||0;
+  var pc=parseFloat(document.getElementById('priorCredits').value)||0;
+  var cumGpa=(pg*pc+totalQP)/(pc+totalCr)||0;
+  if(pc+totalCr===0)cumGpa=gpa;
+  document.getElementById('cumGpaBig').textContent=cumGpa.toFixed(2);
 }
 
-var stickyBar=document.getElementById('stickyBar');
-new IntersectionObserver(function(e){stickyBar.classList.toggle('show',!e[0].isIntersecting);},{threshold:0}).observe(document.getElementById('result'));
-
-document.getElementById('copyBtn').addEventListener('click',function(){
-  var t='GPA: '+document.getElementById('gpaVal').textContent;
-  navigator.clipboard.writeText(t).then(function(){
-    var b=document.getElementById('copyBtn');b.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},2000);
-  });
-});
-
-var tt=document.getElementById('themeBtn');
-function setUI(t){tt.textContent=t==='dark'?'Light':'Dark';document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('theme',t);}catch(e){}}
-var ct=document.documentElement.getAttribute('data-theme')||'light';
-setUI(ct);
-tt.addEventListener('click',function(){setUI(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');});
-
-calc();
+document.getElementById('priorGPA').oninput=calc;document.getElementById('priorCredits').oninput=calc;
+renderRows();calc();
 })();
 </script>
-</body>
-</html>
+</body></html>
